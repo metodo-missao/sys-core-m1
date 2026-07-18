@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flash Cards — Informática (Método Missão)</title>
+
+    <style>
+        /* ==========================================================================
+           1. VARIÁVEIS DE AMBIENTE & PALETA HOMOLOGADA (DEEP ROYAL)
+           ========================================================================== */
+        :root {
+            --cor-fundo-site: #02112e;
+            --cor-fundo-bloco: #031842;
+            --cor-borda: #0b2c6e;
+            --cor-ouro: #ffca28;
+            --cor-texto: #ffffff;
+            --cor-sucesso: #2ecc71;
+            --cor-texto-mutado: #8a99ad;
+        }
+
+        /* ==========================================================================
+           2. RESET E ESTILOS GERAIS
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--cor-fundo-site);
+            color: var(--cor-texto);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 25px 15px;
+            overflow-x: hidden;
+        }
+
+        /* Marca d'água Integrada */
+        .marca-dagua {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 5rem;
+            color: rgba(255, 255, 255, 0.03);
+            pointer-events: none;
+            user-select: none;
+            z-index: 9999;
+            white-space: nowrap;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        @media print {
+            body {
+                display: none !important;
+            }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ==========================================================================
+           3. TOPO INSTITUCIONAL & SELETOR DE AULAS PREMIUM
+           ========================================================================== */
+        .header-simulador {
+            text-align: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .badge-materia {
+            background-color: var(--cor-fundo-bloco);
+            border: 2px solid var(--cor-ouro);
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--cor-ouro);
+            display: inline-block;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .container-seletor {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .label-seletor {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--cor-texto-mutado);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 6px;
+            text-align: left;
+        }
+
+        .dropdown-aulas {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--cor-fundo-bloco);
+            border: 2px solid var(--cor-borda);
+            border-radius: 12px;
+            color: var(--cor-texto);
+            font-size: 15px;
+            font-weight: 700;
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .dropdown-aulas:focus {
+            border-color: var(--cor-ouro);
+        }
+
+        /* ==========================================================================
+           4. ESTRUTURA DOS FLASH CARDS COM PERSPECTIVA 3D
+           ========================================================================== */
+        .contador-cards {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--cor-ouro);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background-color: #031c4c;
+            padding: 4px 12px;
+            border-radius: 6px;
+        }
+
+        #simulador-container {
+            width: 100%;
+            perspective: 1000px;
+            margin-bottom: 20px;
+            transition: filter 0.2s ease;
+        }
+
+        .card-flash {
+            width: 100%;
+            height: 280px;
+            cursor: pointer;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-flash.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .face-card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .face-frente {
+            background-color: var(--cor-fundo-bloco);
+            border: 2px solid var(--cor-ouro);
+        }
+
+        .face-verso {
+            background-color: var(--cor-fundo-bloco);
+            border: 2px solid var(--cor-sucesso);
+            transform: rotateY(180deg);
+            overflow-y: auto;
+        }
+
+        .texto-pergunta {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        .texto-resposta {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--cor-sucesso);
+            margin-bottom: 10px;
+        }
+
+        .texto-fundamento {
+            font-size: 16px;
+            color: #ffffff;
+            line-height: 1.5;
+            border-top: 1px solid var(--cor-borda);
+            padding-top: 10px;
+            width: 100%;
+            font-weight: 500;
+        }
+
+        .dica-virar {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--cor-ouro);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 15px;
+            opacity: 0.7;
+        }
+
+        /* ==========================================================================
+           5. CONTROLES DE NAVEGAÇÃO
+           ========================================================================== */
+        .botoes-navegacao {
+            display: flex;
+            width: 100%;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .btn-nav {
+            flex: 1;
+            padding: 14px;
+            background-color: var(--cor-fundo-bloco);
+            border: 1px solid var(--cor-borda);
+            border-radius: 10px;
+            color: var(--cor-texto);
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-nav:active {
+            transform: scale(0.97);
+            background-color: var(--cor-borda);
+        }
+
+        .btn-destaque {
+            border-color: var(--cor-ouro);
+            color: var(--cor-ouro);
+        }
+
+        .btn-voltar-hub {
+            width: 100%;
+            padding: 12px;
+            background-color: transparent;
+            border: 1px dashed var(--cor-borda);
+            border-radius: 8px;
+            color: var(--cor-texto-mutado);
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            transition: color 0.2s;
+        }
+
+        .btn-voltar-hub:hover {
+            color: #fff;
+            border-color: #fff;
+        }
+
+        /* ==========================================================================
+           6. FOOTER
+           ========================================================================== */
+        .footer-institucional {
+            margin-top: 30px;
+            font-size: 11px;
+            color: var(--cor-texto-mutado);
+            text-align: center;
+            letter-spacing: 0.5px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="marca-dagua">Método Missão</div>
+
+    <div class="container">
+
+        <header class="header-simulador">
+            <div class="badge-materia">💻 Informática • Carreiras Policiais</div>
+
+            <div class="container-seletor">
+                <label class="label-seletor" for="selecao-aula">Selecione o Bloco de Estudo:</label>
+                <select id="selecao-aula" class="dropdown-aulas">
+                    <option value="aula1">Teclas de Atalho (Firefox) — Aula 1</option>
+                    <option value="aula2">Teclas de Atalho (Firefox) — Aula 2</option>
+                    <option value="aula3">Google Chrome: Atalhos & Recursos — Aula 3</option>
+                    <option value="aula4">Google Chrome: Segurança & Configurações — Aula 4</option>
+                </select>
+            </div>
+        </header>
+
+        <div id="contador-visual" class="contador-cards">Card 1/1</div>
+
+        <main id="simulador-container">
+            <div id="card-objeto" class="card-flash">
+
+                <div class="face-card face-frente">
+                    <p id="campo-pergunta" class="texto-pergunta">Carregando pergunta...</p>
+                    <span class="dica-virar">👇 Clique para revelar o Gabarito</span>
+                </div>
+
+                <div class="face-card face-verso">
+                    <div id="campo-resposta" class="texto-resposta">Carregando...</div>
+                    <p id="campo-fundamento" class="texto-fundamento">Carregando fundamentação técnica da banca...</p>
+                    <span class="dica-virar">Aperte em avançar ou clique para desvirar</span>
+                </div>
+
+            </div>
+        </main>
+
+        <div class="botoes-navegacao">
+            <button id="btn-anterior" class="btn-nav">◀ Voltar</button>
+            <button id="btn-virar" class="btn-nav btn-destaque">🔄 Virar Card</button>
+            <button id="btn-proximo" class="btn-nav">Avançar ▶</button>
+        </div>
+
+        <a href="index.html" class="btn-voltar-hub">🏠 Voltar ao Menu Principal</a>
+
+        <footer class="footer-institucional">
+            &copy; 2026 Método Missão. Todos os direitos reservados.
+            <br>
+            Gabarita Aí é uma plataforma oficial da metodologia de estudos Método Missão.
+        </footer>
+
+    </div>
+
+    <script src="dados-flashcards-info.js"></script>
+
+    <script>
+        let aulaAtual = "aula1";
+        let indexAtual = 0;
+
+        const cardObjeto = document.getElementById('card-objeto');
+        const campoPergunta = document.getElementById('campo-pergunta');
+        const campoResposta = document.getElementById('campo-resposta');
+        const campoFundamento = document.getElementById('campo-fundamento');
+        const contadorVisual = document.getElementById('contador-visual');
+
+        // Atualização isolada do visual e do contador 
+        function renderizarCard() {
+            const listaCards = bancoAulas[aulaAtual];
+            const dadosCard = listaCards[indexAtual];
+
+            cardObjeto.classList.remove('flipped');
+
+            setTimeout(() => {
+                campoPergunta.textContent = dadosCard.pergunta;
+                campoResposta.textContent = dadosCard.resposta;
+                campoFundamento.textContent = dadosCard.fundamento;
+                contadorVisual.textContent = `Card ${indexAtual + 1}/${listaCards.length}`;
+            }, 150);
+        }
+
+        // ==========================================================================
+        // EVENTOS DE NAVEGAÇÃO
+        // ==========================================================================
+        cardObjeto.addEventListener('click', () => cardObjeto.classList.toggle('flipped'));
+        document.getElementById('btn-virar').addEventListener('click', () => cardObjeto.classList.toggle('flipped'));
+
+        document.getElementById('btn-proximo').addEventListener('click', () => {
+            const listaCards = bancoAulas[aulaAtual];
+            if (indexAtual < listaCards.length - 1) {
+                indexAtual++;
+                renderizarCard();
+            } else {
+                alert("🎯 Parabéns! Você concluiu este bloco de Flash Cards. Revise novamente ou mude de assunto para fixar o conteúdo!");
+            }
+        });
+
+        document.getElementById('btn-anterior').addEventListener('click', () => {
+            if (indexAtual > 0) {
+                indexAtual--;
+                renderizarCard();
+            }
+        });
+
+        document.getElementById('selecao-aula').addEventListener('change', (e) => {
+            aulaAtual = e.target.value;
+            indexAtual = 0;
+            renderizarCard();
+        });
+
+        // ==========================================================================
+        // PONTE DE NAVEGAÇÃO: LÊ O COMANDO DO MENU PRINCIPAL (INDEX)
+        // ==========================================================================
+        window.onload = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const aulaSolicitada = urlParams.get('aula');
+
+            if (aulaSolicitada && bancoAulas[aulaSolicitada]) {
+                aulaAtual = aulaSolicitada;
+                document.getElementById('selecao-aula').value = aulaSolicitada;
+                indexAtual = 0;
+            }
+            renderizarCard();
+        };
+
+        // ==========================================================================
+        // 🔒 PROTOCOLO RED TEAM: PROTEÇÃO INTEGRAL (BLINDAGEM NÍVEL MÁXIMO)
+        // ==========================================================================
+        const msgSeguranca = "🔒 PROTOCOLO DE SEGURANÇA:\nEsta ação não é permitida na plataforma Gabarita Aí. Este banco de questões é 100% inédito, monitorado e protegido por direitos autorais (Lei 9.610/98). Nossas travas de segurança garantem que o conteúdo exclusivo que você estuda aqui não seja banalizado na internet.";
+
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+            alert(msgSeguranca);
+        });
+
+        document.addEventListener('keydown', function (e) {
+            let acaoBloqueada = false;
+
+            if (e.key === 'F12') acaoBloqueada = true;
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j')) acaoBloqueada = true;
+            if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) acaoBloqueada = true;
+            if (e.ctrlKey && (e.key === 's' || e.key === 'S')) acaoBloqueada = true;
+            if (e.ctrlKey && (e.key === 'c' || e.key === 'C')) acaoBloqueada = true;
+            if (e.ctrlKey && (e.key === 'p' || e.key === 'P')) acaoBloqueada = true;
+
+            if (acaoBloqueada) {
+                e.preventDefault();
+                alert(msgSeguranca);
+                return false;
+            }
+        });
+
+        document.addEventListener('keyup', function (e) {
+            if (e.key === 'PrintScreen' || e.keyCode === 44) {
+                navigator.clipboard.writeText("Conteúdo Protegido por Direitos Autorais - Método Missão 2026");
+                alert(msgSeguranca);
+            }
+        });
+
+        window.addEventListener('blur', function () {
+            const containerSimulador = document.getElementById('simulador-container');
+            if (containerSimulador) {
+                containerSimulador.style.filter = 'blur(15px)';
+            }
+        });
+
+        window.addEventListener('focus', function () {
+            const containerSimulador = document.getElementById('simulador-container');
+            if (containerSimulador) {
+                containerSimulador.style.filter = 'none';
+            }
+        });
+
+        const estiloAntiSelecao = document.createElement('style');
+        estiloAntiSelecao.innerHTML = `
+            body, .face-card, .btn-nav, .dropdown-aulas, .badge-materia, .texto-pergunta, .texto-resposta, .texto-fundamento {
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+        `;
+        document.head.appendChild(estiloAntiSelecao);
+    </script>
+</body>
+
+</html>

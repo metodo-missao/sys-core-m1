@@ -1,14 +1,587 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
-    <title>Manutenção — Método Missão</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Método Missão — Simuladores para Carreiras Policiais</title>
+
+    <meta name="description"
+        content="Método Missão. Preparação de Alta Performance para Concursos das Carreiras Policiais. Gabarita Aí é uma plataforma oficial da metodologia de estudos Método Missão.">
+
     <style>
-        body { background: #02112e; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        h1 { border-bottom: 2px solid #ffcc00; padding-bottom: 10px; }
+        /* ==========================================================================
+           1. MARCA D'ÁGUA NO FUNDO DO SITE E PROTEÇÃO DE IMPRESSÃO
+           ========================================================================== */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='450' height='200'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' transform='rotate(-25 225 100)' fill='rgba(255,202,40,0.05)' font-family='Segoe UI, sans-serif' font-weight='800' font-size='14px'%3EMÉTODO MISSÃO • GABARITA AÍ • METODOMISSAO.COM%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+
+        @media print {
+            body {
+                display: none !important;
+            }
+        }
+
+        /* ==========================================================================
+           2. VARIÁVEIS DE AMBIENTE & PALETA HOMOLOGADA (DEEP ROYAL)
+           ========================================================================== */
+        :root {
+            --cor-fundo-site: #02112e;
+            --cor-fundo-bloco: #031842;
+            --cor-borda: #0b2c6e;
+            --cor-ouro: #ffca28;
+            --cor-texto: #ffffff;
+            --cor-sucesso: #2ecc71;
+            --cor-texto-mutado: #8a99ad;
+        }
+
+        /* ==========================================================================
+           3. RESET E ESTILOS GERAIS (ALTA PERFORMANCE)
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--cor-fundo-site);
+            color: var(--cor-texto);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 25px 15px;
+            position: relative;
+            /* Necessário para a marca d'água funcionar bem */
+        }
+
+        /* Container principal - Z-index para ficar acima da marca d'água */
+        .container {
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 2;
+        }
+
+        /* ==========================================================================
+           4. TOPO INSTITUCIONAL COM LOGO AMPLIADA AO MÁXIMO
+           ========================================================================== */
+        .container-logo {
+            width: 100%;
+            max-width: 440px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .logo-oficial {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+        }
+
+        /* ==========================================================================
+           5. CARD DA MARCA GUARDA-CHUVA E TEXTOS (CORREÇÃO DE QUEBRA)
+           ========================================================================== */
+        .header-perfil {
+            text-align: center;
+            margin-bottom: 24px;
+            width: 100%;
+        }
+
+        .badge-missao {
+            background-color: var(--cor-fundo-bloco);
+            border: 2px solid var(--cor-ouro);
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--cor-ouro);
+            display: inline-block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 0 12px rgba(255, 202, 40, 0.2);
+        }
+
+        .tagline {
+            font-size: 14px;
+            color: var(--cor-texto-mutado);
+            line-height: 1.5;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Slogan unificado em Ouro */
+        .slogan-destaque {
+            display: block;
+            color: var(--cor-ouro);
+            font-weight: 700;
+            margin-top: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ==========================================================================
+           6. HUB DE LINKS (MECÂNICA DIRETIVA)
+           ========================================================================== */
+        .links-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 16px 20px;
+            background-color: var(--cor-fundo-bloco);
+            border: 2px solid var(--cor-borda);
+            border-radius: 12px;
+            color: var(--cor-texto);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 700;
+            text-align: center;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .link-principal {
+            border-color: var(--cor-ouro);
+            box-shadow: 0 0 15px rgba(255, 202, 40, 0.15);
+        }
+
+        .link-principal .tag-pop {
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            background-color: var(--cor-sucesso);
+            color: var(--cor-fundo-site);
+            font-size: 9px;
+            font-weight: 900;
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .link-item:active {
+            transform: scale(0.98);
+            background-color: var(--cor-borda);
+        }
+
+        /* ==========================================================================
+           7. SEÇÃO DOS TÓPICOS DAS AULAS (MENU OCULTO DINÂMICO)
+           ========================================================================== */
+        .secao-topicos {
+            display: none;
+            /* Inicia oculto */
+            width: 100%;
+            background-color: var(--cor-fundo-bloco);
+            border: 2px solid var(--cor-borda);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 16px;
+            animation: deslizarAbaixo 0.3s ease-out forwards;
+        }
+
+        @keyframes deslizarAbaixo {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .titulo-secao {
+            color: var(--cor-ouro);
+            font-size: 15px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .lista-aulas {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .aula-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 14px 16px;
+            background-color: var(--cor-fundo-site);
+            border: 1px solid var(--cor-borda);
+            border-radius: 8px;
+            color: var(--cor-texto);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+
+        .aula-item:hover {
+            border-color: var(--cor-ouro);
+            background-color: #031c4c;
+        }
+
+        .aula-item .seta-iniciar {
+            color: var(--cor-ouro);
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        /* ==========================================================================
+           8. FOOTER DE SEGURANÇA
+           ========================================================================== */
+        .footer-institucional {
+            margin-top: 40px;
+            font-size: 11px;
+            color: var(--cor-texto-mutado);
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
     </style>
 </head>
+
 <body>
-    <h1>SISTEMA EM MANUTENÇÃO EVOLUTIVA. VOLTAMOS EM BREVE.</h1>
+
+    <div id="simulador-container" class="container">
+
+        <div class="container-logo">
+            <img src="logo.png" alt="Gabarita Aí" class="logo-oficial">
+        </div>
+
+        <header class="header-perfil">
+            <div class="badge-missao">Método Missão</div>
+            <p class="tagline">
+                Preparação de Alta Performance para Concursos das Carreiras Policiais.
+                <span class="slogan-destaque">Estude. Pratique. Gabarite.</span>
+            </p>
+        </header>
+
+        <main class="links-container">
+
+            <a href="javascript:void(0);" id="btn-gabarita" class="link-item link-principal">⚡ Clique Aqui para Iniciar
+                o Simulador Interativo Gabarita Aí</a>
+
+            <section id="menu-materias" class="secao-topicos">
+                <h3 class="titulo-secao">📚 Escolha a Matéria</h3>
+                <div class="lista-aulas">
+
+                    <a href="javascript:void(0);" id="btn-penal" class="aula-item"
+                        style="border-color: var(--cor-ouro); margin-bottom: 8px;">
+                        <span>⚖️ DIREITO PENAL</span>
+                        <span class="seta-iniciar">VER AULAS 👇</span>
+                    </a>
+
+                    <a href="javascript:void(0);" id="btn-constitucional" class="aula-item"
+                        style="border-color: #ffcc00; background-color: #041d4d; margin-bottom: 8px;">
+                        <span style="color: #ffcc00; font-weight: bold;">👑 DIREITO CONSTITUCIONAL</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">CONTEÚDO VIP 🔒</span>
+                    </a>
+
+                    <a href="javascript:void(0);" id="btn-informatica" class="aula-item"
+                        style="border-color: #00e5ff; background-color: #041d4d;">
+                        <span style="color: #00e5ff; font-weight: bold;">💻 INFORMÁTICA</span>
+                        <span class="seta-iniciar" style="color: #00e5ff;">FLASH CARDS 👇</span>
+                    </a>
+
+                </div>
+            </section>
+
+            <section id="menu-aulas-penal" class="secao-topicos" style="margin-top: 10px; border-style: dashed;">
+                <h3 class="titulo-secao" style="color: #fff; font-size: 13px;">🎯 Aulas de Direito Penal</h3>
+                <div class="lista-aulas">
+                    <a href="questoes-aplicacao-lei-penal.html" class="aula-item"><span>📝 Questões: Da Aplicação da Lei
+                            Penal</span><span class="seta-iniciar">INICIAR ▶</span></a>
+                    <a href="questoes-imputabilidade-penal.html" class="aula-item"><span>📝 Questões: Da Imputabilidade
+                            Penal</span><span class="seta-iniciar">INICIAR ▶</span></a>
+                    <a href="questoes-concurso-de-pessoas.html" class="aula-item"><span>📝 Questões: Do Concurso de
+                            Pessoas</span><span class="seta-iniciar">INICIAR ▶</span></a>
+                    <a href="questoes-das-penas.html" class="aula-item"><span>📝 Questões: Das Penas</span><span
+                            class="seta-iniciar">INICIAR ▶</span></a>
+                    <a href="questoes-medidas-seguranca.html" class="aula-item"><span>📝 Questões: Das Medidas de
+                            Segurança</span><span class="seta-iniciar">INICIAR ▶</span></a>
+                    <a href="questoes-acao-penal.html" class="aula-item"><span>📝 Questões: Da Ação Penal</span><span
+                            class="seta-iniciar">INICIAR ▶</span></a>
+
+                    <a href="lista-de-espera.html" class="aula-item"
+                        style="border-left: 4px solid #ffcc00; background-color: #041d4d; opacity: 0.85;">
+                        <span>🔒 Questões: Da Extinção da Punibilidade</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
+                    </a>
+                    <a href="lista-de-espera.html" class="aula-item"
+                        style="border-left: 4px solid #ffcc00; background-color: #041d4d; opacity: 0.85;">
+                        <span>🔒 Questões: Dos Crimes Contra a Pessoa</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
+                    </a>
+                    <a href="lista-de-espera.html" class="aula-item"
+                        style="border-left: 4px solid #ffcc00; background-color: #041d4d; opacity: 0.85;">
+                        <span>🔒 Questões: Dos Crimes Contra o Patrimônio</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
+                    </a>
+                    <a href="lista-de-espera.html" class="aula-item"
+                        style="border-left: 4px solid #ffcc00; background-color: #041d4d; opacity: 0.85;">
+                        <span>🔒 Questões: Dos Crimes Contra a Dignidade Sexual</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
+                    </a>
+                    <a href="lista-de-espera.html" class="aula-item"
+                        style="border-left: 4px solid #ffcc00; background-color: #041d4d; opacity: 0.85;">
+                        <span>🔒 Questões: Dos Crimes Contra a Paz Pública</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
+                    </a>
+                    <a href="lista-de-espera.html" class="aula-item"
+                        style="border-left: 4px solid #ffcc00; background-color: #041d4d; opacity: 0.85;">
+                        <span>🔒 Questões: Dos Crimes Contra a Fé Pública</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
+                    </a>
+                    <a href="lista-de-espera.html" class="aula-item"
+                        style="border-left: 4px solid #ffcc00; background-color: #041d4d; opacity: 0.85; box-shadow: 0 0 10px rgba(255, 204, 0, 0.15);">
+                        <span>🔒 Questões: Dos Crimes Contra a Administração Pública</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
+                    </a>
+                </div>
+            </section>
+
+            <section id="menu-aulas-constitucional" class="secao-topicos"
+                style="margin-top: 10px; border-style: dashed; border-color: #ffcc00; display: none;">
+                <h3 class="titulo-secao" style="color: #ffcc00; font-size: 13px;">👑 Aulas de Direito Constitucional
+                    (Premium)</h3>
+                <div class="lista-aulas">
+                    <a href="lista-de-espera.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
+                        <span>🔒 Princípios Fundamentais (Art. 1º ao 4º)</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
+                    </a>
+                    <a href="lista-de-espera.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
+                        <span>🔒 Direitos e Garantias Fundamentais (Art. 5º ao 10)</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
+                    </a>
+                    <a href="lista-de-espera.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
+                        <span>🔒 Direitos Políticos e Partidos (Art. 14 ao 17)</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
+                    </a>
+                    <a href="lista-de-espera.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
+                        <span>🔒 Organização do Estado: União e Estados (Art. 21 ao 28)</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
+                    </a>
+                    <a href="lista-de-espera.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
+                        <span>🔒 Administração Pública (Art. 37 ao 41)</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
+                    </a>
+                    <a href="lista-de-espera.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
+                        <span>🔒 Poder Judiciário: Disposições e Estados (Art. 92 ao 100 / 125 e 126)</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
+                    </a>
+                    <a href="lista-de-espera.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
+                        <span>🔒 Funções Essenciais: MP, Advocacia e Defensoria (Art. 127 ao 134)</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
+                    </a>
+                    <a href="lista-de-espera.html" class="aula-item"
+                        style="border-left: 4px solid #ffcc00; box-shadow: 0 0 10px rgba(255, 204, 0, 0.15);">
+                        <span>🔒 Segurança Pública (Art. 144 - O Mais Cobrado)</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
+                    </a>
+                </div>
+            </section>
+
+            <section id="menu-aulas-informatica" class="secao-topicos"
+                style="margin-top: 10px; border-style: dashed; border-color: #00e5ff; display: none;">
+                <h3 class="titulo-secao" style="color: #00e5ff; font-size: 13px;">💻 Flash Cards: Informática</h3>
+                <div class="lista-aulas">
+                    <a href="flashcards-informatica.html" class="aula-item">
+                        <span>🗂️ Flash Cards: Teclas de Atalho (Firefox) — Aula 1</span>
+                        <span class="seta-iniciar">INICIAR ▶</span>
+                    </a>
+                    <a href="flashcards-informatica.html" class="aula-item" style="border-left: 4px solid #00e5ff;">
+                        <span>🗂️ Flash Cards: Teclas de Atalho (Firefox) — Aula 2</span>
+                        <span class="seta-iniciar" style="color: #00e5ff;">INICIAR ▶</span>
+                    </a>
+                    <a href="flashcards-informatica.html" class="aula-item" style="border-left: 4px solid #00e5ff;">
+                        <span>🗂️ Flash Cards: Google Chrome (Atalhos) — Aula 3</span>
+                        <span class="seta-iniciar" style="color: #00e5ff;">INICIAR ▶</span>
+                    </a>
+                    <a href="flashcards-informatica.html" class="aula-item" style="border-left: 4px solid #00e5ff;">
+                        <span>🗂️ Flash Cards: Google Chrome (Segurança) — Aula 4</span>
+                        <span class="seta-iniciar" style="color: #00e5ff;">INICIAR ▶</span>
+                    </a>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="footer-institucional"
+            style="margin-top: 15px; font-size: 11px; color: #8a99ad; text-align: center; letter-spacing: 0.5px; padding-bottom: 20px; width: 100%; line-height: 1.6;">
+            &copy; 2026 Método Missão. Todos os direitos reservados.
+            <br>
+            Gabarita Aí é uma plataforma oficial da metodologia de estudos Método Missão.
+        </footer>
+
+    </div>
+
+    <script>
+        // 1. Controle Avançado de Clique em Cascata
+        document.getElementById('btn-gabarita').addEventListener('click', function () {
+            var menuMaterias = document.getElementById('menu-materias');
+            var menuPenal = document.getElementById('menu-aulas-penal');
+            var menuConstitucional = document.getElementById('menu-aulas-constitucional');
+            var menuInformatica = document.getElementById('menu-aulas-informatica');
+
+            if (menuMaterias.style.display !== 'block') {
+                menuMaterias.style.display = 'block';
+                menuMaterias.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            } else {
+                menuMaterias.style.display = 'none';
+                menuPenal.style.display = 'none';
+                if (menuConstitucional) menuConstitucional.style.display = 'none';
+                if (menuInformatica) menuInformatica.style.display = 'none';
+            }
+        });
+
+        // 2. Controle do Botão de Direito Penal
+        document.getElementById('btn-penal').addEventListener('click', function () {
+            var menuPenal = document.getElementById('menu-aulas-penal');
+            var menuConstitucional = document.getElementById('menu-aulas-constitucional');
+            var menuInformatica = document.getElementById('menu-aulas-informatica');
+
+            if (menuPenal.style.display !== 'block') {
+                menuPenal.style.display = 'block';
+                if (menuConstitucional) menuConstitucional.style.display = 'none';
+                if (menuInformatica) menuInformatica.style.display = 'none';
+                menuPenal.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            } else {
+                menuPenal.style.display = 'none';
+            }
+        });
+
+        // 3. Controle do Botão de Direito Constitucional Premium
+        document.getElementById('btn-constitucional').addEventListener('click', function () {
+            var menuPenal = document.getElementById('menu-aulas-penal');
+            var menuConstitucional = document.getElementById('menu-aulas-constitucional');
+            var menuInformatica = document.getElementById('menu-aulas-informatica');
+
+            if (menuConstitucional.style.display !== 'block') {
+                menuConstitucional.style.display = 'block';
+                menuPenal.style.display = 'none';
+                if (menuInformatica) menuInformatica.style.display = 'none';
+                menuConstitucional.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            } else {
+                menuConstitucional.style.display = 'none';
+            }
+        });
+
+        // 4. Controle do Botão de Informática
+        document.getElementById('btn-informatica').addEventListener('click', function () {
+            var menuPenal = document.getElementById('menu-aulas-penal');
+            var menuConstitucional = document.getElementById('menu-aulas-constitucional');
+            var menuInformatica = document.getElementById('menu-aulas-informatica');
+
+            if (menuInformatica.style.display !== 'block') {
+                menuInformatica.style.display = 'block';
+                menuPenal.style.display = 'none';
+                menuConstitucional.style.display = 'none';
+                menuInformatica.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            } else {
+                menuInformatica.style.display = 'none';
+            }
+        });
+
+        // ==========================================================================
+        // 🔒 PROTOCOLO RED TEAM: PROTEÇÃO INTEGRAL (RESTAURADO)
+        // ==========================================================================
+
+        // Mensagem Padrão de Segurança
+        const msgSeguranca = "🔒 PROTOCOLO DE SEGURANÇA:\nEsta ação não é permitida na plataforma Gabarita Aí, integrante do ecossistema Método Missão. Este banco de questões é 100% inédito, monitorado e protegido por direitos autorais (Lei 9.610/98). Nossas travas de segurança garantem que o conteúdo exclusivo que você estuda aqui não seja banalizado na internet. Tenha acesso ao material que seus concorrentes não têm.";
+
+        // Bloqueio de Clique Direito (Menu de Contexto)
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+            alert(msgSeguranca);
+        });
+
+        // Captura e Bloqueio de Atalhos Complexos (Down Stroke)
+        document.addEventListener('keydown', function (e) {
+            let acaoBloqueada = false;
+
+            if (e.key === 'F12') acaoBloqueada = true;
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j')) acaoBloqueada = true;
+            if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) acaoBloqueada = true;
+            if (e.ctrlKey && (e.key === 's' || e.key === 'S')) acaoBloqueada = true;
+            if (e.ctrlKey && (e.key === 'c' || e.key === 'C')) acaoBloqueada = true;
+            if (e.ctrlKey && (e.key === 'p' || e.key === 'P')) acaoBloqueada = true;
+
+            if (acaoBloqueada) {
+                e.preventDefault();
+                alert(msgSeguranca);
+                return false;
+            }
+        });
+
+        // Interceptação de Print Screen (Executa no KeyUp)
+        document.addEventListener('keyup', function (e) {
+            if (e.key === 'PrintScreen' || e.keyCode === 44) {
+                navigator.clipboard.writeText("Conteúdo Protegido por Direitos Autorais - Método Missão 2026");
+                alert(msgSeguranca);
+            }
+        });
+
+        // Proteção Anti-Recorte (Desfoque ao perder o foco)
+        window.addEventListener('blur', function () {
+            const containerSimulador = document.getElementById('simulador-container');
+            if (containerSimulador) {
+                containerSimulador.style.filter = 'blur(15px)';
+            }
+        });
+
+        window.addEventListener('focus', function () {
+            const containerSimulador = document.getElementById('simulador-container');
+            if (containerSimulador) {
+                containerSimulador.style.filter = 'none';
+            }
+        });
+
+        // Injeção de CSS Anti-Seleção universal
+        const estiloAntiSelecao = document.createElement('style');
+        estiloAntiSelecao.innerHTML = `
+            body, .link-item, .aula-item, .titulo-secao, .tagline {
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+        `;
+        document.head.appendChild(estiloAntiSelecao);
+
+    </script>
 </body>
+
 </html>

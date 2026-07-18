@@ -1,475 +1,511 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gabarita Aí - Simulados Premium</title>
+
     <style>
-        /* MANTIDO 100% O SEU DESIGN FUTURISTA ORIGINAL */
-        body { 
-            background-color: #02112e; 
-            color: #ffffff; 
-            font-family: 'Segoe UI', sans-serif; 
-            padding: 30px 20px; 
-            display: flex; 
-            justify-content: center; 
-        }
-        .container { 
-            max-width: 850px; 
-            width: 100%; 
-        }
-        .topo-marca { 
-            border-bottom: 2px solid #ffca28; 
-            padding-bottom: 20px; 
-            margin-bottom: 40px; 
-        }
-        .marca-sequencial { 
-            font-size: 1.8rem; 
-            font-weight: 900; 
-        }
-        .ouro { 
-            color: #ffca28; 
-        }
-        .subtitulo { 
-            font-size: 1.3rem; 
-            color: #a5b1c2; 
-            margin-left: 15px; 
-            border-left: 2px solid #415a77; 
-            padding-left: 15px; 
-        }
-        .questao-bloco { 
-            background-color: #031842; 
-            padding: 35px; 
-            border-radius: 12px; 
-            margin-bottom: 30px; 
-            border: 1px solid #0b2c6e; 
-            position: relative; /* PERMITE O POSICIONAMENTO DA MARCA D'ÁGUA */
-            overflow: hidden;   /* IMPEDE QUE A MARCA D'ÁGUA VASE AS BORDAS DO CARD */
+        /* ==========================================
+           1. PROTOCOLO RED TEAM - PROTEÇÃO CSS
+           ========================================== */
+        @media print {
+            body {
+                display: none !important;
+            }
         }
 
-               /* MARCA D'ÁGUA FIXADA NO CANTO SUPERIOR DIREITO */
-        .questao-bloco::before {
-            content: "MÉTODO MISSÃO • GABARITA AÍ • METODOMISSAO.COM";
-            position: absolute;
-            top: 45px;         /* Alinha verticalmente logo abaixo do título amarelo */
-            right: -40px;      /* Move para a extremidade direita (o overflow:hidden corta o excesso) */
-            transform: rotate(-25deg); /* Inclina na transversal exatamente no espaço grifado */
-            font-size: 0.85rem; /* Fonte pequena e discreta como você pediu */
-            font-weight: 800;
-            color: rgba(255, 202, 40, 0.08); /* Amarelo Ouro sutil (8%) */
-            white-space: nowrap;
-            pointer-events: none;
+        body,
+        .questao-bloco,
+        .opcao,
+        .questao-texto-bloco,
+        .feedback-box,
+        .mini-aula-bloco {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* ==========================================
+           2. ESTILOS GERAIS E MARCA D'ÁGUA
+           ========================================== */
+        body {
+            background-color: #02112e;
+            color: #ffffff;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
             z-index: 0;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='450' height='200'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' transform='rotate(-25 225 100)' fill='rgba(255,202,40,0.05)' font-family='Segoe UI, sans-serif' font-weight='800' font-size='14px'%3EMÉTODO MISSÃO • GABARITA AÍ • METODOMISSAO.COM%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
         }
 
-        /* GARANTE QUE OS TEXTOS E BOTÕES FIQUEM NA CAMADA DA FRENTE */
-        .questao-texto-bloco, .opcoes-container, .btn-verificar, .feedback-box { 
-            position: relative; 
-            z-index: 1; 
+        .container {
+            max-width: 850px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
         }
-        /* AJUSTADO: Parágrafo com quebra de linha natural e espaçamento linear */
-        .questao-texto-bloco { 
-            color: #ffffff; 
-            font-size: 16px; 
-            font-weight: 500; 
-            line-height: 1.6; 
-            margin-bottom: 25px; 
+
+        .topo-marca {
+            border-bottom: 2px solid #ffca28;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
         }
-        .questao-titulo-inline { 
-            color: #ffca28; 
-            font-weight: 700; 
+
+        .marca-sequencial {
+            font-size: 1.8rem;
+            font-weight: 900;
         }
-        .opcoes-container { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 15px; 
-            margin-bottom: 30px; 
+
+        .ouro {
+            color: #ffca28;
         }
-        .opcao { 
-            display: flex; 
-            align-items: center; 
-            padding: 14px 18px; 
-            border-radius: 8px; 
-            background-color: #02112e; 
-            border: 1px solid #0b2c6e; 
+
+        .subtitulo {
+            font-size: 1.3rem;
+            color: #a5b1c2;
+            margin-left: 15px;
+            border-left: 2px solid #415a77;
+            padding-left: 15px;
+        }
+
+        .questao-bloco,
+        .mini-aula-bloco {
+            background-color: #031842;
+            padding: 35px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 1px solid #0b2c6e;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .questao-bloco::before,
+        .mini-aula-bloco::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='450' height='200'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' transform='rotate(-25 225 100)' fill='rgba(255,202,40,0.05)' font-family='Segoe UI, sans-serif' font-weight='800' font-size='14px'%3EMÉTODO MISSÃO • GABARITA AÍ • METODOMISSAO.COM%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+
+        .questao-texto-bloco,
+        .opcoes-container,
+        .btn-verificar,
+        .feedback-box {
+            position: relative;
+            z-index: 1;
+        }
+
+        .questao-texto-bloco {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .questao-titulo-inline {
+            color: #ffca28;
+            font-weight: 700;
+        }
+
+        .opcoes-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .opcao {
+            display: flex;
+            align-items: center;
+            padding: 14px 18px;
+            border-radius: 8px;
+            background-color: #02112e;
+            border: 1px solid #0b2c6e;
             cursor: pointer;
             transition: border-color 0.2s;
         }
-        .opcao input { 
-            margin-right: 15px; 
-            width: 20px; 
-            height: 20px; 
+
+        .opcao input {
+            margin-right: 15px;
+            width: 20px;
+            height: 20px;
             cursor: pointer;
         }
-        .btn-verificar { 
-            background-color: #ffca28; 
-            color: #02112e; 
-            border: none; 
-            padding: 12px 24px; 
-            font-size: 0.95rem; 
-            font-weight: bold; 
-            border-radius: 6px; 
-            cursor: pointer; 
-        }
-        .feedback-box { 
-            display: none; 
-            background-color: #02112e; 
-            border-left: 5px solid #2ecc71; 
-            padding: 25px; 
-            margin-top: 25px; 
-            border: 1px solid #0b2c6e; 
-        }
-        .gabarito-letra { 
-            color: #2ecc71; 
-            font-weight: 800; 
-            font-size: 1.2rem; 
-            margin-bottom: 12px; 
+
+        .btn-verificar {
+            background-color: #ffca28;
+            color: #02112e;
+            border: none;
+            padding: 12px 24px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
         }
 
-        /* CLASSES EXCLUSIVAS DE CORREÇÃO DO MOTOR AUTOMÁTICO */
+        .feedback-box {
+            display: none;
+            background-color: #02112e;
+            border-left: 5px solid #2ecc71;
+            padding: 25px;
+            margin-top: 25px;
+            border: 1px solid #0b2c6e;
+        }
+
+        .gabarito-letra {
+            color: #2ecc71;
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
         .status-alerta {
             font-size: 1.1rem;
             font-weight: 900;
             margin-bottom: 15px;
             text-transform: uppercase;
         }
-        .status-acertou { color: #2ecc71; }
-        .status-errou { color: #ff4d4d; }
-        .travado { pointer-events: none; opacity: 0.85; }
-        .footer-institucional {
-            margin-top: 40px;
-            font-size: 11px;
-            color: #8a99ad; /* Cor correspondente ao var(--cor-texto-mutado) do seu index */
-            text-align: center;
-            letter-spacing: 0.5px;
-            padding-bottom: 20px;
-            width: 100%;
+
+        .status-acertou {
+            color: #2ecc71;
         }
 
-        /* ASSINATURA DISCRETA LOGO APÓS O ENUNCIADO */
+        .status-errou {
+            color: #ff4d4d;
+        }
+
+        .travado {
+            pointer-events: none;
+            opacity: 0.85;
+        }
+
         .assinatura-suave {
             display: block;
             text-align: right;
             font-size: 0.75rem;
             font-weight: 700;
-            color: rgba(255, 255, 255, 0.04); /* Branco com apenas 4% de opacidade — ultra discreto */
+            color: rgba(255, 255, 255, 0.08);
             margin-top: -10px;
             margin-bottom: 20px;
             padding-right: 5px;
             pointer-events: none;
         }
 
+        .footer-institucional {
+            margin-top: 40px;
+            font-size: 11px;
+            color: #8a99ad;
+            text-align: center;
+            letter-spacing: 0.5px;
+            padding-bottom: 20px;
+            width: 100%;
+            line-height: 1.6;
+        }
+
+        /* ==========================================
+           3. ESTILO DO ALERTA PROFISSIONAL
+           ========================================== */
+        #alerta-protecao {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(3, 24, 66, 0.98);
+            z-index: 999999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .alerta-caixa {
+            background-color: #02112e;
+            border: 2px solid #ffca28;
+            padding: 40px;
+            border-radius: 8px;
+            max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .alerta-caixa h2 {
+            color: #ffca28;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .alerta-caixa p {
+            color: #ffffff;
+            font-size: 1rem;
+            margin-bottom: 25px;
+        }
+
+        .btn-fechar-alerta {
+            background-color: #ffca28;
+            color: #031842;
+            border: none;
+            padding: 10px 25px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        /* ==========================================
+           4. INFO DO TOTAL DE QUESTÕES (NOVO)
+           ========================================== */
+        .info-simulado {
+            background-color: #031842;
+            border: 1px solid #0b2c6e;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            color: #a5b1c2;
+            font-weight: 600;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        .info-destaque {
+            color: #ffca28;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
     </style>
 </head>
+
 <body>
-<div class="container">
-    <div class="topo-marca">
-        <div class="marca-sequencial">GABARITA <span class="ouro">AÍ</span> <span class="subtitulo">QUESTÕES AUTORAIS</span></div>
-    </div>
+    <div class="container">
+        <div class="topo-marca">
+            <div class="marca-sequencial">GABARITA <span class="ouro">AÍ</span> <span class="subtitulo">QUESTÕES
+                    AUTORAIS</span></div>
+        </div>
 
-<!-- =========================================================================
-         ESPAÇO 1: MINI-AULA EM HTML — AULA 01: DA APLICAÇÃO DA LEI PENAL
+        <!-- =========================================================================
+         ÁREA EDITÁVEL 1: COLE O RESUMO DA AULA ABAIXO
          ========================================================================= -->
-    <div class="mini-aula-bloco" style="background-color: #031842; padding: 30px; border-radius: 12px; margin-bottom: 30px; border: 1px solid #0b2c6e; line-height: 1.6;">
-        <h2 style="color: #ffca28; font-size: 1.4rem; margin-top: 0; margin-bottom: 15px; font-weight: 800;">🧠 RESUMO DIRECIONADO — DA APLICAÇÃO DA LEI PENAL (CARREIRAS POLICIAIS)</h2>
-        <p style="color: #ffffff; margin-bottom: 12px;">O estudo da <strong>Aplicação da Lei Penal</strong> abre a parte geral do Código Penal (CP) e é um dos temas mais recorrentes nas provas de <strong>Carreiras Policiais</strong>. Foque nos pilares do tempo e lugar do crime.</p>
-        <p style="color: #ffffff; margin-bottom: 12px;">Memorize as regras de ouro fundamentais baseadas no texto expresso da lei:</p>
-        <ul style="color: #ffffff; padding-left: 20px; margin-bottom: 0;">
-            <li style="margin-bottom: 8px;"><strong style="color: #ffca28;">Tempo do Crime (Art. 4º):</strong> O Brasil adotou expressamente a <strong>Teoria da Atividade</strong>. Considera-se praticado o delito no momento da conduta (ação ou omissão), não importando quando ocorre o resultado morte ou prejuízo.</li>
-            <li style="margin-bottom: 8px;"><strong style="color: #ffca28;">Lugar do Crime (Art. 6º):</strong> Adotou-se a <strong>Teoria da Ubiquidade</strong>. Considera-se o lugar do crime tanto onde ocorreu a conduta quanto onde se produziu ou deveria produzir-se o resultado. Lembre-se do mnemônico essencial: <strong>L.U.T.A.</strong> (Lugar = Ubiquidade / Tempo = Atividade).</li>
-            <li style="margin-bottom: 0;"><strong style="color: #ffca28;">Ultratividade (Art. 3º):</strong> As leis excepcionais e temporárias continuam a se aplicar a fatos criminosos cometidos durante sua vigência, mesmo depois de decorrido o seu período de duração ou cessadas as circunstâncias de crise.</li>
-        </ul>
+        <div class="mini-aula-bloco" style="line-height: 1.6;">
+            <h2
+                style="color: #ffca28; font-size: 1.4rem; margin-top: 0; margin-bottom: 15px; font-weight: 800; position: relative; z-index: 1;">
+                🧠 DA APLICAÇÃO DA LEI PENAL (CARREIRAS POLICIAIS)
+            </h2>
+            <p style="color: #ffffff; margin-bottom: 12px; position: relative; z-index: 1;">
+                RESUMO DIRECIONADO — DA APLICAÇÃO DA LEI PENAL (CARREIRAS POLICIAIS)</h2>
+            <p style="color: #ffffff; margin-bottom: 12px;">O estudo da <strong>Aplicação da Lei Penal</strong> abre a
+                parte geral do Código Penal (CP) e é um dos temas mais recorrentes nas provas de <strong>Carreiras
+                    Policiais</strong>. Foque nos pilares do tempo e lugar do crime.</p>
+            <p style="color: #ffffff; margin-bottom: 12px;">Memorize as regras de ouro fundamentais baseadas no texto
+                expresso da lei:</p>
+            <ul style="color: #ffffff; padding-left: 20px; margin-bottom: 0;">
+                <li style="margin-bottom: 8px;"><strong style="color: #ffca28;">Tempo do Crime (Art. 4º):</strong> O
+                    Brasil adotou expressamente a <strong>Teoria da Atividade</strong>. Considera-se praticado o delito
+                    no momento da conduta (ação ou omissão), não importando quando ocorre o resultado morte ou prejuízo.
+                </li>
+                <li style="margin-bottom: 8px;"><strong style="color: #ffca28;">Lugar do Crime (Art. 6º):</strong>
+                    Adotou-se a <strong>Teoria da Ubiquidade</strong>. Considera-se o lugar do crime tanto onde ocorreu
+                    a conduta quanto onde se produziu ou deveria produzir-se o resultado. Lembre-se do mnemônico
+                    essencial: <strong>L.U.T.A.</strong> (Lugar = Ubiquidade / Tempo = Atividade).</li>
+                <li style="margin-bottom: 0;"><strong style="color: #ffca28;">Ultratividade (Art. 3º):</strong> As leis
+                    excepcionais e temporárias continuam a se aplicar a fatos criminosos cometidos durante sua vigência,
+                    mesmo depois de decorrido o seu período de duração ou cessadas as circunstâncias de crise.</li>
+            </ul>
+            </p>
+        </div>
+        <!-- ========================================================================= -->
+
+
+        <!-- O motor injetará os cards aqui -->
+        <div id="simulador-container"></div>
+
+        <footer class="footer-institucional">
+            &copy; 2026 Método Missão. Todos os direitos reservados.<br>
+            Gabarita Aí é uma plataforma oficial da metodologia de estudos Método Missão.
+        </footer>
     </div>
 
-    <!-- O motor injetará dinamicamente todos os blocos de questões exatamente aqui -->
-    <div id="simulador-container"></div>
+    <!-- TELA DE ALERTA PROFISSIONAL HTML -->
+    <div id="alerta-protecao">
+        <div class="alerta-caixa">
+            <h2>⚠️ Ação Bloqueada</h2>
+            <p>O conteúdo deste simulador é exclusivo e protegido por direitos autorais.</p>
+            <button class="btn-fechar-alerta" onclick="fecharAlerta()">Entendido</button>
+        </div>
+    </div>
 
-    <!-- O motor injetará dinamicamente todos os blocos de questões exatamente aqui -->
-    <div id="simulador-container"></div>
+    <script>
+        // ==========================================
+        // MOTOR DO SIMULADO (NÃO EDITAR)
+        // ==========================================
+        // Variáveis de controle globais
+        let totalQuestoes = 0;
+        let respondidas = 0;
+        let acertos = 0;
 
-    <!-- Rodapé de Propriedade Padronizado -->
-<footer class="footer-institucional" style="margin-top: 40px; font-size: 11px; color: #8a99ad; text-align: center; letter-spacing: 0.5px; padding-bottom: 20px; width: 100%; line-height: 1.6;">
-    &copy; 2026 Método Missão. Todos os direitos reservados.<br>
-    Gabarita Aí é uma plataforma oficial da metodologia de estudos Método Missão.
-</footer>
+        function renderizarSimulador(listaQuestoes) {
+            // 1. O robô lê o arquivo JS e descobre o total sozinho
+            totalQuestoes = listaQuestoes.length;
 
-</div>
+            const container = document.getElementById('simulador-container');
+            container.innerHTML = '';
 
-<script>
+            // 2. Cria a mensagem de Início no Topo (Aviso de Total)
+            const avisoInicio = document.createElement('div');
+            avisoInicio.style = "display: flex; align-items: flex-start; gap: 8px; text-align: left; margin-bottom: 30px; padding: 15px; background-color: #02112e; border: 1px dashed #ffca28; border-radius: 8px; color: #ffffff; line-height: 1.5; text-transform: uppercase;";
+            avisoInicio.innerHTML = `
+    <strong style="color: #ffca28; white-space: nowrap;">🎯 FOCO NA MISSÃO:</strong>
+    <span>Este bloco contém <strong style="color: #ffffff;">${totalQuestoes} questões</strong> estruturadas no mapeamento estratégico da lei seca atualizada.</span>
+`;
+            container.appendChild(avisoInicio);
 
-        // Função principal que lê a lista e renderiza o seu layout idêntico na tela
-function renderizarSimulador(listaQuestoes) {
-    const container = document.getElementById('simulador-container');
-    container.innerHTML = '';
-    
-    listaQuestoes.forEach((q, qIndex) => {
-        const bloco = document.createElement('div');
-        bloco.className = 'questao-bloco';
-        bloco.id = `bloco-q${qIndex}`;
-        
-        let alternativasHTML = '';
-        q.alternativas.forEach((alt, altIndex) => {
-            alternativasHTML += `<label class="opcao" id="q${qIndex}-opt${altIndex}"><input type="radio" name="radar-q${qIndex}" value="${altIndex}">${alt}</label>`;
+            // 3. Renderiza as questões
+            listaQuestoes.forEach((q, qIndex) => {
+                const bloco = document.createElement('div');
+                bloco.className = 'questao-bloco';
+                bloco.id = `bloco-q${qIndex}`;
+
+                let alternativasHTML = '';
+                q.alternativas.forEach((alt, altIndex) => {
+                    alternativasHTML += `<label class="opcao" id="q${qIndex}-opt${altIndex}"><input type="radio" name="radar-q${qIndex}" value="${altIndex}">${alt}</label>`;
+                });
+
+                bloco.innerHTML = `
+                    <div class="questao-texto-bloco">
+                        <span class="questao-titulo-inline">${q.titulo}</span><br>${q.enunciado}
+                    </div>
+                    <div class="assinatura-suave">MÉTODO MISSÃO • GABARITA AÍ • METODOMISSAO.COM</div>
+                    <div class="opcoes-container" id="grupo-q${qIndex}">${alternativasHTML}</div>
+                    <button type="button" class="btn-verificar" id="btn-q${qIndex}" onclick="validarResposta(${qIndex}, ${q.correta})">CONFIRMAR</button>
+                    <div class="feedback-box" id="feed-q${qIndex}">
+                        <div class="status-alerta" id="status-q${qIndex}"></div>
+                        <div class="gabarito-letra">Gabarito: ${q.letraGabarito}</div>
+                        <div style="line-height: 1.6; color: #a5b1c2;">${q.explicacao}</div>
+                    </div>
+                `;
+                container.appendChild(bloco);
+            });
+        }
+
+        function validarResposta(qIndex, indexCorreto) {
+            const inputs = document.getElementsByName(`radar-q${qIndex}`);
+            let selecionadoIndex = -1;
+
+            for (let i = 0; i < inputs.length; i++) {
+                if (inputs[i].checked) { selecionadoIndex = i; break; }
+            }
+
+            if (selecionadoIndex === -1) {
+                alert("Por favor, selecione uma alternativa antes de confirmar!");
+                return;
+            }
+
+            document.getElementById(`grupo-q${qIndex}`).classList.add('travado');
+            document.getElementById(`btn-q${qIndex}`).style.display = 'none';
+
+            const elementoCorreto = document.getElementById(`q${qIndex}-opt${indexCorreto}`);
+            const elementoSelecionado = document.getElementById(`q${qIndex}-opt${selecionadoIndex}`);
+            const statusBox = document.getElementById(`status-q${qIndex}`);
+            const feedbackBox = document.getElementById(`feed-q${qIndex}`);
+
+            respondidas++; // Conta que o aluno respondeu mais uma
+
+            if (selecionadoIndex === indexCorreto) {
+                elementoCorreto.style.borderColor = '#2ecc71';
+                statusBox.innerHTML = "✅ Certo!";
+                statusBox.className = "status-alerta status-acertou";
+                acertos++; // Soma o acerto ocultamente
+            } else {
+                elementoSelecionado.style.borderColor = '#ff4d4d';
+                elementoCorreto.style.borderColor = '#2ecc71';
+                feedbackBox.style.borderLeftColor = '#ff4d4d';
+                statusBox.innerHTML = "❌ Errada!";
+                statusBox.className = "status-alerta status-errou";
+            }
+
+            feedbackBox.style.display = 'block';
+
+            // 4. Gatilho do Fechamento (Mostra o placar ao final)
+            if (respondidas === totalQuestoes) {
+                gerarPlacarFinal();
+            }
+        }
+
+        function gerarPlacarFinal() {
+            const container = document.getElementById('simulador-container');
+            const aproveitamento = Math.round((acertos / totalQuestoes) * 100);
+            const painelResultado = document.createElement('div');
+
+            painelResultado.className = 'questao-bloco';
+            painelResultado.style.border = '2px solid #ffca28';
+            painelResultado.style.textAlign = 'center';
+
+            painelResultado.innerHTML = `
+                <h2 style="color: #ffca28; font-size: 1.6rem; margin-top: 0; font-weight: 800; text-transform: uppercase;">
+                    🏆 SIMULADO CONCLUÍDO
+                </h2>
+                <p style="font-size: 1.2rem; color: #ffffff; margin-bottom: 10px;">
+                    Você acertou <span style="color: #2ecc71; font-weight: 800;">${acertos}</span> de um total de <strong>${totalQuestoes}</strong> questões.
+                </p>
+                <div style="font-size: 1.8rem; font-weight: 900; color: #2ecc71; margin-bottom: 15px;">
+                    Aproveitamento: ${aproveitamento}%
+                </div>
+                <p style="color: #a5b1c2; font-size: 0.95rem; margin-bottom: 0; line-height: 1.5;">
+                    ${aproveitamento >= 70 ? "🔥 Excelente índice! Você assimilou muito bem as regras deste módulo." : "📚 Desempenho mediano. Vale a pena revisar o resumo e tentar novamente."}
+                </p>
+            `;
+
+            container.appendChild(painelResultado);
+        }
+
+        // ==========================================
+        // SCRIPT RED TEAM (ALERTA PROFISSIONAL)
+        // ==========================================
+        function mostrarAlerta(evento) {
+            if (evento) evento.preventDefault();
+            document.getElementById('alerta-protecao').style.display = 'flex';
+        }
+        function fecharAlerta() { document.getElementById('alerta-protecao').style.display = 'none'; }
+
+        document.addEventListener('contextmenu', mostrarAlerta);
+        document.addEventListener('copy', mostrarAlerta);
+        document.addEventListener('keydown', function (evento) {
+            if (evento.ctrlKey || evento.metaKey) {
+                const tecla = evento.key.toLowerCase();
+                if (tecla === 'c' || tecla === 'p' || tecla === 's' || tecla === 'u') { mostrarAlerta(evento); }
+            }
+            if (evento.key === 'F12' || (evento.ctrlKey && evento.shiftKey && (evento.key === 'I' || evento.key === 'J'))) { mostrarAlerta(evento); }
         });
-        
-        // ALTERAÇÃO CRÍTICA: Passamos q.letraGabarito no onclick em vez do índice numérico instável
-        bloco.innerHTML = `
-            <div class="questao-texto-bloco">
-                <span class="questao-titulo-inline">${q.titulo}</span>
-                <br>
-                ${q.enunciado}
-            </div>
-            
-            <div class="assinatura-suave">
-                MÉTODO MISSÃO • GABARITA AÍ • METODOMISSAO.COM
-            </div>
-            
-            <div class="opcoes-container" id="grupo-q${qIndex}">
-                ${alternativasHTML}
-            </div>
-            
-            <button type="button" class="btn-verificar" id="btn-q${qIndex}" onclick="validarResposta(${qIndex}, '${q.letraGabarito.trim().toUpperCase()}')">
-                CONFIRMAR
-            </button>
-            
-            <div class="feedback-box" id="feed-q${qIndex}">
-                <div class="status-alerta" id="status-q${qIndex}"></div>
-                <div class="gabarito-letra">Gabarito: ${q.letraGabarito}</div>
-                <div style="line-height: 1.6; color: #a5b1c2;">${q.explicacao}</div>
-            </div>
-        `;
-        
-        container.appendChild(bloco);
-    });
-}
+        document.addEventListener('keyup', function (evento) { if (evento.key === 'PrintScreen' || evento.keyCode === 44) mostrarAlerta(evento); });
+    </script>
 
-function validarResposta(qIndex, letraCorreta) {
-    const inputs = document.getElementsByName(`radar-q${qIndex}`);
-    let selecionadoIndex = -1;
-    for (let i = 0; i < inputs.length; i++) { 
-        if (inputs[i].checked) { 
-            selecionadoIndex = i; 
-            break; 
-        } 
-    }
-    
-    if (selecionadoIndex === -1) { 
-        alert("Por favor, selecione uma alternativa antes de confirmar!"); 
-        return; 
-    }
-    
-    document.getElementById(`grupo-q${qIndex}`).classList.add('travado');
-    document.getElementById(`btn-q${qIndex}`).style.display = 'none';
-    
-    // MAPEAMENTO BLINDADO: Converte a letra do gabarito (A, B, C, D, E) no índice real do array (0, 1, 2, 3, 4)
-    const deLetraParaIndex = { 'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4 };
-    const indexCorretoReal = deLetraParaIndex[letraCorreta];
-    
-    const elementoCorreto = document.getElementById(`q${qIndex}-opt${indexCorretoReal}`);
-    const elementoSelecionado = document.getElementById(`q${qIndex}-opt${selecionadoIndex}`);
-    const statusBox = document.getElementById(`status-q${qIndex}`);
-    const feedbackBox = document.getElementById(`feed-q${qIndex}`);
-    
-    // A validação agora compara o clique do aluno com o índice real derivado da LETRA
-    if (selecionadoIndex === indexCorretoReal) {
-        elementoCorreto.style.borderColor = '#2ecc71';
-        statusBox.innerHTML = "✅ Certo!";
-        statusBox.className = "status-alerta status-acertou";
-    } else {
-        elementoSelecionado.style.borderColor = '#ff4d4d';
-        elementoCorreto.style.borderColor = '#2ecc71';
-        feedbackBox.style.borderLeftColor = '#ff4d4d';
-        statusBox.innerHTML = "❌ Errada!";
-        statusBox.className = "status-alerta status-errou";
-    }
-    feedbackBox.style.display = 'block';
-}
+    <!-- =========================================================================
+     ÁREA EDITÁVEL 2: APONTE PARA O ARQUIVO .JS DESTA AULA ESPECÍFICA
+     ========================================================================= -->
 
+    <script src="dados-aplicacao-lei.js" onload="renderizarSimulador(meusSimulados)"></script>
 
-    // =========================================================================
-    // INJEÇÃO AUTOMÁTICA DAS QUESTÕES (BANCO DE DADOS LOCAL DO SIMULADO)
-    // =========================================================================
-            const meusSimulados = [
-                {
-            titulo: `Questão 01 (Inédita/Carreiras Policiais - 2026) - Direito Penal - Aplicação da Lei Penal`,
-            enunciado: `De acordo com as regras expressas dispostas no Artigo 4º do Código Penal brasileiro relativas ao tempo do crime, assinale a alternativa que indica a teoria adotada pelo ordenamento jurídico:`,
-            alternativas: [
-                `A) Teoria do Resultado, computando-se o crime no momento da produção do efeito lesivo.`,
-                `B) Teoria da Ubiquidade, unificando o momento da conduta e o momento do resultado prático.`,
-                `C) Teoria da Atividade, considerando praticado o crime no momento da ação ou omissão, ainda que outro seja o do resultado.`,
-                `D) Teoria da Concussão temporal, fixando o crime no momento do esgotamento da atividade executória.`,
-                `E) Teoria Mista mitigada, dependendo da natureza do crime se comissivo ou omissivo.`
-            ],
-            correta: 2,
-            letraGabarito: `C`,
-            explicacao: `A alternativa C reflete o teor do art. 4º do Código Penal, que consagra de forma categórica a Teoria da Atividade para o tempo do crime, determinando que o marco temporal relevante é o momento da conduta (ação ou omissão), independentemente de quando ocorra o resultado lesivo.`
-        },
-        {
-            titulo: `Questão 02 (Inédita/Carreiras Policiais - 2026) - Direito Penal - Aplicação da Lei Penal`,
-            enunciado: `No que concerne à retroatividade da lei penal mais benéfica (novatio legis in mellius), assinale a alternativa que guarda perfeita consonância com o Artigo 2º, parágrafo único, do Código Penal e com a jurisprudência consolidada:`,
-            alternativas: [
-                `A) A lei posterior benéfica retroage, mas cessa a sua aplicação caso a sentença penal já tenha transitado em julgado.`,
-                `B) A lei posterior que de qualquer modo favorecer o agente aplica-se aos fatos anteriores, ainda que decididos por sentença condenatória transitada em julgado.`,
-                `C) A retroatividade benéfica depende de homologação prévia pelo Tribunal de Justiça do respectivo Estado.`,
-                `D) O princípio da anterioridade impede de forma absoluta qualquer hipótese de retroatividade penal no sistema brasileiro.`,
-                `E) A modificação legislativa benéfica atinge apenas os crimes de natureza culposa cometidos sem violência.`
-            ],
-            correta: 1,
-            letraGabarito: `B`,
-            explicacao: `A alternativa B reproduz textualmente a segunda parte do parágrafo único do art. 2º do Código Penal. A retroatividade benéfica é um direito constitucional e atinge inclusive os casos com trânsito em julgado, competindo ao juízo da execução penal a sua aplicação (Súmula 611 do STF).`
-        },
-        {
-            titulo: `Questão 03 (Inédita/Carreiras Policiais - 2026) - Direito Penal - Aplicação da Lei Penal`,
-            enunciado: `À luz do Artigo 3º do Código Penal, as leis excepcionais ou temporárias possuem como característica fundamental a sua ultratividade. Isso significa que tais leis:`,
-            alternativas: [
-                `A) Perdem a validade retroativa imediatamente caso uma lei geral posterior seja sancionada.`,
-                `B) Só podem ser aplicadas se o resultado do crime ocorrer estritamente durante o período de calamidade pública.`,
-                `C) Aplicam-se ao fato praticado durante a sua vigência, embora decorrido o período de sua duração ou cessadas as circunstâncias que as determinaram.`,
-                `D) Exigem mandado de injunção específico expedido pelo Supremo Tribunal Federal para continuarem operando.`,
-                `E) São consideradas inconstitucionais por violarem o princípio fundamental da retroatividade benéfica.`
-            ],
-            correta: 2,
-            letraGabarito: `C`,
-            explicacao: `A alternativa C reflete a redação exata do art. 3º do Código Penal. As leis temporárias (com prazo fixo) e excepcionais (ligadas a uma situação de emergência) são ultrativas, ou seja, continuam regulando e punindo os fatos ocorridos sob o seu império, mesmo após perderem a vigência.`
-        },
-        {
-            titulo: `Questão 04 (Inédita/Carreiras Policiais - 2026) - Direito Penal - Aplicação da Lei Penal`,
-            enunciado: `Considerando os critérios legais estabelecidos pelo Artigo 6º do Código Penal para a fixação do lugar do crime no território nacional, assinale a alternativa correta:`,
-            alternativas: [
-                `A) Considera-se praticado o crime unicamente no lugar onde ocorreu o resultado consumativo da infração.`,
-                `B) Adota-se a teoria da atividade de forma simétrica ao tempo do crime, excluindo-se o local do resultado.`,
-                `C) Considera-se praticado o crime no lugar em que ocorreu a ação ou omissão, no todo ou em parte, bem como onde se produziu ou deveria produzir-se o resultado.`,
-                `D) O lugar do crime em infrações permanentes é definido por sorteio eletrônico de comarcas adjacentes.`,
-                `E) A fixação espacial do delito é de natureza puramente civil, sem repercussão na aplicação da lei penal.`
-            ],
-            correta: 2,
-            letraGabarito: `C`,
-            explicacao: `A alternativa C traz o conceito da Teoria da Ubiquidade consagrada no art. 6º do Código Penal. Diferente do tempo do crime, o lugar do crime abraça tanto o local da conduta (ação/omissão) quanto o local do resultado ou onde ele deveria ocorrer.`
-        },
-        {
-            titulo: `Questão 05 (Inédita/Carreiras Policiais - 2026) - Direito Penal - Aplicação da Lei Penal`,
-            enunciado: `Acerca do princípio da anterioridade da lei penal contido no Artigo 1º do Código Penal, assinale a conduta que está em perfeita consonância com esse mandamento constitucional:`,
-            alternativas: [
-                `A) Criação de crime por meio de Medida Provisória em caráter de extrema urgência nacional.`,
-                `B) Imposição de pena com base em costume local amplamente aceito pela comunidade.`,
-                `C) Aplicação de nova lei penal incriminadora exclusivamente a fatos praticados após a data do início de sua vigência.`,
-                `D) Utilização de analogia in malam partem para punir conduta sem tipificação legal expressa.`,
-                `E) Majoração de sanção penal por decreto executivo regulamentar sem a devida votação legislativa.`
-            ],
-            correta: 2,
-            letraGabarito: `C`,
-            explicacao: `O princípio da legalidade e da anterioridade (art. 1º, CP e art. 5º, XXXIX, CF) veda decretos, medidas provisórias, analogia prejudicial ou costumes para criar crimes. A única conduta legítima é aplicar a lei nova estritamente a fatos ocorridos após a sua entrada em vigor (irretroatividade da lei maléfica).`
-        }
-    ,
-    {
-        titulo: `Questão 06 (Inédita/Carreiras Policiais - 2026) - Direito Penal - Aplicação da Lei Penal`,
-        enunciado: `Considere que uma lei penal nova entre em vigor aumentando a pena de um determinado crime. À luz do Artigo 2º do Código Penal e da jurisprudência sumulada do Supremo Tribunal Federal, essa lei mais grave (novatio legis in pejus):`,
-        alternativas: [
-            `A) Retroagirá para alcançar todos os crimes passados que ainda não foram julgados em primeira instância.`,
-            `B) Será aplicada ao crime continuado ou ao crime permanente, se a sua vigência for anterior à cessação da continuidade ou da permanência.`,
-            `C) É nativamente inconstitucional, não podendo ser aplicada mesmo a crimes cometidos totalmente após a sua vigência.`,
-            `D) Retroagirá para alcançar crimes em andamento, desde que haja autorização do juiz da instrução criminal.`,
-            `E) Terá aplicação restrita aos crimes hediondos de forma retroativa por imperativo de segurança pública.`
-        ],
-        correta: 1,
-        letraGabarito: `B`,
-        explicacao: `A alternativa B está em perfeita consonância com a Súmula 711 do STF. No crime continuado ou no crime permanente (como o sequestro), a conduta se prolonga no tempo. Se uma lei mais grave entra em vigor enquanto o crime ainda está acontecendo (antes de cessar a permanência ou continuidade), ela será aplicada ao caso, pois o agente continuou delinquindo sob a vigência da lei nova.`
-    },
-    {
-        titulo: `Questão 07 (Inédita/Carreiras Policiais - 2026) - Direito Penal - Aplicação da Lei Penal`,
-        enunciado: `De acordo com as regras explícitas contidas no Código Penal sobre a contagem de prazos substanciais e a frações não computáveis de pena (Artigos 10 e 11 do CP), assinale a alternativa correta:`,
-        alternativas: [
-            `A) O dia do começo inclui-se no cômputo do prazo. Contam-se os dias, os meses e os anos pelo calendário comum.`,
-            `B) O dia do início é expressamente excluído da contagem do prazo penal, postergando-se para o primeiro dia útil seguinte.`,
-            `C) Desprezam-se, na pena privativa de liberdade e na medida de segurança, as frações de dia, mantendo-se o cômputo de minutos.`,
-            `D) As frações de real ou da moeda corrente são computadas em dobro na pena de multa para favorecer o erário público.`,
-            `E) Os prazos do Código Penal seguem a contagem do Código de Processo Civil, computando-se apenas os dias úteis.`
-        ],
-        correta: 0,
-        letraGabarito: `A`,
-        explicacao: `A alternativa A reproduz fielmente o teor do art. 10 do Código Penal. O prazo material/penal inclui o dia do início e conta-se de forma direta pelo calendário comum. C) O art. 11 dita que se desprezam as frações de dia na pena privativa de liberdade e medida de segurança, bem como as frações de real na pena de multa (e não minutos ou cômputos complexos).`
-    },
-    {
-        titulo: `Questão 08 (Inédita/Carreiras Policiais - 2026) - Direito Penal - Aplicação da Lei Penal`,
-        enunciado: `No que tange ao princípio da Territorialidade mitigada adotado pelo Artigo 5º do Código Penal brasileiro, considera-se extensão do território nacional para fins de aplicação da lei penal:`,
-        alternativas: [
-            `A) As embarcações estrangeiras de propriedade privada que estiverem ancoradas em portos de águas nacionais.`,
-            `B) As aeronaves e embarcações brasileiras, de natureza pública ou a serviço do governo brasileiro, onde quer que se encontrem.`,
-            `C) Qualquer imóvel residencial de propriedade de cidadão brasileiro localizado fora das fronteiras da República.`,
-            `D) Os consulados privados e escritórios comerciais de empresas nacionais situados em capitais do exterior.`,
-            `E) O espaço aéreo correspondente a territórios neutros não reclamados internacionalmente.`
-        ],
-        correta: 1,
-        letraGabarito: `B`,
-        explicacao: `A alternativa B reflete o art. 5º, § 1º, do Código Penal. O Brasil adota a territorialidade mitigada, considerando território por extensão as aeronaves e embarcações brasileiras públicas ou a serviço do governo onde quer que estejam. As privadas brasileiras só são território em alto-mar ou espaço aéreo correspondente (art. 5º, § 2º).`
-    },
-    {
-        titulo: `Questão 09 (Inédita/Carreiras Policiais - 2026) - Direito Penal - Application da Lei Penal`,
-        enunciado: `O instituto da Extraterritorialidade (Artigo 7º do Código Penal) dita as hipóteses em que a lei brasileira será aplicada a crimes cometidos inteiramente no estrangeiro. Assinale a alternativa que aponta um crime sujeito à extraterritorialidade incondicionada, dispensando qualquer requisito posterior:`,
-        alternativas: [
-            `A) Crime praticado por brasileiro em território estrangeiro contra cidadão de mesma nacionalidade.`,
-            `B) Crime que, por tratado ou convenção, o Brasil se obrigou a reprimir de forma subsidiária.`,
-            `C) Crime contra o patrimônio ou a fé pública da União, de Estado, do Distrito Federal, de Município ou de empresa pública.`,
-            `D) Crime cometido em aeronave privada nacional quando em território estrangeiro e aí não seja julgado.`,
-            `E) Crime de menor potencial ofensivo praticado contra a dignidade de embaixador de país aliado.`
-        ],
-        correta: 2,
-        letraGabarito: `C`,
-        explicacao: `A alternativa C indica a regra de extraterritorialidade incondicionada do art. 7º, inciso I, alínea 'b', do Código Penal (Princípio da Defesa ou Real). Sendo crime contra o patrimônio ou fé pública desses entes federativos, o agente será punido pela lei brasileira ainda que absolvido ou condenado no estrangeiro (art. 7º, § 1º).`
-    },
-    {
-        titulo: `Questão 10 (Inédita/Carreiras Policiais - 2026) - Direito Penal - Aplicação da Lei Penal`,
-        enunciado: `Determinado crime cometido no exterior foi julgado pela justiça estrangeira e o agente cumpriu integralmente a pena de prisão lá aplicada. Posteriormente, pelo mesmo fato, ele é processado no Brasil. De acordo com o Artigo 8º do Código Penal (Pena cumprida no estrangeiro):`,
-        alternativas: [
-            `A) A pena cumprida no estrangeiro extingue a ação penal no Brasil por força do princípio da soberania absoluta.`,
-            `B) A pena cumprida no estrangeiro atenua a pena imposta no Brasil, quando diversas, ou nela é computada, quando idênticas.`,
-            `C) O processo brasileiro é anulado imediatamente, gerando indenização obrigatória paga pelo Estado ao réu.`,
-            `D) O juiz brasileiro deverá ignorar a pena estrangeira, aplicando a reprimenda nacional em dobro pela reincidência internacional.`,
-            `E) A condenação estrangeira impede de forma perpétua a extradição do agente para responder por novos delitos.`
-        ],
-        correta: 1,
-        letraGabarito: `B`,
-        explicacao: `A alternativa B transcreve com exatidão o art. 8º do Código Penal. Trata-se da regra que visa atenuar os efeitos do bis in idem (dupla punição). Se as penas forem idênticas (ex: prisão e prisão), ocorre a detração (computa-se/subtrai-se). Se forem diversas (ex: multa lá e prisão aqui), funciona como uma causa de atenuação da pena final brasileira.`
-    }
-];
-
-renderizarSimulador(meusSimulados);
-
-
-       renderizarSimulador(meusSimulados);
-
-    // =========================================================================
-    // PROTOCOLO RED TEAM: BLINDAGEM ANTI-CÓPIA E ENGENHARIA REVERSA
-    // =========================================================================
-    
-    // 1. Bloqueia o clique direito do mouse (Menu de Contexto / Inspecionar)
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-    });
-
-    // 2. Bloqueia atalhos de desenvolvedor e teclas de captura/seleção
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'F12') { e.preventDefault(); return false; }
-        if (e.ctrlKey && e.shiftKey && e.key === 'I') { e.preventDefault(); return false; }
-        if (e.ctrlKey && e.shiftKey && e.key === 'J') { e.preventDefault(); return false; }
-        if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) { e.preventDefault(); return false; }
-        if (e.ctrlKey && (e.key === 's' || e.key === 'S')) { e.preventDefault(); return false; }
-        if (e.ctrlKey && (e.key === 'c' || e.key === 'C')) { e.preventDefault(); return false; }
-    });
-
-    // 3. Bloqueia a seleção de textos por arrastar do mouse no CSS nativo
-    const estiloAntiSelecao = document.createElement('style');
-    estiloAntiSelecao.innerHTML = `
-        body, .questao-bloco, .opcao, .questao-texto-bloco, .feedback-box {
-            -webkit-user-select: none; /* Safari */
-            -moz-user-select: none;    /* Firefox */
-            -ms-user-select: none;     /* IE10+ */
-            user-select: none;         /* Padrão */
-        }
-    `;
-    document.head.appendChild(estiloAntiSelecao);
-
-</script>
 </body>
-</html>
 
+</html>
