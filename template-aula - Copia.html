@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabarita Aí - Simulados Premium</title>
+    <style>
+        /* MANTIDO 100% O SEU DESIGN FUTURISTA ORIGINAL */
+        body { 
+            background-color: #02112e; 
+            color: #ffffff; 
+            font-family: 'Segoe UI', sans-serif; 
+            padding: 30px 20px; 
+            display: flex; 
+            justify-content: center; 
+        }
+        .container { 
+            max-width: 850px; 
+            width: 100%; 
+        }
+        .topo-marca { 
+            border-bottom: 2px solid #ffca28; 
+            padding-bottom: 20px; 
+            margin-bottom: 40px; 
+        }
+        .marca-sequencial { 
+            font-size: 1.8rem; 
+            font-weight: 900; 
+        }
+        .ouro { 
+            color: #ffca28; 
+        }
+        .subtitulo { 
+            font-size: 1.3rem; 
+            color: #a5b1c2; 
+            margin-left: 15px; 
+            border-left: 2px solid #415a77; 
+            padding-left: 15px; 
+        }
+        .questao-bloco { 
+            background-color: #031842; 
+            padding: 35px; 
+            border-radius: 12px; 
+            margin-bottom: 30px; 
+            border: 1px solid #0b2c6e; 
+            position: relative; /* PERMITE O POSICIONAMENTO DA MARCA D'ÁGUA */
+            overflow: hidden;   /* IMPEDE QUE A MARCA D'ÁGUA VASE AS BORDAS DO CARD */
+        }
+
+               /* MARCA D'ÁGUA FIXADA NO CANTO SUPERIOR DIREITO */
+        .questao-bloco::before {
+            content: "MÉTODO MISSÃO • GABARITA AÍ • METODOMISSAO.COM";
+            position: absolute;
+            top: 45px;         /* Alinha verticalmente logo abaixo do título amarelo */
+            right: -40px;      /* Move para a extremidade direita (o overflow:hidden corta o excesso) */
+            transform: rotate(-25deg); /* Inclina na transversal exatamente no espaço grifado */
+            font-size: 0.85rem; /* Fonte pequena e discreta como você pediu */
+            font-weight: 800;
+            color: rgba(255, 202, 40, 0.08); /* Amarelo Ouro sutil (8%) */
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* GARANTE QUE OS TEXTOS E BOTÕES FIQUEM NA CAMADA DA FRENTE */
+        .questao-texto-bloco, .opcoes-container, .btn-verificar, .feedback-box { 
+            position: relative; 
+            z-index: 1; 
+        }
+        /* AJUSTADO: Parágrafo com quebra de linha natural e espaçamento linear */
+        .questao-texto-bloco { 
+            color: #ffffff; 
+            font-size: 16px; 
+            font-weight: 500; 
+            line-height: 1.6; 
+            margin-bottom: 25px; 
+        }
+        .questao-titulo-inline { 
+            color: #ffca28; 
+            font-weight: 700; 
+        }
+        .opcoes-container { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 15px; 
+            margin-bottom: 30px; 
+        }
+        .opcao { 
+            display: flex; 
+            align-items: center; 
+            padding: 14px 18px; 
+            border-radius: 8px; 
+            background-color: #02112e; 
+            border: 1px solid #0b2c6e; 
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        .opcao input { 
+            margin-right: 15px; 
+            width: 20px; 
+            height: 20px; 
+            cursor: pointer;
+        }
+        .btn-verificar { 
+            background-color: #ffca28; 
+            color: #02112e; 
+            border: none; 
+            padding: 12px 24px; 
+            font-size: 0.95rem; 
+            font-weight: bold; 
+            border-radius: 6px; 
+            cursor: pointer; 
+        }
+        .feedback-box { 
+            display: none; 
+            background-color: #02112e; 
+            border-left: 5px solid #2ecc71; 
+            padding: 25px; 
+            margin-top: 25px; 
+            border: 1px solid #0b2c6e; 
+        }
+        .gabarito-letra { 
+            color: #2ecc71; 
+            font-weight: 800; 
+            font-size: 1.2rem; 
+            margin-bottom: 12px; 
+        }
+
+        /* CLASSES EXCLUSIVAS DE CORREÇÃO DO MOTOR AUTOMÁTICO */
+        .status-alerta {
+            font-size: 1.1rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        .status-acertou { color: #2ecc71; }
+        .status-errou { color: #ff4d4d; }
+        .travado { pointer-events: none; opacity: 0.85; }
+        .footer-institucional {
+            margin-top: 40px;
+            font-size: 11px;
+            color: #8a99ad; /* Cor correspondente ao var(--cor-texto-mutado) do seu index */
+            text-align: center;
+            letter-spacing: 0.5px;
+            padding-bottom: 20px;
+            width: 100%;
+        }
+
+        /* ASSINATURA DISCRETA LOGO APÓS O ENUNCIADO */
+        .assinatura-suave {
+            display: block;
+            text-align: right;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.04); /* Branco com apenas 4% de opacidade — ultra discreto */
+            margin-top: -10px;
+            margin-bottom: 20px;
+            padding-right: 5px;
+            pointer-events: none;
+        }
+
+/* PAINEL DE PROGRESSO FLUTUANTE - VEXATA IMAGEM */
+.contador-painel-flutuante {
+    position: fixed;
+    bottom: 30px; 
+    right: 40px;  
+    background-color: #031842; /* Fundo azul escuro */
+    border: 1px solid #ffca28; /* Borda fina amarela */
+    border-radius: 6px;
+    padding: 10px 14px; /* Espaçamento interno ajustado */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    z-index: 9999;
+    
+    /* Trava o alinhamento perfeito à esquerda */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Força o P e o D a ficarem no mesmo eixo */
+    gap: 4px; /* Espaço exato entre as duas linhas */
+}
+
+.progresso-titulo { 
+    font-size: 0.65rem; /* Fonte menorzinha */
+    color: #8a99ad; /* Cinza claro da imagem */
+    text-transform: uppercase; 
+    font-weight: 700; 
+    letter-spacing: 0.5px;
+    margin: 0;
+    line-height: 1;
+}
+
+.progresso-valor { 
+    font-size: 0.95rem; /* Proporção exata em relação ao título */
+    color: #ffffff; 
+    font-weight: 700; 
+    margin: 0;
+    line-height: 1;
+}
+
+.progresso-destaque { 
+    color: #00e676; /* Verde um pouco mais vivo (exato da imagem) */
+}
+
+/* =========================================
+   BLINDAGEM ANTICÓPIA E ANTI-IMPRESSÃO
+   ========================================= */
+
+/* 1. Bloqueia a seleção de texto com o mouse */
+body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* 2. Força página em branco na impressão (Ctrl+P ou Menu) */
+@media print {
+    html, body {
+        display: none !important;
+        background-color: #ffffff !important;
+    }
+}
+
+/* 3. Estilo da tela de aviso de proteção */
+#alerta-protecao {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(3, 24, 66, 0.98); /* Azul escuro quase sólido */
+    z-index: 999999; /* Fica acima de TUDO no site */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.alerta-caixa {
+    background-color: #02112e;
+    border: 2px solid #ffca28;
+    padding: 40px;
+    border-radius: 8px;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+
+.alerta-caixa h2 {
+    color: #ffca28;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.alerta-caixa p {
+    color: #ffffff;
+    font-size: 1rem;
+    margin-bottom: 25px;
+}
+
+.btn-fechar-alerta {
+    background-color: #ffca28;
+    color: #031842;
+    border: none;
+    padding: 10px 25px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="topo-marca">
+        <div class="marca-sequencial">GABARITA <span class="ouro">AÍ</span> <span class="subtitulo">QUESTÕES AUTORAIS</span></div>
+    </div>
+
+<!-- =========================================================================
+     ESPAÇO 1: MINI-AULA EM HTML — AULA 06: DA AÇÃO PENAL
+     ========================================================================= -->
+<div 
+    class="mini-aula-bloco" 
+    style="
+        background-color: #031842; 
+        padding: 30px; 
+        border-radius: 12px; 
+        margin-bottom: 30px; 
+        border: 1px solid #0b2c6e; 
+        line-height: 1.6;
+    "
+>
+    <h2 
+        style="
+            color: #ffca28; 
+            font-size: 1.4rem; 
+            margin-top: 0; 
+            margin-bottom: 15px; 
+            font-weight: 800;
+        "
+    >
+        🧠 RESUMO DIRECIONADO — DA AÇÃO PENAL
+        <br>
+        (CARREIRAS POLICIAIS)
+    </h2>
+    
+    <p style="color: #ffffff; margin-bottom: 12px;">
+        O estudo da <strong>Ação Penal</strong> (Artigos 100 a 106 do Código Penal) disciplina o direito de pedir ao Estado-Juiz a aplicação da lei penal contra o autor de uma infração, sendo matéria obrigatória e de altíssima incidência nas provas de <strong>Carreiras Policiais</strong>.
+    </p>
+    
+    <p style="color: #ffffff; margin-bottom: 12px;">
+        Fixe os pilares e as regras de ouro fundamentais baseadas no texto expresso da lei:
+    </p>
+    
+    <ul 
+        style="
+            color: #ffffff; 
+            padding-left: 20px; 
+            margin-bottom: 0;
+        "
+    >
+        <li style="margin-bottom: 8px;">
+            <strong style="color: #ffca28;">Ação Pública Incondicionada (Art. 100, caput):</strong> 
+            É a regra geral do ordenamento pátrio. É promovida privativamente pelo Ministério Público por meio de denúncia e rege-se pelo princípio da <strong>indisponibilidade</strong>, o que proíbe o órgão acusador de desistir da ação penal proposta.
+        </li>
+        <li style="margin-bottom: 8px;">
+            <strong style="color: #ffca28;">Prazo Decadencial Geral (Art. 103):</strong> 
+            Nos crimes de ação privada (queixa) ou pública condicionada (representação), o ofendido decai do direito de agir se não o exercer no prazo peremptório de <strong>6 meses</strong>, contados do dia em que veio a saber quem significa o autor do crime.
+        </li>
+        <li style="margin-bottom: 8px;">
+            <strong style="color: #ffca28;">Princípio da Indivisibilidade (Art. 104):</strong> 
+            A ação penal privada não pode ser seletiva. A renúncia ao direito de queixa ou o perdão concedido a apenas um dos coautores ou concorrentes do crime <strong>a todos os demais aproveitará</strong>, extinguindo integralmente a punibilidade.
+        </li>
+        <li style="margin-bottom: 8px;">
+            <strong style="color: #ffca28;">Direito de Queixa por Sucessão (Art. 100, § 4º):</strong> 
+            No caso de morte do ofendido ou de ter sido declarado ausente por decisão judicial, o direito de oferecer queixa-crime ou de prosseguir no processo passa estritamente aos sucessores legais na ordem do <strong>CADI</strong> (Cônjuge, Ascendente, Descendente ou Irmão).
+        </li>
+        <li style="margin-bottom: 0;">
+            <strong style="color: #ffca28;">Perempção Penal (Art. 107, IV):</strong> 
+            Causa extintiva de punibilidade exclusiva da ação privada judicial. Ocorre, entre outras hipóteses, quando o querelante deixa de promover o andamento do processo criminal por mais de <strong>30 dias seguidos</strong> sem justificativa idônea.
+        </li>
+    </ul>
+</div>
+
+    <!-- O motor injetará dinamicamente todos os blocos de questões exatamente aqui -->
+    <div id="simulador-container"></div>
+
+    <!-- Rodapé de Propriedade Padronizado -->
+<footer class="footer-institucional" style="margin-top: 40px; font-size: 11px; color: #8a99ad; text-align: center; letter-spacing: 0.5px; padding-bottom: 20px; width: 100%; line-height: 1.6;">
+    &copy; 2026 Método Missão. Todos os direitos reservados.<br>
+    Gabarita Aí é uma plataforma oficial da metodologia de estudos Método Missão.
+</footer>
+
+</div>
+
+<script>
+let globalAcertos = 0;
+
+        // Função principal que lê a lista e renderiza o seu layout idêntico na tela
+            function renderizarSimulador(listaQuestoes) {
+document.getElementById('total-questoes').innerText = listaQuestoes.length;
+        const container = document.getElementById('simulador-container');
+        container.innerHTML = '';
+        
+        listaQuestoes.forEach((q, qIndex) => {
+            const bloco = document.createElement('div');
+            bloco.className = 'questao-bloco';
+            bloco.id = `bloco-q${qIndex}`;
+            
+            let alternativasHTML = '';
+            q.alternativas.forEach((alt, altIndex) => {
+                alternativasHTML += `<label class="opcao" id="q${qIndex}-opt${altIndex}"><input type="radio" name="radar-q${qIndex}" value="${altIndex}">${alt}</label>`;
+            });
+            
+            bloco.innerHTML = `
+                <div class="questao-texto-bloco">
+                    <span class="questao-titulo-inline">${q.titulo}</span>
+                    <br>
+                    ${q.enunciado}
+                </div>
+                
+                <div class="assinatura-suave">
+                    MÉTODO MISSÃO • GABARITA AÍ • METODOMISSAO.COM
+                </div>
+                
+                <div class="opcoes-container" id="grupo-q${qIndex}">
+                    ${alternativasHTML}
+                </div>
+                
+                <button type="button" class="btn-verificar" id="btn-q${qIndex}" onclick="validarResposta(${qIndex}, ${q.correta})">
+                    CONFIRMAR
+                </button>
+                
+                <div class="feedback-box" id="feed-q${qIndex}">
+                    <div class="status-alerta" id="status-q${qIndex}"></div>
+                    <div class="gabarito-letra">Gabarito: ${q.letraGabarito}</div>
+                    <div style="line-height: 1.6; color: #a5b1c2;">${q.explicacao}</div>
+                </div>
+            `;
+            
+            container.appendChild(bloco);
+        });
+    }
+
+
+    function validarResposta(qIndex, indexCorreto) {
+        const inputs = document.getElementsByName(`radar-q${qIndex}`);
+        let selecionadoIndex = -1;
+        
+        for (let i = 0; i < inputs.length; i++) { 
+            if (inputs[i].checked) { 
+                selecionadoIndex = i; 
+                break; 
+            } 
+        }
+        
+        if (selecionadoIndex === -1) { 
+            alert("Por favor, selecione uma alternative antes de confirmar!"); 
+            return; 
+        }
+        
+        document.getElementById(`grupo-q${qIndex}`).classList.add('travado');
+        document.getElementById(`btn-q${qIndex}`).style.display = 'none';
+        
+        const elementoCorreto = document.getElementById(`q${qIndex}-opt${indexCorreto}`);
+        const elementoSelecionado = document.getElementById(`q${qIndex}-opt${selecionadoIndex}`);
+        const statusBox = document.getElementById(`status-q${qIndex}`);
+        const feedbackBox = document.getElementById(`feed-q${qIndex}`);
+        
+        if (selecionadoIndex === indexCorreto) {
+            elementoCorreto.style.borderColor = '#2ecc71';
+            statusBox.innerHTML = "✅ Certo!";
+            statusBox.className = "status-alerta status-acertou";
+globalAcertos++; 
+            document.getElementById('acertos-valor').innerText = globalAcertos;
+
+        } else {
+            elementoSelecionado.style.borderColor = '#ff4d4d';
+            elementoCorreto.style.borderColor = '#2ecc71';
+            feedbackBox.style.borderLeftColor = '#ff4d4d';
+            statusBox.innerHTML = "❌ Errada!";
+            statusBox.className = "status-alerta status-errou";
+        }
+        
+        feedbackBox.style.display = 'block';
+    }
+
+    // PROTOCOLO RED TEAM ANTICÓPIA
+    document.addEventListener('contextmenu', function(e) { 
+        e.preventDefault(); 
+    });
+    
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'F12') { e.preventDefault(); return false; }
+        if (e.ctrlKey && e.shiftKey && e.key === 'I') { e.preventDefault(); return false; }
+        if (e.ctrlKey && e.shiftKey && e.key === 'J') { e.preventDefault(); return false; }
+        if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) { e.preventDefault(); return false; }
+        if (e.ctrlKey && (e.key === 's' || e.key === 'S')) { e.preventDefault(); return false; }
+        if (e.ctrlKey && (e.key === 'c' || e.key === 'C')) { e.preventDefault(); return false; }
+    });
+    
+    const estiloAntiSelecao = document.createElement('style');
+    estiloAntiSelecao.innerHTML = 'body, .questao-bloco, .opcao, .questao-texto-bloco, .feedback-box { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }';
+    document.head.appendChild(estiloAntiSelecao);
+</script>
+
+<!-- INSERÇÃO DOS DADOS DA AULA VIA ARQUIVO EXTERNO -->
+
+<div id="simulador-container"></div>
+
+<div class="contador-painel-flutuante">
+    <div class="progresso-titulo">PROGRESSO DO SIMULADO</div>
+    <div class="progresso-valor">
+        Desempenho: <span class="progresso-destaque" id="acertos-valor">0</span> / <span id="total-questoes">0</span>
+    </div>
+</div>
+
+<script src="dados-acao-penal.js"></script>
+
+<script>
+    renderizarSimulador(meusSimulados);
+</script>
+<div id="alerta-protecao">
+        <div class="alerta-caixa">
+            <h2>⚠️ Ação Bloqueada</h2>
+            <p>O conteúdo deste simulador é exclusivo e protegido por direitos autorais.</p>
+            <button class="btn-fechar-alerta" onclick="fecharAlerta()">Entendido</button>
+        </div>
+    </div>
+
+    <script>
+        // Função para mostrar a tela de aviso
+        function mostrarAlerta(evento) {
+            if (evento) evento.preventDefault(); // Impede a ação original (ex: abrir o menu)
+            document.getElementById('alerta-protecao').style.display = 'flex';
+        }
+
+        // Função para esconder a tela quando clicar no botão
+        function fecharAlerta() {
+            document.getElementById('alerta-protecao').style.display = 'none';
+        }
+
+        // 1. Bloqueia o clique com botão direito
+        document.addEventListener('contextmenu', mostrarAlerta);
+
+        // 2. Bloqueia a tentativa de cópia direta
+        document.addEventListener('copy', mostrarAlerta);
+
+        // 3. Intercepta atalhos de teclado de cópia, impressão e inspeção
+        document.addEventListener('keydown', function(evento) {
+            // Verifica se a tecla Ctrl (ou Cmd no Mac) está pressionada junto com C, P, S ou U
+            if (evento.ctrlKey || evento.metaKey) {
+                const tecla = evento.key.toLowerCase();
+                if (tecla === 'c' || tecla === 'p' || tecla === 's' || tecla === 'u') {
+                    mostrarAlerta(evento);
+                }
+            }
+            // Bloqueia o F12 (Inspecionar Elemento)
+            if (evento.key === 'F12') {
+                mostrarAlerta(evento);
+            }
+        });
+
+// 4. Bloqueia a tecla Print Screen
+        document.addEventListener('keyup', function(evento) { if (evento.key === 'PrintScreen') mostrarAlerta(evento); });
+    </script>
+</body>
+</html>

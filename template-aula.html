@@ -304,34 +304,36 @@
                     AUTORAIS</span></div>
         </div>
 
-        <div class="mini-aula-bloco"
-            style="background-color: #031842; padding: 30px; border-radius: 12px; margin-bottom: 30px; border: 1px solid #0b2c6e; line-height: 1.6;">
-            <h2 style="color: #ffca28; font-size: 1.4rem; margin-top: 0; margin-bottom: 15px; font-weight: 800;">
-                🧠 RESUMO DIRECIONADO — DO CONCURSO DE PESSOAS (CARREIRAS POLICIAIS)
+        <!-- =========================================================================
+         ÁREA EDITÁVEL 1: COLE O RESUMO DA AULA ABAIXO
+         ========================================================================= -->
+        <div class="mini-aula-bloco" style="line-height: 1.6;">
+            <h2
+                style="color: #ffca28; font-size: 1.4rem; margin-top: 0; margin-bottom: 15px; font-weight: 800; position: relative; z-index: 1;">
+                🧠 DA APLICAÇÃO DA LEI PENAL (CARREIRAS POLICIAIS)
             </h2>
-            <p style="color: #ffffff; margin-bottom: 12px;">O estudo do <strong>Concurso de Pessoas</strong> (Artigos 29
-                a 31 do Código Penal) regula as hipóteses em que dois ou mais agentes cooperam reciprocamente para a
-                execução de uma mesma infração penal...</p>
-            <ul style="color: #ffffff; padding-left: 20px; margin-bottom: 0;">
-                <li style="margin-bottom: 8px;"><strong style="color: #ffca28;">Teoria Adotada (Art. 29,
-                        caput):</strong> O Brasil adotou, como regra geral, a <strong>Teoria Monista</strong>.</li>
-                <li style="margin-bottom: 8px;"><strong style="color: #ffca28;">Participação de Menor Importância (Art.
-                        29, § 1º):</strong> Diminuição de um sexto a um terço.</li>
-                <li style="margin-bottom: 8px;"><strong style="color: #ffca28;">Cooperação Dolosamente Distinta (Art.
-                        29, § 2º):</strong> Responde pelo crime menos grave.</li>
-                <li style="margin-bottom: 8px;"><strong style="color: #ffca28;">Incomunicabilidade de Condições (Art.
-                        30):</strong> Não se comunicam, salvo quando elementares do crime.</li>
-                <li style="margin-bottom: 0;"><strong style="color: #ffca28;">Impunibilidade do Ajuste (Art.
-                        31):</strong> Não são puníveis se o crime não chega a ser tentado.</li>
-            </ul>
+            <p style="color: #ffffff; margin-bottom: 12px; position: relative; z-index: 1;">
+                Texto de introdução da sua aula vai aqui.
+            </p>
+        </div>
+        <!-- ========================================================================= -->
+
+        <div class="contador-painel-flutuante"
+            style="position: sticky; top: 10px; z-index: 100; background: #031842; padding: 15px; border-radius: 8px; border: 1px solid #ffca28; margin-bottom: 20px;">
+            <div class="progresso-titulo"
+                style="color: #ffca28; font-weight: bold; font-size: 0.8rem; letter-spacing: 1px;">PROGRESSO DO SIMULADO
+            </div>
+            <div class="progresso-valor" style="font-size: 1.1rem;">
+                Desempenho: <span class="progresso-destaque" id="acertos-valor"
+                    style="color: #2ecc71; font-weight: 800;">0</span> /
+                <span id="total-questoes" style="font-weight: 800;">0</span>
+            </div>
         </div>
 
-        <!-- O motor injetará dinamicamente todos os blocos de questões exatamente aqui -->
+        <!-- O motor injetará os cards aqui -->
         <div id="simulador-container"></div>
 
-        <!-- Rodapé de Propriedade Padronizado -->
-        <footer class="footer-institucional"
-            style="margin-top: 40px; font-size: 11px; color: #8a99ad; text-align: center; letter-spacing: 0.5px; padding-bottom: 20px; width: 100%; line-height: 1.6;">
+        <footer class="footer-institucional">
             &copy; 2026 Método Missão. Todos os direitos reservados.<br>
             Gabarita Aí é uma plataforma oficial da metodologia de estudos Método Missão.
         </footer>
@@ -359,19 +361,20 @@
             // 1. O robô lê o arquivo JS e descobre o total sozinho
             totalQuestoes = listaQuestoes.length;
 
+            // 2. Atualiza o painel flutuante
+            document.getElementById('total-questoes').innerText = totalQuestoes;
+            document.getElementById('acertos-valor').innerText = '0';
+
             const container = document.getElementById('simulador-container');
             container.innerHTML = '';
 
-            // 2. Cria a mensagem de Início no Topo (Aviso de Total)
+            // 3. Cria a mensagem de Início (Aviso de Total)
             const avisoInicio = document.createElement('div');
-            avisoInicio.style = "display: flex; align-items: flex-start; gap: 8px; text-align: left; margin-bottom: 30px; padding: 15px; background-color: #02112e; border: 1px dashed #ffca28; border-radius: 8px; color: #ffffff; line-height: 1.5; text-transform: uppercase;";
-            avisoInicio.innerHTML = `
-    <strong style="color: #ffca28; white-space: nowrap;">🎯 FOCO NA MISSÃO:</strong>
-    <span>Este bloco contém <strong style="color: #ffffff;">${totalQuestoes} questões</strong> estruturadas no mapeamento estratégico da lei seca atualizada.</span>
-`;
+            avisoInicio.style = "text-align: center; margin-bottom: 30px; padding: 15px; background-color: #02112e; border: 1px dashed #ffca28; border-radius: 8px;";
+            avisoInicio.innerHTML = `<strong style="color: #ffca28;">🎯 FOCO NA MISSÃO:</strong> Este bloco contém <strong style="color: #ffffff;">${totalQuestoes} questões</strong> focadas e baseadas em jurisprudência atualizada.`;
             container.appendChild(avisoInicio);
 
-            // 3. Renderiza as questões
+            // 4. Renderiza as questões normalmente
             listaQuestoes.forEach((q, qIndex) => {
                 const bloco = document.createElement('div');
                 bloco.className = 'questao-bloco';
@@ -383,18 +386,18 @@
                 });
 
                 bloco.innerHTML = `
-                    <div class="questao-texto-bloco">
-                        <span class="questao-titulo-inline">${q.titulo}</span><br>${q.enunciado}
-                    </div>
-                    <div class="assinatura-suave">MÉTODO MISSÃO • GABARITA AÍ • METODOMISSAO.COM</div>
-                    <div class="opcoes-container" id="grupo-q${qIndex}">${alternativasHTML}</div>
-                    <button type="button" class="btn-verificar" id="btn-q${qIndex}" onclick="validarResposta(${qIndex}, ${q.correta})">CONFIRMAR</button>
-                    <div class="feedback-box" id="feed-q${qIndex}">
-                        <div class="status-alerta" id="status-q${qIndex}"></div>
-                        <div class="gabarito-letra">Gabarito: ${q.letraGabarito}</div>
-                        <div style="line-height: 1.6; color: #a5b1c2;">${q.explicacao}</div>
-                    </div>
-                `;
+            <div class="questao-texto-bloco">
+                <span class="questao-titulo-inline">${q.titulo}</span><br>${q.enunciado}
+            </div>
+            <div class="assinatura-suave">MÉTODO MISSÃO • GABARITA AÍ • METODOMISSAO.COM</div>
+            <div class="opcoes-container" id="grupo-q${qIndex}">${alternativasHTML}</div>
+            <button type="button" class="btn-verificar" id="btn-q${qIndex}" onclick="validarResposta(${qIndex}, ${q.correta})">CONFIRMAR</button>
+            <div class="feedback-box" id="feed-q${qIndex}">
+                <div class="status-alerta" id="status-q${qIndex}"></div>
+                <div class="gabarito-letra">Gabarito: ${q.letraGabarito}</div>
+                <div style="line-height: 1.6; color: #a5b1c2;">${q.explicacao}</div>
+            </div>
+        `;
                 container.appendChild(bloco);
             });
         }
@@ -426,7 +429,8 @@
                 elementoCorreto.style.borderColor = '#2ecc71';
                 statusBox.innerHTML = "✅ Certo!";
                 statusBox.className = "status-alerta status-acertou";
-                acertos++; // Soma o acerto ocultamente
+                acertos++; // Soma o acerto
+                document.getElementById('acertos-valor').innerText = acertos; // Atualiza o painel flutuante
             } else {
                 elementoSelecionado.style.borderColor = '#ff4d4d';
                 elementoCorreto.style.borderColor = '#2ecc71';
@@ -437,7 +441,7 @@
 
             feedbackBox.style.display = 'block';
 
-            // 4. Gatilho do Fechamento (Mostra o placar ao final)
+            // 5. O gatilho do Fechamento (Se respondeu todas, mostra o placar)
             if (respondidas === totalQuestoes) {
                 gerarPlacarFinal();
             }
@@ -453,19 +457,19 @@
             painelResultado.style.textAlign = 'center';
 
             painelResultado.innerHTML = `
-                <h2 style="color: #ffca28; font-size: 1.6rem; margin-top: 0; font-weight: 800; text-transform: uppercase;">
-                    🏆 SIMULADO CONCLUÍDO
-                </h2>
-                <p style="font-size: 1.2rem; color: #ffffff; margin-bottom: 10px;">
-                    Você acertou <span style="color: #2ecc71; font-weight: 800;">${acertos}</span> de um total de <strong>${totalQuestoes}</strong> questões.
-                </p>
-                <div style="font-size: 1.8rem; font-weight: 900; color: #2ecc71; margin-bottom: 15px;">
-                    Aproveitamento: ${aproveitamento}%
-                </div>
-                <p style="color: #a5b1c2; font-size: 0.95rem; margin-bottom: 0; line-height: 1.5;">
-                    ${aproveitamento >= 70 ? "🔥 Excelente índice! Você assimilou muito bem as regras deste módulo." : "📚 Desempenho mediano. Vale a pena revisar o resumo e tentar novamente."}
-                </p>
-            `;
+        <h2 style="color: #ffca28; font-size: 1.6rem; margin-top: 0; font-weight: 800; text-transform: uppercase;">
+            🏆 SIMULADO CONCLUÍDO
+        </h2>
+        <p style="font-size: 1.2rem; color: #ffffff; margin-bottom: 10px;">
+            Você acertou <span style="color: #2ecc71; font-weight: 800;">${acertos}</span> de um total de <strong>${totalQuestoes}</strong> questões.
+        </p>
+        <div style="font-size: 1.8rem; font-weight: 900; color: #2ecc71; margin-bottom: 15px;">
+            Aproveitamento: ${aproveitamento}%
+        </div>
+        <p style="color: #a5b1c2; font-size: 0.95rem; margin-bottom: 0; line-height: 1.5;">
+            ${aproveitamento >= 70 ? "🔥 Excelente índice! Você assimilou muito bem as regras deste módulo." : "📚 Desempenho mediano. Vale a pena revisar o resumo e tentar novamente."}
+        </p>
+    `;
 
             container.appendChild(painelResultado);
         }
@@ -492,9 +496,9 @@
     </script>
 
     <!-- =========================================================================
-     CHAMADA BLINDADA DE DADOS: O onload garante a execução pós-carregamento total
+     ÁREA EDITÁVEL 2: APONTE PARA O ARQUIVO .JS DESTA AULA ESPECÍFICA
      ========================================================================= -->
-    <script src="dados-concurso-de-pessoas.js" onload="renderizarSimulador(meusSimulados)"></script>
+    <script src="COLOQUE-O-NOME-DO-ARQUIVO-AQUI.js" onload="renderizarSimulador(meusSimulados)"></script>
 
 </body>
 

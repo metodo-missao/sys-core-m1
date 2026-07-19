@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flash Cards — Informática (Método Missão)</title>
-
+    
     <style>
         /* ==========================================================================
            1. VARIÁVEIS DE AMBIENTE & PALETA HOMOLOGADA (DEEP ROYAL)
@@ -39,7 +38,7 @@
             flex-direction: column;
             align-items: center;
             padding: 25px 15px;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Evita rolagem horizontal */
         }
 
         /* Marca d'água Integrada */
@@ -49,7 +48,7 @@
             left: 50%;
             transform: translate(-50%, -50%) rotate(-45deg);
             font-size: 5rem;
-            color: rgba(255, 255, 255, 0.03);
+            color: rgba(255, 255, 255, 0.03); /* Sutil */
             pointer-events: none;
             user-select: none;
             z-index: 9999;
@@ -59,9 +58,7 @@
         }
 
         @media print {
-            body {
-                display: none !important;
-            }
+            body { display: none !important; }
         }
 
         .container {
@@ -182,12 +179,12 @@
 
         .face-frente {
             background-color: var(--cor-fundo-bloco);
-            border: 2px solid var(--cor-ouro);
+            border: 2px solid var(--cor-ouro); /* Alterado para ouro */
         }
 
         .face-verso {
             background-color: var(--cor-fundo-bloco);
-            border: 2px solid var(--cor-sucesso);
+            border: 2px solid var(--cor-sucesso); /* Aplica o verde apenas aqui */
             transform: rotateY(180deg);
             overflow-y: auto;
         }
@@ -207,12 +204,12 @@
 
         .texto-fundamento {
             font-size: 16px;
-            color: #ffffff;
+            color: #ffffff; /* Mudamos de cinza para branco para eliminar a transparência */
             line-height: 1.5;
             border-top: 1px solid var(--cor-borda);
             padding-top: 10px;
             width: 100%;
-            font-weight: 500;
+            font-weight: 500; /* Um pouco mais encorpado para facilitar a leitura */
         }
 
         .dica-virar {
@@ -290,37 +287,42 @@
         }
     </style>
 </head>
-
 <body>
 
+    <!-- Marca D'água -->
     <div class="marca-dagua">Método Missão</div>
 
     <div class="container">
 
+        <!-- Header da Matéria Atemporal -->
         <header class="header-simulador">
             <div class="badge-materia">💻 Informática • Carreiras Policiais</div>
-
+            
+            <!-- Dropdown Inteligente de Controle de Aulas -->
             <div class="container-seletor">
                 <label class="label-seletor" for="selecao-aula">Selecione o Bloco de Estudo:</label>
                 <select id="selecao-aula" class="dropdown-aulas">
                     <option value="aula1">Teclas de Atalho (Firefox) — Aula 1</option>
                     <option value="aula2">Teclas de Atalho (Firefox) — Aula 2</option>
-                    <option value="aula3">Google Chrome: Atalhos & Recursos — Aula 3</option>
-                    <option value="aula4">Google Chrome: Segurança & Configurações — Aula 4</option>
-                </select>
+                    <option value="aula3" disabled>Navegadores Google Chrome — Aula 1 (Bloqueado 🔒)</option>
+</select>
             </div>
         </header>
 
+        <!-- Indicador de Posição Automático -->
         <div id="contador-visual" class="contador-cards">Card 1/1</div>
 
+        <!-- Container do Simulador (Com suporte a Blindagem Anti-Recorte) -->
         <main id="simulador-container">
             <div id="card-objeto" class="card-flash">
-
+                
+                <!-- Face da Pergunta -->
                 <div class="face-card face-frente">
                     <p id="campo-pergunta" class="texto-pergunta">Carregando pergunta...</p>
                     <span class="dica-virar">👇 Clique para revelar o Gabarito</span>
                 </div>
 
+                <!-- Face da Resposta -->
                 <div class="face-card face-verso">
                     <div id="campo-resposta" class="texto-resposta">Carregando...</div>
                     <p id="campo-fundamento" class="texto-fundamento">Carregando fundamentação técnica da banca...</p>
@@ -330,14 +332,17 @@
             </div>
         </main>
 
+        <!-- Menu de Controle de Fluxo -->
         <div class="botoes-navegacao">
             <button id="btn-anterior" class="btn-nav">◀ Voltar</button>
             <button id="btn-virar" class="btn-nav btn-destaque">🔄 Virar Card</button>
             <button id="btn-proximo" class="btn-nav">Avançar ▶</button>
         </div>
 
+        <!-- Botão de Saída Segura para o Menu Inicial -->
         <a href="index.html" class="btn-voltar-hub">🏠 Voltar ao Menu Principal</a>
 
+        <!-- Rodapé de Propriedade Padronizado -->
         <footer class="footer-institucional">
             &copy; 2026 Método Missão. Todos os direitos reservados.
             <br>
@@ -346,9 +351,117 @@
 
     </div>
 
-    <script src="dados-flashcards-info.js"></script>
-
+    <!-- BANCO DE DADOS INTEGRADO & MECÂNICA DO SIMULADOR -->
     <script>
+        // 1. Banco de Questões Inédito Organizado por Módulos
+        const bancoAulas = {
+            aula1: [
+                {
+                    pergunta: "Qual o atalho de teclado utilizado no Mozilla Firefox para abrir uma nova aba (guia) de navegação limpa?",
+                    resposta: "Ctrl + T",
+                    fundamento: "Mnemônico: 'T' de 'Tab' (Aba). Este atalho é universal e funciona de forma idêntica no Google Chrome, Edge e Opera. Atenção: o comando cria uma nova ABA. Se o objetivo fosse uma nova JANELA, o atalho seria Ctrl + N."
+                },
+                {
+                    pergunta: "Se um usuário fechar acidentalmente uma aba importante durante uma pesquisa, qual comando restaura instantaneamente a última guia encerrada?",
+                    resposta: "Ctrl + Shift + T",
+                    fundamento: "Funciona como o comando 'Desfazer' (Undo) específico para o gerenciamento de abas. Você pode pressionar o atalho repetidamente para restaurar múltiplas abas fechadas."
+                },
+                {
+                    pergunta: "Para otimizar o tempo na busca por evidências digitais, qual comando abre diretamente uma janela de Navegação Privativa no Firefox?",
+                    resposta: "Ctrl + Shift + P",
+                    fundamento: "Mnemônico: 'P' de Private. No Chrome, o atalho correspondente é Ctrl + Shift + N (Anônima). Diferença crucial muito explorada em armadilhas de questões."
+                },
+                {
+                    pergunta: "Qual comando de atalho permite ao usuário acessar diretamente a barra lateral com o Histórico completo de navegação do Firefox?",
+                    resposta: "Ctrl + H",
+                    fundamento: "Mnemônico: 'H' de History. Exibe o painel lateral com os sites visitados recentemente de forma cronológica."
+                },
+                {
+                    pergunta: "Durante a execução de tarefas administrativas em ambiente web, qual atalho fecha a aba específica que está atualmente em foco no navegador?",
+                    resposta: "Ctrl + W (ou Ctrl + F4)",
+                    fundamento: "Mnemônico: 'W' de Window/Withdraw. Fecha a guia ativa atual sem encerrar o processo do navegador inteiro."
+                },
+                {
+                    pergunta: "Em uma análise web, como recarregar a página atual ignorando o cache local para garantir que a versão mais recente e atualizada seja exibida no Firefox?",
+                    resposta: "Ctrl + F5 (ou Ctrl + Shift + R)",
+                    fundamento: "Conhecido como 'Hard Refresh'. Essencial para evitar a visualização de dados obsoletos armazenados na máquina local, forçando o navegador a baixar tudo novamente do servidor."
+                },
+                {
+                    pergunta: "Qual atalho move o foco do cursor instantaneamente para a barra de endereços (URL) do Firefox, permitindo digitar um novo endereço ou pesquisa?",
+                    resposta: "Ctrl + L (ou Alt + D)",
+                    fundamento: "Mnemônico: 'L' de 'Location' (Localização). Permite navegação rápida, seleção e cópia de URLs sem precisar tirar as mãos do teclado para usar o mouse."
+                },
+                {
+                    pergunta: "Qual atalho é utilizado para abrir a janela ou guia que exibe a lista de Downloads realizados no navegador Firefox?",
+                    resposta: "Ctrl + J",
+                    fundamento: "Mnemônico: 'J' de 'Job' (Tarefa/Download). Abre a janela da Biblioteca do Firefox diretamente no histórico de arquivos baixados."
+                },
+                {
+                    pergunta: "Qual o comando ágil para localizar uma palavra-chave ou termo específico dentro do texto de uma página web extensa no Firefox?",
+                    resposta: "Ctrl + F",
+                    fundamento: "Mnemônico: 'F' de 'Find' (Encontrar). Abre a barra de pesquisa de texto na parte inferior da tela do Firefox para varredura rápida de informações."
+                },
+                {
+                    pergunta: "Durante o monitoramento de uma página importante, qual comando salva o endereço atual instantaneamente nos Favoritos do Firefox?",
+                    resposta: "Ctrl + D",
+                    fundamento: "Mnemônico: 'D' de 'Directory' (Diretório) ou 'Documento'. Abre a caixa de diálogo permitindo salvar, nomear e categorizar a URL atual com precisão."
+                }
+            ],
+            aula2: [
+                {
+                    pergunta: "Qual atalho no Firefox aciona imediatamente a janela 'Limpar histórico recente', permitindo a exclusão rápida de rastros de navegação, cookies e cache?",
+                    resposta: "Ctrl + Shift + Del",
+                    fundamento: "Tema predileto da banca em segurança da informação. Permite apagar rastros de navegação de períodos específicos (última hora, hoje, tudo) de forma cirúrgica."
+                },
+                {
+                    pergunta: "Qual comando clássico de atalho é utilizado para enviar a página web atualmente visualizada no Firefox direto para a impressão?",
+                    resposta: "Ctrl + P",
+                    fundamento: "Mnemônico: 'P' de 'Print'. A banca tem forte tendência a cobrar comandos básicos de saída de documentos dentro do ambiente dos navegadores."
+                },
+                {
+                    pergunta: "Durante a análise de múltiplos alvos, qual atalho de teclado permite alternar rapidamente para a 'próxima aba' (da esquerda para a direita) aberta no Firefox?",
+                    resposta: "Ctrl + Tab (ou Ctrl + Page Down)",
+                    fundamento: "Navegação sequencial de abas. Para retroceder a navegação pelas abas (da direita para a esquerda), utiliza-se o comando inverso: Ctrl + Shift + Tab (ou Ctrl + Page Up)."
+                },
+                {
+                    pergunta: "Sabemos que no Google Chrome o atalho Ctrl + Shift + N abre a janela anônima. No Mozilla Firefox, o que esse exato comando (Ctrl + Shift + N) faz?",
+                    resposta: "Desfaz o fechamento da última JANELA (Restaura a janela inteira encerrada).",
+                    fundamento: "A maior pegadinha da banca. No Firefox, a navegação privativa é Ctrl + Shift + P. O comando Ctrl + Shift + N serve estritamente para restaurar uma janela inteira que foi fechada por engano."
+                },
+                {
+                    pergunta: "Para examinar a estrutura de um site e buscar elementos ocultos, qual atalho exibe instantaneamente o código-fonte da página no Firefox?",
+                    resposta: "Ctrl + U",
+                    fundamento: "Item recorrente para cargos técnicos e policiais. Abre uma nova aba contendo todo o código HTML cru e nativo da página original, sem a renderização visual do navegador."
+                },
+                {
+                    pergunta: "Além do código-fonte básico, qual comando invoca o painel de 'Ferramentas do Desenvolvedor' (Inspector) do Firefox para analisar scripts em tempo real?",
+                    resposta: "F12 (ou Ctrl + Shift + I)",
+                    fundamento: "Ferramenta de nível avançado usada para inspecionar elementos específicos da página, manipular variáveis e monitorar requisições de rede."
+                },
+                {
+                    pergunta: "Se uma página web pesada começar a demorar para carregar ou travar, qual tecla interrompe instantaneamente o processo de carregamento no Firefox?",
+                    resposta: "Esc",
+                    fundamento: "Comando conceitual simples, porém massivamente cobrado pela banca para testar o conhecimento do aluno sobre controle de tráfego de dados na interface do usuário."
+                },
+                {
+                    pergunta: "Diferente do comando Ctrl + D (que apenas adiciona um favorito), qual atalho abre a barra lateral exibindo a lista completa de Favoritos (Bookmarks) salvos no Firefox?",
+                    resposta: "Ctrl + B",
+                    fundamento: "Mnemônico: 'B' de 'Bookmarks'. Expande um painel fixo à esquerda da tela para acesso rápido, pesquisa e organização hierárquica dos sites salvos na máquina."
+                },
+                {
+                    pergunta: "Quais comandos são utilizados no Firefox para aumentar, diminuir e restaurar o tamanho padrão da visualização da página (Controle de Zoom)?",
+                    resposta: "Ctrl + [+] para aumentar, Ctrl + [-] para diminuir e Ctrl + [0] para restaurar.",
+                    fundamento: "A banca adora cobrar comandos ligados à acessibilidade e visualização. O atalho Ctrl + 0 (zero) é o mais perigoso em provas, pois restabelece o zoom original de 100%."
+                },
+                {
+                    pergunta: "Qual tecla de função oculta todas as barras de ferramentas e menus do Firefox, expandindo a página atual para ocupar a tela inteira (Full Screen)?",
+                    resposta: "F11",
+                    fundamento: "Comando universal para maximizar o espaço de visualização. Muito cobrado quando a questão descreve um cenário onde o usuário 'perdeu a visão das barras de navegação'."
+                }
+            ]
+        };
+
+        // 2. Controle de Estado Interno da Aplicação
         let aulaAtual = "aula1";
         let indexAtual = 0;
 
@@ -358,24 +471,21 @@
         const campoFundamento = document.getElementById('campo-fundamento');
         const contadorVisual = document.getElementById('contador-visual');
 
-        // Atualização isolada do visual e do contador 
         function renderizarCard() {
             const listaCards = bancoAulas[aulaAtual];
             const dadosCard = listaCards[indexAtual];
-
+            
             cardObjeto.classList.remove('flipped');
-
+            
             setTimeout(() => {
                 campoPergunta.textContent = dadosCard.pergunta;
                 campoResposta.textContent = dadosCard.resposta;
                 campoFundamento.textContent = dadosCard.fundamento;
                 contadorVisual.textContent = `Card ${indexAtual + 1}/${listaCards.length}`;
-            }, 150);
+            }, 150); 
         }
 
-        // ==========================================================================
-        // EVENTOS DE NAVEGAÇÃO
-        // ==========================================================================
+        // 3. Event Listeners de Controle de Navegação
         cardObjeto.addEventListener('click', () => cardObjeto.classList.toggle('flipped'));
         document.getElementById('btn-virar').addEventListener('click', () => cardObjeto.classList.toggle('flipped'));
 
@@ -402,32 +512,25 @@
             renderizarCard();
         });
 
-        // ==========================================================================
-        // PONTE DE NAVEGAÇÃO: LÊ O COMANDO DO MENU PRINCIPAL (INDEX)
-        // ==========================================================================
-        window.onload = () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const aulaSolicitada = urlParams.get('aula');
+        renderizarCard();
 
-            if (aulaSolicitada && bancoAulas[aulaSolicitada]) {
-                aulaAtual = aulaSolicitada;
-                document.getElementById('selecao-aula').value = aulaSolicitada;
-                indexAtual = 0;
-            }
-            renderizarCard();
-        };
+        renderizarCard();
 
         // ==========================================================================
-        // 🔒 PROTOCOLO RED TEAM: PROTEÇÃO INTEGRAL (BLINDAGEM NÍVEL MÁXIMO)
+        // 🔒 PROTOCOLO RED TEAM: PROTEÇÃO INTEGRAL (RESTAURADO)
         // ==========================================================================
-        const msgSeguranca = "🔒 PROTOCOLO DE SEGURANÇA:\nEsta ação não é permitida na plataforma Gabarita Aí. Este banco de questões é 100% inédito, monitorado e protegido por direitos autorais (Lei 9.610/98). Nossas travas de segurança garantem que o conteúdo exclusivo que você estuda aqui não seja banalizado na internet.";
+        
+        // Mensagem Padrão de Segurança
+        const msgSeguranca = "🔒 PROTOCOLO DE SEGURANÇA:\nEsta ação não é permitida na plataforma Gabarita Aí, integrante do ecossistema Método Missão. Este banco de questões é 100% inédito, monitorado e protegido por direitos autorais (Lei 9.610/98). Nossas travas de segurança garantem que o conteúdo exclusivo que você estuda aqui não seja banalizado na internet. Tenha acesso ao material que seus concorrentes não têm.";
 
-        document.addEventListener('contextmenu', function (e) {
-            e.preventDefault();
+        // Bloqueio de Clique Direito (Menu de Contexto)
+        document.addEventListener('contextmenu', function(e) { 
+            e.preventDefault(); 
             alert(msgSeguranca);
         });
-
-        document.addEventListener('keydown', function (e) {
+        
+        // Captura e Bloqueio de Atalhos Complexos (Down Stroke)
+        document.addEventListener('keydown', function(e) {
             let acaoBloqueada = false;
 
             if (e.key === 'F12') acaoBloqueada = true;
@@ -444,30 +547,33 @@
             }
         });
 
-        document.addEventListener('keyup', function (e) {
+        // Interceptação de Print Screen (Executa no KeyUp)
+        document.addEventListener('keyup', function(e) {
             if (e.key === 'PrintScreen' || e.keyCode === 44) {
                 navigator.clipboard.writeText("Conteúdo Protegido por Direitos Autorais - Método Missão 2026");
                 alert(msgSeguranca);
             }
         });
 
-        window.addEventListener('blur', function () {
+        // Proteção Anti-Recorte (Desfoque ao perder o foco)
+        window.addEventListener('blur', function() {
             const containerSimulador = document.getElementById('simulador-container');
             if (containerSimulador) {
                 containerSimulador.style.filter = 'blur(15px)';
             }
         });
 
-        window.addEventListener('focus', function () {
+        window.addEventListener('focus', function() {
             const containerSimulador = document.getElementById('simulador-container');
             if (containerSimulador) {
                 containerSimulador.style.filter = 'none';
             }
         });
 
+        // Injeção de CSS Anti-Seleção universal
         const estiloAntiSelecao = document.createElement('style');
         estiloAntiSelecao.innerHTML = `
-            body, .face-card, .btn-nav, .dropdown-aulas, .badge-materia, .texto-pergunta, .texto-resposta, .texto-fundamento {
+            body, .link-item, .aula-item, .titulo-secao, .tagline {
                 -webkit-user-select: none;
                 -moz-user-select: none;
                 -ms-user-select: none;
@@ -475,7 +581,22 @@
             }
         `;
         document.head.appendChild(estiloAntiSelecao);
+
     </script>
 </body>
-
 </html>
+
+        // ==========================================================================
+        // 🚀 PONTE DE NAVEGAÇÃO: LÊ O COMANDO DO MENU PRINCIPAL (INDEX)
+        // ==========================================================================
+        window.onload = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const aulaSolicitada = urlParams.get('aula'); // Lê o "?aula=aula2" da URL
+            
+            if (aulaSolicitada && bancoAulas[aulaSolicitada]) {
+                aulaAtual = aulaSolicitada;
+                document.getElementById('selecao-aula').value = aulaSolicitada;
+                indexAtual = 0;
+                renderizarCard(); // O contador de questões será atualizado corretamente aqui
+            }
+        };
