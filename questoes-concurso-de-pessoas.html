@@ -492,9 +492,17 @@
     </script>
 
     <!-- =========================================================================
-     CHAMADA BLINDADA DE DADOS: O onload garante a execução pós-carregamento total
+     ÁREA EDITÁVEL 2: APONTE PARA O ARQUIVO .JS DESTA AULA ESPECÍFICA
      ========================================================================= -->
-    <script src="dados-concurso-de-pessoas.js" onload="renderizarSimulador(meusSimulados)"></script>
+
+    <!-- 1. Carrega a biblioteca do Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- 2. Carrega a sua configuração (o arquivo novo) -->
+    <script src="supabase-init.js"></script>
+
+    <!-- 3. Carrega o arquivo da aula específica (este varia conforme a página) -->
+    <script src="dados-concurso-de-pessoas.js"></script>
 
 </body>
 
