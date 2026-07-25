@@ -154,6 +154,31 @@
             cursor: pointer;
         }
 
+        /* ==========================================
+           ESTILOS DA TESOURINHA (NOVO)
+           ========================================== */
+        .opcao.riscada {
+            text-decoration: line-through;
+            opacity: 0.4;
+            background-color: #010a1b !important;
+            border-color: #0b2c6e !important;
+        }
+
+        .btn-tesoura {
+            background: transparent;
+            border: 1px solid #0b2c6e;
+            color: #ffca28;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .btn-tesoura:hover {
+            background-color: #0b2c6e;
+        }
+
         .btn-verificar {
             background-color: #ffca28;
             color: #02112e;
@@ -313,7 +338,7 @@
                 🧠 DA APLICAÇÃO DA LEI PENAL (CARREIRAS POLICIAIS)
             </h2>
             <p style="color: #ffffff; margin-bottom: 12px; position: relative; z-index: 1;">
-                RESUMO DIRECIONADO — DA APLICAÇÃO DA LEI PENAL (CARREIRAS POLICIAIS)</h2>
+                RESUMO DIRECIONADO — DA APLICAÇÃO DA LEI PENAL (CARREIRAS POLICIAIS)</p>
             <p style="color: #ffffff; margin-bottom: 12px;">O estudo da <strong>Aplicação da Lei Penal</strong> abre a
                 parte geral do Código Penal (CP) e é um dos temas mais recorrentes nas provas de <strong>Carreiras
                     Policiais</strong>. Foque nos pilares do tempo e lugar do crime.</p>
@@ -332,7 +357,6 @@
                     excepcionais e temporárias continuam a se aplicar a fatos criminosos cometidos durante sua vigência,
                     mesmo depois de decorrido o seu período de duração ou cessadas as circunstâncias de crise.</li>
             </ul>
-            </p>
         </div>
         <!-- ========================================================================= -->
 
@@ -355,162 +379,20 @@
         </div>
     </div>
 
-    <script>
-        // ==========================================
-        // MOTOR DO SIMULADO (NÃO EDITAR)
-        // ==========================================
-        // Variáveis de controle globais
-        let totalQuestoes = 0;
-        let respondidas = 0;
-        let acertos = 0;
-
-        function renderizarSimulador(listaQuestoes) {
-            // 1. O robô lê o arquivo JS e descobre o total sozinho
-            totalQuestoes = listaQuestoes.length;
-
-            const container = document.getElementById('simulador-container');
-            container.innerHTML = '';
-
-            // 2. Cria a mensagem de Início no Topo (Aviso de Total)
-            const avisoInicio = document.createElement('div');
-            avisoInicio.style = "display: flex; align-items: flex-start; gap: 8px; text-align: left; margin-bottom: 30px; padding: 15px; background-color: #02112e; border: 1px dashed #ffca28; border-radius: 8px; color: #ffffff; line-height: 1.5; text-transform: uppercase;";
-            avisoInicio.innerHTML = `
-    <strong style="color: #ffca28; white-space: nowrap;">🎯 FOCO NA MISSÃO:</strong>
-    <span>Este bloco contém <strong style="color: #ffffff;">${totalQuestoes} questões</strong> estruturadas no mapeamento estratégico da lei seca atualizada.</span>
-`;
-            container.appendChild(avisoInicio);
-
-            // 3. Renderiza as questões
-            listaQuestoes.forEach((q, qIndex) => {
-                const bloco = document.createElement('div');
-                bloco.className = 'questao-bloco';
-                bloco.id = `bloco-q${qIndex}`;
-
-                let alternativasHTML = '';
-                q.alternativas.forEach((alt, altIndex) => {
-                    alternativasHTML += `<label class="opcao" id="q${qIndex}-opt${altIndex}"><input type="radio" name="radar-q${qIndex}" value="${altIndex}">${alt}</label>`;
-                });
-
-                bloco.innerHTML = `
-                    <div class="questao-texto-bloco">
-                        <span class="questao-titulo-inline">${q.titulo}</span><br>${q.enunciado}
-                    </div>
-                    <div class="assinatura-suave">MÉTODO MISSÃO • METODOMISSAO.COM</div>
-                    <div class="opcoes-container" id="grupo-q${qIndex}">${alternativasHTML}</div>
-                    <button type="button" class="btn-verificar" id="btn-q${qIndex}" onclick="validarResposta(${qIndex}, ${q.correta})">CONFIRMAR</button>
-                    <div class="feedback-box" id="feed-q${qIndex}">
-                        <div class="status-alerta" id="status-q${qIndex}"></div>
-                        <div class="gabarito-letra">Gabarito: ${q.letraGabarito}</div>
-                        <div style="line-height: 1.6; color: #a5b1c2;">${q.explicacao}</div>
-                    </div>
-                `;
-                container.appendChild(bloco);
-            });
-        }
-
-        function validarResposta(qIndex, indexCorreto) {
-            const inputs = document.getElementsByName(`radar-q${qIndex}`);
-            let selecionadoIndex = -1;
-
-            for (let i = 0; i < inputs.length; i++) {
-                if (inputs[i].checked) { selecionadoIndex = i; break; }
-            }
-
-            if (selecionadoIndex === -1) {
-                alert("Por favor, selecione uma alternativa antes de confirmar!");
-                return;
-            }
-
-            document.getElementById(`grupo-q${qIndex}`).classList.add('travado');
-            document.getElementById(`btn-q${qIndex}`).style.display = 'none';
-
-            const elementoCorreto = document.getElementById(`q${qIndex}-opt${indexCorreto}`);
-            const elementoSelecionado = document.getElementById(`q${qIndex}-opt${selecionadoIndex}`);
-            const statusBox = document.getElementById(`status-q${qIndex}`);
-            const feedbackBox = document.getElementById(`feed-q${qIndex}`);
-
-            respondidas++; // Conta que o aluno respondeu mais uma
-
-            if (selecionadoIndex === indexCorreto) {
-                elementoCorreto.style.borderColor = '#2ecc71';
-                statusBox.innerHTML = "✅ Certo!";
-                statusBox.className = "status-alerta status-acertou";
-                acertos++; // Soma o acerto ocultamente
-            } else {
-                elementoSelecionado.style.borderColor = '#ff4d4d';
-                elementoCorreto.style.borderColor = '#2ecc71';
-                feedbackBox.style.borderLeftColor = '#ff4d4d';
-                statusBox.innerHTML = "❌ Errada!";
-                statusBox.className = "status-alerta status-errou";
-            }
-
-            feedbackBox.style.display = 'block';
-
-            // 4. Gatilho do Fechamento (Mostra o placar ao final)
-            if (respondidas === totalQuestoes) {
-                gerarPlacarFinal();
-            }
-        }
-
-        function gerarPlacarFinal() {
-            const container = document.getElementById('simulador-container');
-            const aproveitamento = Math.round((acertos / totalQuestoes) * 100);
-            const painelResultado = document.createElement('div');
-
-            painelResultado.className = 'questao-bloco';
-            painelResultado.style.border = '2px solid #ffca28';
-            painelResultado.style.textAlign = 'center';
-
-            painelResultado.innerHTML = `
-                <h2 style="color: #ffca28; font-size: 1.6rem; margin-top: 0; font-weight: 800; text-transform: uppercase;">
-                    🏆 SIMULADO CONCLUÍDO
-                </h2>
-                <p style="font-size: 1.2rem; color: #ffffff; margin-bottom: 10px;">
-                    Você acertou <span style="color: #2ecc71; font-weight: 800;">${acertos}</span> de um total de <strong>${totalQuestoes}</strong> questões.
-                </p>
-                <div style="font-size: 1.8rem; font-weight: 900; color: #2ecc71; margin-bottom: 15px;">
-                    Aproveitamento: ${aproveitamento}%
-                </div>
-                <p style="color: #a5b1c2; font-size: 0.95rem; margin-bottom: 0; line-height: 1.5;">
-                    ${aproveitamento >= 70 ? "🔥 Excelente índice! Você assimilou muito bem as regras deste módulo." : "📚 Desempenho mediano. Vale a pena revisar o resumo e tentar novamente."}
-                </p>
-            `;
-
-            container.appendChild(painelResultado);
-        }
-
-        // ==========================================
-        // SCRIPT RED TEAM (ALERTA PROFISSIONAL)
-        // ==========================================
-        function mostrarAlerta(evento) {
-            if (evento) evento.preventDefault();
-            document.getElementById('alerta-protecao').style.display = 'flex';
-        }
-        function fecharAlerta() { document.getElementById('alerta-protecao').style.display = 'none'; }
-
-        document.addEventListener('contextmenu', mostrarAlerta);
-        document.addEventListener('copy', mostrarAlerta);
-        document.addEventListener('keydown', function (evento) {
-            if (evento.ctrlKey || evento.metaKey) {
-                const tecla = evento.key.toLowerCase();
-                if (tecla === 'c' || tecla === 'p' || tecla === 's' || tecla === 'u') { mostrarAlerta(evento); }
-            }
-            if (evento.key === 'F12' || (evento.ctrlKey && evento.shiftKey && (evento.key === 'I' || evento.key === 'J'))) { mostrarAlerta(evento); }
-        });
-        document.addEventListener('keyup', function (evento) { if (evento.key === 'PrintScreen' || evento.keyCode === 44) mostrarAlerta(evento); });
-    </script>
-
     <!-- =========================================================================
-     ÁREA EDITÁVEL 2: APONTE PARA O ARQUIVO .JS DESTA AULA ESPECÍFICA
+     ÁREA DE SCRIPTS CORRETA E LIMPA
      ========================================================================= -->
 
     <!-- 1. Carrega a biblioteca do Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <!-- 2. Carrega a sua configuração (o arquivo novo) -->
+    <!-- 2. Carrega a sua configuração de banco -->
     <script src="supabase-init.js"></script>
 
-    <!-- 3. Carrega o arquivo da aula específica (este varia conforme a página) -->
+    <!-- 3. Carrega o Motor Novo (com tesourinha e bloqueios Red Team) -->
+    <script src="motor-simulador.js"></script>
+
+    <!-- 4. Carrega o arquivo da aula (formata e envia pro motor) -->
     <script src="dados-aplicacao-lei.js"></script>
 
 </body>

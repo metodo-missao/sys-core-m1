@@ -3,38 +3,7 @@ let totalQuestoes = 0;
 let respondidas = 0;
 let acertos = 0;
 
-// Função que busca as questões direto da tabela específica no Supabase
-async function carregarAulaDoSupabase(nomeTabela) {
-    try {
-        console.log("Buscando dados da tabela:", nomeTabela);
-        
-        const { data, error } = await supabase
-            .from(nomeTabela)
-            .select('*')
-            .order('numero_da_questao', { ascending: true });
-
-        if (error) {
-            console.error("Erro no Supabase:", error.message);
-            alert("Erro ao carregar questões: " + error.message);
-            return;
-        }
-
-        console.log("Dados brutos recebidos:", data);
-
-        if (data && data.length > 0) {
-            renderizarSimulador(data);
-        } else {
-            document.getElementById('simulador-container').innerHTML = `
-                <div style="text-align: center; color: #ffca28; padding: 20px; background: #031842; border-radius: 8px; border: 1px solid #0b2c6e;">
-                    ⚠️ Nenhuma questão encontrada na tabela <strong>${nomeTabela}</strong>.
-                </div>`;
-        }
-    } catch (err) {
-        console.error("Erro inesperado:", err);
-    }
-}
-
-// Renderiza as questões na tela com base nas colunas reais do seu CSV
+// Renderiza as questões na tela com base nos dados formatados recebidos da aula
 function renderizarSimulador(listaQuestoes) {
     totalQuestoes = listaQuestoes.length;
     respondidas = 0;
@@ -56,38 +25,25 @@ function renderizarSimulador(listaQuestoes) {
         bloco.className = 'questao-bloco';
         bloco.id = `bloco-q${qIndex}`;
 
-        // Monta o array de alternativas usando as colunas do seu banco
-        const alternativas = [];
-        if (q.alternativa_a) alternativas.push(q.alternativa_a);
-        if (q.alternativa_b) alternativas.push(q.alternativa_b);
-        if (q.alternativa_c) alternativas.push(q.alternativa_c);
-        if (q.alternativa_d) alternativas.push(q.alternativa_d);
-        if (q.alternativa_e) alternativas.push(q.alternativa_e);
-
-        // Converte a letra do gabarito (ex: 'A', 'B') para índice numérico (0, 1, 2...)
-        let indexCorreto = 0;
-        const letraGab = (q.gabarito || 'A').trim().toUpperCase();
-        if (letraGab === 'B') indexCorreto = 1;
-        else if (letraGab === 'C') indexCorreto = 2;
-        else if (letraGab === 'D') indexCorreto = 3;
-        else if (letraGab === 'E') indexCorreto = 4;
+        // Usa os arrays formatados que vêm direto do dados-aplicacao-lei.js
+        const alternativas = q.alternativas;
+        const indexCorreto = q.correta;
+        const letraGab = q.letraGabarito;
 
         let alternativasHTML = '';
         alternativas.forEach((alt, altIndex) => {
             alternativasHTML += `
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                    <label class="opcao" id="q${qIndex}-opt${altIndex}" style="flex: 1;">
+                    <label class="opcao" id="q${qIndex}-opt${altIndex}" style="flex: 1; margin-bottom: 0;">
                         <input type="radio" name="radar-q${qIndex}" value="${altIndex}">${alt}
                     </label>
                     <button type="button" class="btn-tesoura" onclick="cortarAlternativa(${qIndex}, ${altIndex})" title="Eliminar alternativa">✂️</button>
                 </div>`;
         });
 
-        const tituloQuestao = `QUESTÃO ${q.numero_da_questao || (qIndex + 1)}`;
-
         bloco.innerHTML = `
             <div class="questao-texto-bloco">
-                <span class="questao-titulo-inline">${tituloQuestao}</span><br>${q.enunciado || ''}
+                <span class="questao-titulo-inline">${q.titulo}</span><br>${q.enunciado}
             </div>
             <div class="assinatura-suave">MÉTODO MISSÃO • METODOMISSAO.COM</div>
             <div class="opcoes-container" id="grupo-q${qIndex}">${alternativasHTML}</div>
@@ -95,7 +51,7 @@ function renderizarSimulador(listaQuestoes) {
             <div class="feedback-box" id="feed-q${qIndex}">
                 <div class="status-alerta" id="status-q${qIndex}"></div>
                 <div class="gabarito-letra">Gabarito: ${letraGab}</div>
-                <div style="line-height: 1.6; color: #a5b1c2;">${q.explicacao || ''}</div>
+                <div style="line-height: 1.6; color: #a5b1c2;">${q.explicacao}</div>
             </div>
         `;
         container.appendChild(bloco);
@@ -192,7 +148,9 @@ function gerarPlacarFinal() {
     container.appendChild(painelResultado);
 }
 
-// Script Red Team (Proteções contra cópia e inspeção)
+// ==========================================
+// SCRIPT RED TEAM (ALERTA PROFISSIONAL)
+// ==========================================
 function mostrarAlerta(evento) {
     if (evento) evento.preventDefault();
     const alerta = document.getElementById('alerta-protecao');
