@@ -175,7 +175,7 @@
         }
 
         /* ==========================================================================
-           7. SEÇÃO DOS TÓPICOS DAS AULAS (SISTEMA DE LAYOUT ORIGINAL)
+           7. SEÇÃO DOS TÓPICOS DAS AULAS (ALINHAMENTO RIGOROSO)
            ========================================================================== */
         .secao-topicos {
             display: none;
@@ -214,9 +214,10 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
+            width: 100%;
         }
 
-        /* Alinhamento original mantido sem quebras */
+        /* Alinhamento perfeito: Texto na esquerda, Ícone/Ação na direita */
         .aula-item {
             display: flex;
             align-items: center;
@@ -230,7 +231,14 @@
             text-decoration: none;
             font-size: 14px;
             font-weight: 600;
+            text-align: left;
             transition: border-color 0.2s, background-color 0.2s;
+        }
+
+        .aula-item>span:first-child {
+            text-align: left;
+            flex: 1;
+            padding-right: 10px;
         }
 
         .aula-item:hover {
@@ -242,6 +250,8 @@
             color: var(--cor-ouro);
             font-weight: 700;
             font-size: 12px;
+            text-align: right;
+            white-space: nowrap;
         }
 
         /* ==========================================================================
@@ -284,37 +294,37 @@
                 <div class="lista-aulas">
 
                     <a href="javascript:void(0);" id="btn-penal" class="aula-item"
-                        style="border-color: var(--cor-ouro); margin-bottom: 8px;">
+                        style="border-color: var(--cor-ouro);">
                         <span>⚖️ DIREITO PENAL</span>
                         <span class="seta-iniciar">VER AULAS 👇</span>
                     </a>
 
                     <a href="javascript:void(0);" id="btn-constitucional" class="aula-item"
-                        style="border-color: #ffcc00; background-color: #041d4d; margin-bottom: 8px;">
+                        style="border-color: #ffcc00; background-color: #041d4d;">
                         <span style="color: #ffcc00; font-weight: bold;">👑 DIREITO CONSTITUCIONAL</span>
                         <span class="seta-iniciar" style="color: #ffcc00;">🔒</span>
                     </a>
 
                     <a href="javascript:void(0);" id="btn-informatica" class="aula-item"
-                        style="border-color: #00e5ff; background-color: #041d4d; margin-bottom: 8px;">
+                        style="border-color: #00e5ff; background-color: #041d4d;">
                         <span style="color: #00e5ff; font-weight: bold;">💻 INFORMÁTICA</span>
                         <span class="seta-iniciar" style="color: #00e5ff;">FLASH CARDS 👇</span>
                     </a>
 
                     <a href="javascript:void(0);" id="btn-maria-penha" class="aula-item"
-                        style="border-color: #ffcc00; background-color: #041d4d; margin-bottom: 8px;">
+                        style="border-color: #ffcc00; background-color: #041d4d;">
                         <span style="color: #ffcc00; font-weight: bold;">🛡️ LEI MARIA DA PENHA</span>
                         <span class="seta-iniciar" style="color: #ffcc00;">🔒</span>
                     </a>
 
                     <a href="javascript:void(0);" id="btn-convencao" class="aula-item"
-                        style="border-color: #ffcc00; background-color: #041d4d; margin-bottom: 8px;">
+                        style="border-color: #ffcc00; background-color: #041d4d;">
                         <span style="color: #ffcc00; font-weight: bold;">📜 CONVENÇÃO AMERICANA</span>
                         <span class="seta-iniciar" style="color: #ffcc00;">🔒</span>
                     </a>
 
                     <a href="javascript:void(0);" id="btn-estatuto-pcd" class="aula-item"
-                        style="border-color: #ffcc00; background-color: #041d4d; margin-bottom: 8px;">
+                        style="border-color: #ffcc00; background-color: #041d4d;">
                         <span style="color: #ffcc00; font-weight: bold;">♿ ESTATUTO DA PESSOA COM DEFICIÊNCIA</span>
                         <span class="seta-iniciar" style="color: #ffcc00;">🔒</span>
                     </a>
