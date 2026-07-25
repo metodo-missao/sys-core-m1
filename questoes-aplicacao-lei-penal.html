@@ -145,6 +145,8 @@
             border: 1px solid #0b2c6e;
             cursor: pointer;
             transition: border-color 0.2s;
+            flex: 1;
+            margin-bottom: 0;
         }
 
         .opcao input {
@@ -152,6 +154,29 @@
             width: 20px;
             height: 20px;
             cursor: pointer;
+        }
+
+        /* Estilo da Tesourinha e Opção Riscada */
+        .opcao.riscada {
+            text-decoration: line-through;
+            opacity: 0.4;
+            background-color: #010a1b !important;
+            border-color: #0b2c6e !important;
+        }
+
+        .btn-tesoura {
+            background: transparent;
+            border: 1px solid #0b2c6e;
+            color: #ffca28;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .btn-tesoura:hover {
+            background-color: #0b2c6e;
         }
 
         .btn-verificar {
@@ -273,27 +298,6 @@
             cursor: pointer;
             text-transform: uppercase;
         }
-
-        /* ==========================================
-           4. INFO DO TOTAL DE QUESTÕES (NOVO)
-           ========================================== */
-        .info-simulado {
-            background-color: #031842;
-            border: 1px solid #0b2c6e;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            color: #a5b1c2;
-            font-weight: 600;
-            margin-bottom: 30px;
-            font-size: 0.95rem;
-        }
-
-        .info-destaque {
-            color: #ffca28;
-            font-weight: 800;
-            font-size: 1.1rem;
-        }
     </style>
 </head>
 
@@ -304,19 +308,20 @@
                     AUTORAIS</span></div>
         </div>
 
-        <!-- =========================================================================
-         ÁREA EDITÁVEL 1: COLE O RESUMO DA AULA ABAIXO
-         ========================================================================= -->
+        <!-- RESUMO DA AULA (MANTIDO O SEU TEXTO ORIGINAL) -->
         <div class="mini-aula-bloco" style="line-height: 1.6;">
             <h2
                 style="color: #ffca28; font-size: 1.4rem; margin-top: 0; margin-bottom: 15px; font-weight: 800; position: relative; z-index: 1;">
                 🧠 DA APLICAÇÃO DA LEI PENAL (CARREIRAS POLICIAIS)
             </h2>
             <p style="color: #ffffff; margin-bottom: 12px; position: relative; z-index: 1;">
-                RESUMO DIRECIONADO — DA APLICAÇÃO DA LEI PENAL (CARREIRAS POLICIAIS)</h2>
-            <p style="color: #ffffff; margin-bottom: 12px;">O estudo da <strong>Aplicação da Lei Penal</strong> abre a
-                parte geral do Código Penal (CP) e é um dos temas mais recorrentes nas provas de <strong>Carreiras
-                    Policiais</strong>. Foque nos pilares do tempo e lugar do crime.</p>
+                RESUMO DIRECIONADO — DA APLICAÇÃO DA LEI PENAL (CARREIRAS POLICIAIS)
+            </p>
+            <p style="color: #ffffff; margin-bottom: 12px;">
+                O estudo da <strong>Aplicação da Lei Penal</strong> abre a parte geral do Código Penal (CP) e é um dos
+                temas mais recorrentes nas provas de <strong>Carreiras Policiais</strong>. Foque nos pilares do tempo e
+                lugar do crime.
+            </p>
             <p style="color: #ffffff; margin-bottom: 12px;">Memorize as regras de ouro fundamentais baseadas no texto
                 expresso da lei:</p>
             <ul style="color: #ffffff; padding-left: 20px; margin-bottom: 0;">
@@ -332,13 +337,15 @@
                     excepcionais e temporárias continuam a se aplicar a fatos criminosos cometidos durante sua vigência,
                     mesmo depois de decorrido o seu período de duração ou cessadas as circunstâncias de crise.</li>
             </ul>
-            </p>
         </div>
-        <!-- ========================================================================= -->
 
-
-        <!-- O motor injetará os cards aqui -->
-        <div id="simulador-container"></div>
+        <!-- ONDE AS QUESTÕES VÃO SER INJETADAS -->
+        <div id="simulador-container">
+            <div
+                style="color: #a5b1c2; text-align: center; padding: 25px; background-color: #031842; border-radius: 12px; border: 1px solid #0b2c6e;">
+                Carregando questões do banco de dados...
+            </div>
+        </div>
 
         <footer class="footer-institucional">
             &copy; 2026 Método Missão. Todos os direitos reservados.<br>
@@ -346,7 +353,7 @@
         </footer>
     </div>
 
-    <!-- TELA DE ALERTA PROFISSIONAL HTML -->
+    <!-- TELA DE ALERTA RED TEAM -->
     <div id="alerta-protecao">
         <div class="alerta-caixa">
             <h2>⚠️ Ação Bloqueada</h2>
@@ -355,32 +362,86 @@
         </div>
     </div>
 
+    <!-- 1. Carrega o SDK do Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- 2. Carrega o centralizador de conexão (supabaseClient) -->
+    <script src="supabase-init.js"></script>
+
     <script>
         // ==========================================
-        // MOTOR DO SIMULADO (NÃO EDITAR)
+        // MOTOR DO SIMULADO VIA SUPABASE
         // ==========================================
-        // Variáveis de controle globais
         let totalQuestoes = 0;
         let respondidas = 0;
         let acertos = 0;
 
-        function renderizarSimulador(listaQuestoes) {
-            // 1. O robô lê o arquivo JS e descobre o total sozinho
-            totalQuestoes = listaQuestoes.length;
+        async function carregarQuestoesDoSupabase() {
+            try {
+                if (typeof supabaseClient === 'undefined') {
+                    throw new Error("A variável supabaseClient não foi encontrada. Verifique se o arquivo supabase-init.js está na mesma pasta.");
+                }
 
+                // ATENÇÃO: Ajuste o nome da tabela abaixo se a tabela desta aula no Supabase tiver outro nome (ex: 'questoes_aplicacao_lei')
+                const { data, error } = await supabaseClient
+                    .from('questoes_aplicacao_lei')
+                    .select('*')
+                    .order('numero_da_questao', { ascending: true });
+
+                if (error) {
+                    throw error;
+                }
+
+                if (!data || data.length === 0) {
+                    document.getElementById('simulador-container').innerHTML = '<p style="color: #ff4d4d; text-align: center; padding: 20px;">Nenhuma questão encontrada na tabela do Supabase para esta aula.</p>';
+                    return;
+                }
+
+                const listaFormatada = data.map(item => {
+                    const letraMap = { 'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4 };
+                    let gabaritoLetra = (item.gabarito || 'A').trim().toUpperCase();
+                    let corretaIndex = letraMap[gabaritoLetra] !== undefined ? letraMap[gabaritoLetra] : 0;
+
+                    return {
+                        titulo: `QUESTÃO ${item.numero_da_questao}`,
+                        enunciado: item.enunciado,
+                        alternativas: [
+                            item.alternativa_a,
+                            item.alternativa_b,
+                            item.alternativa_c,
+                            item.alternativa_d,
+                            item.alternativa_e
+                        ].filter(alt => alt != null && alt !== ''),
+                        correta: corretaIndex,
+                        letraGabarito: gabaritoLetra,
+                        explicacao: item.explicacao || 'Sem explicação cadastrada.'
+                    };
+                });
+
+                renderizarSimulador(listaFormatada);
+
+            } catch (err) {
+                console.error("Erro ao carregar do Supabase:", err);
+                document.getElementById('simulador-container').innerHTML = `
+                    <div style="background-color: #031842; border: 1px solid #ff4d4d; padding: 25px; border-radius: 12px; color: #ff4d4d; text-align: center;">
+                        <strong>Erro ao conectar com o banco de dados:</strong><br>${err.message || err}
+                    </div>
+                `;
+            }
+        }
+
+        function renderizarSimulador(listaQuestoes) {
+            totalQuestoes = listaQuestoes.length;
             const container = document.getElementById('simulador-container');
             container.innerHTML = '';
 
-            // 2. Cria a mensagem de Início no Topo (Aviso de Total)
             const avisoInicio = document.createElement('div');
             avisoInicio.style = "display: flex; align-items: flex-start; gap: 8px; text-align: left; margin-bottom: 30px; padding: 15px; background-color: #02112e; border: 1px dashed #ffca28; border-radius: 8px; color: #ffffff; line-height: 1.5; text-transform: uppercase;";
             avisoInicio.innerHTML = `
-    <strong style="color: #ffca28; white-space: nowrap;">🎯 FOCO NA MISSÃO:</strong>
-    <span>Este bloco contém <strong style="color: #ffffff;">${totalQuestoes} questões</strong> estruturadas no mapeamento estratégico da lei seca atualizada.</span>
-`;
+                <strong style="color: #ffca28; white-space: nowrap;">🎯 FOCO NA MISSÃO:</strong>
+                <span>Este bloco contém <strong style="color: #ffffff;">${totalQuestoes} questões</strong> puxadas diretamente do banco de dados (Supabase).</span>
+            `;
             container.appendChild(avisoInicio);
 
-            // 3. Renderiza as questões
             listaQuestoes.forEach((q, qIndex) => {
                 const bloco = document.createElement('div');
                 bloco.className = 'questao-bloco';
@@ -388,7 +449,13 @@
 
                 let alternativasHTML = '';
                 q.alternativas.forEach((alt, altIndex) => {
-                    alternativasHTML += `<label class="opcao" id="q${qIndex}-opt${altIndex}"><input type="radio" name="radar-q${qIndex}" value="${altIndex}">${alt}</label>`;
+                    alternativasHTML += `
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                            <label class="opcao" id="q${qIndex}-opt${altIndex}" style="flex: 1;">
+                                <input type="radio" name="radar-q${qIndex}" value="${altIndex}">${alt}
+                            </label>
+                            <button type="button" class="btn-tesoura" onclick="cortarAlternativa(${qIndex}, ${altIndex})" title="Eliminar alternativa">✂️</button>
+                        </div>`;
                 });
 
                 bloco.innerHTML = `
@@ -406,6 +473,23 @@
                 `;
                 container.appendChild(bloco);
             });
+        }
+
+        function cortarAlternativa(qIndex, altIndex) {
+            const opcaoEl = document.getElementById(`q${qIndex}-opt${altIndex}`);
+            const inputEl = opcaoEl.querySelector('input[type="radio"]');
+            const grupo = document.getElementById(`grupo-q${qIndex}`);
+
+            if (grupo.classList.contains('travado')) return;
+
+            if (opcaoEl.classList.contains('riscada')) {
+                opcaoEl.classList.remove('riscada');
+                inputEl.disabled = false;
+            } else {
+                opcaoEl.classList.add('riscada');
+                inputEl.checked = false;
+                inputEl.disabled = true;
+            }
         }
 
         function validarResposta(qIndex, indexCorreto) {
@@ -429,13 +513,13 @@
             const statusBox = document.getElementById(`status-q${qIndex}`);
             const feedbackBox = document.getElementById(`feed-q${qIndex}`);
 
-            respondidas++; // Conta que o aluno respondeu mais uma
+            respondidas++;
 
             if (selecionadoIndex === indexCorreto) {
                 elementoCorreto.style.borderColor = '#2ecc71';
                 statusBox.innerHTML = "✅ Certo!";
                 statusBox.className = "status-alerta status-acertou";
-                acertos++; // Soma o acerto ocultamente
+                acertos++;
             } else {
                 elementoSelecionado.style.borderColor = '#ff4d4d';
                 elementoCorreto.style.borderColor = '#2ecc71';
@@ -446,7 +530,6 @@
 
             feedbackBox.style.display = 'block';
 
-            // 4. Gatilho do Fechamento (Mostra o placar ao final)
             if (respondidas === totalQuestoes) {
                 gerarPlacarFinal();
             }
@@ -475,13 +558,10 @@
                     ${aproveitamento >= 70 ? "🔥 Excelente índice! Você assimilou muito bem as regras deste módulo." : "📚 Desempenho mediano. Vale a pena revisar o resumo e tentar novamente."}
                 </p>
             `;
-
             container.appendChild(painelResultado);
         }
 
-        // ==========================================
-        // SCRIPT RED TEAM (ALERTA PROFISSIONAL)
-        // ==========================================
+        // Script Red Team
         function mostrarAlerta(evento) {
             if (evento) evento.preventDefault();
             document.getElementById('alerta-protecao').style.display = 'flex';
@@ -498,21 +578,12 @@
             if (evento.key === 'F12' || (evento.ctrlKey && evento.shiftKey && (evento.key === 'I' || evento.key === 'J'))) { mostrarAlerta(evento); }
         });
         document.addEventListener('keyup', function (evento) { if (evento.key === 'PrintScreen' || evento.keyCode === 44) mostrarAlerta(evento); });
+
+        // Executa a busca no Supabase assim que a página carrega
+        window.onload = function () {
+            carregarQuestoesDoSupabase();
+        };
     </script>
-
-    <!-- =========================================================================
-     ÁREA EDITÁVEL 2: APONTE PARA O ARQUIVO .JS DESTA AULA ESPECÍFICA
-     ========================================================================= -->
-
-    <!-- 1. Carrega a biblioteca do Supabase -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <!-- 2. Carrega a sua configuração (o arquivo novo) -->
-    <script src="supabase-init.js"></script>
-
-    <!-- 3. Carrega o arquivo da aula específica (este varia conforme a página) -->
-    <script src="dados-aplicacao-lei.js"></script>
-
 </body>
 
 </html>
