@@ -104,7 +104,7 @@
             height: 100%;
             z-index: 0;
             pointer-events: none;
-            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='450' height='200'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' transform='rotate(-25 225 100)' fill='rgba(255,202,40,0.10)' font-family='Segoe UI, sans-serif' font-weight='800' font-size='14px'%3EMÉTODO MISSÃO • METODOMISSAO.COM%3C/text%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='450' height='200'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' transform='rotate(-25 225 100)' fill='rgba(255,202,40,0.05)' font-family='Segoe UI, sans-serif' font-weight='800' font-size='14px'%3EMÉTODO MISSÃO • METODOMISSAO.COM%3C/text%3E%3C/svg%3E");
             background-repeat: repeat;
         }
 
@@ -152,6 +152,31 @@
             width: 20px;
             height: 20px;
             cursor: pointer;
+        }
+
+        /* ==========================================
+           ESTILOS DA TESOURINHA (NOVO)
+           ========================================== */
+        .opcao.riscada {
+            text-decoration: line-through;
+            opacity: 0.4;
+            background-color: #010a1b !important;
+            border-color: #0b2c6e !important;
+        }
+
+        .btn-tesoura {
+            background: transparent;
+            border: 1px solid #0b2c6e;
+            color: #ffca28;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .btn-tesoura:hover {
+            background-color: #0b2c6e;
         }
 
         .btn-verificar {
@@ -206,7 +231,7 @@
             text-align: right;
             font-size: 0.75rem;
             font-weight: 700;
-            color: rgba(255, 255, 255, 0.12);
+            color: rgba(255, 255, 255, 0.08);
             margin-top: -10px;
             margin-bottom: 20px;
             padding-right: 5px;
@@ -300,7 +325,7 @@
 <body>
     <div class="container">
         <div class="topo-marca">
-            <div class="marca-sequencial">MÉTODO <span class="ouro">MISSÃO</span> <span class="subtitulo">QUESTÕES
+            <div class="marca-sequencial">MÉTODO<span class="ouro">MISSÃO</span> <span class="subtitulo">QUESTÕES
                     AUTORAIS</span></div>
         </div>
 
