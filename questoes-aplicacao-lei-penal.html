@@ -373,8 +373,11 @@
 
             // 2. Cria a mensagem de Início no Topo (Aviso de Total)
             const avisoInicio = document.createElement('div');
-            avisoInicio.style = "text-align: center; margin-bottom: 30px; padding: 15px; background-color: #02112e; border: 1px dashed #ffca28; border-radius: 8px;";
-            avisoInicio.innerHTML = `<strong style="color: #ffca28;">🎯 FOCO NA MISSÃO:</strong> Este bloco contém <strong style="color: #ffffff;">${totalQuestoes} questões</strong> estruturadas no mapeamento estratégico da lei seca atualizada.`;
+            avisoInicio.style = "display: flex; align-items: flex-start; gap: 8px; text-align: left; margin-bottom: 30px; padding: 15px; background-color: #02112e; border: 1px dashed #ffca28; border-radius: 8px; color: #ffffff; line-height: 1.5; text-transform: uppercase;";
+            avisoInicio.innerHTML = `
+    <strong style="color: #ffca28; white-space: nowrap;">🎯 FOCO NA MISSÃO:</strong>
+    <span>Este bloco contém <strong style="color: #ffffff;">${totalQuestoes} questões</strong> estruturadas no mapeamento estratégico da lei seca atualizada.</span>
+`;
             container.appendChild(avisoInicio);
 
             // 3. Renderiza as questões
