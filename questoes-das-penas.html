@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gabarita Aí - Simulados Premium</title>
+    <title>Método Missão - Simulados Premium</title>
 
     <style>
         /* ==========================================
@@ -49,7 +49,7 @@
             height: 100vh;
             z-index: 0;
             pointer-events: none;
-            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='450' height='200'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' transform='rotate(-25 225 100)' fill='rgba(255,202,40,0.10)' font-family='Segoe UI, sans-serif' font-weight='800' font-size='14px'%3EMÉTODO MISSÃO • METODOMISSAO.COM%3C/text%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='450' height='200'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' transform='rotate(-25 225 100)' fill='rgba(255,202,40,0.05)' font-family='Segoe UI, sans-serif' font-weight='800' font-size='14px'%3EMÉTODO MISSÃO • METODOMISSAO.COM%3C/text%3E%3C/svg%3E");
             background-repeat: repeat;
         }
 
@@ -145,8 +145,6 @@
             border: 1px solid #0b2c6e;
             cursor: pointer;
             transition: border-color 0.2s;
-            flex: 1;
-            margin-bottom: 0;
         }
 
         .opcao input {
@@ -154,29 +152,6 @@
             width: 20px;
             height: 20px;
             cursor: pointer;
-        }
-
-        /* Estilo da Tesourinha e Opção Riscada */
-        .opcao.riscada {
-            text-decoration: line-through;
-            opacity: 0.4;
-            background-color: #010a1b !important;
-            border-color: #0b2c6e !important;
-        }
-
-        .btn-tesoura {
-            background: transparent;
-            border: 1px solid #0b2c6e;
-            color: #ffca28;
-            padding: 8px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.2s;
-        }
-
-        .btn-tesoura:hover {
-            background-color: #0b2c6e;
         }
 
         .btn-verificar {
@@ -298,36 +273,109 @@
             cursor: pointer;
             text-transform: uppercase;
         }
+
+        /* ==========================================
+           4. INFO DO TOTAL DE QUESTÕES (NOVO)
+           ========================================== */
+        .info-simulado {
+            background-color: #031842;
+            border: 1px solid #0b2c6e;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            color: #a5b1c2;
+            font-weight: 600;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        .info-destaque {
+            color: #ffca28;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
         <div class="topo-marca">
-            <div class="marca-sequencial">MÉTODO <span class="ouro">MISSÃO</span> <span class="subtitulo">QUESTÕES
+            <div class="marca-sequencial">MÉTODO<span class="ouro">MISSÃO</span> <span class="subtitulo">QUESTÕES
                     AUTORAIS</span></div>
         </div>
 
-        <!-- RESUMO DA AULA -->
-        <div class="mini-aula-bloco">
-            <h2 style="color: #ffca28; font-size: 1.4rem; margin-top: 0; margin-bottom: 15px; font-weight: 800;">
+        <!-- =========================================================================
+     ESPAÇO 1: MINI-AULA EM HTML — AULA 04: TEORIA GERAL DAS PENAS
+     ========================================================================= -->
+        <div class="mini-aula-bloco" style="
+        background-color: #031842; 
+        padding: 30px; 
+        border-radius: 12px; 
+        margin-bottom: 30px; 
+        border: 1px solid #0b2c6e; 
+        line-height: 1.6;
+    ">
+            <h2 style="
+            color: #ffca28; 
+            font-size: 1.4rem; 
+            margin-top: 0; 
+            margin-bottom: 15px; 
+            font-weight: 800;
+        ">
                 🧠 RESUMO DIRECIONADO — TEORIA GERAL DAS PENAS
                 <br>
                 (CARREIRAS POLICIAIS)
             </h2>
+
             <p style="color: #ffffff; margin-bottom: 12px;">
                 O estudo das <strong>Penas</strong> (Artigos 32 a 52 do Código Penal) regula as sanções estatais
-                impostas ao condenado e exige domínio absoluto da literalidade legal.
+                impostas ao condenado e exige domínio absoluto da literalidade legal, sendo tema obrigatório e
+                recorrente em certames de <strong>Carreiras Policiais</strong>.
             </p>
+
+            <p style="color: #ffffff; margin-bottom: 12px;">
+                Fixe os pilares e as regras de ouro fundamentais baseadas no texto expresso da lei:
+            </p>
+
+            <ul style="
+            color: #ffffff; 
+            padding-left: 20px; 
+            margin-bottom: 0;
+        ">
+                <li style="margin-bottom: 8px;">
+                    <strong style="color: #ffca28;">Penas Restritivas de Direitos (Art. 44):</strong>
+                    São autônomas e substituem as privativas de liberdade quando a pena aplicada for de até <strong>4
+                        anos</strong> para crimes sem violência ou grave ameaça (ou qualquer pena se culposo), aliado à
+                    primariedade dolosa não específica.
+                </li>
+                <li style="margin-bottom: 8px;">
+                    <strong style="color: #ffca28;">Regimes Prisionais (Art. 33, § 2º):</strong>
+                    A reclusão inicia no regime <strong>Fechado</strong> (pena superior a 8 anos),
+                    <strong>Semiaberto</strong> (pena superior a 4 e até 8) ou <strong>Aberto</strong> (pena igual ou
+                    inferior a 4 anos). A detenção veda o início fixado diretamente no fechado.
+                </li>
+                <li style="margin-bottom: 8px;">
+                    <strong style="color: #ffca28;">Regra Unionista de Regime (Súmula 269 STJ):</strong>
+                    É perfeitamente admissível a fixação do regime prisional semiaberto aos réus reincidentes condenados
+                    a pena igual ou inferior a quatro anos, desde que as circunstâncias judiciais do art. 59 sejam
+                    favoráveis.
+                </li>
+                <li style="margin-bottom: 8px;">
+                    <strong style="color: #ffca28;">Detração Penal na Sentença (Art. 387, § 2º do CPP):</strong>
+                    O tempo de prisão provisória, de prisão administrativa ou de internação deve ser computado pelo juiz
+                    do processo de conhecimento na própria sentença para fins de determinação do regime inicial.
+                </li>
+                <li style="margin-bottom: 0;">
+                    <strong style="color: #ffca28;">Inconvertibilidade da Multa (Art. 51):</strong>
+                    A pena de multa é considerada <strong>dívida de valor</strong> após o trânsito em julgado. É
+                    terminantemente proibida sua conversão em prisão face ao inadimplemento, e a morte do apenado
+                    extingue a punibilidade de forma absoluta.
+                </li>
+            </ul>
         </div>
 
-        <!-- ONDE AS QUESTÕES VÃO SER INJETADAS -->
-        <div id="simulador-container">
-            <div
-                style="color: #a5b1c2; text-align: center; padding: 25px; background-color: #031842; border-radius: 12px; border: 1px solid #0b2c6e;">
-                Carregando questões do banco de dados...
-            </div>
-        </div>
+        <!-- O motor injetará dinamicamente todos os blocos de questões exatamente aqui -->
+        <div id="simulador-container"></div>
 
         <footer class="footer-institucional">
             &copy; 2026 Método Missão. Todos os direitos reservados.<br>
@@ -335,7 +383,7 @@
         </footer>
     </div>
 
-    <!-- TELA DE ALERTA RED TEAM -->
+    <!-- TELA DE ALERTA PROFISSIONAL HTML -->
     <div id="alerta-protecao">
         <div class="alerta-caixa">
             <h2>⚠️ Ação Bloqueada</h2>
@@ -344,87 +392,32 @@
         </div>
     </div>
 
-    <!-- 1. Carrega o SDK do Supabase -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <!-- 2. Carrega o centralizador de conexão (que define supabaseClient)[cite: 6] -->
-    <script src="supabase-init.js"></script>
-
     <script>
         // ==========================================
-        // MOTOR DO SIMULADO VIA SUPABASE
+        // MOTOR DO SIMULADO (NÃO EDITAR)
         // ==========================================
+        // Variáveis de controle globais
         let totalQuestoes = 0;
         let respondidas = 0;
         let acertos = 0;
 
-        async function carregarQuestoesDoSupabase() {
-            try {
-                // Utiliza diretamente a variável global 'supabaseClient' definida em supabase-init.js[cite: 6]
-                if (typeof supabaseClient === 'undefined') {
-                    throw new Error("A variável supabaseClient não foi encontrada. Verifique se o arquivo supabase-init.js foi carregado corretamente.");
-                }
-
-                const { data, error } = await supabaseClient
-                    .from('questoes_penas')
-                    .select('*')
-                    .order('numero_da_questao', { ascending: true });
-
-                if (error) {
-                    throw error;
-                }
-
-                if (!data || data.length === 0) {
-                    document.getElementById('simulador-container').innerHTML = '<p style="color: #ff4d4d; text-align: center; padding: 20px;">Nenhuma questão encontrada na tabela do Supabase.</p>';
-                    return;
-                }
-
-                // Mapeia os dados do banco para o formato esperado pelo renderizador
-                const listaFormatada = data.map(item => {
-                    const letraMap = { 'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4 };
-                    let gabaritoLetra = (item.gabarito || 'A').trim().toUpperCase();
-                    let corretaIndex = letraMap[gabaritoLetra] !== undefined ? letraMap[gabaritoLetra] : 0;
-
-                    return {
-                        titulo: `QUESTÃO ${item.numero_da_questao}`,
-                        enunciado: item.enunciado,
-                        alternativas: [
-                            item.alternativa_a,
-                            item.alternativa_b,
-                            item.alternativa_c,
-                            item.alternativa_d,
-                            item.alternativa_e
-                        ].filter(alt => alt != null && alt !== ''),
-                        correta: corretaIndex,
-                        letraGabarito: gabaritoLetra,
-                        explicacao: item.explicacao || 'Sem explicação cadastrada.'
-                    };
-                });
-
-                renderizarSimulador(listaFormatada);
-
-            } catch (err) {
-                console.error("Erro ao carregar do Supabase:", err);
-                document.getElementById('simulador-container').innerHTML = `
-                    <div style="background-color: #031842; border: 1px solid #ff4d4d; padding: 25px; border-radius: 12px; color: #ff4d4d; text-align: center;">
-                        <strong>Erro ao conectar com o banco de dados:</strong><br>${err.message || err}
-                    </div>
-                `;
-            }
-        }
-
         function renderizarSimulador(listaQuestoes) {
+            // 1. O robô lê o arquivo JS e descobre o total sozinho
             totalQuestoes = listaQuestoes.length;
+
             const container = document.getElementById('simulador-container');
             container.innerHTML = '';
 
+            // 2. Cria a mensagem de Início no Topo (Aviso de Total)
             const avisoInicio = document.createElement('div');
             avisoInicio.style = "display: flex; align-items: flex-start; gap: 8px; text-align: left; margin-bottom: 30px; padding: 15px; background-color: #02112e; border: 1px dashed #ffca28; border-radius: 8px; color: #ffffff; line-height: 1.5; text-transform: uppercase;";
             avisoInicio.innerHTML = `
-                <strong style="color: #ffca28; white-space: nowrap;">🎯 FOCO NA MISSÃO:</strong>
-                <span>Este bloco contém <strong style="color: #ffffff;">${totalQuestoes} questões</strong> puxadas diretamente do banco de dados (Supabase).</span>
-            `;
+    <strong style="color: #ffca28; white-space: nowrap;">🎯 FOCO NA MISSÃO:</strong>
+    <span>Este bloco contém <strong style="color: #ffffff;">${totalQuestoes} questões</strong> estruturadas no mapeamento estratégico da lei seca atualizada.</span>
+`;
             container.appendChild(avisoInicio);
 
+            // 3. Renderiza as questões
             listaQuestoes.forEach((q, qIndex) => {
                 const bloco = document.createElement('div');
                 bloco.className = 'questao-bloco';
@@ -432,13 +425,7 @@
 
                 let alternativasHTML = '';
                 q.alternativas.forEach((alt, altIndex) => {
-                    alternativasHTML += `
-                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                            <label class="opcao" id="q${qIndex}-opt${altIndex}" style="flex: 1;">
-                                <input type="radio" name="radar-q${qIndex}" value="${altIndex}">${alt}
-                            </label>
-                            <button type="button" class="btn-tesoura" onclick="cortarAlternativa(${qIndex}, ${altIndex})" title="Eliminar alternativa">✂️</button>
-                        </div>`;
+                    alternativasHTML += `<label class="opcao" id="q${qIndex}-opt${altIndex}"><input type="radio" name="radar-q${qIndex}" value="${altIndex}">${alt}</label>`;
                 });
 
                 bloco.innerHTML = `
@@ -456,23 +443,6 @@
                 `;
                 container.appendChild(bloco);
             });
-        }
-
-        function cortarAlternativa(qIndex, altIndex) {
-            const opcaoEl = document.getElementById(`q${qIndex}-opt${altIndex}`);
-            const inputEl = opcaoEl.querySelector('input[type="radio"]');
-            const grupo = document.getElementById(`grupo-q${qIndex}`);
-
-            if (grupo.classList.contains('travado')) return;
-
-            if (opcaoEl.classList.contains('riscada')) {
-                opcaoEl.classList.remove('riscada');
-                inputEl.disabled = false;
-            } else {
-                opcaoEl.classList.add('riscada');
-                inputEl.checked = false;
-                inputEl.disabled = true;
-            }
         }
 
         function validarResposta(qIndex, indexCorreto) {
@@ -496,13 +466,13 @@
             const statusBox = document.getElementById(`status-q${qIndex}`);
             const feedbackBox = document.getElementById(`feed-q${qIndex}`);
 
-            respondidas++;
+            respondidas++; // Conta que o aluno respondeu mais uma
 
             if (selecionadoIndex === indexCorreto) {
                 elementoCorreto.style.borderColor = '#2ecc71';
                 statusBox.innerHTML = "✅ Certo!";
                 statusBox.className = "status-alerta status-acertou";
-                acertos++;
+                acertos++; // Soma o acerto ocultamente
             } else {
                 elementoSelecionado.style.borderColor = '#ff4d4d';
                 elementoCorreto.style.borderColor = '#2ecc71';
@@ -513,6 +483,7 @@
 
             feedbackBox.style.display = 'block';
 
+            // 4. Gatilho do Fechamento (Mostra o placar ao final)
             if (respondidas === totalQuestoes) {
                 gerarPlacarFinal();
             }
@@ -541,10 +512,13 @@
                     ${aproveitamento >= 70 ? "🔥 Excelente índice! Você assimilou muito bem as regras deste módulo." : "📚 Desempenho mediano. Vale a pena revisar o resumo e tentar novamente."}
                 </p>
             `;
+
             container.appendChild(painelResultado);
         }
 
-        // Script Red Team
+        // ==========================================
+        // SCRIPT RED TEAM (ALERTA PROFISSIONAL)
+        // ==========================================
         function mostrarAlerta(evento) {
             if (evento) evento.preventDefault();
             document.getElementById('alerta-protecao').style.display = 'flex';
@@ -561,12 +535,21 @@
             if (evento.key === 'F12' || (evento.ctrlKey && evento.shiftKey && (evento.key === 'I' || evento.key === 'J'))) { mostrarAlerta(evento); }
         });
         document.addEventListener('keyup', function (evento) { if (evento.key === 'PrintScreen' || evento.keyCode === 44) mostrarAlerta(evento); });
-
-        // Executa a busca no Supabase assim que a página carregar
-        window.onload = function () {
-            carregarQuestoesDoSupabase();
-        };
     </script>
+
+    <!-- =========================================================================
+     ÁREA EDITÁVEL 2: APONTE PARA O ARQUIVO .JS DESTA AULA ESPECÍFICA
+     ========================================================================= -->
+
+    <!-- 1. Carrega a biblioteca do Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- 2. Carrega a sua configuração (o arquivo novo) -->
+    <script src="supabase-init.js"></script>
+
+    <!-- 3. Carrega o arquivo da aula específica (este varia conforme a página) -->
+    <script src="dados-das-penas.js"></script>
+
 </body>
 
 </html>
