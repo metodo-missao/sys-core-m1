@@ -321,9 +321,12 @@
             </p>
         </div>
 
-        <!-- O motor injetará as questões aqui -->
-        <div id="simulador-container" style="color: #a5b1c2; text-align: center; padding: 20px;">
-            Carregando questões do banco de dados...
+        <!-- ONDE AS QUESTÕES VÃO SER INJETADAS -->
+        <div id="simulador-container">
+            <div
+                style="color: #a5b1c2; text-align: center; padding: 25px; background-color: #031842; border-radius: 12px; border: 1px solid #0b2c6e;">
+                Carregando questões do banco de dados...
+            </div>
         </div>
 
         <footer class="footer-institucional">
@@ -341,9 +344,9 @@
         </div>
     </div>
 
-    <!-- 1. Carrega o Supabase SDK -->
+    <!-- 1. Carrega o SDK do Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <!-- 2. Carrega sua credencial/configuração global do Supabase -->
+    <!-- 2. Carrega o centralizador de conexão (que define supabaseClient)[cite: 6] -->
     <script src="supabase-init.js"></script>
 
     <script>
@@ -356,8 +359,12 @@
 
         async function carregarQuestoesDoSupabase() {
             try {
-                // Busca na tabela 'questoes_penas' ordenada pelo número da questão
-                const { data, error } = await _supabase
+                // Utiliza diretamente a variável global 'supabaseClient' definida em supabase-init.js[cite: 6]
+                if (typeof supabaseClient === 'undefined') {
+                    throw new Error("A variável supabaseClient não foi encontrada. Verifique se o arquivo supabase-init.js foi carregado corretamente.");
+                }
+
+                const { data, error } = await supabaseClient
                     .from('questoes_penas')
                     .select('*')
                     .order('numero_da_questao', { ascending: true });
@@ -367,13 +374,12 @@
                 }
 
                 if (!data || data.length === 0) {
-                    document.getElementById('simulador-container').innerHTML = '<p style="color: #ff4d4d;">Nenhuma questão encontrada na tabela do Supabase.</p>';
+                    document.getElementById('simulador-container').innerHTML = '<p style="color: #ff4d4d; text-align: center; padding: 20px;">Nenhuma questão encontrada na tabela do Supabase.</p>';
                     return;
                 }
 
                 // Mapeia os dados do banco para o formato esperado pelo renderizador
                 const listaFormatada = data.map(item => {
-                    // Mapeia a letra do gabarito ('A', 'B', 'C', 'D', 'E') para índice numérico (0 a 4)
                     const letraMap = { 'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4 };
                     let gabaritoLetra = (item.gabarito || 'A').trim().toUpperCase();
                     let corretaIndex = letraMap[gabaritoLetra] !== undefined ? letraMap[gabaritoLetra] : 0;
@@ -387,7 +393,7 @@
                             item.alternativa_c,
                             item.alternativa_d,
                             item.alternativa_e
-                        ].filter(alt => alt != null && alt !== ''), // Filtra se alguma alternativa estiver vazia
+                        ].filter(alt => alt != null && alt !== ''),
                         correta: corretaIndex,
                         letraGabarito: gabaritoLetra,
                         explicacao: item.explicacao || 'Sem explicação cadastrada.'
@@ -399,9 +405,8 @@
             } catch (err) {
                 console.error("Erro ao carregar do Supabase:", err);
                 document.getElementById('simulador-container').innerHTML = `
-                    <div style="background-color: #031842; border: 1px solid #ff4d4d; padding: 20px; border-radius: 8px; color: #ff4d4d;">
-                        <strong>Erro ao conectar com o banco de dados:</strong><br>${err.message || err}<br><br>
-                        <em>Dica: Verifique se a política RLS (Row Level Security) da tabela 'questoes_penas' está permitindo leitura pública (SELECT) no painel do Supabase.</em>
+                    <div style="background-color: #031842; border: 1px solid #ff4d4d; padding: 25px; border-radius: 12px; color: #ff4d4d; text-align: center;">
+                        <strong>Erro ao conectar com o banco de dados:</strong><br>${err.message || err}
                     </div>
                 `;
             }
