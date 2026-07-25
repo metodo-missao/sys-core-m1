@@ -1,0 +1,291 @@
+/* ==========================================
+   1. PROTOCOLO RED TEAM - PROTEÇÃO CSS
+   ========================================== */
+@media print {
+    body {
+        display: none !important;
+    }
+}
+
+body,
+.questao-bloco,
+.opcao,
+.questao-texto-bloco,
+.feedback-box,
+.mini-aula-bloco {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* ==========================================
+   2. ESTILOS GERAIS E MARCA D'ÁGUA
+   ========================================== */
+body {
+    background-color: #02112e;
+    color: #ffffff;
+    font-family: 'Segoe UI', sans-serif;
+    padding: 30px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='450' height='200'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' transform='rotate(-25 225 100)' fill='rgba(255,202,40,0.10)' font-family='Segoe UI, sans-serif' font-weight='800' font-size='14px'%3EMÉTODO MISSÃO • METODOMISSAO.COM%3C/text%3E%3C/svg%3E");
+    background-repeat: repeat;
+}
+
+.container {
+    max-width: 850px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.topo-marca {
+    border-bottom: 2px solid #ffca28;
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+}
+
+.marca-sequencial {
+    font-size: 1.8rem;
+    font-weight: 900;
+}
+
+.ouro {
+    color: #ffca28;
+}
+
+.subtitulo {
+    font-size: 1.3rem;
+    color: #a5b1c2;
+    margin-left: 15px;
+    border-left: 2px solid #415a77;
+    padding-left: 15px;
+}
+
+.questao-bloco,
+.mini-aula-bloco {
+    background-color: #031842;
+    padding: 35px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    border: 1px solid #0b2c6e;
+    position: relative;
+    overflow: hidden;
+}
+
+.questao-bloco::before,
+.mini-aula-bloco::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='450' height='200'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' transform='rotate(-25 225 100)' fill='rgba(255,202,40,0.10)' font-family='Segoe UI, sans-serif' font-weight='800' font-size='14px'%3EMÉTODO MISSÃO • METODOMISSAO.COM%3C/text%3E%3C/svg%3E");
+    background-repeat: repeat;
+}
+
+.questao-texto-bloco,
+.opcoes-container,
+.btn-verificar,
+.feedback-box {
+    position: relative;
+    z-index: 1;
+}
+
+.questao-texto-bloco {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.questao-titulo-inline {
+    color: #ffca28;
+    font-weight: 700;
+}
+
+.opcoes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.opcao {
+    display: flex;
+    align-items: center;
+    padding: 14px 18px;
+    border-radius: 8px;
+    background-color: #02112e;
+    border: 1px solid #0b2c6e;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.opcao input {
+    margin-right: 15px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+/* Estilo da Tesourinha e Opção Riscada */
+.opcao.riscada {
+    text-decoration: line-through;
+    opacity: 0.4;
+    background-color: #010a1b !important;
+    border-color: #0b2c6e !important;
+}
+
+.btn-tesoura {
+    background: transparent;
+    border: 1px solid #0b2c6e;
+    color: #ffca28;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.btn-tesoura:hover {
+    background-color: #0b2c6e;
+}
+
+.btn-verificar {
+    background-color: #ffca28;
+    color: #02112e;
+    border: none;
+    padding: 12px 24px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.feedback-box {
+    display: none;
+    background-color: #02112e;
+    border-left: 5px solid #2ecc71;
+    padding: 25px;
+    margin-top: 25px;
+    border: 1px solid #0b2c6e;
+}
+
+.gabarito-letra {
+    color: #2ecc71;
+    font-weight: 800;
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+}
+
+.status-alerta {
+    font-size: 1.1rem;
+    font-weight: 900;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.status-acertou {
+    color: #2ecc71;
+}
+
+.status-errou {
+    color: #ff4d4d;
+}
+
+.travado {
+    pointer-events: none;
+    opacity: 0.85;
+}
+
+.assinatura-suave {
+    display: block;
+    text-align: right;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.12);
+    margin-top: -10px;
+    margin-bottom: 20px;
+    padding-right: 5px;
+    pointer-events: none;
+}
+
+.footer-institucional {
+    margin-top: 40px;
+    font-size: 11px;
+    color: #8a99ad;
+    text-align: center;
+    letter-spacing: 0.5px;
+    padding-bottom: 20px;
+    width: 100%;
+    line-height: 1.6;
+}
+
+/* ==========================================
+   3. ESTILO DO ALERTA PROFISSIONAL
+   ========================================== */
+#alerta-protecao {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(3, 24, 66, 0.98);
+    z-index: 999999;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.alerta-caixa {
+    background-color: #02112e;
+    border: 2px solid #ffca28;
+    padding: 40px;
+    border-radius: 8px;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+.alerta-caixa h2 {
+    color: #ffca28;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.alerta-caixa p {
+    color: #ffffff;
+    font-size: 1rem;
+    margin-bottom: 25px;
+}
+
+.btn-fechar-alerta {
+    background-color: #ffca28;
+    color: #031842;
+    border: none;
+    padding: 10px 25px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
