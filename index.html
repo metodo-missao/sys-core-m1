@@ -310,6 +310,12 @@
                         <span style="color: #00e5ff; font-weight: bold;">💻 INFORMÁTICA</span>
                         <span class="seta-iniciar" style="color: #00e5ff;">FLASH CARDS 👇</span>
                     </a>
+                    
+                    <a href="javascript:void(0);" id="btn-dudh" class="aula-item"
+                        style="border-color: #ffcc00; background-color: #041d4d;">
+                        <span style="color: #ffcc00; font-weight: bold;">🌐 DECLARAÇÃO UNIVERSAL (DUDH)</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">🔒</span>
+                    </a>
 
                     <a href="javascript:void(0);" id="btn-maria-penha" class="aula-item"
                         style="border-color: #ffcc00; background-color: #041d4d;">
@@ -429,8 +435,32 @@
                     </a>
                 </div>
             </section>
+            
+            <!-- SUBMENU: DECLARAÇÃO UNIVERSAL DOS DIREITOS HUMANOS (DUDH) -->
+            <section id="menu-aulas-dudh" class="secao-topicos"
+                style="margin-top: 10px; border-style: dashed; border-color: #ffcc00;">
+                <h3 class="titulo-secao" style="color: #ffcc00; font-size: 13px;">👑 Declaração Universal dos Direitos Humanos</h3>
+                <div class="lista-aulas">
+                    <a href="lista-de-espera.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
+                        <span>🔒 Preâmbulo e Princípios Fundamentais (Art. 1º e 2º)</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
+                    </a>
+                    <a href="lista-de-espera.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
+                        <span>🔒 Direitos Civis e Políticos (Art. 3º ao 21)</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
+                    </a>
+                    <a href="lista-de-espera.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
+                        <span>🔒 Direitos Econômicos, Sociais e Culturais (Art. 22 ao 27)</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
+                    </a>
+                    <a href="lista-de-espera.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
+                        <span>🔒 Deveres do Indivíduo e Disposições Finais (Art. 28 ao 30)</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
+                    </a>
+                </div>
+            </section>
 
-            <!-- SUBMENU: LEI MARIA DA PENHA (ATUALIZADO) -->
+            <!-- SUBMENU: LEI MARIA DA PENHA -->
             <section id="menu-aulas-maria-penha" class="secao-topicos"
                 style="margin-top: 10px; border-style: dashed; border-color: #ffcc00;">
                 <h3 class="titulo-secao" style="color: #ffcc00; font-size: 13px;">👑 Lei Maria da Penha (Lei nº
@@ -537,11 +567,12 @@
     </div>
 
     <script>
-        // LISTA DE SUBMENUS REGISTRADOS
+        // LISTA DE SUBMENUS REGISTRADOS (Atualizada com a DUDH)
         const submenus = [
             'menu-aulas-penal',
             'menu-aulas-constitucional',
             'menu-aulas-informatica',
+            'menu-aulas-dudh',
             'menu-aulas-maria-penha',
             'menu-aulas-convencao',
             'menu-aulas-estatuto-pcd',
@@ -586,6 +617,7 @@
         document.getElementById('btn-penal').addEventListener('click', function () { alternarSubmenu('menu-aulas-penal'); });
         document.getElementById('btn-constitucional').addEventListener('click', function () { alternarSubmenu('menu-aulas-constitucional'); });
         document.getElementById('btn-informatica').addEventListener('click', function () { alternarSubmenu('menu-aulas-informatica'); });
+        document.getElementById('btn-dudh').addEventListener('click', function () { alternarSubmenu('menu-aulas-dudh'); });
         document.getElementById('btn-maria-penha').addEventListener('click', function () { alternarSubmenu('menu-aulas-maria-penha'); });
         document.getElementById('btn-convencao').addEventListener('click', function () { alternarSubmenu('menu-aulas-convencao'); });
         document.getElementById('btn-estatuto-pcd').addEventListener('click', function () { alternarSubmenu('menu-aulas-estatuto-pcd'); });
