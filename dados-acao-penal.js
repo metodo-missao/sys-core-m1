@@ -1,7 +1,7 @@
 // dados-acao-penal.js
 async function carregarQuestoes() {
     const { data, error } = await supabaseClient
-        .from('questoes_aplicacao_lei_penal') // Nome da Tabela 1
+        .from('da_acao_penal') // Nome da Tabela
         .select('*')
         .order('numero_da_questao', { ascending: true });
 
