@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar — Método Missão | Gabarita Aí</title>
+
+    <style>
+        :root {
+            --cor-fundo-site: #02112e;
+            --cor-fundo-bloco: #031842;
+            --cor-borda: #0b2c6e;
+            --cor-ouro: #ffca28;
+            --cor-texto: #ffffff;
+            --cor-sucesso: #2ecc71;
+            --cor-erro: #ff5252;
+            --cor-texto-mutado: #8a99ad;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--cor-fundo-site);
+            color: var(--cor-texto);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 25px 15px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .badge-missao {
+            background-color: var(--cor-fundo-bloco);
+            border: 2px solid var(--cor-ouro);
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--cor-ouro);
+            display: block;
+            width: fit-content;
+            margin: 0 auto 24px auto;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .card {
+            background-color: var(--cor-fundo-bloco);
+            border: 2px solid var(--cor-borda);
+            border-radius: 12px;
+            padding: 28px 24px;
+        }
+
+        h1 {
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 6px;
+        }
+
+        .subtitulo {
+            font-size: 13px;
+            color: var(--cor-texto-mutado);
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        label {
+            font-size: 13px;
+            color: var(--cor-texto-mutado);
+            display: block;
+            margin-bottom: 6px;
+            margin-top: 16px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 8px;
+            border: 2px solid var(--cor-borda);
+            background-color: var(--cor-fundo-site);
+            color: var(--cor-texto);
+            font-size: 15px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--cor-ouro);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            border: none;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            margin-top: 22px;
+        }
+
+        .btn-entrar {
+            background-color: var(--cor-ouro);
+            color: var(--cor-fundo-site);
+        }
+
+        .btn-entrar:disabled {
+            opacity: 0.6;
+            cursor: default;
+        }
+
+        .btn-cadastrar {
+            background-color: transparent;
+            border: 2px solid var(--cor-borda);
+            color: var(--cor-texto);
+            margin-top: 10px;
+        }
+
+        .mensagem {
+            font-size: 13px;
+            text-align: center;
+            margin-top: 16px;
+            min-height: 16px;
+        }
+
+        .mensagem.erro {
+            color: var(--cor-erro);
+        }
+
+        .mensagem.sucesso {
+            color: var(--cor-sucesso);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="badge-missao">Método Missão</div>
+
+        <div class="card">
+            <h1>Acesse sua conta</h1>
+            <p class="subtitulo">Entre com sua conta ou cadastre-se para assinar as matérias fechadas</p>
+
+            <form id="form-login">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" required autocomplete="email">
+
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" required autocomplete="current-password">
+
+                <button type="submit" class="btn-entrar" id="btn-entrar">Entrar</button>
+                <button type="button" class="btn-cadastrar" id="btn-cadastrar">Criar minha conta</button>
+
+                <p class="mensagem" id="mensagem"></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script>
+        // ⚠️ Troque pelos dados do SEU projeto (Supabase > Project Settings > API)
+        const SUPABASE_URL = "https://kulaumnlntcepiikqpts.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt1bGF1bW5sbnRjZXBpaWtxcHRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQzNDU2NDMsImV4cCI6MjA5OTkyMTY0M30.GFPptPiuy1TEao-_n_GQVlfvX7R4gDwTaY8h1ZxU76s";
+
+        const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        const form = document.getElementById("form-login");
+        const emailInput = document.getElementById("email");
+        const senhaInput = document.getElementById("senha");
+        const mensagem = document.getElementById("mensagem");
+        const btnEntrar = document.getElementById("btn-entrar");
+        const btnCadastrar = document.getElementById("btn-cadastrar");
+
+        // Para onde mandar o aluno depois de logar.
+        // Pode trocar por "?redirect=..." na URL se quiser voltar pra página que ele tentou abrir.
+        const DESTINO_APOS_LOGIN = "index.html";
+
+        function mostrarMensagem(texto, tipo) {
+            mensagem.textContent = texto;
+            mensagem.className = "mensagem " + (tipo || "");
+        }
+
+        // Se o aluno já estiver logado, não precisa ver essa tela de novo
+        client.auth.getSession().then(({ data }) => {
+            if (data.session) {
+                window.location.href = DESTINO_APOS_LOGIN;
+            }
+        });
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            btnEntrar.disabled = true;
+            mostrarMensagem("Entrando...", "");
+
+            const { error } = await client.auth.signInWithPassword({
+                email: emailInput.value.trim(),
+                password: senhaInput.value
+            });
+
+            btnEntrar.disabled = false;
+
+            if (error) {
+                mostrarMensagem("E-mail ou senha incorretos.", "erro");
+                return;
+            }
+
+            window.location.href = DESTINO_APOS_LOGIN;
+        });
+
+        btnCadastrar.addEventListener("click", async () => {
+            if (!emailInput.value || !senhaInput.value) {
+                mostrarMensagem("Preencha e-mail e senha para criar a conta.", "erro");
+                return;
+            }
+            if (senhaInput.value.length < 6) {
+                mostrarMensagem("A senha precisa ter pelo menos 6 caracteres.", "erro");
+                return;
+            }
+
+            btnCadastrar.disabled = true;
+            mostrarMensagem("Criando conta...", "");
+
+            const { error } = await client.auth.signUp({
+                email: emailInput.value.trim(),
+                password: senhaInput.value
+            });
+
+            btnCadastrar.disabled = false;
+
+            if (error) {
+                mostrarMensagem(error.message, "erro");
+                return;
+            }
+
+            mostrarMensagem("Conta criada! Verifique seu e-mail para confirmar antes de entrar.", "sucesso");
+        });
+    </script>
+</body>
+
+</html>
