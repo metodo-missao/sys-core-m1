@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Espera VIP — Método Missão</title>
+    <title>Acesso Premium — Método Missão</title>
     <style>
-        /* Herança da Identidade Visual do seu Projeto */
         body {
             background-color: #02112e;
             color: #ffffff;
@@ -59,14 +58,13 @@
             margin-bottom: 30px;
         }
 
-        /* Caixa de Benefícios Exclusivos */
         .beneficios-box {
             background: #031842;
             border-left: 4px solid #ffcc00;
             text-align: left;
             padding: 20px;
             border-radius: 0 8px 8px 0;
-            margin-bottom: 35px;
+            margin-bottom: 25px;
         }
 
         .beneficios-titulo {
@@ -90,23 +88,85 @@
             margin-bottom: 0;
         }
 
-        /* Espaço para o Formulário Integrado */
+        /* Bloco "Como funciona" */
+        .como-funciona-box {
+            background: #031842;
+            border: 1px solid #0b2c6e;
+            text-align: left;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .como-funciona-titulo {
+            color: #ffcc00;
+            font-weight: bold;
+            font-size: 13px;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .passo-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 13px;
+            color: #e2e8f0;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .passo-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .passo-numero {
+            flex-shrink: 0;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background-color: #ffcc00;
+            color: #02112e;
+            font-weight: 900;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         .formulario-area {
             background: #041d4d;
             border: 1px dashed rgba(255, 204, 0, 0.3);
             padding: 25px;
             border-radius: 8px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
-        .formulario-instrucao {
-            font-size: 13px;
-            color: #ffcc00;
-            margin-bottom: 15px;
+        .btn-acao {
+            background-color: #25D366;
+            color: white;
+            padding: 16px 32px;
+            font-size: 18px;
             font-weight: bold;
+            text-decoration: none;
+            border-radius: 8px;
+            display: inline-block;
         }
 
-        /* Botão de Retorno Seguro */
+        .link-secundario {
+            display: block;
+            color: #a0aec0;
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s;
+            margin-top: 12px;
+        }
+
+        .link-secundario:hover {
+            color: #ffffff;
+        }
+
         .btn-voltar {
             display: inline-block;
             color: #a0aec0;
@@ -133,30 +193,47 @@
 
     <div class="container-captura" id="simulador-container">
 
-        <div class="badge-premium">👑 Lote VIP Encerrado</div>
+        <div class="badge-premium" id="badge-topo">👑 Lote VIP Encerrado</div>
 
-        <h1>Você tentou acessar um conteúdo da <span>Versão Completa Premium</span></h1>
+        <h1 id="titulo-principal">Você tentou acessar um conteúdo da <span>Versão Completa Premium</span></h1>
 
-        <p class="subtitulo">
+        <p class="subtitulo" id="subtitulo-principal">
             As vagas para o nosso grupo de simulados inéditos e alta performance foram temporariamente preenchidas.
             Entre para a lista de espera oficial para garantir acesso imediato no próximo lote com desconto de
             lançamento.
         </p>
 
         <div class="beneficios-box">
-            <div class="beneficios-titulo">Ao entrar na Lista VIP você garante:</div>
+            <div class="beneficios-titulo">Ao garantir seu acesso você tem:</div>
             <div class="beneficio-item">🔒 Liberação de todo o edital de Direito Constitucional (Art. 1º ao 144)</div>
             <div class="beneficio-item">🔒 Acesso aos futuros módulos de Processo Penal e Administrativo</div>
             <div class="beneficio-item">🎯 Questões 100% inéditas baseadas na jurisprudência sumulada 2026</div>
             <div class="beneficio-item">💰 Desconto exclusivo de lançamento</div>
         </div>
 
-        <!-- CONTAINER DO FORMULÁRIO -->
+        <!-- Bloco "Como funciona" - só aparece quando o pagamento estiver ativo -->
+        <div class="como-funciona-box" id="bloco-como-funciona" style="display: none;">
+            <div class="como-funciona-titulo">Como funciona</div>
+            <div class="passo-item">
+                <div class="passo-numero">1</div>
+                <div>Crie sua conta gratuita (leva menos de 1 minuto)</div>
+            </div>
+            <div class="passo-item">
+                <div class="passo-numero">2</div>
+                <div>Pague com o <strong>mesmo e-mail</strong> da sua conta</div>
+            </div>
+            <div class="passo-item">
+                <div class="passo-numero">3</div>
+                <div>Seu acesso é liberado automaticamente em poucos minutos</div>
+            </div>
+        </div>
 
-        <div class="formulario-area" style="text-align: center; margin: 50px 0;">
-            <a href="https://tally.so/r/MeqQyl" target="_blank"
-                style="background-color: #25D366; color: white; padding: 16px 32px; font-size: 18px; font-weight: bold; text-decoration: none; border-radius: 8px; display: inline-block;">
+        <div class="formulario-area">
+            <a href="#" id="btn-acao-principal" class="btn-acao" target="_blank">
                 👉 QUERO ENTRAR NA LISTA VIP
+            </a>
+            <a href="login.html" id="link-login" class="link-secundario" style="display: none;">
+                Já tem conta? Fazer login
             </a>
         </div>
 
@@ -169,7 +246,38 @@
 
     </div>
 
-    <!-- PROTOCOLO RED TEAM: PROTEÇÃO INTEGRAL DA PÁGINA (BLINDAGEM ADICIONAL 2026) -->
+    <script>
+        // ==========================================================================
+        // INTERRUPTOR DE VENDAS
+        // Enquanto for false, a página funciona exatamente como hoje (lista de espera).
+        // Quando você quiser abrir o pagamento de verdade, troque para true e
+        // preencha o LINK_PAGAMENTO com o link de cobrança do Mercado Pago.
+        // ==========================================================================
+        const VENDAS_ATIVAS = false;
+        const LINK_PAGAMENTO = "https://mpago.la/SEU-LINK-AQUI";
+        const LINK_LISTA_ESPERA = "https://tally.so/r/MeqQyl";
+
+        const btnAcao = document.getElementById("btn-acao-principal");
+        const linkLogin = document.getElementById("link-login");
+        const blocoComoFunciona = document.getElementById("bloco-como-funciona");
+        const badgeTopo = document.getElementById("badge-topo");
+        const tituloPrincipal = document.getElementById("titulo-principal");
+        const subtituloPrincipal = document.getElementById("subtitulo-principal");
+
+        if (VENDAS_ATIVAS) {
+            badgeTopo.textContent = "👑 Acesso Premium Disponível";
+            tituloPrincipal.innerHTML = 'Desbloqueie a <span>Versão Completa Premium</span>';
+            subtituloPrincipal.textContent = "Garanta agora o acesso completo aos simulados inéditos e de alta performance.";
+            btnAcao.href = LINK_PAGAMENTO;
+            btnAcao.textContent = "💳 GARANTIR MEU ACESSO AGORA";
+            blocoComoFunciona.style.display = "block";
+            linkLogin.style.display = "block";
+        } else {
+            btnAcao.href = LINK_LISTA_ESPERA;
+        }
+    </script>
+
+    <!-- PROTOCOLO RED TEAM: PROTEÇÃO INTEGRAL DA PÁGINA -->
     <script>
         document.addEventListener('contextmenu', function (e) { e.preventDefault(); });
         document.addEventListener('keydown', function (e) {
