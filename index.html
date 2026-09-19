@@ -68,10 +68,10 @@
             position: relative;
         }
 
-        /* Container principal com travamento de largura em 480px */
+        /* Container principal - Aumentado para o banner widescreen ocupar a tela */
         .container {
             width: 100%;
-            max-width: 480px;
+            max-width: 1000px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -79,12 +79,12 @@
         }
 
         /* ==========================================================================
-           4. TOPO INSTITUCIONAL
+           4. TOPO INSTITUCIONAL (BANNER)
            ========================================================================== */
         .container-logo {
             width: 100%;
-            max-width: 440px;
-            margin-bottom: 12px;
+            max-width: 100%;
+            margin-bottom: 24px;
             text-align: center;
         }
 
@@ -93,6 +93,17 @@
             height: auto;
             display: block;
             border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        /* TRAVAMENTO DO LAYOUT INFERIOR PARA MANTER O PADRÃO COMPACTO */
+        .header-perfil,
+        .links-container,
+        .footer-institucional {
+            width: 100%;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* ==========================================================================
@@ -101,7 +112,6 @@
         .header-perfil {
             text-align: center;
             margin-bottom: 24px;
-            width: 100%;
         }
 
         .badge-missao {
@@ -139,7 +149,6 @@
            6. HUB DE LINKS
            ========================================================================== */
         .links-container {
-            width: 100%;
             display: flex;
             flex-direction: column;
             gap: 16px;
@@ -263,6 +272,8 @@
             color: var(--cor-texto-mutado);
             text-align: center;
             letter-spacing: 0.5px;
+            padding-bottom: 20px;
+            line-height: 1.6;
         }
     </style>
 </head>
@@ -272,6 +283,7 @@
     <div id="simulador-container" class="container">
 
         <div class="container-logo">
+            <!-- A imagem widescreen gerada foi adicionada aqui -->
             <img src="logo.png" alt="Método Missão" class="logo-oficial">
         </div>
 
@@ -558,8 +570,7 @@
 
         </main>
 
-        <footer class="footer-institucional"
-            style="margin-top: 15px; font-size: 11px; color: #8a99ad; text-align: center; letter-spacing: 0.5px; padding-bottom: 20px; width: 100%; line-height: 1.6;">
+        <footer class="footer-institucional">
             &copy; 2026 Método Missão. Todos os direitos reservados.
             <br>
             Plataforma oficial da metodologia de estudos Método Missão.
