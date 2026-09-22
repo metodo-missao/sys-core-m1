@@ -4,13 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Questões: Da Aplicação da Lei Penal — Método Missão</title>
-    <meta name="description" content="Simulado Interativo de Direito Penal - Método Missão.">
+    <title>Método Missão - Simulados Premium</title>
 
     <style>
-        /* ==========================================================================
-           1. MARCA D'ÁGUA NO FUNDO E PROTEÇÃO DE IMPRESSÃO
-           ========================================================================== */
+        /* ==========================================
+           1. PROTOCOLO RED TEAM - PROTEÇÃO CSS
+           ========================================== */
+        @media print {
+            body {
+                display: none !important;
+            }
+        }
+
+        body,
+        .questao-bloco,
+        .opcao,
+        .questao-texto-bloco,
+        .feedback-box,
+        .mini-aula-bloco {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* ==========================================
+           2. ESTILOS GERAIS E MARCA D'ÁGUA
+           ========================================== */
+        body {
+            background-color: #02112e;
+            color: #ffffff;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
         body::before {
             content: "";
             position: fixed;
@@ -24,387 +53,300 @@
             background-repeat: repeat;
         }
 
-        @media print {
-            body {
-                display: none !important;
-            }
-        }
-
-        /* ==========================================================================
-           2. VARIÁVEIS DE AMBIENTE & PALETA HOMOLOGADA (DEEP ROYAL)
-           ========================================================================== */
-        :root {
-            --cor-fundo-site: #02112e;
-            --cor-fundo-bloco: #031842;
-            --cor-borda: #0b2c6e;
-            --cor-ouro: #ffca28;
-            --cor-texto: #ffffff;
-            --cor-sucesso: #2ecc71;
-            --cor-erro: #e74c3c;
-            --cor-texto-mutado: #8a99ad;
-        }
-
-        /* ==========================================================================
-           3. RESET E ESTILOS GERAIS
-           ========================================================================== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            background-color: var(--cor-fundo-site);
-            color: var(--cor-texto);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 25px 15px;
-            position: relative;
-        }
-
         .container {
+            max-width: 850px;
             width: 100%;
-            max-width: 800px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 2;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Topo Institucional */
-        .container-logo {
-            width: 100%;
-            margin-bottom: 20px;
-            text-align: center;
+        .topo-marca {
+            border-bottom: 2px solid #ffca28;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
         }
 
-        .logo-oficial {
-            width: 100%;
-            max-width: 1000px;
-            height: auto;
-            display: block;
+        .marca-sequencial {
+            font-size: 1.8rem;
+            font-weight: 900;
+        }
+
+        .ouro {
+            color: #ffca28;
+        }
+
+        .subtitulo {
+            font-size: 1.3rem;
+            color: #a5b1c2;
+            margin-left: 15px;
+            border-left: 2px solid #415a77;
+            padding-left: 15px;
+        }
+
+        .questao-bloco,
+        .mini-aula-bloco {
+            background-color: #031842;
+            padding: 35px;
             border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-            margin: 0 auto;
+            margin-bottom: 30px;
+            border: 1px solid #0b2c6e;
+            position: relative;
+            overflow: hidden;
         }
 
-        .header-perfil {
-            text-align: center;
-            margin-bottom: 20px;
+        .questao-bloco::before,
+        .mini-aula-bloco::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='450' height='200'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' transform='rotate(-25 225 100)' fill='rgba(255,202,40,0.10)' font-family='Segoe UI, sans-serif' font-weight='800' font-size='14px'%3EMÉTODO MISSÃO • METODOMISSAO.COM%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
         }
 
-        .badge-missao {
-            background-color: var(--cor-fundo-bloco);
-            border: 2px solid var(--cor-ouro);
-            padding: 8px 24px;
-            border-radius: 50px;
-            font-size: 13px;
-            font-weight: 800;
-            color: var(--cor-ouro);
-            display: inline-block;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            box-shadow: 0 0 12px rgba(255, 202, 40, 0.2);
+        .questao-texto-bloco,
+        .opcoes-container,
+        .btn-verificar,
+        .feedback-box {
+            position: relative;
+            z-index: 1;
         }
 
-        .btn-voltar {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--cor-ouro);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            align-self: flex-start;
-            transition: opacity 0.2s;
-        }
-
-        .btn-voltar:hover {
-            opacity: 0.8;
-        }
-
-        /* ==========================================================================
-           4. CARD DA QUESTÃO E ALTERNATIVAS
-           ========================================================================== */
-        .card-questao {
-            width: 100%;
-            background-color: var(--cor-fundo-bloco);
-            border: 2px solid var(--cor-borda);
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .num-questao {
-            color: var(--cor-ouro);
-            font-size: 14px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-            display: block;
-        }
-
-        .texto-enunciado {
-            font-size: 15px;
-            line-height: 1.6;
-            color: var(--cor-texto);
-            margin-bottom: 20px;
-        }
-
-        .lista-alternativas {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .alternativa-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 14px 16px;
-            background-color: var(--cor-fundo-site);
-            border: 1px solid var(--cor-borda);
-            border-radius: 8px;
-            color: var(--cor-texto);
-            cursor: pointer;
-            font-size: 14px;
-            line-height: 1.4;
-            transition: border-color 0.2s, background-color 0.2s;
-        }
-
-        .alternativa-item:hover {
-            border-color: var(--cor-ouro);
-            background-color: #031c4c;
-        }
-
-        .alternativa-item.selecionada {
-            border-color: var(--cor-ouro);
-            background-color: #052666;
-            font-weight: 600;
-        }
-
-        .alternativa-item.correta {
-            border-color: var(--cor-sucesso) !important;
-            background-color: rgba(46, 204, 113, 0.15) !important;
+        .questao-texto-bloco {
             color: #ffffff;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.6;
+            margin-bottom: 25px;
         }
 
-        .alternativa-item.incorreta {
-            border-color: var(--cor-erro) !important;
-            background-color: rgba(231, 76, 60, 0.15) !important;
+        .questao-titulo-inline {
+            color: #ffca28;
+            font-weight: 700;
         }
 
-        .letra-opcoes {
-            font-weight: 800;
-            color: var(--cor-ouro);
-            min-width: 20px;
-        }
-
-        /* Botões de Ação e Feedback */
-        .acoes-questao {
-            margin-top: 20px;
+        .opcoes-container {
             display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
         }
 
-        .btn-responder {
-            padding: 12px 24px;
-            background-color: var(--cor-ouro);
-            color: #000;
-            border: none;
+        .opcao {
+            display: flex;
+            align-items: center;
+            padding: 14px 18px;
             border-radius: 8px;
-            font-weight: 800;
-            font-size: 14px;
-            cursor: pointer;
-            transition: transform 0.1s, opacity 0.2s;
-        }
-
-        .btn-responder:active {
-            transform: scale(0.97);
-        }
-
-        .painel-comentario {
-            display: none;
-            margin-top: 20px;
-            padding: 16px;
             background-color: #02112e;
-            border-left: 4px solid var(--cor-ouro);
-            border-radius: 0 8px 8px 0;
-            font-size: 14px;
-            line-height: 1.5;
-            color: var(--cor-texto-mutado);
+            border: 1px solid #0b2c6e;
+            cursor: pointer;
+            transition: border-color 0.2s;
         }
 
-        .painel-comentario strong {
-            color: var(--cor-ouro);
+        .opcao input {
+            margin-right: 15px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        /* ==========================================
+           ESTILOS DA TESOURINHA
+           ========================================== */
+        .opcao.riscada {
+            text-decoration: line-through;
+            opacity: 0.4;
+            background-color: #010a1b !important;
+            border-color: #0b2c6e !important;
+        }
+
+        .btn-tesoura {
+            background: transparent;
+            border: 1px solid #0b2c6e;
+            color: #ffca28;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .btn-tesoura:hover {
+            background-color: #0b2c6e;
+        }
+
+        .btn-verificar {
+            background-color: #ffca28;
+            color: #02112e;
+            border: none;
+            padding: 12px 24px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .feedback-box {
+            display: none;
+            background-color: #02112e;
+            border-left: 5px solid #2ecc71;
+            padding: 25px;
+            margin-top: 25px;
+            border: 1px solid #0b2c6e;
+        }
+
+        .gabarito-letra {
+            color: #2ecc71;
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        .status-alerta {
+            font-size: 1.1rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .status-acertou {
+            color: #2ecc71;
+        }
+
+        .status-errou {
+            color: #ff4d4d;
+        }
+
+        .travado {
+            pointer-events: none;
+            opacity: 0.85;
+        }
+
+        .assinatura-suave {
             display: block;
-            margin-bottom: 6px;
+            text-align: right;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.12);
+            margin-top: -10px;
+            margin-bottom: 20px;
+            padding-right: 5px;
+            pointer-events: none;
         }
 
         .footer-institucional {
-            margin-top: 30px;
+            margin-top: 40px;
             font-size: 11px;
-            color: var(--cor-texto-mutado);
+            color: #8a99ad;
             text-align: center;
-            line-height: 1.6;
+            letter-spacing: 0.5px;
             padding-bottom: 20px;
+            width: 100%;
+            line-height: 1.6;
+        }
+
+        /* ==========================================
+           3. ESTILO DO ALERTA PROFISSIONAL
+           ========================================== */
+        #alerta-protecao {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(3, 24, 66, 0.98);
+            z-index: 999999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .alerta-caixa {
+            background-color: #02112e;
+            border: 2px solid #ffca28;
+            padding: 40px;
+            border-radius: 8px;
+            max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .alerta-caixa h2 {
+            color: #ffca28;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .alerta-caixa p {
+            color: #ffffff;
+            font-size: 1rem;
+            margin-bottom: 25px;
+        }
+
+        .btn-fechar-alerta {
+            background-color: #ffca28;
+            color: #031842;
+            border: none;
+            padding: 10px 25px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
         }
     </style>
 </head>
 
 <body>
-
-    <div id="simulador-container" class="container">
-
-        <!-- Banner Superior -->
-        <div class="container-logo">
-            <img src="logo.png" alt="Método Missão" class="logo-oficial">
+    <div class="container">
+        <div class="topo-marca">
+            <div class="marca-sequencial">MÉTODO <span class="ouro">MISSÃO</span> <span class="subtitulo">QUESTÕES AUTORAIS</span></div>
         </div>
 
-        <a href="index.html" class="btn-voltar">⬅ Voltar ao Menu Principal</a>
+        <!-- ESPAÇO 1: MINI-AULA EM HTML -->
+        <div class="mini-aula-bloco" style="line-height: 1.6;">
+            <h2 style="color: #ffca28; font-size: 1.4rem; margin-top: 0; margin-bottom: 15px; font-weight: 800;">🧠 RESUMO DIRECIONADO — DA APLICAÇÃO DA LEI PENAL (CARREIRAS POLICIAIS)</h2>
+            <p style="color: #ffffff; margin-bottom: 12px;">A matéria de <strong>Aplicação da Lei Penal</strong> estabelece as regras básicas do Código Penal sobre a vigência da norma no tempo e no espaço. Memorize os conceitos indispensáveis para provas policiais:</p>
+            <ul style="color: #ffffff; padding-left: 20px; margin-bottom: 0;">
+                <li style="margin-bottom: 8px;"><strong style="color: #ffca28;">Anterioridade e Legalidade (Art. 1º, CP):</strong> Não há crime sem lei anterior que o defina, nem pena sem prévia cominação legal.</li>
+                <li style="margin-bottom: 8px;"><strong style="color: #ffca28;">Lei Penal no Tempo (Art. 2º, CP):</strong> A regra é a irretroatividade da lei penal gravosa. A lei posterior mais benéfica (<em>novatio legis in melius</em> ou <em>abolitio criminis</em>) **retroage sempre**, mesmo após o trânsito em julgado (Súmula 611/STF).</li>
+                <li style="margin-bottom: 8px;"><strong style="color: #ffca28;">Tempo do Crime (Art. 4º, CP):</strong> Adota-se a <strong>Teoria da Atividade</strong> (momento da ação ou omissão, ainda que outro seja o momento do resultado).</li>
+                <li style="margin-bottom: 8px;"><strong style="color: #ffca28;">Lugar do Crime (Art. 6º, CP):</strong> Adota-se a <strong>Teoria Mista / Ubiquidade</strong> (tanto o lugar da ação/omissão quanto o do resultado ou onde este deveria produzir-se).
+                    <br><small style="color: #a5b1c2;">Mnemônico: <strong>LUTA</strong> (Lugar = Ubiquidade | Tempo = Atividade).</small>
+                </li>
+                <li style="margin-bottom: 0;"><strong style="color: #ffca28;">Territorialidade e Extraterritorialidade (Arts. 5º e 7º, CP):</strong> Regra da Territorialidade Mitigada. Fique atento às hipóteses de Extraterritorialidade Incondicionada (ex.: crimes contra a vida/liberdade do Presidente da República, patrimônio público, etc.).</li>
+            </ul>
+        </div>
 
-        <header class="header-perfil">
-            <div class="badge-missao">DIREITO PENAL</div>
-            <p style="color: var(--cor-texto-mutado); font-size: 14px;">Módulo: Da Aplicação da Lei Penal</p>
-        </header>
+        <!-- O motor injetará dinamicamente todos os blocos de questões aqui -->
+        <div id="simulador-container"></div>
 
-        <!-- QUESTÃO 01 -->
-        <main class="card-questao" data-resposta-correta="B">
-            <span class="num-questao">Questão 01 • Inédita Método Missão</span>
-            <p class="texto-enunciado">
-                A respeito da aplicação da lei penal no tempo e no espaço, assinale a alternativa correta segundo o Código Penal Brasileiro:
-            </p>
-
-            <div class="lista-alternativas">
-                <div class="alternativa-item" data-letra="A">
-                    <span class="letra-opcoes">A)</span>
-                    <span>Ninguém pode ser punido por fato que lei posterior deixa de considerar crime, cessando em virtude dela apenas a execução, mas mantendo-se os efeitos penais da sentença condenatória.</span>
-                </div>
-                <div class="alternativa-item" data-letra="B">
-                    <span class="letra-opcoes">B)</span>
-                    <span>Considera-se praticado o crime no momento da ação ou omissão, ainda que outro seja o momento do resultado.</span>
-                </div>
-                <div class="alternativa-item" data-letra="C">
-                    <span class="letra-opcoes">C)</span>
-                    <span>A lei excepcional ou temporária, decorrido o período de sua duração ou cessadas as circunstâncias que a determinaram, não se aplica ao fato praticado durante sua vigência.</span>
-                </div>
-                <div class="alternativa-item" data-letra="D">
-                    <span class="letra-opcoes">D)</span>
-                    <span>Considera-se praticado o crime apenas no lugar onde ocorreu a ação ou omissão, no todo ou em parte.</span>
-                </div>
-            </div>
-
-            <div class="acoes-questao">
-                <button class="btn-responder">CONFIRMAR RESPOSTA</button>
-            </div>
-
-            <div class="painel-comentario">
-                <strong>GABARITO COMENTADO (LETRA B)</strong>
-                Conforme o Art. 4º do Código Penal, adota-se a <em>Teoria da Atividade</em> para o tempo do crime: considera-se praticado o crime no momento da ação ou omissão, ainda que outro seja o momento do resultado.
-            </div>
-        </main>
-
+        <!-- Rodapé de Propriedade Padronizado -->
         <footer class="footer-institucional">
-            &copy; 2026 Método Missão. Todos os direitos reservados.
-            <br>
+            &copy; 2026 Método Missão. Todos os direitos reservados.<br>
             Plataforma oficial da metodologia de estudos Método Missão.
         </footer>
-
     </div>
 
-    <!-- SCRIPT DE INTERATIVIDADE E SEGURANÇA RED TEAM -->
-    <script>
-        // INTERATIVIDADE DA QUESTÃO
-        document.querySelectorAll('.card-questao').forEach(questaoCard => {
-            const alternativas = questaoCard.querySelectorAll('.alternativa-item');
-            const btnResponder = questaoCard.querySelector('.btn-responder');
-            const comentario = questaoCard.querySelector('.painel-comentario');
-            const respostaCorreta = questaoCard.getAttribute('data-resposta-correta');
-            let letraSelecionada = null;
+    <!-- TELA DE ALERTA PROFISSIONAL HTML -->
+    <div id="alerta-protecao">
+        <div class="alerta-caixa">
+            <h2>⚠️ Ação Bloqueada</h2>
+            <p>O conteúdo deste simulador é exclusivo e protegido por direitos autorais.</p>
+            <button class="btn-fechar-alerta" onclick="fecharAlerta()">Entendido</button>
+        </div>
+    </div>
 
-            alternativas.forEach(alt => {
-                alt.addEventListener('click', () => {
-                    alternativas.forEach(a => a.classList.remove('selecionada'));
-                    alt.classList.add('selecionada');
-                    letraSelecionada = alt.getAttribute('data-letra');
-                });
-            });
+    <!-- SCRIPTS DO SISTEMA -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-init.js"></script>
+    <script src="motor-simulador.js"></script>
+    <script src="dados-aplicacao-lei-penal.js"></script>
 
-            btnResponder.addEventListener('click', () => {
-                if (!letraSelecionada) {
-                    alert("Selecione uma alternativa antes de confirmar.");
-                    return;
-                }
-
-                alternativas.forEach(alt => {
-                    const letra = alt.getAttribute('data-letra');
-                    if (letra === respostaCorreta) {
-                        alt.classList.add('correta');
-                    } else if (letra === letraSelecionada) {
-                        alt.classList.add('incorreta');
-                    }
-                });
-
-                if (comentario) comentario.style.display = 'block';
-            });
-        });
-
-        // PROTOCOLO RED TEAM: PROTEÇÃO INTEGRAL (HERDADO DO INDEX.HTML)
-        const msgSeguranca = "🔒 PROTOCOLO DE SEGURANÇA:\nEsta ação não é permitida na plataforma integrante do ecossistema Método Missão. Este banco de questões é 100% inédito, monitorado e protegido por direitos autorais (Lei 9.610/98).";
-
-        document.addEventListener('contextmenu', e => { e.preventDefault(); alert(msgSeguranca); });
-
-        document.addEventListener('keydown', e => {
-            let bloqueado = false;
-            if (e.key === 'F12') bloqueado = true;
-            if (e.ctrlKey && e.shiftKey && ['I','i','J','j'].includes(e.key)) bloqueado = true;
-            if (e.ctrlKey && ['u','U','s','S','c','C','p','P'].includes(e.key)) bloqueado = true;
-
-            if (bloqueado) {
-                e.preventDefault();
-                alert(msgSeguranca);
-                return false;
-            }
-        });
-
-        document.addEventListener('keyup', e => {
-            if (e.key === 'PrintScreen' || e.keyCode === 44) {
-                navigator.clipboard.writeText("Conteúdo Protegido por Direitos Autorais - Método Missão 2026");
-                alert(msgSeguranca);
-            }
-        });
-
-        window.addEventListener('blur', () => {
-            const container = document.getElementById('simulador-container');
-            if (container) container.style.filter = 'blur(15px)';
-        });
-
-        window.addEventListener('focus', () => {
-            const container = document.getElementById('simulador-container');
-            if (container) container.style.filter = 'none';
-        });
-
-        const estiloAntiSelecao = document.createElement('style');
-        estiloAntiSelecao.innerHTML = `
-            body, .card-questao, .header-perfil {
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-            }
-        `;
-        document.head.appendChild(estiloAntiSelecao);
-    </script>
 </body>
 
 </html>
