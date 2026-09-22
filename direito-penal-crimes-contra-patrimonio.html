@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direito Penal - Dos Crimes Contra o Patrimônio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a2a3a;
+            --secondary-color: #2c3e50;
+            --accent-color: #b8860b;
+            --bg-light: #f8f9fa;
+        }
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+        .header-banner {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2.5rem 0;
+            border-bottom: 4px solid var(--accent-color);
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        .card-aula {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            background: white;
+            margin-bottom: 2rem;
+        }
+        .badge-artigos {
+            background-color: var(--accent-color);
+            color: white;
+            font-size: 0.95rem;
+            padding: 0.5em 1em;
+            border-radius: 20px;
+        }
+        .question-card {
+            border-left: 5px solid var(--secondary-color);
+            transition: transform 0.2s ease;
+        }
+        .btn-check-custom {
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 8px;
+        }
+        .btn-check-custom:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .explanation-box {
+            background-color: #eef4f8;
+            border-radius: 8px;
+            padding: 1.2rem;
+            border-left: 4px solid #17a2b8;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Capa / Header da Aula -->
+    <header class="header-banner">
+        <div class="container text-center">
+            <span class="badge badge-artigos mb-2"><i class="fas fa-gavel me-2"></i>Código Penal - Título II</span>
+            <h1 class="display-5 fw-bold">Direito Penal</h1>
+            <p class="lead mb-0">Dos Crimes Contra o Patrimônio</p>
+            <small class="text-light opacity-75">Artigos 155 a 183 do Código Penal Brasileiro</small>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Resumo / Capa da Aula -->
+        <div class="card card-aula p-4">
+            <div class="card-body">
+                <h3 class="card-title text-dark fw-bold border-bottom pb-2">
+                    <i class="fas fa-book-open me-2 text-warning"></i>Visão Geral do Tópico
+                </h3>
+                <p class="card-text mt-3">
+                    Este simulado abrange de forma aprofundada os temas mais recorrentes do <strong>Título II da Parte Especial do Código Penal (Arts. 155 a 183)</strong> em provas de Carreiras Policiais. Foram abordados os seguintes tópicos essenciais:
+                </p>
+                <div class="row g-3 my-2">
+                    <div class="col-md-6">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i><strong>Capítulo I:</strong> Furto (Simples, Qualificado e Coisa Comum)</li>
+                            <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i><strong>Capítulo II:</strong> Roubo e Extorsão (Majorantes e Latrocínio)</li>
+                            <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i><strong>Capítulos III e IV:</strong> Usurpação e Dano</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i><strong>Capítulo V:</strong> Apropriação Indébita (e Previdenciária)</li>
+                            <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i><strong>Capítulo VI:</strong> Estelionato e Outras Fraudes (Fraude Eletrônica)</li>
+                            <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i><strong>Capítulos VII e VIII:</strong> Receptação e Imunidades Patrimoniais</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Renderizador Dinâmico de Questões -->
+        <div id="quiz-container">
+            <!-- As questões são injetadas via JavaScript -->
+        </div>
+    </div>
+
+    <!-- Inclusão do Arquivo JS de Dados -->
+    <script src="dados-direito-penal-crimes-contra-patrimonio.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const container = document.getElementById("quiz-container");
+
+            if (typeof dadosMateria === 'undefined' || !dadosMateria.questoes) {
+                container.innerHTML = `<div class="alert alert-danger text-center">Erro ao carregar o arquivo JS de dados. Certifique-se de que o arquivo 'dados-direito-penal-crimes-contra-patrimonio.js' está na mesma pasta.</div>`;
+                return;
+            }
+
+            dadosMateria.questoes.forEach((q) => {
+                const qCard = document.createElement("div");
+                qCard.className = "card card-aula question-card p-4 mb-4";
+                
+                let alternativasHTML = "";
+                for (const [letra, texto] of Object.entries(q.alternativas)) {
+                    alternativasHTML += `
+                        <div class="form-check my-2">
+                            <input class="form-check-input" type="radio" name="q_${q.id}" id="q_${q.id}_${letra}" value="${letra}">
+                            <label class="form-check-label" for="q_${q.id}_${letra}">
+                                <strong>${letra})</strong> ${texto}
+                            </label>
+                        </div>
+                    `;
+                }
+
+                qCard.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge bg-secondary">Questão ${q.id} de ${dadosMateria.questoes.length}</span>
+                        <span class="text-muted small"><i class="fas fa-tag me-1"></i>${dadosMateria.materia}</span>
+                    </div>
+                    <h5 class="fw-bold mb-3">${q.enunciado}</h5>
+                    <div class="options-group mb-3">
+                        ${alternativasHTML}
+                    </div>
+                    <button class="btn btn-check-custom btn-sm px-4 fw-bold" onclick="verificarResposta(${q.id}, '${q.gabarito}')">
+                        <i class="fas fa-check-circle me-1"></i> Verificar Gabarito
+                    </button>
+                    <div id="exp_${q.id}" class="explanation-box mt-3">
+                        <h6 class="fw-bold text-dark mb-1"><i class="fas fa-lightbulb text-warning me-2"></i>Fundamentação Legal e Comentários:</h6>
+                        <p class="mb-0 text-dark small">${q.explicacao}</p>
+                    </div>
+                `;
+
+                container.appendChild(qCard);
+            });
+        });
+
+        function verificarResposta(id, gabaritoCorreto) {
+            const selecionada = document.querySelector(`input[name="q_${id}"]:checked`);
+            const box = document.getElementById(`exp_${id}`);
+            
+            if (!selecionada) {
+                alert("Por favor, selecione uma alternativa antes de verificar!");
+                return;
+            }
+
+            box.style.display = "block";
+            if (selecionada.value === gabaritoCorreto) {
+                box.className = "explanation-box mt-3 border-start border-success border-4 bg-success-subtle";
+            } else {
+                box.className = "explanation-box mt-3 border-start border-danger border-4 bg-danger-subtle";
+            }
+        }
+    </script>
+</body>
+</html>
