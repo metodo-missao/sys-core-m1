@@ -205,7 +205,7 @@
 
         <div class="beneficios-box">
             <div class="beneficios-titulo">Ao garantir seu acesso você tem:</div>
-            <div class="beneficio-item" id="beneficio-total-questoes">🔒 Acesso a <strong>+260 questões premium 100% inéditas</strong></div>
+            <div class="beneficio-item" id="beneficio-total-questoes">🔒 Acesso a <strong>+420 questões 100% inéditas</strong></div>
             <div class="beneficio-item">📈 Banco de questões crescendo continuamente, sem custo extra</div>
             <div class="beneficio-item">🎯 Mini-aula + explicação completa em cada questão</div>
             <div class="beneficio-item">💰 Preço de lançamento por tempo limitado</div>
@@ -224,16 +224,23 @@
             </div>
             <div class="passo-item">
                 <div class="passo-numero">3</div>
-                <div>Seu acesso é liberado automaticamente em poucos minutos</div>
+                <div>Seu acesso é liberado assim que confirmamos o pagamento</div>
             </div>
         </div>
 
         <div class="formulario-area">
-            <a href="#" id="btn-acao-principal" class="btn-acao" target="_blank">
+            <a href="#" id="btn-espera" class="btn-acao" target="_blank">
                 👉 QUERO ENTRAR NA LISTA VIP
             </a>
+
+            <a href="login.html" id="btn-passo1" class="btn-acao" style="display: none; background-color: transparent; border: 2px solid #ffcc00; color: #ffcc00; margin-bottom: 12px;">
+                1️⃣ Criar minha conta grátis
+            </a>
+            <a href="#" id="btn-passo2" class="btn-acao" target="_blank" style="display: none;">
+                2️⃣ Já criei a conta — Pagar agora
+            </a>
             <a href="login.html" id="link-login" class="link-secundario" style="display: none;">
-                Já tem conta? Fazer login
+                Já tem conta e já pagou? Fazer login
             </a>
         </div>
 
@@ -257,7 +264,9 @@
         const LINK_PAGAMENTO = "https://mpago.la/1Ej8ex8";
         const LINK_LISTA_ESPERA = "https://tally.so/r/MeqQyl";
 
-        const btnAcao = document.getElementById("btn-acao-principal");
+        const btnEspera = document.getElementById("btn-espera");
+        const btnPasso1 = document.getElementById("btn-passo1");
+        const btnPasso2 = document.getElementById("btn-passo2");
         const linkLogin = document.getElementById("link-login");
         const blocoComoFunciona = document.getElementById("bloco-como-funciona");
         const badgeTopo = document.getElementById("badge-topo");
@@ -268,12 +277,18 @@
             badgeTopo.textContent = "👑 Acesso Premium Disponível";
             tituloPrincipal.innerHTML = 'Desbloqueie a <span>Versão Completa Premium</span>';
             subtituloPrincipal.textContent = "Garanta agora o acesso completo aos simulados inéditos e de alta performance.";
-            btnAcao.href = LINK_PAGAMENTO;
-            btnAcao.textContent = "💳 GARANTIR MEU ACESSO AGORA";
+
+            // Esconde o botão antigo de lista de espera
+            btnEspera.style.display = "none";
+
+            // Mostra os dois passos, nessa ordem: 1) criar conta  2) pagar
+            btnPasso2.href = LINK_PAGAMENTO;
+            btnPasso1.style.display = "block";
+            btnPasso2.style.display = "block";
             blocoComoFunciona.style.display = "block";
             linkLogin.style.display = "block";
         } else {
-            btnAcao.href = LINK_LISTA_ESPERA;
+            btnEspera.href = LINK_LISTA_ESPERA;
         }
     </script>
 
