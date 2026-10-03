@@ -4,7 +4,7 @@ const flashcardsFirefox = [
         materia: "Informática - Firefox",
         pergunta: "Qual é o comando de teclado utilizado para abrir uma nova JANELA PRIVATIVA no Mozilla Firefox?",
         resposta: "O atalho é Ctrl + Shift + P.",
-        fundamento: "Pegadinha da FUNDATEC: No Chrome é Ctrl + Shift + N. No Firefox e Edge é P (de Private)."
+        fundamento: "Pegadinha: No Chrome é Ctrl + Shift + N. No Firefox e Edge é P (de Private)."
     },
     {
         id: 2,

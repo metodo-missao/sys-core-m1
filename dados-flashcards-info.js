@@ -107,7 +107,7 @@ const bancoAulas = {
         {
             pergunta: "No Google Chrome, qual o atalho de teclado utilizado para abrir uma nova janela em modo de navegação anônima?",
             resposta: "Ctrl + Shift + N",
-            fundamento: "A maior pegadinha da FUNDATEC! Lembre-se: 'N' de Navegação Anônima. No Firefox o comando é Ctrl + Shift + P (Private). A banca adora trocar os dois para confundir o candidato."
+            fundamento: "A maior pegadinha das Bancas! Lembre-se: 'N' de Navegação Anônima. No Firefox o comando é Ctrl + Shift + P (Private). A banca adora trocar os dois para confundir o candidato."
         },
         {
             pergunta: "Se uma única aba do Google Chrome travar ou começar a consumir muita memória, qual atalho abre o Gerenciador de Tarefas exclusivo do próprio navegador para finalizá-la?",
@@ -159,7 +159,7 @@ const bancoAulas = {
         {
             pergunta: "O Modo de Navegação Anônima do Google Chrome impede que seu provedor de internet (ISP) ou o administrador da rede do seu trabalho monitorem quais sites você visitou?",
             resposta: "Não, ele NÃO impede.",
-            fundamento: "Tema predileto da FUNDATEC! O modo anônimo apenas evita que o histórico e os cookies fiquem salvos NO SEU COMPUTADOR local. Sua atividade ainda é perfeitamente visível para os sites visitados, seu empregador e seu provedor de internet."
+            fundamento: "Tema predileto da Bancas! O modo anônimo apenas evita que o histórico e os cookies fiquem salvos NO SEU COMPUTADOR local. Sua atividade ainda é perfeitamente visível para os sites visitados, seu empregador e seu provedor de internet."
         },
         {
             pergunta: "Qual recurso nativo de segurança do Google Chrome analisa URLs em tempo real e emite alertas vermelhos antes do usuário acessar sites falsos (phishing) ou perigosos?",
