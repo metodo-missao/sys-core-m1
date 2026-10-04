@@ -135,6 +135,23 @@
             justify-content: center;
         }
 
+        .preco-destaque {
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        .preco-valor {
+            font-size: 34px;
+            font-weight: 900;
+            color: #ffcc00;
+        }
+
+        .preco-prazo {
+            font-size: 13px;
+            color: #a0aec0;
+            margin-top: 2px;
+        }
+
         .formulario-area {
             background: #041d4d;
             border: 1px dashed rgba(255, 204, 0, 0.3);
@@ -208,7 +225,7 @@
             <div class="beneficio-item" id="beneficio-total-questoes">🔒 Acesso a <strong>+420 questões 100% inéditas</strong></div>
             <div class="beneficio-item">📈 Banco de questões crescendo continuamente, sem custo extra</div>
             <div class="beneficio-item">🎯 Mini-aula + explicação completa em cada questão</div>
-            <div class="beneficio-item">💰 Preço de lançamento por tempo limitado</div>
+            <div class="beneficio-item">💰 Apenas <strong>R$ 29,90</strong> — acesso por <strong>2 meses</strong></div>
         </div>
 
         <!-- Bloco "Como funciona" - só aparece quando o pagamento estiver ativo -->
@@ -226,6 +243,11 @@
                 <div class="passo-numero">3</div>
                 <div>Seu acesso é liberado assim que confirmamos o pagamento</div>
             </div>
+        </div>
+
+        <div class="preco-destaque" id="preco-destaque" style="display: none;">
+            <div class="preco-valor">R$ 29,90</div>
+            <div class="preco-prazo">acesso por 2 meses · pagamento único</div>
         </div>
 
         <div class="formulario-area">
@@ -286,6 +308,7 @@
             btnPasso1.style.display = "block";
             btnPasso2.style.display = "block";
             blocoComoFunciona.style.display = "block";
+            document.getElementById("preco-destaque").style.display = "block";
             linkLogin.style.display = "block";
         } else {
             btnEspera.href = LINK_LISTA_ESPERA;
