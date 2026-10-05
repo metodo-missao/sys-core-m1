@@ -276,14 +276,41 @@
             line-height: 1.6;
         }
     </style>
+    <style>
+        /* MM-LOGIN: visual da area do aluno */
+        .area-aluno { position: relative; margin: 4px 0 20px; padding: 22px 18px 18px; border-radius: 16px; text-align: center; overflow: hidden;
+            background: linear-gradient(160deg, #052259 0%, #031842 60%); border: 1px solid rgba(255, 202, 40, 0.35);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.06); }
+        .area-aluno::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #ffca28, transparent); }
+        .aa-eyebrow { font-size: 11px; font-weight: 800; letter-spacing: 2px; color: #ffca28; }
+        .aa-titulo { font-size: 19px; font-weight: 800; color: #ffffff; margin: 6px 0; }
+        .aa-sub { font-size: 13px; line-height: 1.5; color: #8a99ad; margin: 0 0 16px; }
+        .aa-btn { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 50px; padding: 13px 16px; border-radius: 12px; box-sizing: border-box;
+            font-size: 14px; font-weight: 800; letter-spacing: 0.8px; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s, color 0.15s; }
+        .aa-btn-ouro { background: linear-gradient(135deg, #ffe082 0%, #ffca28 45%, #ffa000 100%); color: #02112e; box-shadow: 0 6px 18px rgba(255, 202, 40, 0.28); }
+        .aa-btn-ouro:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(255, 202, 40, 0.4); }
+        .aa-btn-ouro:active { transform: scale(0.98); }
+        .aa-btn-contorno { margin-top: 10px; background: transparent; color: #ffffff; border: 1.5px solid rgba(255, 255, 255, 0.22); }
+        .aa-btn-contorno:hover { border-color: #ffca28; color: #ffca28; }
+        .aa-topo { display: flex; align-items: center; gap: 12px; text-align: left; margin-bottom: 14px; }
+        .aa-avatar { flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 18px; font-weight: 900; color: #02112e; background: linear-gradient(135deg, #ffe082, #ffa000); }
+        .aa-dados { flex: 1; min-width: 0; }
+        .aa-email { margin-top: 2px; font-size: 13px; font-weight: 600; color: #ffffff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .aa-sair { width: auto; min-height: 36px; padding: 8px 14px; font-size: 12px; letter-spacing: 0.5px; color: #8a99ad; background: transparent; border: 1px solid rgba(255, 255, 255, 0.15); }
+        .aa-sair:hover { color: #ffffff; border-color: #ffca28; }
+        .aa-badge { display: inline-block; padding: 7px 14px; border-radius: 50px; font-size: 12px; font-weight: 800; letter-spacing: 1px; color: #8a99ad; border: 1px solid rgba(255, 255, 255, 0.18); }
+        .aa-badge-premium { color: #02112e; background: linear-gradient(135deg, #ffe082, #ffca28); border-color: transparent; }
+        .aa-badge + .aa-btn, .aa-badge + .aa-sub { margin-top: 12px; }
+        .chamada-gratis { text-align: center; margin-bottom: 12px; }
+        .chamada-gratis-selo { display: inline-block; padding: 6px 14px; border-radius: 50px; font-size: 12px; font-weight: 800; letter-spacing: 1.2px; color: #2ecc71; background: rgba(46, 204, 113, 0.1); border: 1px solid rgba(46, 204, 113, 0.45); }
+        .chamada-gratis-texto { margin-top: 8px; font-size: 13px; line-height: 1.4; color: #8a99ad; }
+    </style>
 </head>
 
 <body>
 
     <div id="simulador-container" class="container">
-
-        <!-- MM-LOGIN: barra de conta (passo 2) -->
-        <div id="barra-conta" style="display:flex; justify-content:flex-end; align-items:center; gap:10px; flex-wrap:wrap; font-size:12px; color:#8a99ad; padding:0 4px 10px 4px;"></div>
 
         <div class="container-logo">
             <!-- A imagem widescreen gerada foi adicionada aqui -->
@@ -298,7 +325,16 @@
             </p>
         </header>
 
+        <!-- MM-LOGIN: area do aluno (abaixo do banner) -->
+        <section id="area-aluno" class="area-aluno" style="display:none;"></section>
+
         <main class="links-container">
+
+            <!-- MM-LOGIN: chamada para o conteudo gratuito -->
+            <div class="chamada-gratis">
+                <span class="chamada-gratis-selo">🎁 COMECE GRÁTIS · SEM CADASTRO</span>
+                <p class="chamada-gratis-texto">Experimente a primeira aula de cada matéria, sem precisar de conta.</p>
+            </div>
 
             <a href="javascript:void(0);" id="btn-gabarita" class="link-item link-principal">⚡ Clique Aqui para Iniciar
                 o Simulador Interativo</a>
@@ -585,27 +621,60 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
     <script>
         (async function () {
-            const barra = document.getElementById('barra-conta');
+            const area = document.getElementById('area-aluno');
+
+            function el(tag, classe, texto) {
+                const e = document.createElement(tag);
+                if (classe) e.className = classe;
+                if (texto) e.textContent = texto;
+                return e;
+            }
+            function botao(texto, href, classe) {
+                const a = el('a', 'aa-btn ' + classe, texto);
+                a.href = href;
+                return a;
+            }
+            function renderVisitante() {
+                area.textContent = '';
+                area.appendChild(el('div', 'aa-eyebrow', 'ÁREA DO ALUNO'));
+                area.appendChild(el('div', 'aa-titulo', 'Já é aluno premium?'));
+                area.appendChild(el('p', 'aa-sub', 'Entre com a sua conta para acessar todas as matérias do seu plano.'));
+                area.appendChild(botao('ENTRAR NA MINHA CONTA  →', 'login.html', 'aa-btn-ouro'));
+                area.style.display = 'block';
+            }
+            function renderLogado(email, plano) {
+                area.textContent = '';
+                const topo = el('div', 'aa-topo');
+                topo.appendChild(el('div', 'aa-avatar', email.charAt(0).toUpperCase()));
+                const dados = el('div', 'aa-dados');
+                dados.appendChild(el('div', 'aa-eyebrow', 'ÁREA DO ALUNO'));
+                dados.appendChild(el('div', 'aa-email', email));
+                topo.appendChild(dados);
+                topo.appendChild(botao('Sair', 'sair.html', 'aa-sair'));
+                area.appendChild(topo);
+                if (String(plano).toLowerCase() === 'premium') {
+                    area.appendChild(el('span', 'aa-badge aa-badge-premium', '👑 PLANO PREMIUM ATIVO'));
+                    area.appendChild(el('p', 'aa-sub', 'Suas aulas premium estão liberadas. Escolha uma matéria abaixo 👇'));
+                } else if (!plano) {
+                    area.appendChild(el('span', 'aa-badge', 'PLANO INDISPONÍVEL NO MOMENTO'));
+                } else {
+                    area.appendChild(el('span', 'aa-badge', 'PLANO GRATUITO'));
+                    area.appendChild(botao('👑 DESBLOQUEAR VERSÃO PREMIUM', 'acesso-premium.html', 'aa-btn-ouro'));
+                }
+                area.style.display = 'block';
+            }
             try {
                 const cliente = window.supabase.createClient(
                     "https://kulaumnlntcepiikqpts.supabase.co",
                     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt1bGF1bW5sbnRjZXBpaWtxcHRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQzNDU2NDMsImV4cCI6MjA5OTkyMTY0M30.GFPptPiuy1TEao-_n_GQVlfvX7R4gDwTaY8h1ZxU76s"
                 );
 
-                function criarLink(texto, href, cor) {
-                    const a = document.createElement('a');
-                    a.textContent = texto;
-                    a.href = href;
-                    a.style.cssText = 'color:' + cor + '; text-decoration:none; font-weight:bold;';
-                    return a;
-                }
-
                 const { data: sessaoData } = await cliente.auth.getSession();
                 const sessao = sessaoData && sessaoData.session;
 
                 if (!sessao) {
                     window.MM_PLANO = 'visitante';
-                    barra.appendChild(criarLink('Entrar', 'login.html', '#ffca28'));
+                    renderVisitante();
                     return;
                 }
 
@@ -618,12 +687,57 @@
                 window.MM_PLANO = (perfil && perfil.plano) ? perfil.plano : 'gratuito';
                 console.log('MM-LOGIN | plano:', window.MM_PLANO, '| erro:', error);
 
-                const info = document.createElement('span');
-                info.textContent = sessao.user.email + ' · plano: ' + (error ? 'erro ao ler' : window.MM_PLANO);
-                barra.appendChild(info);
-                barra.appendChild(criarLink('Sair', 'sair.html', '#ffca28'));
+                // Itens bloqueados que viram links reais para alunos premium.
+                // Item que NAO estiver nesta lista fica como "EM BREVE" para o premium.
+                const MM_LIBERADOS = {
+                    'Questões: Da Extinção da Punibilidade': 'direito-penal-extincao-punibilidade.html',
+                    'Direitos e Garantias Fundamentais (Art. 5º ao 10 e 14 ao 17)': 'questoes-constitucional-direitos-fundamentais.html',
+                    'Organização do Estado (Art. 21 ao 28)': 'constitucional-organizacao-estado.html',
+                    'Administração Pública (Art. 37 ao 41)': 'constitucional-administracao-publica.html',
+                    'Ministério Público (Art. 127 ao 129)': 'constitucional-ministerio-publico.html',
+                    'Advocacia e Defensoria Pública (Art. 131 ao 134)': 'constitucional-advocacia-defensoria.html',
+                    'Segurança Pública (Art. 144)': 'constitucional-seguranca-publica.html',
+                    'Direitos Civis e Políticos (Art. 3º ao 21)': 'dudh-direitos-civis-politicos.html',
+                    'Direitos Econômicos, Sociais e Culturais (Art. 22 ao 27)': 'dudh-direitos-sociais-culturais.html',
+                    'Deveres do Indivíduo e Disposições Finais (Art. 28 ao 30)': 'dudh-deveres-disposicoes-finais.html',
+                    'Assistência à Mulher e Atendimento Policial (Art. 8º ao 12-C)': 'legislacao-maria-da-penha-assistencia.html',
+                    'Procedimentos Gerais e Órgãos (Art. 13 ao 17)': 'legislacao-maria-da-penha-procedimentos.html',
+                    'Medidas Protetivas de Urgência (Art. 18 ao 24)': 'legislacao-maria-da-penha-medidas-protetivas.html',
+                    'Crime de Descumprimento de Medida Protetiva (Art. 24-A)': 'legislacao-maria-da-penha-crime-descumprimento.html',
+                    'Processo, Julgamento e Finais (Art. 25 ao 46)': 'legislacao-maria-da-penha-processo-julgamento.html',
+                    'Acesso à Justiça e Crimes (Art. 79 ao 91)': 'estatuto-pcd-acesso-justica-crimes.html',
+                    'Direitos Fundamentais (Art. 11 ao 32)': 'estatuto-igualdade-racial-direitos-fundamentais.html',
+                    'Sistema de Promoção da Igualdade (Art. 33 ao 49)': 'estatuto-igualdade-racial-sistema-promocao.html'
+                };
+
+                function normalizarRotulo(t) {
+                    return t.replace('\uD83D\uDD12', '').replace(/\s+/g, ' ').trim();
+                }
+
+                if (String(window.MM_PLANO).toLowerCase() === 'premium') {
+                    document.querySelectorAll('a.aula-item[href="acesso-premium.html"]').forEach(function (a) {
+                        const spans = a.querySelectorAll('span');
+                        if (spans.length < 2) return;
+                        const nome = normalizarRotulo(spans[0].textContent);
+                        const destino = MM_LIBERADOS[nome];
+                        if (destino) {
+                            a.href = destino;
+                            spans[0].textContent = '\uD83D\uDCDD ' + nome;
+                            spans[1].textContent = 'INICIAR \u25B6';
+                            a.style.opacity = '';
+                            a.style.backgroundColor = '';
+                        } else {
+                            a.href = 'javascript:void(0);';
+                            spans[1].textContent = 'EM BREVE \u23F3';
+                            a.style.cursor = 'default';
+                        }
+                    });
+                }
+
+                renderLogado(sessao.user.email, error ? null : window.MM_PLANO);
             } catch (e) {
                 console.error('MM-LOGIN falhou (site segue normal):', e);
+                if (area && !area.children.length) renderVisitante();
             }
         })();
     </script>
