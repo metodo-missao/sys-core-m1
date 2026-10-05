@@ -282,6 +282,9 @@
 
     <div id="simulador-container" class="container">
 
+        <!-- MM-LOGIN: barra de conta (passo 2) -->
+        <div id="barra-conta" style="display:flex; justify-content:flex-end; align-items:center; gap:10px; flex-wrap:wrap; font-size:12px; color:#8a99ad; padding:0 4px 10px 4px;"></div>
+
         <div class="container-logo">
             <!-- A imagem widescreen gerada foi adicionada aqui -->
             <img src="logo.png" alt="Método Missão" class="logo-oficial">
@@ -577,6 +580,53 @@
         </footer>
 
     </div>
+
+    <!-- MM-LOGIN: leitura de sessao e plano (passo 2). Isolado em try/catch: se falhar, o site segue normal. -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script>
+        (async function () {
+            const barra = document.getElementById('barra-conta');
+            try {
+                const cliente = window.supabase.createClient(
+                    "https://kulaumnlntcepiikqpts.supabase.co",
+                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt1bGF1bW5sbnRjZXBpaWtxcHRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQzNDU2NDMsImV4cCI6MjA5OTkyMTY0M30.GFPptPiuy1TEao-_n_GQVlfvX7R4gDwTaY8h1ZxU76s"
+                );
+
+                function criarLink(texto, href, cor) {
+                    const a = document.createElement('a');
+                    a.textContent = texto;
+                    a.href = href;
+                    a.style.cssText = 'color:' + cor + '; text-decoration:none; font-weight:bold;';
+                    return a;
+                }
+
+                const { data: sessaoData } = await cliente.auth.getSession();
+                const sessao = sessaoData && sessaoData.session;
+
+                if (!sessao) {
+                    window.MM_PLANO = 'visitante';
+                    barra.appendChild(criarLink('Entrar', 'login.html', '#ffca28'));
+                    return;
+                }
+
+                const { data: perfil, error } = await cliente
+                    .from('profiles')
+                    .select('plano')
+                    .eq('id', sessao.user.id)
+                    .single();
+
+                window.MM_PLANO = (perfil && perfil.plano) ? perfil.plano : 'gratuito';
+                console.log('MM-LOGIN | plano:', window.MM_PLANO, '| erro:', error);
+
+                const info = document.createElement('span');
+                info.textContent = sessao.user.email + ' · plano: ' + (error ? 'erro ao ler' : window.MM_PLANO);
+                barra.appendChild(info);
+                barra.appendChild(criarLink('Sair', 'sair.html', '#ffca28'));
+            } catch (e) {
+                console.error('MM-LOGIN falhou (site segue normal):', e);
+            }
+        })();
+    </script>
 
     <script>
         // LISTA DE SUBMENUS REGISTRADOS
