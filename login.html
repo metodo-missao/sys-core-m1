@@ -161,8 +161,10 @@
                 <label for="senha">Senha</label>
                 <input type="password" id="senha" required autocomplete="current-password">
 
-                <label for="cpf">CPF</label>
-                <input type="text" id="cpf" inputmode="numeric" maxlength="14" autocomplete="off" placeholder="000.000.000-00">
+                <div id="campo-cpf" style="display: none;">
+                    <label for="cpf">CPF</label>
+                    <input type="text" id="cpf" inputmode="numeric" maxlength="14" autocomplete="off" placeholder="000.000.000-00">
+                </div>
 
                 <button type="submit" class="btn-entrar" id="btn-entrar">Entrar</button>
                 <button type="button" class="btn-cadastrar" id="btn-cadastrar">Criar minha conta</button>
@@ -191,6 +193,7 @@
         const btnEntrar = document.getElementById("btn-entrar");
         const btnCadastrar = document.getElementById("btn-cadastrar");
         const cpfInput = document.getElementById("cpf");
+        const campoCpf = document.getElementById("campo-cpf");
 
         // Para onde mandar o aluno depois de logar.
         // Pode trocar por "?redirect=..." na URL se quiser voltar pra página que ele tentou abrir.
@@ -247,6 +250,12 @@
             }
             if (senhaInput.value.length < 6) {
                 mostrarMensagem("A senha precisa ter pelo menos 6 caracteres.", "erro");
+                return;
+            }
+            if (campoCpf.style.display === "none") {
+                campoCpf.style.display = "block";
+                cpfInput.focus();
+                mostrarMensagem("Informe seu CPF para concluir o cadastro.", "");
                 return;
             }
             if (!cpfValido(cpfInput.value)) {
