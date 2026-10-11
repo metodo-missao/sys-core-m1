@@ -237,11 +237,11 @@
             </div>
             <div class="passo-item">
                 <div class="passo-numero">2</div>
-                <div>Pague com o <strong>mesmo e-mail</strong> da sua conta</div>
+                <div>Clique em <strong>Pagar agora</strong> e finalize o pagamento (Pix ou cartão)</div>
             </div>
             <div class="passo-item">
                 <div class="passo-numero">3</div>
-                <div>Seu acesso é liberado assim que confirmamos o pagamento</div>
+                <div>Seu acesso premium é liberado automaticamente após a confirmação</div>
             </div>
         </div>
 
@@ -275,6 +275,7 @@
 
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
     <script>
         // ==========================================================================
         // INTERRUPTOR DE VENDAS
@@ -304,7 +305,7 @@
             btnEspera.style.display = "none";
 
             // Mostra os dois passos, nessa ordem: 1) criar conta  2) pagar
-            btnPasso2.href = LINK_PAGAMENTO;
+            btnPasso2.href = "#";
             btnPasso1.style.display = "block";
             btnPasso2.style.display = "block";
             blocoComoFunciona.style.display = "block";
@@ -313,6 +314,31 @@
         } else {
             btnEspera.href = LINK_LISTA_ESPERA;
         }
+
+        // Pagar agora: cria o checkout ligado à conta do aluno logado
+        const SUPABASE_URL = "https://kulaumnlntcepiikqpts.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt1bGF1bW5sbnRjZXBpaWtxcHRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQzNDU2NDMsImV4cCI6MjA5OTkyMTY0M30.GFPptPiuy1TEao-_n_GQVlfvX7R4gDwTaY8h1ZxU76s";
+        const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        btnPasso2.addEventListener("click", async (e) => {
+            e.preventDefault();
+            const textoOriginal = btnPasso2.textContent;
+            btnPasso2.textContent = "Aguarde...";
+
+            const { data: { session } } = await client.auth.getSession();
+            if (!session) {
+                window.location.href = "login.html";
+                return;
+            }
+
+            const { data, error } = await client.functions.invoke("criar-pagamento");
+            if (error || !data || !data.url) {
+                btnPasso2.textContent = textoOriginal;
+                alert("Não foi possível abrir o pagamento. Tente novamente.");
+                return;
+            }
+            window.location.href = data.url;
+        });
     </script>
 
     <!-- PROTOCOLO RED TEAM: PROTEÇÃO INTEGRAL DA PÁGINA -->
