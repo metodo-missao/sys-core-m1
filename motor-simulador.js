@@ -1,3 +1,9 @@
+// Remove automaticamente o botão antigo de 10 questões em TODAS as aulas
+const botaoAntigo = document.querySelector('.info-simulado');
+if (botaoAntigo) {
+    botaoAntigo.style.display = 'none';
+}
+
 // Variáveis de controle globais
 let totalQuestoes = 0;
 let respondidas = 0;
@@ -16,7 +22,7 @@ function renderizarSimulador(listaQuestoes) {
     avisoInicio.style = "display: flex; align-items: flex-start; gap: 8px; text-align: left; margin-bottom: 30px; padding: 15px; background-color: #02112e; border: 1px dashed #ffca28; border-radius: 8px; color: #ffffff; line-height: 1.5; text-transform: uppercase;";
     avisoInicio.innerHTML = `
         <strong style="color: #ffca28; white-space: nowrap;">🎯 FOCO NA MISSÃO:</strong>
-        <span>Este bloco contém <strong style="color: #ffffff;">${totalQuestoes} questões</strong> estruturadas no mapeamento estratégico da lei seca atualizada.</span>
+        <span>Este bloco contém <strong style="color: #ffffff;">${totalQuestoes} questões</strong> estruturadas no mapeamento estratégico da legislação atualizada e conforme os conteúdos mais cobrados em carreiras policiais.</span>
     `;
     container.appendChild(avisoInicio);
 
