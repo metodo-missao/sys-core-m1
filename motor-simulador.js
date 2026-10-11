@@ -1,3 +1,23 @@
+// ==========================================
+// AJUSTE VISUAL SOMENTE PARA CELULAR (telas até 600px)
+// No desktop/notebook esta regra não tem nenhum efeito
+// ==========================================
+(function () {
+    const estiloCelular = document.createElement('style');
+    estiloCelular.textContent = `
+        @media (max-width: 600px) {
+            body { padding: 12px 8px; }
+            .questao-bloco, .mini-aula-bloco { padding: 16px 12px; }
+            .questao-texto-bloco { font-size: 15px; margin-bottom: 18px; }
+            .opcoes-container > div { gap: 6px !important; }
+            .opcao { padding: 10px; font-size: 15px; line-height: 1.4; }
+            .opcao input { margin-right: 10px; width: 18px; height: 18px; flex-shrink: 0; }
+            .btn-tesoura { padding: 6px 8px; font-size: 13px; flex-shrink: 0; }
+        }
+    `;
+    document.head.appendChild(estiloCelular);
+})();
+
 // Remove automaticamente o botão antigo de 10 questões em TODAS as aulas
 const botaoAntigo = document.querySelector('.info-simulado');
 if (botaoAntigo) {
