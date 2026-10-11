@@ -637,10 +637,23 @@
             function renderVisitante() {
                 area.textContent = '';
                 area.appendChild(el('div', 'aa-eyebrow', 'ÁREA DO ALUNO'));
-                area.appendChild(el('div', 'aa-titulo', 'Já é aluno premium?'));
-                area.appendChild(el('p', 'aa-sub', 'Entre com a sua conta para acessar todas as matérias do seu plano.'));
-                area.appendChild(botao('ENTRAR NA MINHA CONTA  →', 'login.html', 'aa-btn-ouro'));
+                area.appendChild(el('div', 'aa-titulo', 'Como você quer começar?'));
+                area.appendChild(el('p', 'aa-sub', 'Sem cadastro: a primeira aula de cada matéria é aberta e gratuita.'));
+                const btnGratis = botao('⚡ COMEÇAR GRÁTIS', 'javascript:void(0);', 'aa-btn-ouro');
+                btnGratis.addEventListener('click', function () {
+                    const menu = document.getElementById('menu-materias');
+                    if (menu) {
+                        menu.style.display = 'block';
+                        menu.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                });
+                area.appendChild(btnGratis);
+                const btnEntrar = botao('👑 JÁ SOU ALUNO PREMIUM - ENTRAR', 'login.html', 'aa-btn-ouro');
+                btnEntrar.style.marginTop = '10px';
+                area.appendChild(btnEntrar);
                 area.style.display = 'block';
+                const chamadaGratis = document.querySelector('.chamada-gratis');
+                if (chamadaGratis) chamadaGratis.style.display = 'none';
             }
             function renderLogado(email, plano) {
                 area.textContent = '';
@@ -662,6 +675,8 @@
                     area.appendChild(botao('👑 DESBLOQUEAR VERSÃO PREMIUM', 'acesso-premium.html', 'aa-btn-ouro'));
                 }
                 area.style.display = 'block';
+                const chamadaGratis = document.querySelector('.chamada-gratis');
+                if (chamadaGratis) chamadaGratis.style.display = 'none';
             }
             try {
                 const cliente = window.supabase.createClient(
@@ -690,6 +705,8 @@
                 // Itens bloqueados que viram links reais para alunos premium.
                 // Item que NAO estiver nesta lista fica como "EM BREVE" para o premium.
                 const MM_LIBERADOS = {
+                    'Questões: Dos Crimes Contra a Pessoa': 'dados-direito-penal-crimes-contra-pessoa.html',
+                    'Questões: Dos Crimes Contra o Patrimônio': 'direito-penal-crimes-contra-patrimonio.html',
                     'Questões: Da Extinção da Punibilidade': 'direito-penal-extincao-punibilidade.html',
                     'Direitos e Garantias Fundamentais (Art. 5º ao 10 e 14 ao 17)': 'questoes-constitucional-direitos-fundamentais.html',
                     'Organização do Estado (Art. 21 ao 28)': 'constitucional-organizacao-estado.html',
