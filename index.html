@@ -70,7 +70,7 @@
 
         .container {
             width: 100%;
-            max-width: 480px;
+            max-width: 1000px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -78,12 +78,12 @@
         }
 
         /* ==========================================================================
-           4. TOPO INSTITUCIONAL COM LOGO AMPLIADA AO MÁXIMO
+           4. TOPO INSTITUCIONAL (BANNER)
            ========================================================================== */
         .container-logo {
             width: 100%;
-            max-width: 440px;
-            margin-bottom: 12px;
+            max-width: 100%;
+            margin-bottom: 24px;
             text-align: center;
         }
 
@@ -92,6 +92,16 @@
             height: auto;
             display: block;
             border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .header-perfil,
+        .links-container,
+        .footer-institucional {
+            width: 100%;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* ==========================================================================
@@ -100,7 +110,6 @@
         .header-perfil {
             text-align: center;
             margin-bottom: 24px;
-            width: 100%;
         }
 
         .badge-missao {
@@ -135,10 +144,9 @@
         }
 
         /* ==========================================================================
-           6. HUB DE LINKS (MECÂNICA DIRETIVA)
+           6. HUB DE LINKS
            ========================================================================== */
         .links-container {
-            width: 100%;
             display: flex;
             flex-direction: column;
             gap: 16px;
@@ -174,7 +182,7 @@
         }
 
         /* ==========================================================================
-           7. SEÇÃO DOS TÓPICOS DAS AULAS (MENU OCULTO DINÂMICO)
+           7. SEÇÃO DOS TÓPICOS DAS AULAS
            ========================================================================== */
         .secao-topicos {
             display: none;
@@ -213,6 +221,7 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
+            width: 100%;
         }
 
         .aula-item {
@@ -228,34 +237,14 @@
             text-decoration: none;
             font-size: 14px;
             font-weight: 600;
+            text-align: left;
             transition: border-color 0.2s, background-color 0.2s;
         }
 
-        /* ALINHAMENTO PERFEITO NA QUEBRA DE LINHA (TABULAÇÃO DO TÍTULO) */
-        .aula-item .bloco-texto {
-            display: flex;
-            align-items: flex-start;
-            flex: 1;
-            margin-right: 12px;
-            line-height: 1.35;
+        .aula-item>span:first-child {
             text-align: left;
-        }
-
-        .aula-item .bloco-texto .icone {
-            margin-right: 8px;
-            flex-shrink: 0;
-        }
-
-        .aula-item .bloco-texto .texto-principal {
             flex: 1;
-        }
-
-        /* GARANTE ESPAÇAMENTO E EVITA COLISÃO EM OUTROS ITENS */
-        .aula-item span:first-child:not(.bloco-texto) {
-            flex: 1;
-            margin-right: 12px;
-            line-height: 1.35;
-            text-align: left;
+            padding-right: 10px;
         }
 
         .aula-item:hover {
@@ -267,11 +256,12 @@
             color: var(--cor-ouro);
             font-weight: 700;
             font-size: 12px;
-            flex-shrink: 0;
+            text-align: right;
+            white-space: nowrap;
         }
 
         /* ==========================================================================
-           8. FOOTER DE SEGURANÇA
+           8. FOOTER
            ========================================================================== */
         .footer-institucional {
             margin-top: 40px;
@@ -279,6 +269,8 @@
             color: var(--cor-texto-mutado);
             text-align: center;
             letter-spacing: 0.5px;
+            padding-bottom: 20px;
+            line-height: 1.6;
         }
     </style>
 </head>
@@ -287,8 +279,11 @@
 
     <div id="simulador-container" class="container">
 
+        <!-- Barra de Conta (Login/Sair) -->
+        <div id="barra-conta" style="display:flex; justify-content:flex-end; align-items:center; gap:10px; flex-wrap:wrap; font-size:12px; color:#8a99ad; padding:0 4px 10px 4px;"></div>
+
         <div class="container-logo">
-            <img src="logo.png" alt="Gabarita Aí" class="logo-oficial">
+            <img src="logo.png" alt="Método Missão" class="logo-oficial">
         </div>
 
         <header class="header-perfil">
@@ -304,76 +299,76 @@
             <a href="javascript:void(0);" id="btn-gabarita" class="link-item link-principal">⚡ Clique Aqui para Iniciar
                 o Simulador Interativo</a>
 
+            <!-- BOTÃO DO SIMULADO GMJ -->
+            <a href="javascript:void(0);" id="btn-simulado-gmj" class="link-item"
+                style="border-color: var(--cor-sucesso); box-shadow: 0 0 15px rgba(46, 204, 113, 0.18);">
+                🛡️ 1º Simulado Guarda Municipal de Joinville (Grátis)
+            </a>
+
+            <!-- MENU PRINCIPAL DE MATÉRIAS -->
             <section id="menu-materias" class="secao-topicos">
                 <h3 class="titulo-secao">📚 Escolha a Matéria</h3>
                 <div class="lista-aulas">
-
-                    <a href="javascript:void(0);" id="btn-penal" class="aula-item"
-                        style="border-color: var(--cor-ouro); margin-bottom: 8px;">
-                        <span class="bloco-texto">
-                            <span class="icone">⚖️</span>
-                            <span class="texto-principal">DIREITO PENAL</span>
-                        </span>
+                    <a href="javascript:void(0);" id="btn-penal" class="aula-item" style="border-color: var(--cor-ouro);">
+                        <span>⚖️ DIREITO PENAL</span>
                         <span class="seta-iniciar">VER AULAS 👇</span>
                     </a>
-
-                    <a href="javascript:void(0);" id="btn-constitucional" class="aula-item"
-                        style="border-color: #ffcc00; background-color: #041d4d; margin-bottom: 8px;">
-                        <span class="bloco-texto">
-                            <span class="icone">👑</span>
-                            <span class="texto-principal" style="color: #ffcc00; font-weight: bold;">DIREITO CONSTITUCIONAL</span>
-                        </span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">CONTEÚDO VIP 🔒</span>
+                    <a href="javascript:void(0);" id="btn-constitucional" class="aula-item" style="border-color: #ffcc00; background-color: #041d4d;">
+                        <span style="color: #ffcc00; font-weight: bold;">👑 DIREITO CONSTITUCIONAL</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">🔒</span>
                     </a>
-
-                    <a href="javascript:void(0);" id="btn-informatica" class="aula-item"
-                        style="border-color: #00e5ff; background-color: #041d4d; margin-bottom: 8px;">
-                        <span class="bloco-texto">
-                            <span class="icone">💻</span>
-                            <span class="texto-principal" style="color: #00e5ff; font-weight: bold;">INFORMÁTICA</span>
-                        </span>
+                    <a href="javascript:void(0);" id="btn-informatica" class="aula-item" style="border-color: #00e5ff; background-color: #041d4d;">
+                        <span style="color: #00e5ff; font-weight: bold;">💻 INFORMÁTICA</span>
                         <span class="seta-iniciar" style="color: #00e5ff;">FLASH CARDS 👇</span>
                     </a>
-
-                    <a href="javascript:void(0);" id="btn-maria-da-penha" class="aula-item"
-                        style="border-color: #ffcc00; background-color: #041d4d; margin-bottom: 8px;">
-                        <span class="bloco-texto">
-                            <span class="icone">🛡️</span>
-                            <span class="texto-principal" style="color: #ffcc00; font-weight: bold;">LEI MARIA DA PENHA</span>
-                        </span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">CONTEÚDO VIP 🔒</span>
+                    <a href="javascript:void(0);" id="btn-dudh" class="aula-item" style="border-color: #ffcc00; background-color: #041d4d;">
+                        <span style="color: #ffcc00; font-weight: bold;">🌐 DECLARAÇÃO UNIVERSAL (DUDH)</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">🔒</span>
                     </a>
-
-                    <a href="javascript:void(0);" id="btn-convencao" class="aula-item"
-                        style="border-color: #ffcc00; background-color: #041d4d; margin-bottom: 8px;">
-                        <span class="bloco-texto">
-                            <span class="icone">📜</span>
-                            <span class="texto-principal" style="color: #ffcc00; font-weight: bold;">CONVENÇÃO AMERICANA (PACTO DE SÃO JOSÉ)</span>
-                        </span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">CONTEÚDO VIP 🔒</span>
+                    <a href="javascript:void(0);" id="btn-maria-penha" class="aula-item" style="border-color: #ffcc00; background-color: #041d4d;">
+                        <span style="color: #ffcc00; font-weight: bold;">🛡️ LEI MARIA DA PENHA</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">🔒</span>
                     </a>
-
-                    <a href="javascript:void(0);" id="btn-estatuto-pcd" class="aula-item"
-                        style="border-color: #ffcc00; background-color: #041d4d; margin-bottom: 8px;">
-                        <span class="bloco-texto">
-                            <span class="icone">♿</span>
-                            <span class="texto-principal" style="color: #ffcc00; font-weight: bold;">ESTATUTO DA PESSOA COM DEFICIÊNCIA</span>
-                        </span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">CONTEÚDO VIP 🔒</span>
+                    <a href="javascript:void(0);" id="btn-convencao" class="aula-item" style="border-color: #ffcc00; background-color: #041d4d;">
+                        <span style="color: #ffcc00; font-weight: bold;">📜 CONVENÇÃO AMERICANA</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">🔒</span>
                     </a>
-
-                    <a href="javascript:void(0);" id="btn-igualdade-racial" class="aula-item"
-                        style="border-color: #ffcc00; background-color: #041d4d;">
-                        <span class="bloco-texto">
-                            <span class="icone">⚖️</span>
-                            <span class="texto-principal" style="color: #ffcc00; font-weight: bold;">ESTATUTO DA IGUALDADE RACIAL</span>
-                        </span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">CONTEÚDO VIP 🔒</span>
+                    <a href="javascript:void(0);" id="btn-estatuto-pcd" class="aula-item" style="border-color: #ffcc00; background-color: #041d4d;">
+                        <span style="color: #ffcc00; font-weight: bold;">♿ ESTATUTO DA PESSOA COM DEFICIÊNCIA</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">🔒</span>
                     </a>
-
+                    <a href="javascript:void(0);" id="btn-estatuto-racial" class="aula-item" style="border-color: #ffcc00; background-color: #041d4d;">
+                        <span style="color: #ffcc00; font-weight: bold;">⚖️ ESTATUTO DA IGUALDADE RACIAL</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">🔒</span>
+                    </a>
                 </div>
             </section>
 
+            <!-- MENU: 1º SIMULADO GMJ -->
+            <section id="menu-simulado-gmj" class="secao-topicos"
+                style="margin-top: 10px; border-style: dashed; border-color: var(--cor-sucesso); display: none;">
+                <h3 class="titulo-secao" style="color: var(--cor-sucesso); font-size: 13px;">🎯 Simulado GMJ — Modo Prova</h3>
+                <div class="lista-aulas">
+                    <a href="simulado-gmj-bloco1-portugues.html" class="aula-item" style="border-left: 4px solid var(--cor-sucesso);">
+                        <span>📝 Bloco 1: Língua Portuguesa (Q01 a Q10)</span>
+                        <span class="seta-iniciar">INICIAR ▶</span>
+                    </a>
+                    <a href="simulado-gmj-bloco2.html" class="aula-item" style="border-left: 4px solid var(--cor-sucesso);">
+                        <span>📝 Bloco 2: Raciocínio Lógico e Joinville (Q11 a Q20)</span>
+                        <span class="seta-iniciar">INICIAR ▶</span>
+                    </a>
+                    <a href="simulado-gmj-bloco3.html" class="aula-item" style="border-left: 4px solid var(--cor-sucesso);">
+                        <span>📝 Bloco 3: Conhecimentos Específicos I (Q21 a Q35)</span>
+                        <span class="seta-iniciar">INICIAR ▶</span>
+                    </a>
+                    <a href="simulado-gmj-bloco4.html" class="aula-item" style="border-left: 4px solid var(--cor-sucesso);">
+                        <span>📝 Bloco 4: Conhecimentos Específicos II (Q36 a Q50)</span>
+                        <span class="seta-iniciar">INICIAR ▶</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- SUBMENU: DIREITO PENAL -->
             <section id="menu-aulas-penal" class="secao-topicos" style="margin-top: 10px; border-style: dashed;">
                 <h3 class="titulo-secao" style="color: #fff; font-size: 13px;">🎯 Aulas de Direito Penal</h3>
                 <div class="lista-aulas">
@@ -389,229 +384,89 @@
                             Segurança</span><span class="seta-iniciar">INICIAR ▶</span></a>
                     <a href="questoes-acao-penal.html" class="aula-item"><span>📝 Questões: Da Ação Penal</span><span
                             class="seta-iniciar">INICIAR ▶</span></a>
-
-                    <a href="lista-de-espera.html" class="aula-item"
-                        style="border-left: 4px solid #ffcc00; background-color: #041d4d; opacity: 0.85;">
+                    <a href="acesso-premium.html" class="aula-item" style="border-left: 4px solid #ffcc00; background-color: #041d4d; opacity: 0.85;">
                         <span>🔒 Questões: Da Extinção da Punibilidade</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
-                    </a>
-                    <a href="lista-de-espera.html" class="aula-item"
-                        style="border-left: 4px solid #ffcc00; background-color: #041d4d; opacity: 0.85;">
-                        <span>🔒 Questões: Dos Crimes Contra a Pessoa</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
-                    </a>
-                    <a href="lista-de-espera.html" class="aula-item"
-                        style="border-left: 4px solid #ffcc00; background-color: #041d4d; opacity: 0.85;">
-                        <span>🔒 Questões: Dos Crimes Contra o Patrimônio</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
-                    </a>
-                    <a href="lista-de-espera.html" class="aula-item"
-                        style="border-left: 4px solid #ffcc00; background-color: #041d4d; opacity: 0.85;">
-                        <span>🔒 Questões: Dos Crimes Contra a Dignidade Sexual</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
-                    </a>
-                    <a href="lista-de-espera.html" class="aula-item"
-                        style="border-left: 4px solid #ffcc00; background-color: #041d4d; opacity: 0.85;">
-                        <span>🔒 Questões: Dos Crimes Contra a Paz Pública</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
-                    </a>
-                    <a href="lista-de-espera.html" class="aula-item"
-                        style="border-left: 4px solid #ffcc00; background-color: #041d4d; opacity: 0.85;">
-                        <span>🔒 Questões: Dos Crimes Contra a Fé Pública</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
-                    </a>
-                    <a href="lista-de-espera.html" class="aula-item"
-                        style="border-left: 4px solid #ffcc00; background-color: #041d4d; opacity: 0.85; box-shadow: 0 0 10px rgba(255, 204, 0, 0.15);">
-                        <span>🔒 Questões: Dos Crimes Contra a Administração Pública</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">VER PLANO PREMIUM 👑</span>
                     </a>
                 </div>
             </section>
 
-            <section id="menu-aulas-constitucional" class="secao-topicos"
-                style="margin-top: 10px; border-style: dashed; border-color: #ffcc00; display: none;">
-                <h3 class="titulo-secao" style="color: #ffcc00; font-size: 13px;">👑 Aulas de Direito Constitucional
-                    (Premium)</h3>
+            <!-- SUBMENU: DIREITO CONSTITUCIONAL -->
+            <section id="menu-aulas-constitucional" class="secao-topicos" style="margin-top: 10px; border-style: dashed; border-color: #ffcc00;">
+                <h3 class="titulo-secao" style="color: #ffcc00; font-size: 13px;">👑 Aulas de Direito Constitucional</h3>
                 <div class="lista-aulas">
-                    <a href="lista-de-espera.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
-                        <span>🔒 Princípios Fundamentais (Art. 1º ao 4º)</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
+                    <a href="questoes-constitucional-principios-fundamentais.html" class="aula-item">
+                        <span>📝 Princípios Fundamentais (Art. 1º ao 4º)</span>
+                        <span class="seta-iniciar">INICIAR ▶</span>
                     </a>
-                    <a href="lista-de-espera.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
-                        <span>🔒 Direitos e Garantias Fundamentais (Art. 5º ao 10)</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
-                    </a>
-                    <a href="lista-de-espera.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
-                        <span>🔒 Direitos Políticos e Partidos (Art. 14 ao 17)</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
-                    </a>
-                    <a href="lista-de-espera.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
-                        <span>🔒 Organização do Estado: União e Estados (Art. 21 ao 28)</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
-                    </a>
-                    <a href="lista-de-espera.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
-                        <span>🔒 Administração Pública (Art. 37 ao 41)</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
-                    </a>
-                    <a href="lista-de-espera.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
-                        <span>🔒 Poder Judiciário: Disposições e Estados (Art. 92 ao 100 / 125 e 126)</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
-                    </a>
-                    <a href="lista-de-espera.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
-                        <span>🔒 Funções Essenciais: MP, Advocacia e Defensoria (Art. 127 ao 134)</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
-                    </a>
-                    <a href="lista-de-espera.html" class="aula-item"
-                        style="border-left: 4px solid #ffcc00; box-shadow: 0 0 10px rgba(255, 204, 0, 0.15);">
-                        <span>🔒 Segurança Pública (Art. 144 - O Mais Cobrado)</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
+                    <a href="acesso-premium.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
+                        <span>🔒 Direitos e Garantias Fundamentais</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">VER PLANO PREMIUM 👑</span>
                     </a>
                 </div>
             </section>
 
-            <section id="menu-aulas-informatica" class="secao-topicos"
-                style="margin-top: 10px; border-style: dashed; border-color: #00e5ff; display: none;">
+            <!-- SUBMENU: INFORMÁTICA -->
+            <section id="menu-aulas-informatica" class="secao-topicos" style="margin-top: 10px; border-style: dashed; border-color: #00e5ff;">
                 <h3 class="titulo-secao" style="color: #00e5ff; font-size: 13px;">💻 Flash Cards: Informática</h3>
                 <div class="lista-aulas">
                     <a href="flashcards-informatica.html" class="aula-item">
-                        <span>🗂️ Flash Cards: Teclas de Atalho (Firefox) — Aula 1</span>
+                        <span>🗂️ Flash Cards: Teclas de Atalho (Firefox)</span>
                         <span class="seta-iniciar">INICIAR ▶</span>
                     </a>
-                    <a href="flashcards-informatica.html" class="aula-item" style="border-left: 4px solid #00e5ff;">
-                        <span>🗂️ Flash Cards: Teclas de Atalho (Firefox) — Aula 2</span>
-                        <span class="seta-iniciar" style="color: #00e5ff;">INICIAR ▶</span>
-                    </a>
-                    <a href="flashcards-informatica.html" class="aula-item" style="border-left: 4px solid #00e5ff;">
-                        <span>🗂️ Flash Cards: Google Chrome (Atalhos) — Aula 3</span>
-                        <span class="seta-iniciar" style="color: #00e5ff;">INICIAR ▶</span>
-                    </a>
-                    <a href="flashcards-informatica.html" class="aula-item" style="border-left: 4px solid #00e5ff;">
-                        <span>🗂️ Flash Cards: Google Chrome (Segurança) — Aula 4</span>
-                        <span class="seta-iniciar" style="color: #00e5ff;">INICIAR ▶</span>
-                    </a>
                 </div>
             </section>
 
-            <section id="menu-aulas-maria-da-penha" class="secao-topicos"
-                style="margin-top: 10px; border-style: dashed; border-color: #ffcc00; display: none;">
-                <h3 class="titulo-secao" style="color: #ffcc00; font-size: 13px;">👑 Lei Maria da Penha (Premium)</h3>
+            <!-- SUBMENU: DUDH -->
+            <section id="menu-aulas-dudh" class="secao-topicos" style="margin-top: 10px; border-style: dashed; border-color: #ffcc00;">
+                <h3 class="titulo-secao" style="color: #ffcc00; font-size: 13px;">👑 Declaração Universal dos Direitos Humanos</h3>
                 <div class="lista-aulas">
-                    <a href="lista-de-espera.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
-                        <span>🔒 Disposições Preliminares e Âmbito de Incidência (Art. 1º ao 4º)</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
-                    </a>
-                    <a href="lista-de-espera.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
-                        <span>🔒 Formas de Violência Doméstica e Familiar (Art. 5º ao 7º)</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
-                    </a>
-                    <a href="lista-de-espera.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
-                        <span>🔒 Medidas Protetivas de Urgência (Art. 18 ao 24)</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
-                    </a>
-                    <a href="lista-de-espera.html" class="aula-item"
-                        style="border-left: 4px solid #ffcc00; box-shadow: 0 0 10px rgba(255, 204, 0, 0.15);">
-                        <span>🔒 Atendimento pela Autoridade Policial e Equipe (Art. 10 a 17 / 25 a 46)</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
-                    </a>
-                </div>
-            </section>
-
-            <section id="menu-aulas-convencao" class="secao-topicos"
-                style="margin-top: 10px; border-style: dashed; border-color: #ffcc00; display: none;">
-                <h3 class="titulo-secao" style="color: #ffcc00; font-size: 13px;">👑 Convenção Americana sobre Direitos Humanos (Premium)</h3>
-                <div class="lista-aulas">
-                    <a href="lista-de-espera.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
-                        <span>🔒 Direitos Protegidos e Dever de Respeito (Art. 1º ao 25)</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
-                    </a>
-                    <a href="lista-de-espera.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
-                        <span>🔒 Suspensão de Garantias e Interpretação (Art. 27 ao 29)</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
-                    </a>
-                    <a href="lista-de-espera.html" class="aula-item"
-                        style="border-left: 4px solid #ffcc00; box-shadow: 0 0 10px rgba(255, 204, 0, 0.15);">
-                        <span>🔒 Órgãos do Sistema Interamericano: Comissão e Corte (Art. 33 ao 69)</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
-                    </a>
-                </div>
-            </section>
-
-            <section id="menu-aulas-estatuto-pcd" class="secao-topicos"
-                style="margin-top: 10px; border-style: dashed; border-color: #ffcc00; display: none;">
-                <h3 class="titulo-secao" style="color: #ffcc00; font-size: 13px;">👑 Estatuto da Pessoa com Deficiência (Premium)</h3>
-                <div class="lista-aulas">
-                    <a href="lista-de-espera.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
-                        <span>🔒 Disposições Preliminares e Igualdade (Art. 1º ao 8º)</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
-                    </a>
-                    <a href="lista-de-espera.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
-                        <span>🔒 Direitos Fundamentais: Vida, Saúde e Educação (Art. 9º ao 33)</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
-                    </a>
-                    <a href="lista-de-espera.html" class="aula-item"
-                        style="border-left: 4px solid #ffcc00; box-shadow: 0 0 10px rgba(255, 204, 0, 0.15);">
-                        <span>🔒 Acesso à Justiça, Atendimento Prioritário e Crimes (Art. 79 ao 91)</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
-                    </a>
-                </div>
-            </section>
-
-            <section id="menu-aulas-igualdade-racial" class="secao-topicos"
-                style="margin-top: 10px; border-style: dashed; border-color: #ffcc00; display: none;">
-                <h3 class="titulo-secao" style="color: #ffcc00; font-size: 13px;">👑 Estatuto da Igualdade Racial (Premium)</h3>
-                <div class="lista-aulas">
-                    <a href="lista-de-espera.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
-                        <span>🔒 Disposições Gerais e Igualdade de Oportunidades (Art. 1º ao 10)</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
-                    </a>
-                    <a href="lista-de-espera.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
-                        <span>🔒 Direitos Fundamentais: Saúde, Educação e Cultura (Art. 11 ao 32)</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
-                    </a>
-                    <a href="lista-de-espera.html" class="aula-item"
-                        style="border-left: 4px solid #ffcc00; box-shadow: 0 0 10px rgba(255, 204, 0, 0.15);">
-                        <span>🔒 Trabalho, Liberdade de Consciência e Sistema de Promoção (Art. 33 ao 49)</span>
-                        <span class="seta-iniciar" style="color: #ffcc00;">RESERVAR VAGA 👑</span>
-                    </a>
-                </div>
-            </section>
-
-            <!-- SIMULADO COMPLETO GUARDA MUNICIPAL DE JOINVILLE (GRATUITO) -->
-            <a href="javascript:void(0);" id="btn-simulado-gmj" class="link-item"
-                style="border-color: var(--cor-sucesso); box-shadow: 0 0 15px rgba(46, 204, 113, 0.18);">
-                🛡️ 1º Simulado Guarda Municipal de Joinville (50 Questões Grátis)
-            </a>
-
-            <section id="menu-simulado-gmj" class="secao-topicos"
-                style="margin-top: 10px; border-style: dashed; border-color: var(--cor-sucesso); display: none;">
-                <h3 class="titulo-secao" style="color: var(--cor-sucesso); font-size: 13px;">🎯 1º Simulado Completo GMJ — Modo Prova</h3>
-                <div class="lista-aulas">
-                    <a href="simulado-gmj-bloco1-portugues.html" class="aula-item" style="border-left: 4px solid var(--cor-sucesso);">
-                        <span class="bloco-texto">
-                            <span class="icone">📝</span>
-                            <span class="texto-principal">Bloco 1: Língua Portuguesa (Q01 a Q10)</span>
-                        </span>
+                    <a href="dudh-preambulo-principios.html" class="aula-item">
+                        <span>📝 Preâmbulo e Princípios Fundamentais (Art. 1º e 2º)</span>
                         <span class="seta-iniciar">INICIAR ▶</span>
                     </a>
-                    <a href="simulado-gmj-bloco2.html" class="aula-item" style="border-left: 4px solid var(--cor-sucesso);">
-                        <span class="bloco-texto">
-                            <span class="icone">📝</span>
-                            <span class="texto-principal">Bloco 2: Raciocínio Lógico e Joinville/SC (Q11 a Q20)</span>
-                        </span>
+                </div>
+            </section>
+
+            <!-- SUBMENU: LEI MARIA DA PENHA -->
+            <section id="menu-aulas-maria-penha" class="secao-topicos" style="margin-top: 10px; border-style: dashed; border-color: #ffcc00;">
+                <h3 class="titulo-secao" style="color: #ffcc00; font-size: 13px;">👑 Lei Maria da Penha (Lei nº 11.340/06)</h3>
+                <div class="lista-aulas">
+                    <a href="legislacao-maria-da-penha.html" class="aula-item">
+                        <span>📝 Disposições Preliminares e Formas de Violência</span>
                         <span class="seta-iniciar">INICIAR ▶</span>
                     </a>
-                    <a href="simulado-gmj-bloco3.html" class="aula-item" style="border-left: 4px solid var(--cor-sucesso);">
-                        <span class="bloco-texto">
-                            <span class="icone">📝</span>
-                            <span class="texto-principal">Bloco 3: Conhecimentos Específicos I (Q21 a Q35)</span>
-                        </span>
+                </div>
+            </section>
+
+            <!-- SUBMENU: CONVENÇÃO AMERICANA -->
+            <section id="menu-aulas-convencao" class="secao-topicos" style="margin-top: 10px; border-style: dashed; border-color: #ffcc00;">
+                <h3 class="titulo-secao" style="color: #ffcc00; font-size: 13px;">👑 Convenção Americana sobre Direitos Humanos</h3>
+                <div class="lista-aulas">
+                    <a href="acesso-premium.html" class="aula-item" style="border-left: 4px solid #ffcc00;">
+                        <span>🔒 Direitos Protegidos e Dever de Respeito</span>
+                        <span class="seta-iniciar" style="color: #ffcc00;">VER PLANO PREMIUM 👑</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- SUBMENU: ESTATUTO PCD -->
+            <section id="menu-aulas-estatuto-pcd" class="secao-topicos" style="margin-top: 10px; border-style: dashed; border-color: #ffcc00;">
+                <h3 class="titulo-secao" style="color: #ffcc00; font-size: 13px;">👑 Estatuto da Pessoa com Deficiência</h3>
+                <div class="lista-aulas">
+                    <a href="estatuto-pcd-arts-1-ao-8.html" class="aula-item">
+                        <span>📝 Disposições Preliminares e Igualdade (Art. 1º ao 8º)</span>
                         <span class="seta-iniciar">INICIAR ▶</span>
                     </a>
-                    <a href="simulado-gmj-bloco4.html" class="aula-item" style="border-left: 4px solid var(--cor-sucesso);">
-                        <span class="bloco-texto">
-                            <span class="icone">📝</span>
-                            <span class="texto-principal">Bloco 4: Conhecimentos Específicos II (Q36 a Q50)</span>
-                        </span>
+                </div>
+            </section>
+
+            <!-- SUBMENU: ESTATUTO IGUALDADE RACIAL -->
+            <section id="menu-aulas-igualdade-racial" class="secao-topicos" style="margin-top: 10px; border-style: dashed; border-color: #ffcc00;">
+                <h3 class="titulo-secao" style="color: #ffcc00; font-size: 13px;">👑 Estatuto da Igualdade Racial</h3>
+                <div class="lista-aulas">
+                    <a href="estatuto-igualdade-racial-disposicoes-gerais.html" class="aula-item">
+                        <span>📝 Disposições Gerais (Art. 1º ao 10)</span>
                         <span class="seta-iniciar">INICIAR ▶</span>
                     </a>
                 </div>
@@ -619,8 +474,7 @@
 
         </main>
 
-        <footer class="footer-institucional"
-            style="margin-top: 15px; font-size: 11px; color: #8a99ad; text-align: center; letter-spacing: 0.5px; padding-bottom: 20px; width: 100%; line-height: 1.6;">
+        <footer class="footer-institucional">
             &copy; 2026 Método Missão. Todos os direitos reservados.
             <br>
             Plataforma oficial da metodologia de estudos Método Missão.
@@ -628,236 +482,109 @@
 
     </div>
 
+    <!-- SCRIPT DE LEITURA DE SESSÃO E SUPABASE -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
     <script>
-        // 1. Controle Avançado de Clique em Cascata
+        (async function () {
+            const barra = document.getElementById('barra-conta');
+            try {
+                const cliente = window.supabase.createClient(
+                    "https://kulaumnlntcepiikqpts.supabase.co",
+                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt1bGF1bW5sbnRjZXBpaWtxcHRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQzNDU2NDMsImV4cCI6MjA5OTkyMTY0M30.GFPptPiuy1TEao-_n_GQVlfvX7R4gDwTaY8h1ZxU76s"
+                );
+
+                function criarLink(texto, href, cor) {
+                    const a = document.createElement('a');
+                    a.textContent = texto;
+                    a.href = href;
+                    a.style.cssText = 'color:' + cor + '; text-decoration:none; font-weight:bold;';
+                    return a;
+                }
+
+                const { data: sessaoData } = await cliente.auth.getSession();
+                const sessao = sessaoData && sessaoData.session;
+
+                if (!sessao) {
+                    window.MM_PLANO = 'visitante';
+                    barra.appendChild(criarLink('Entrar', 'login.html', '#ffca28'));
+                    return;
+                }
+
+                const { data: perfil, error } = await cliente
+                    .from('profiles')
+                    .select('plano')
+                    .eq('id', sessao.user.id)
+                    .single();
+
+                window.MM_PLANO = (perfil && perfil.plano) ? perfil.plano : 'gratuito';
+
+                const info = document.createElement('span');
+                info.textContent = sessao.user.email + ' · plano: ' + (error ? 'erro ao ler' : window.MM_PLANO);
+                barra.appendChild(info);
+                barra.appendChild(criarLink('Sair', 'sair.html', '#ffca28'));
+            } catch (e) {
+                console.error('MM-LOGIN falhou:', e);
+            }
+        })();
+    </script>
+
+    <script>
+        // LISTA DE SUBMENUS REGISTRADOS
+        const submenus = [
+            'menu-materias',
+            'menu-simulado-gmj',
+            'menu-aulas-penal',
+            'menu-aulas-constitucional',
+            'menu-aulas-informatica',
+            'menu-aulas-dudh',
+            'menu-aulas-maria-penha',
+            'menu-aulas-convencao',
+            'menu-aulas-estatuto-pcd',
+            'menu-aulas-igualdade-racial'
+        ];
+
+        function alternarSubmenu(idParaAbrir) {
+            submenus.forEach(function (id) {
+                var el = document.getElementById(id);
+                if (el) {
+                    if (id === idParaAbrir) {
+                        if (el.style.display !== 'block') {
+                            el.style.display = 'block';
+                            el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        } else {
+                            el.style.display = 'none';
+                        }
+                    } else {
+                        el.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        // 1. Botão Principal de Matérias
         document.getElementById('btn-gabarita').addEventListener('click', function () {
-            var menuMaterias = document.getElementById('menu-materias');
-            var menuPenal = document.getElementById('menu-aulas-penal');
-            var menuConstitucional = document.getElementById('menu-aulas-constitucional');
-            var menuInformatica = document.getElementById('menu-aulas-informatica');
-            var menuMariaDaPenha = document.getElementById('menu-aulas-maria-da-penha');
-            var menuConvencao = document.getElementById('menu-aulas-convencao');
-            var menuPcd = document.getElementById('menu-aulas-estatuto-pcd');
-            var menuIgualdade = document.getElementById('menu-aulas-igualdade-racial');
-            var menuSimuladoGmj = document.getElementById('menu-simulado-gmj');
-
-            if (menuMaterias.style.display !== 'block') {
-                menuMaterias.style.display = 'block';
-                if (menuSimuladoGmj) menuSimuladoGmj.style.display = 'none';
-                menuMaterias.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            } else {
-                menuMaterias.style.display = 'none';
-                menuPenal.style.display = 'none';
-                if (menuConstitucional) menuConstitucional.style.display = 'none';
-                if (menuInformatica) menuInformatica.style.display = 'none';
-                if (menuMariaDaPenha) menuMariaDaPenha.style.display = 'none';
-                if (menuConvencao) menuConvencao.style.display = 'none';
-                if (menuPcd) menuPcd.style.display = 'none';
-                if (menuIgualdade) menuIgualdade.style.display = 'none';
-            }
+            alternarSubmenu('menu-materias');
         });
 
-        // 2. Controle do Botão de Direito Penal
-        document.getElementById('btn-penal').addEventListener('click', function () {
-            var menuPenal = document.getElementById('menu-aulas-penal');
-            var menuConstitucional = document.getElementById('menu-aulas-constitucional');
-            var menuInformatica = document.getElementById('menu-aulas-informatica');
-            var menuMariaDaPenha = document.getElementById('menu-aulas-maria-da-penha');
-            var menuConvencao = document.getElementById('menu-aulas-convencao');
-            var menuPcd = document.getElementById('menu-aulas-estatuto-pcd');
-            var menuIgualdade = document.getElementById('menu-aulas-igualdade-racial');
-
-            if (menuPenal.style.display !== 'block') {
-                menuPenal.style.display = 'block';
-                if (menuConstitucional) menuConstitucional.style.display = 'none';
-                if (menuInformatica) menuInformatica.style.display = 'none';
-                if (menuMariaDaPenha) menuMariaDaPenha.style.display = 'none';
-                if (menuConvencao) menuConvencao.style.display = 'none';
-                if (menuPcd) menuPcd.style.display = 'none';
-                if (menuIgualdade) menuIgualdade.style.display = 'none';
-                menuPenal.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            } else {
-                menuPenal.style.display = 'none';
-            }
-        });
-
-        // 3. Controle do Botão de Direito Constitucional Premium
-        document.getElementById('btn-constitucional').addEventListener('click', function () {
-            var menuPenal = document.getElementById('menu-aulas-penal');
-            var menuConstitucional = document.getElementById('menu-aulas-constitucional');
-            var menuInformatica = document.getElementById('menu-aulas-informatica');
-            var menuMariaDaPenha = document.getElementById('menu-aulas-maria-da-penha');
-            var menuConvencao = document.getElementById('menu-aulas-convencao');
-            var menuPcd = document.getElementById('menu-aulas-estatuto-pcd');
-            var menuIgualdade = document.getElementById('menu-aulas-igualdade-racial');
-
-            if (menuConstitucional.style.display !== 'block') {
-                menuConstitucional.style.display = 'block';
-                menuPenal.style.display = 'none';
-                if (menuInformatica) menuInformatica.style.display = 'none';
-                if (menuMariaDaPenha) menuMariaDaPenha.style.display = 'none';
-                if (menuConvencao) menuConvencao.style.display = 'none';
-                if (menuPcd) menuPcd.style.display = 'none';
-                if (menuIgualdade) menuIgualdade.style.display = 'none';
-                menuConstitucional.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            } else {
-                menuConstitucional.style.display = 'none';
-            }
-        });
-
-        // 4. Controle do Botão de Informática
-        document.getElementById('btn-informatica').addEventListener('click', function () {
-            var menuPenal = document.getElementById('menu-aulas-penal');
-            var menuConstitucional = document.getElementById('menu-aulas-constitucional');
-            var menuInformatica = document.getElementById('menu-aulas-informatica');
-            var menuMariaDaPenha = document.getElementById('menu-aulas-maria-da-penha');
-            var menuConvencao = document.getElementById('menu-aulas-convencao');
-            var menuPcd = document.getElementById('menu-aulas-estatuto-pcd');
-            var menuIgualdade = document.getElementById('menu-aulas-igualdade-racial');
-
-            if (menuInformatica.style.display !== 'block') {
-                menuInformatica.style.display = 'block';
-                menuPenal.style.display = 'none';
-                menuConstitucional.style.display = 'none';
-                if (menuMariaDaPenha) menuMariaDaPenha.style.display = 'none';
-                if (menuConvencao) menuConvencao.style.display = 'none';
-                if (menuPcd) menuPcd.style.display = 'none';
-                if (menuIgualdade) menuIgualdade.style.display = 'none';
-                menuInformatica.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            } else {
-                menuInformatica.style.display = 'none';
-            }
-        });
-
-        // 5. Controle do Botão de Lei Maria da Penha
-        document.getElementById('btn-maria-da-penha').addEventListener('click', function () {
-            var menuPenal = document.getElementById('menu-aulas-penal');
-            var menuConstitucional = document.getElementById('menu-aulas-constitucional');
-            var menuInformatica = document.getElementById('menu-aulas-informatica');
-            var menuMariaDaPenha = document.getElementById('menu-aulas-maria-da-penha');
-            var menuConvencao = document.getElementById('menu-aulas-convencao');
-            var menuPcd = document.getElementById('menu-aulas-estatuto-pcd');
-            var menuIgualdade = document.getElementById('menu-aulas-igualdade-racial');
-
-            if (menuMariaDaPenha.style.display !== 'block') {
-                menuMariaDaPenha.style.display = 'block';
-                menuPenal.style.display = 'none';
-                if (menuConstitucional) menuConstitucional.style.display = 'none';
-                if (menuInformatica) menuInformatica.style.display = 'none';
-                if (menuConvencao) menuConvencao.style.display = 'none';
-                if (menuPcd) menuPcd.style.display = 'none';
-                if (menuIgualdade) menuIgualdade.style.display = 'none';
-                menuMariaDaPenha.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            } else {
-                menuMariaDaPenha.style.display = 'none';
-            }
-        });
-
-        // 6. Controle do Botão de Convenção Americana
-        document.getElementById('btn-convencao').addEventListener('click', function () {
-            var menuPenal = document.getElementById('menu-aulas-penal');
-            var menuConstitucional = document.getElementById('menu-aulas-constitucional');
-            var menuInformatica = document.getElementById('menu-aulas-informatica');
-            var menuMariaDaPenha = document.getElementById('menu-aulas-maria-da-penha');
-            var menuConvencao = document.getElementById('menu-aulas-convencao');
-            var menuPcd = document.getElementById('menu-aulas-estatuto-pcd');
-            var menuIgualdade = document.getElementById('menu-aulas-igualdade-racial');
-
-            if (menuConvencao.style.display !== 'block') {
-                menuConvencao.style.display = 'block';
-                menuPenal.style.display = 'none';
-                if (menuConstitucional) menuConstitucional.style.display = 'none';
-                if (menuInformatica) menuInformatica.style.display = 'none';
-                if (menuMariaDaPenha) menuMariaDaPenha.style.display = 'none';
-                if (menuPcd) menuPcd.style.display = 'none';
-                if (menuIgualdade) menuIgualdade.style.display = 'none';
-                menuConvencao.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            } else {
-                menuConvencao.style.display = 'none';
-            }
-        });
-
-        // 7. Controle do Botão de Estatuto da Pessoa com Deficiência
-        document.getElementById('btn-estatuto-pcd').addEventListener('click', function () {
-            var menuPenal = document.getElementById('menu-aulas-penal');
-            var menuConstitucional = document.getElementById('menu-aulas-constitucional');
-            var menuInformatica = document.getElementById('menu-aulas-informatica');
-            var menuMariaDaPenha = document.getElementById('menu-aulas-maria-da-penha');
-            var menuConvencao = document.getElementById('menu-aulas-convencao');
-            var menuPcd = document.getElementById('menu-aulas-estatuto-pcd');
-            var menuIgualdade = document.getElementById('menu-aulas-igualdade-racial');
-
-            if (menuPcd.style.display !== 'block') {
-                menuPcd.style.display = 'block';
-                menuPenal.style.display = 'none';
-                if (menuConstitucional) menuConstitucional.style.display = 'none';
-                if (menuInformatica) menuInformatica.style.display = 'none';
-                if (menuMariaDaPenha) menuMariaDaPenha.style.display = 'none';
-                if (menuConvencao) menuConvencao.style.display = 'none';
-                if (menuIgualdade) menuIgualdade.style.display = 'none';
-                menuPcd.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            } else {
-                menuPcd.style.display = 'none';
-            }
-        });
-
-        // 8. Controle do Botão de Estatuto da Igualdade Racial
-        document.getElementById('btn-igualdade-racial').addEventListener('click', function () {
-            var menuPenal = document.getElementById('menu-aulas-penal');
-            var menuConstitucional = document.getElementById('menu-aulas-constitucional');
-            var menuInformatica = document.getElementById('menu-aulas-informatica');
-            var menuMariaDaPenha = document.getElementById('menu-aulas-maria-da-penha');
-            var menuConvencao = document.getElementById('menu-aulas-convencao');
-            var menuPcd = document.getElementById('menu-aulas-estatuto-pcd');
-            var menuIgualdade = document.getElementById('menu-aulas-igualdade-racial');
-
-            if (menuIgualdade.style.display !== 'block') {
-                menuIgualdade.style.display = 'block';
-                menuPenal.style.display = 'none';
-                if (menuConstitucional) menuConstitucional.style.display = 'none';
-                if (menuInformatica) menuInformatica.style.display = 'none';
-                if (menuMariaDaPenha) menuMariaDaPenha.style.display = 'none';
-                if (menuConvencao) menuConvencao.style.display = 'none';
-                if (menuPcd) menuPcd.style.display = 'none';
-                menuIgualdade.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            } else {
-                menuIgualdade.style.display = 'none';
-            }
-        });
-
-        // 9. Controle do Botão do 1º Simulado Completo GMJ
+        // 2. Botão do Simulado GMJ
         document.getElementById('btn-simulado-gmj').addEventListener('click', function () {
-            var menuSimuladoGmj = document.getElementById('menu-simulado-gmj');
-            var menuMaterias = document.getElementById('menu-materias');
-            var menuPenal = document.getElementById('menu-aulas-penal');
-            var menuConstitucional = document.getElementById('menu-aulas-constitucional');
-            var menuInformatica = document.getElementById('menu-aulas-informatica');
-            var menuMariaDaPenha = document.getElementById('menu-aulas-maria-da-penha');
-            var menuConvencao = document.getElementById('menu-aulas-convencao');
-            var menuPcd = document.getElementById('menu-aulas-estatuto-pcd');
-            var menuIgualdade = document.getElementById('menu-aulas-igualdade-racial');
-
-            if (menuSimuladoGmj.style.display !== 'block') {
-                menuSimuladoGmj.style.display = 'block';
-                if (menuMaterias) menuMaterias.style.display = 'none';
-                if (menuPenal) menuPenal.style.display = 'none';
-                if (menuConstitucional) menuConstitucional.style.display = 'none';
-                if (menuInformatica) menuInformatica.style.display = 'none';
-                if (menuMariaDaPenha) menuMariaDaPenha.style.display = 'none';
-                if (menuConvencao) menuConvencao.style.display = 'none';
-                if (menuPcd) menuPcd.style.display = 'none';
-                if (menuIgualdade) menuIgualdade.style.display = 'none';
-                menuSimuladoGmj.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            } else {
-                menuSimuladoGmj.style.display = 'none';
-            }
+            alternarSubmenu('menu-simulado-gmj');
         });
 
-        // ==========================================================================
-        // 🔒 PROTOCOLO RED TEAM: PROTEÇÃO INTEGRAL (RESTAURADO)
-        // ==========================================================================
+        // 3. Mapeamento de Cliquem das Matérias
+        document.getElementById('btn-penal').addEventListener('click', function () { alternarSubmenu('menu-aulas-penal'); });
+        document.getElementById('btn-constitucional').addEventListener('click', function () { alternarSubmenu('menu-aulas-constitucional'); });
+        document.getElementById('btn-informatica').addEventListener('click', function () { alternarSubmenu('menu-aulas-informatica'); });
+        document.getElementById('btn-dudh').addEventListener('click', function () { alternarSubmenu('menu-aulas-dudh'); });
+        document.getElementById('btn-maria-penha').addEventListener('click', function () { alternarSubmenu('menu-aulas-maria-penha'); });
+        document.getElementById('btn-convencao').addEventListener('click', function () { alternarSubmenu('menu-aulas-convencao'); });
+        document.getElementById('btn-estatuto-pcd').addEventListener('click', function () { alternarSubmenu('menu-aulas-estatuto-pcd'); });
+        document.getElementById('btn-estatuto-racial').addEventListener('click', function () { alternarSubmenu('menu-aulas-igualdade-racial'); });
 
-        const msgSeguranca = "🔒 PROTOCOLO DE SEGURANÇA:\nEsta ação não é permitida na plataforma integrante do ecossistema Método Missão. Este banco de questões é 100% inédito, monitorado e protegido por direitos autorais (Lei 9.610/98). Nossas travas de segurança garantem que o conteúdo exclusivo que você estuda aqui não seja banalizado na internet. Tenha acesso ao material que seus concorrentes não têm.";
+        // ==========================================================================
+        // PROTOCOLO RED TEAM: PROTEÇÃO INTEGRAL
+        // ==========================================================================
+        const msgSeguranca = "🔒 PROTOCOLO DE SEGURANÇA:\nEsta ação não é permitida na plataforma integrante do ecossistema Método Missão. Este banco de questões é 100% inédito, monitorado e protegido por direitos autorais (Lei 9.610/98).";
 
         document.addEventListener('contextmenu', function (e) {
             e.preventDefault();
@@ -866,13 +593,9 @@
 
         document.addEventListener('keydown', function (e) {
             let acaoBloqueada = false;
-
             if (e.key === 'F12') acaoBloqueada = true;
             if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j')) acaoBloqueada = true;
-            if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) acaoBloqueada = true;
-            if (e.ctrlKey && (e.key === 's' || e.key === 'S')) acaoBloqueada = true;
-            if (e.ctrlKey && (e.key === 'c' || e.key === 'C')) acaoBloqueada = true;
-            if (e.ctrlKey && (e.key === 'p' || e.key === 'P')) acaoBloqueada = true;
+            if (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 's' || e.key === 'S' || e.key === 'c' || e.key === 'C' || e.key === 'p' || e.key === 'P')) acaoBloqueada = true;
 
             if (acaoBloqueada) {
                 e.preventDefault();
@@ -890,16 +613,12 @@
 
         window.addEventListener('blur', function () {
             const containerSimulador = document.getElementById('simulador-container');
-            if (containerSimulador) {
-                containerSimulador.style.filter = 'blur(15px)';
-            }
+            if (containerSimulador) containerSimulador.style.filter = 'blur(15px)';
         });
 
         window.addEventListener('focus', function () {
             const containerSimulador = document.getElementById('simulador-container');
-            if (containerSimulador) {
-                containerSimulador.style.filter = 'none';
-            }
+            if (containerSimulador) containerSimulador.style.filter = 'none';
         });
 
         const estiloAntiSelecao = document.createElement('style');
