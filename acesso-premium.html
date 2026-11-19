@@ -114,10 +114,10 @@
             font-size: 13px;
             color: #e2e8f0;
             margin-bottom: 12px;
-            line-height: 1.4;
+            line-height: 1.45;
         }
 
-        .passo-item:last-child {
+        .passo-item:last-of-type {
             margin-bottom: 0;
         }
 
@@ -133,6 +133,21 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        .aviso-email-pagamento {
+            margin-top: 16px;
+            padding: 12px 14px;
+            border-radius: 8px;
+            background: rgba(255, 204, 0, 0.1);
+            border: 1px solid rgba(255, 204, 0, 0.45);
+            color: #ffe082;
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        .aviso-email-pagamento strong {
+            color: #ffffff;
         }
 
         .preco-destaque {
@@ -160,15 +175,43 @@
             margin-bottom: 20px;
         }
 
+        .status-conta {
+            display: none;
+            margin-bottom: 16px;
+            padding: 12px 14px;
+            border-radius: 8px;
+            background: rgba(46, 204, 113, 0.12);
+            border: 1px solid rgba(46, 204, 113, 0.45);
+            color: #e2e8f0;
+            font-size: 13px;
+            line-height: 1.45;
+            text-align: center;
+        }
+
+        .status-conta strong {
+            color: #2ecc71;
+            word-break: break-word;
+        }
+
+        .status-conta-sub {
+            display: block;
+            margin-top: 6px;
+            font-size: 12px;
+            color: #ffe082;
+        }
+
         .btn-acao {
             background-color: #25D366;
             color: white;
-            padding: 16px 32px;
-            font-size: 18px;
+            padding: 16px 24px;
+            font-size: 17px;
             font-weight: bold;
             text-decoration: none;
             border-radius: 8px;
             display: inline-block;
+            box-sizing: border-box;
+            width: 100%;
+            cursor: pointer;
         }
 
         .link-secundario {
@@ -233,15 +276,19 @@
             <div class="como-funciona-titulo">Como funciona</div>
             <div class="passo-item">
                 <div class="passo-numero">1</div>
-                <div>Crie sua conta gratuita (leva menos de 1 minuto)</div>
+                <div>Crie sua conta informando <strong>e-mail, senha e CPF</strong> (leva menos de 1 minuto)</div>
             </div>
             <div class="passo-item">
                 <div class="passo-numero">2</div>
-                <div>Clique em <strong>Pagar agora</strong> e finalize o pagamento (Pix ou cartão)</div>
+                <div>Clique em <strong>Pagar agora</strong> e finalize o pagamento (Pix ou cartão) informando <strong>o mesmo e-mail cadastrado na sua conta</strong></div>
             </div>
             <div class="passo-item">
                 <div class="passo-numero">3</div>
                 <div>Seu acesso premium é liberado automaticamente após a confirmação</div>
+            </div>
+
+            <div class="aviso-email-pagamento">
+                ⚠️ <strong>Importante:</strong> no momento do pagamento, informe <strong>exatamente o mesmo e-mail</strong> utilizado na criação da sua conta para que o sistema libere o seu acesso Premium automaticamente.
             </div>
         </div>
 
@@ -251,18 +298,26 @@
         </div>
 
         <div class="formulario-area">
+            <div class="status-conta" id="status-conta"></div>
+
             <a href="#" id="btn-espera" class="btn-acao" target="_blank">
                 👉 QUERO ENTRAR NA LISTA VIP
             </a>
 
-            <a href="login.html" id="btn-passo1" class="btn-acao" style="display: none; background-color: transparent; border: 2px solid #ffcc00; color: #ffcc00; margin-bottom: 12px;">
+            <a href="login.html?criar=1&redirect=acesso-premium.html" id="btn-passo1" class="btn-acao" style="display: none; background-color: transparent; border: 2px solid #ffcc00; color: #ffcc00; margin-bottom: 12px;">
                 1️⃣ Criar minha conta grátis
             </a>
-            <a href="#" id="btn-passo2" class="btn-acao" target="_blank" style="display: none;">
+            <a href="#" id="btn-passo2" class="btn-acao" style="display: none;">
                 2️⃣ Já criei a conta — Pagar agora
             </a>
-            <a href="login.html" id="link-login" class="link-secundario" style="display: none;">
-                Já tem conta e já pagou? Fazer login
+            <a href="index.html" id="btn-ja-premium" class="btn-acao" style="display: none; background-color: #ffcc00; color: #02112e;">
+                ▶ Acessar Minhas Aulas Premium
+            </a>
+            <a href="login.html?redirect=acesso-premium.html" id="link-login" class="link-secundario" style="display: none;">
+                Já tem conta? Fazer login
+            </a>
+            <a href="sair.html" id="link-trocar-conta" class="link-secundario" style="display: none;">
+                Quer usar outro e-mail? Sair desta conta
             </a>
         </div>
 
@@ -290,7 +345,10 @@
         const btnEspera = document.getElementById("btn-espera");
         const btnPasso1 = document.getElementById("btn-passo1");
         const btnPasso2 = document.getElementById("btn-passo2");
+        const btnJaPremium = document.getElementById("btn-ja-premium");
         const linkLogin = document.getElementById("link-login");
+        const linkTrocarConta = document.getElementById("link-trocar-conta");
+        const statusConta = document.getElementById("status-conta");
         const blocoComoFunciona = document.getElementById("bloco-como-funciona");
         const badgeTopo = document.getElementById("badge-topo");
         const tituloPrincipal = document.getElementById("titulo-principal");
@@ -304,7 +362,7 @@
             // Esconde o botão antigo de lista de espera
             btnEspera.style.display = "none";
 
-            // Mostra os dois passos, nessa ordem: 1) criar conta  2) pagar
+            // Mostra os dois passos por padrão (ajustados automaticamente se o aluno já estiver logado)
             btnPasso2.href = "#";
             btnPasso1.style.display = "block";
             btnPasso2.style.display = "block";
@@ -320,24 +378,101 @@
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt1bGF1bW5sbnRjZXBpaWtxcHRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQzNDU2NDMsImV4cCI6MjA5OTkyMTY0M30.GFPptPiuy1TEao-_n_GQVlfvX7R4gDwTaY8h1ZxU76s";
         const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+        // Adapta a tela automaticamente quando o aluno já está logado
+        (async function verificarSessaoAtual() {
+            if (!VENDAS_ATIVAS) return;
+            try {
+                const { data: { session } } = await client.auth.getSession();
+                if (!session || !session.user) return;
+
+                const emailUsuario = session.user.email || "";
+                let planoAtual = "gratuito";
+
+                const { data: perfil } = await client
+                    .from("profiles")
+                    .select("plano")
+                    .eq("id", session.user.id)
+                    .single();
+
+                if (perfil && perfil.plano) {
+                    planoAtual = String(perfil.plano).toLowerCase();
+                }
+
+                statusConta.textContent = "";
+
+                if (planoAtual === "premium") {
+                    const linha1 = document.createElement("div");
+                    linha1.textContent = "👑 Seu Plano Premium já está ativo na conta:";
+                    const strongEmail = document.createElement("strong");
+                    strongEmail.textContent = emailUsuario;
+                    statusConta.appendChild(linha1);
+                    statusConta.appendChild(strongEmail);
+                    statusConta.style.display = "block";
+
+                    btnPasso1.style.display = "none";
+                    btnPasso2.style.display = "none";
+                    linkLogin.style.display = "none";
+                    btnJaPremium.style.display = "block";
+                    linkTrocarConta.style.display = "block";
+                    return;
+                }
+
+                // Aluno logado no plano gratuito: remove passo 1 e destaca pagamento direto
+                const linhaConectado = document.createElement("div");
+                linhaConectado.appendChild(document.createTextNode("✅ Conta conectada: "));
+                const strongEmail = document.createElement("strong");
+                strongEmail.textContent = emailUsuario;
+                linhaConectado.appendChild(strongEmail);
+
+                const subAviso = document.createElement("span");
+                subAviso.className = "status-conta-sub";
+                subAviso.textContent = "Informe este mesmo e-mail na tela do Mercado Pago para liberação automática.";
+
+                statusConta.appendChild(linhaConectado);
+                statusConta.appendChild(subAviso);
+                statusConta.style.display = "block";
+
+                btnPasso1.style.display = "none";
+                linkLogin.style.display = "none";
+                btnPasso2.textContent = "💳 Pagar agora (Pix ou Cartão) — R$ 29,90";
+                linkTrocarConta.style.display = "block";
+            } catch (err) {
+                console.error("Erro ao verificar sessão em acesso-premium:", err);
+            }
+        })();
+
+        let processandoPagamento = false;
+
         btnPasso2.addEventListener("click", async (e) => {
             e.preventDefault();
+            if (processandoPagamento) return;
+
+            processandoPagamento = true;
             const textoOriginal = btnPasso2.textContent;
             btnPasso2.textContent = "Aguarde...";
 
-            const { data: { session } } = await client.auth.getSession();
-            if (!session) {
-                window.location.href = "login.html";
-                return;
-            }
+            try {
+                const { data: { session } } = await client.auth.getSession();
+                if (!session) {
+                    window.location.href = "login.html?redirect=acesso-premium.html";
+                    return;
+                }
 
-            const { data, error } = await client.functions.invoke("criar-pagamento");
-            if (error || !data || !data.url) {
+                const { data, error } = await client.functions.invoke("criar-pagamento");
+                if (error || !data || !data.url) {
+                    console.error("Erro ao criar pagamento:", error, data);
+                    btnPasso2.textContent = textoOriginal;
+                    processandoPagamento = false;
+                    alert("Não foi possível abrir o pagamento no momento. Tente novamente em instantes.");
+                    return;
+                }
+                window.location.href = data.url;
+            } catch (err) {
+                console.error("Falha inesperada ao iniciar pagamento:", err);
                 btnPasso2.textContent = textoOriginal;
-                alert("Não foi possível abrir o pagamento. Tente novamente.");
-                return;
+                processandoPagamento = false;
+                alert("Não foi possível abrir o pagamento. Verifique sua conexão e tente novamente.");
             }
-            window.location.href = data.url;
         });
     </script>
 
