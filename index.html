@@ -342,6 +342,9 @@
                 <p class="chamada-gratis-texto">Experimente a primeira aula de cada matéria, sem precisar de conta.</p>
             </div>
 
+            <!-- SLOT MODULAR TOPO: novos botoes configurados em modulos-novos.js com posicao "topo" entram aqui -->
+            <div id="slot-vitrine-topo" style="display: none; flex-direction: column; gap: 16px; width: 100%;"></div>
+
             <a href="javascript:void(0);" id="btn-gabarita" class="link-item link-principal">⚡ Clique Aqui para Iniciar
                 o Simulador Interativo</a>
 
@@ -373,6 +376,9 @@
                     </a>
                 </div>
             </section>
+
+            <!-- SLOT MODULAR BASE: novos botoes e simulados configurados em modulos-novos.js entram aqui -->
+            <div id="slot-vitrine-base" style="display: none; flex-direction: column; gap: 16px; width: 100%;"></div>
 
             <!-- MENU PRINCIPAL DE MATÉRIAS -->
             <section id="menu-materias" class="secao-topicos">
@@ -642,6 +648,9 @@
                 </div>
             </section>
 
+            <!-- SLOT MODULAR SUBMENUS: submenus de novas materias criadas em modulos-novos.js entram aqui -->
+            <div id="slot-submenus-extras" style="width: 100%;"></div>
+
         </main>
 
         <footer class="footer-institucional">
@@ -651,6 +660,9 @@
         </footer>
 
     </div>
+
+    <!-- GAVETA EXTERNA MODULAR: tudo o que for novo entra em modulos-novos.js sem mexer neste index.html -->
+    <script src="modulos-novos.js"></script>
 
     <script>
         (function () {
@@ -666,6 +678,13 @@
                 'menu-aulas-estatuto-pcd',
                 'menu-aulas-igualdade-racial'
             ];
+
+            function fecharTodosSubmenus() {
+                submenus.forEach(function (id) {
+                    var el = document.getElementById(id);
+                    if (el) el.style.display = 'none';
+                });
+            }
 
             // FUNÇÃO DE ALTERNÂNCIA (ABRE APENAS UM MENU E FECHA OS DEMAIS)
             function alternarSubmenu(idParaAbrir) {
@@ -690,8 +709,7 @@
             var btnComecarGratis = document.getElementById('btn-comecar-gratis');
             if (btnComecarGratis) {
                 btnComecarGratis.addEventListener('click', function () {
-                    var menuGmj = document.getElementById('menu-simulado-gmj');
-                    if (menuGmj) menuGmj.style.display = 'none';
+                    fecharTodosSubmenus();
                     var menu = document.getElementById('menu-materias');
                     if (menu) {
                         menu.style.display = 'block';
@@ -702,18 +720,13 @@
 
             // 1. Botão Principal do Simulador
             document.getElementById('btn-gabarita').addEventListener('click', function () {
-                var menuGmj = document.getElementById('menu-simulado-gmj');
-                if (menuGmj) menuGmj.style.display = 'none';
+                fecharTodosSubmenus();
                 var menuMaterias = document.getElementById('menu-materias');
                 if (menuMaterias.style.display !== 'block') {
                     menuMaterias.style.display = 'block';
                     menuMaterias.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 } else {
                     menuMaterias.style.display = 'none';
-                    submenus.forEach(function (id) {
-                        var el = document.getElementById(id);
-                        if (el) el.style.display = 'none';
-                    });
                 }
             });
 
@@ -733,6 +746,175 @@
             document.getElementById('btn-convencao').addEventListener('click', function () { alternarSubmenu('menu-aulas-convencao'); });
             document.getElementById('btn-estatuto-pcd').addEventListener('click', function () { alternarSubmenu('menu-aulas-estatuto-pcd'); });
             document.getElementById('btn-estatuto-racial').addEventListener('click', function () { alternarSubmenu('menu-aulas-igualdade-racial'); });
+
+            // ==========================================================================
+            // ADAPTADOR MODULAR BLINDADO (LÊ modulos-novos.js COM ISOLAMENTO TOTAL)
+            // Se modulos-novos.js não existir ou tiver erro, o núcleo acima segue 100%.
+            // ==========================================================================
+            try {
+                var cfg = window.MM_MODULOS;
+                if (cfg && typeof cfg === 'object') {
+                    function criarItemAula(item, corPadrao) {
+                        var a = document.createElement('a');
+                        a.className = 'aula-item';
+                        var spTitulo = document.createElement('span');
+                        var spAcao = document.createElement('span');
+                        spAcao.className = 'seta-iniciar';
+
+                        if (item.premium) {
+                            a.href = 'acesso-premium.html';
+                            a.style.borderLeft = '4px solid #ffcc00';
+                            if (item.arquivo) a.setAttribute('data-destino-premium', item.arquivo);
+                            spTitulo.textContent = '\uD83D\uDD12 ' + item.titulo;
+                            spAcao.textContent = 'VER PLANO PREMIUM \uD83D\uDC51';
+                            spAcao.style.color = '#ffcc00';
+                        } else {
+                            a.href = item.arquivo || 'javascript:void(0);';
+                            if (corPadrao) a.style.borderLeft = '4px solid ' + corPadrao;
+                            spTitulo.textContent = (item.icone ? item.icone + ' ' : '\uD83D\uDCDD ') + item.titulo;
+                            spAcao.textContent = item.acao || 'INICIAR \u25B6';
+                            if (corPadrao) spAcao.style.color = corPadrao;
+                        }
+
+                        a.appendChild(spTitulo);
+                        a.appendChild(spAcao);
+                        return a;
+                    }
+
+                    // A) Novos botões isolados na vitrine (ex: Assinar Premium, novos Simulados)
+                    if (Array.isArray(cfg.botoesVitrine)) {
+                        cfg.botoesVitrine.forEach(function (btnCfg, idx) {
+                            if (!btnCfg || !btnCfg.titulo) return;
+                            var slotId = (btnCfg.posicao === 'topo') ? 'slot-vitrine-topo' : 'slot-vitrine-base';
+                            var slot = document.getElementById(slotId);
+                            if (!slot) return;
+                            slot.style.display = 'flex';
+
+                            var cor = btnCfg.cor || '#ffca28';
+                            var a = document.createElement('a');
+                            a.className = 'link-item';
+                            a.textContent = btnCfg.titulo;
+                            a.style.borderColor = cor;
+                            if (btnCfg.fundo) a.style.backgroundColor = btnCfg.fundo;
+                            if (btnCfg.corTexto) a.style.color = btnCfg.corTexto;
+                            if (btnCfg.brilho) a.style.boxShadow = btnCfg.brilho;
+                            if (btnCfg.ocultarParaPremium) a.setAttribute('data-ocultar-premium', 'true');
+
+                            if (Array.isArray(btnCfg.itens) && btnCfg.itens.length > 0) {
+                                var secId = 'menu-ext-vitrine-' + (btnCfg.id || idx);
+                                a.href = 'javascript:void(0);';
+                                slot.appendChild(a);
+
+                                var sec = document.createElement('section');
+                                sec.id = secId;
+                                sec.className = 'secao-topicos';
+                                sec.style.display = 'none';
+                                sec.style.marginTop = '10px';
+                                sec.style.borderStyle = 'dashed';
+                                sec.style.borderColor = cor;
+
+                                var h3 = document.createElement('h3');
+                                h3.className = 'titulo-secao';
+                                h3.style.color = cor;
+                                h3.style.fontSize = '13px';
+                                h3.textContent = btnCfg.tituloMenu || btnCfg.titulo;
+                                sec.appendChild(h3);
+
+                                var lista = document.createElement('div');
+                                lista.className = 'lista-aulas';
+                                btnCfg.itens.forEach(function (subItem) {
+                                    lista.appendChild(criarItemAula(subItem, cor));
+                                });
+                                sec.appendChild(lista);
+                                slot.appendChild(sec);
+
+                                submenus.push(secId);
+                                a.addEventListener('click', function () {
+                                    var menuMaterias = document.getElementById('menu-materias');
+                                    if (menuMaterias) menuMaterias.style.display = 'none';
+                                    alternarSubmenu(secId);
+                                });
+                            } else {
+                                a.href = btnCfg.href || 'javascript:void(0);';
+                                slot.appendChild(a);
+                            }
+                        });
+                    }
+
+                    // B) Novas matérias completas dentro de "Escolha a Matéria"
+                    if (Array.isArray(cfg.novasMaterias)) {
+                        var listaMaterias = document.querySelector('#menu-materias .lista-aulas');
+                        var slotSubmenus = document.getElementById('slot-submenus-extras');
+                        cfg.novasMaterias.forEach(function (matCfg, idx) {
+                            if (!matCfg || !matCfg.titulo || !listaMaterias || !slotSubmenus) return;
+                            var cor = matCfg.cor || '#ffcc00';
+                            var secId = 'menu-ext-materia-' + (matCfg.id || idx);
+
+                            var btnMat = document.createElement('a');
+                            btnMat.href = 'javascript:void(0);';
+                            btnMat.className = 'aula-item';
+                            btnMat.style.borderColor = cor;
+                            if (matCfg.fundo) btnMat.style.backgroundColor = matCfg.fundo;
+
+                            var spNome = document.createElement('span');
+                            spNome.textContent = matCfg.titulo;
+                            spNome.style.color = cor;
+                            spNome.style.fontWeight = 'bold';
+
+                            var spSeta = document.createElement('span');
+                            spSeta.className = 'seta-iniciar';
+                            spSeta.textContent = matCfg.badge || 'VER AULAS \uD83D\uDC47';
+                            spSeta.style.color = cor;
+
+                            btnMat.appendChild(spNome);
+                            btnMat.appendChild(spSeta);
+                            listaMaterias.appendChild(btnMat);
+
+                            var sec = document.createElement('section');
+                            sec.id = secId;
+                            sec.className = 'secao-topicos';
+                            sec.style.display = 'none';
+                            sec.style.marginTop = '10px';
+                            sec.style.borderStyle = 'dashed';
+                            sec.style.borderColor = cor;
+
+                            var h3 = document.createElement('h3');
+                            h3.className = 'titulo-secao';
+                            h3.style.color = cor;
+                            h3.style.fontSize = '13px';
+                            h3.textContent = matCfg.tituloMenu || matCfg.titulo;
+                            sec.appendChild(h3);
+
+                            var lista = document.createElement('div');
+                            lista.className = 'lista-aulas';
+                            if (Array.isArray(matCfg.aulas)) {
+                                matCfg.aulas.forEach(function (aulaCfg) {
+                                    lista.appendChild(criarItemAula(aulaCfg, cor));
+                                });
+                            }
+                            sec.appendChild(lista);
+                            slotSubmenus.appendChild(sec);
+
+                            submenus.push(secId);
+                            btnMat.addEventListener('click', function () {
+                                alternarSubmenu(secId);
+                            });
+                        });
+                    }
+
+                    // C) Novas aulas dentro de matérias que já existem no index.html
+                    if (Array.isArray(cfg.novasAulas)) {
+                        cfg.novasAulas.forEach(function (aulaCfg) {
+                            if (!aulaCfg || !aulaCfg.menuId || !aulaCfg.titulo) return;
+                            var containerLista = document.querySelector('#' + aulaCfg.menuId + ' .lista-aulas');
+                            if (!containerLista) return;
+                            containerLista.appendChild(criarItemAula(aulaCfg, aulaCfg.cor || null));
+                        });
+                    }
+                }
+            } catch (errModulos) {
+                console.error('MM-MODULOS falhou (núcleo segue normal):', errModulos);
+            }
 
             // ==========================================================================
             // PROTOCOLO RED TEAM: PROTEÇÃO INTEGRAL
@@ -875,16 +1057,35 @@
                     'Sistema de Promoção da Igualdade (Art. 33 ao 49)': 'estatuto-igualdade-racial-sistema-promocao.html'
                 };
 
+                // Mescla liberacoes futuras vindas de modulos-novos.js sem precisar mexer neste index.html
+                if (window.MM_MODULOS && window.MM_MODULOS.liberarEmBreve) {
+                    Object.assign(MM_LIBERADOS, window.MM_MODULOS.liberarEmBreve);
+                }
+
                 function normalizarRotulo(t) {
                     return t.replace('\uD83D\uDD12', '').replace(/\s+/g, ' ').trim();
                 }
 
                 if (String(window.MM_PLANO).toLowerCase() === 'premium') {
+                    // Oculta botoes promocionais (ex: Assinar Premium) para quem ja e assinante
+                    document.querySelectorAll('[data-ocultar-premium="true"]').forEach(function (item) {
+                        item.style.display = 'none';
+                    });
+                    ['slot-vitrine-topo', 'slot-vitrine-base'].forEach(function (slotId) {
+                        var s = document.getElementById(slotId);
+                        if (s && s.children.length > 0) {
+                            var algumVisivel = Array.from(s.children).some(function (ch) {
+                                return ch.style.display !== 'none';
+                            });
+                            if (!algumVisivel) s.style.display = 'none';
+                        }
+                    });
+
                     document.querySelectorAll('a.aula-item[href="acesso-premium.html"]').forEach(function (a) {
                         const spans = a.querySelectorAll('span');
                         if (spans.length < 2) return;
                         const nome = normalizarRotulo(spans[0].textContent);
-                        const destino = MM_LIBERADOS[nome];
+                        const destino = a.getAttribute('data-destino-premium') || MM_LIBERADOS[nome];
                         if (destino) {
                             a.href = destino;
                             spans[0].textContent = '\uD83D\uDCDD ' + nome;
