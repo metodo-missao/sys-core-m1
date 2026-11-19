@@ -6,24 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acesso Premium — Método Missão</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             background-color: #02112e;
             color: #ffffff;
-            font-family: sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .container-captura {
             width: 100%;
-            max-width: 550px;
-            padding: 30px 20px;
+            max-width: 540px;
+            padding: 30px 18px;
             text-align: center;
-            box-sizing: border-box;
         }
 
         .badge-premium {
@@ -33,17 +37,17 @@
             padding: 6px 14px;
             border-radius: 20px;
             font-size: 12px;
-            font-weight: bold;
+            font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1px;
             background: rgba(4, 29, 77, 0.6);
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         h1 {
             font-size: 26px;
             color: #ffffff;
-            margin: 0 0 15px 0;
+            margin: 0 0 12px 0;
             line-height: 1.3;
         }
 
@@ -54,25 +58,26 @@
         .subtitulo {
             font-size: 15px;
             color: #a0aec0;
-            line-height: 1.6;
-            margin-bottom: 30px;
+            line-height: 1.55;
+            margin: 0 0 24px 0;
         }
 
         .beneficios-box {
             background: #031842;
             border-left: 4px solid #ffcc00;
             text-align: left;
-            padding: 20px;
-            border-radius: 0 8px 8px 0;
-            margin-bottom: 25px;
+            padding: 18px 20px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 22px;
         }
 
         .beneficios-titulo {
             color: #ffcc00;
-            font-weight: bold;
-            font-size: 14px;
+            font-weight: 800;
+            font-size: 13px;
             margin-bottom: 12px;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .beneficio-item {
@@ -82,72 +87,11 @@
             align-items: center;
             gap: 8px;
             color: #e2e8f0;
+            line-height: 1.4;
         }
 
         .beneficio-item:last-child {
             margin-bottom: 0;
-        }
-
-        /* Bloco "Como funciona" */
-        .como-funciona-box {
-            background: #031842;
-            border: 1px solid #0b2c6e;
-            text-align: left;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-        }
-
-        .como-funciona-titulo {
-            color: #ffcc00;
-            font-weight: bold;
-            font-size: 13px;
-            margin-bottom: 14px;
-            text-transform: uppercase;
-            text-align: center;
-        }
-
-        .passo-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            font-size: 13px;
-            color: #e2e8f0;
-            margin-bottom: 12px;
-            line-height: 1.45;
-        }
-
-        .passo-item:last-of-type {
-            margin-bottom: 0;
-        }
-
-        .passo-numero {
-            flex-shrink: 0;
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            background-color: #ffcc00;
-            color: #02112e;
-            font-weight: 900;
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .aviso-email-pagamento {
-            margin-top: 16px;
-            padding: 12px 14px;
-            border-radius: 8px;
-            background: rgba(255, 204, 0, 0.1);
-            border: 1px solid rgba(255, 204, 0, 0.45);
-            color: #ffe082;
-            font-size: 13px;
-            line-height: 1.45;
-        }
-
-        .aviso-email-pagamento strong {
-            color: #ffffff;
         }
 
         .preco-destaque {
@@ -156,35 +100,192 @@
         }
 
         .preco-valor {
-            font-size: 34px;
+            font-size: 36px;
             font-weight: 900;
             color: #ffcc00;
+            line-height: 1.1;
         }
 
         .preco-prazo {
             font-size: 13px;
             color: #a0aec0;
-            margin-top: 2px;
+            margin-top: 4px;
         }
 
-        .formulario-area {
-            background: #041d4d;
-            border: 1px dashed rgba(255, 204, 0, 0.3);
-            padding: 25px;
-            border-radius: 8px;
+        /* Card unificado de checkout (Modelo 1 — 1 tela só) */
+        .checkout-card {
+            background: #031842;
+            border: 1.5px solid rgba(255, 204, 0, 0.35);
+            border-radius: 14px;
+            padding: 22px 20px;
             margin-bottom: 20px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+            text-align: left;
+        }
+
+        .abas-checkout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            background: #02112e;
+            padding: 5px;
+            border-radius: 10px;
+            border: 1px solid #0b2c6e;
+            margin-bottom: 18px;
+        }
+
+        .aba-btn {
+            border: none;
+            background: transparent;
+            color: #8a99ad;
+            padding: 11px 10px;
+            border-radius: 7px;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .aba-btn.ativa {
+            background: #ffcc00;
+            color: #02112e;
+        }
+
+        .checkout-intro {
+            font-size: 13px;
+            color: #cbd5e1;
+            line-height: 1.45;
+            margin: 0 0 14px 0;
+            text-align: center;
+        }
+
+        .campo-grupo {
+            margin-bottom: 14px;
+        }
+
+        .campo-grupo label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: #cbd5e1;
+            margin-bottom: 6px;
+        }
+
+        .campo-grupo input {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 8px;
+            border: 2px solid #0b2c6e;
+            background-color: #02112e;
+            color: #ffffff;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s;
+            -webkit-user-select: text;
+            user-select: text;
+        }
+
+        .campo-grupo input:focus {
+            border-color: #ffcc00;
+        }
+
+        .campo-grupo input.campo-erro {
+            border-color: #ff5252;
+        }
+
+        .campo-grupo input.campo-ok {
+            border-color: #2ecc71;
+        }
+
+        .campo-dica {
+            font-size: 12px;
+            color: #8a99ad;
+            margin-top: 5px;
+            line-height: 1.35;
+        }
+
+        .campo-dica.erro {
+            color: #ff6b6b;
+            font-weight: 600;
+        }
+
+        .campo-dica.ok {
+            color: #2ecc71;
+            font-weight: 600;
+        }
+
+        /* Caixa de sugestão automática de domínio errado */
+        .sugestao-email {
+            display: none;
+            margin-top: 8px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            background: rgba(255, 204, 0, 0.12);
+            border: 1px solid rgba(255, 204, 0, 0.55);
+            font-size: 12.5px;
+            color: #ffe082;
+            line-height: 1.45;
+        }
+
+        .sugestao-email strong {
+            color: #ffffff;
+            word-break: break-all;
+        }
+
+        .sugestao-acoes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+            align-items: center;
+        }
+
+        .btn-corrigir-email {
+            background: #ffcc00;
+            color: #02112e;
+            border: none;
+            border-radius: 6px;
+            padding: 7px 12px;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .btn-manter-email {
+            background: transparent;
+            color: #a0aec0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            padding: 6px 10px;
+            font-size: 11.5px;
+            cursor: pointer;
+        }
+
+        .aviso-email-pagamento {
+            margin: 14px 0 16px 0;
+            padding: 11px 13px;
+            border-radius: 8px;
+            background: rgba(255, 204, 0, 0.1);
+            border: 1px solid rgba(255, 204, 0, 0.4);
+            color: #ffe082;
+            font-size: 12.5px;
+            line-height: 1.45;
+        }
+
+        .aviso-email-pagamento strong {
+            color: #ffffff;
         }
 
         .status-conta {
             display: none;
             margin-bottom: 16px;
-            padding: 12px 14px;
-            border-radius: 8px;
+            padding: 14px;
+            border-radius: 10px;
             background: rgba(46, 204, 113, 0.12);
             border: 1px solid rgba(46, 204, 113, 0.45);
             color: #e2e8f0;
-            font-size: 13px;
-            line-height: 1.45;
+            font-size: 13.5px;
+            line-height: 1.5;
             text-align: center;
         }
 
@@ -196,31 +297,95 @@
         .status-conta-sub {
             display: block;
             margin-top: 6px;
-            font-size: 12px;
+            font-size: 12.5px;
             color: #ffe082;
         }
 
         .btn-acao {
             background-color: #25D366;
-            color: white;
-            padding: 16px 24px;
-            font-size: 17px;
-            font-weight: bold;
+            color: #02112e;
+            border: none;
+            padding: 16px 20px;
+            font-size: 15.5px;
+            font-weight: 900;
             text-decoration: none;
-            border-radius: 8px;
-            display: inline-block;
-            box-sizing: border-box;
+            border-radius: 10px;
+            display: block;
             width: 100%;
+            text-align: center;
             cursor: pointer;
+            transition: transform 0.15s, opacity 0.2s, box-shadow 0.2s;
+            box-shadow: 0 6px 18px rgba(37, 211, 102, 0.28);
+        }
+
+        .btn-acao:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 22px rgba(37, 211, 102, 0.38);
+        }
+
+        .btn-acao:active {
+            transform: scale(0.98);
+        }
+
+        .btn-acao:disabled {
+            opacity: 0.65;
+            cursor: default;
+            transform: none;
+        }
+
+        .btn-ouro {
+            background: linear-gradient(135deg, #ffe082 0%, #ffca28 50%, #ffa000 100%);
+            color: #02112e;
+            box-shadow: 0 6px 18px rgba(255, 202, 40, 0.3);
+        }
+
+        .selo-seguranca {
+            text-align: center;
+            font-size: 12px;
+            color: #8a99ad;
+            margin-top: 12px;
+            line-height: 1.4;
+        }
+
+        .msg-retorno {
+            display: none;
+            margin-top: 14px;
+            padding: 11px 13px;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.45;
+            text-align: center;
+        }
+
+        .msg-retorno.erro {
+            display: block;
+            background: rgba(255, 82, 82, 0.14);
+            border: 1px solid rgba(255, 82, 82, 0.5);
+            color: #ffb3b3;
+        }
+
+        .msg-retorno.sucesso {
+            display: block;
+            background: rgba(46, 204, 113, 0.14);
+            border: 1px solid rgba(46, 204, 113, 0.5);
+            color: #a8f5c8;
+        }
+
+        .msg-retorno.info {
+            display: block;
+            background: rgba(255, 204, 0, 0.12);
+            border: 1px solid rgba(255, 204, 0, 0.4);
+            color: #ffe082;
         }
 
         .link-secundario {
             display: block;
+            text-align: center;
             color: #a0aec0;
             text-decoration: none;
             font-size: 13px;
             transition: color 0.2s;
-            margin-top: 12px;
+            margin-top: 14px;
         }
 
         .link-secundario:hover {
@@ -233,7 +398,7 @@
             text-decoration: none;
             font-size: 13px;
             transition: color 0.2s;
-            margin-top: 15px;
+            margin-top: 10px;
         }
 
         .btn-voltar:hover {
@@ -243,8 +408,8 @@
         .rodape-aviso {
             font-size: 11px;
             color: #4a5568;
-            margin-top: 40px;
-            line-height: 1.4;
+            margin-top: 32px;
+            line-height: 1.45;
         }
     </style>
 </head>
@@ -271,54 +436,131 @@
             <div class="beneficio-item">💰 Apenas <strong>R$ 29,90</strong> — acesso por <strong>2 meses</strong></div>
         </div>
 
-        <!-- Bloco "Como funciona" - só aparece quando o pagamento estiver ativo -->
-        <div class="como-funciona-box" id="bloco-como-funciona" style="display: none;">
-            <div class="como-funciona-titulo">Como funciona</div>
-            <div class="passo-item">
-                <div class="passo-numero">1</div>
-                <div>Crie sua conta informando <strong>e-mail, senha e CPF</strong> (leva menos de 1 minuto)</div>
-            </div>
-            <div class="passo-item">
-                <div class="passo-numero">2</div>
-                <div>Clique em <strong>Pagar agora</strong> e finalize o pagamento (Pix ou cartão) informando <strong>o mesmo e-mail cadastrado na sua conta</strong></div>
-            </div>
-            <div class="passo-item">
-                <div class="passo-numero">3</div>
-                <div>Seu acesso premium é liberado automaticamente após a confirmação</div>
-            </div>
-
-            <div class="aviso-email-pagamento">
-                ⚠️ <strong>Importante:</strong> no momento do pagamento, informe <strong>exatamente o mesmo e-mail</strong> utilizado na criação da sua conta para que o sistema libere o seu acesso Premium automaticamente.
-            </div>
-        </div>
-
         <div class="preco-destaque" id="preco-destaque" style="display: none;">
             <div class="preco-valor">R$ 29,90</div>
-            <div class="preco-prazo">acesso por 2 meses · pagamento único</div>
+            <div class="preco-prazo">acesso por 2 meses · pagamento único · liberação automática</div>
         </div>
 
-        <div class="formulario-area">
-            <div class="status-conta" id="status-conta"></div>
-
+        <!-- MODO LISTA DE ESPERA (só aparece se VENDAS_ATIVAS = false) -->
+        <div class="checkout-card" id="bloco-espera" style="text-align: center;">
             <a href="#" id="btn-espera" class="btn-acao" target="_blank">
                 👉 QUERO ENTRAR NA LISTA VIP
             </a>
+        </div>
 
-            <a href="login.html?criar=1&redirect=acesso-premium.html" id="btn-passo1" class="btn-acao" style="display: none; background-color: transparent; border: 2px solid #ffcc00; color: #ffcc00; margin-bottom: 12px;">
-                1️⃣ Criar minha conta grátis
-            </a>
-            <a href="#" id="btn-passo2" class="btn-acao" style="display: none;">
-                2️⃣ Já criei a conta — Pagar agora
-            </a>
-            <a href="index.html" id="btn-ja-premium" class="btn-acao" style="display: none; background-color: #ffcc00; color: #02112e;">
-                ▶ Acessar Minhas Aulas Premium
-            </a>
-            <a href="login.html?redirect=acesso-premium.html" id="link-login" class="link-secundario" style="display: none;">
-                Já tem conta? Fazer login
-            </a>
-            <a href="sair.html" id="link-trocar-conta" class="link-secundario" style="display: none;">
-                Quer usar outro e-mail? Sair desta conta
-            </a>
+        <!-- MODO CHECKOUT UNIFICADO (MODELO 1 — TUDO EM 1 TELA SÓ) -->
+        <div class="checkout-card" id="bloco-checkout" style="display: none;">
+
+            <!-- ESTADO LOGADO (aparece automaticamente se o aluno já estiver conectado) -->
+            <div id="area-logado" style="display: none;">
+                <div class="status-conta" id="status-conta"></div>
+
+                <button type="button" id="btn-pagar-logado" class="btn-acao" style="display: none;">
+                    💳 PAGAR AGORA (PIX OU CARTÃO) — R$ 29,90
+                </button>
+
+                <a href="index.html" id="btn-ja-premium" class="btn-acao btn-ouro" style="display: none;">
+                    ▶ ACESSAR MINHAS AULAS PREMIUM
+                </a>
+
+                <div class="msg-retorno" id="msg-logado"></div>
+
+                <div class="selo-seguranca" id="selo-logado">
+                    🔒 Pagamento seguro via Mercado Pago (Pix ou Cartão)
+                </div>
+
+                <a href="sair.html" class="link-secundario">
+                    Quer usar outro e-mail? Sair desta conta
+                </a>
+            </div>
+
+            <!-- ESTADO VISITANTE (1 TELA: CADASTRO OU LOGIN -> DIRETO PARA O MERCADO PAGO) -->
+            <div id="area-visitante">
+                <div class="abas-checkout">
+                    <button type="button" class="aba-btn ativa" id="aba-novo">✨ Novo por aqui</button>
+                    <button type="button" class="aba-btn" id="aba-existente">🔑 Já tenho conta</button>
+                </div>
+
+                <!-- FORMULÁRIO 1: NOVO ALUNO -->
+                <form id="form-cadastro-pagamento" novalidate>
+                    <p class="checkout-intro">
+                        Preencha seus dados de acesso abaixo e avance direto para o pagamento.
+                    </p>
+
+                    <div class="campo-grupo">
+                        <label for="cad-email">Seu e-mail de acesso</label>
+                        <input type="email" id="cad-email" required autocomplete="email" placeholder="seuemail@exemplo.com">
+                        <div class="sugestao-email" id="box-sugestao-email">
+                            <div>⚠️ Ops! Parece haver um erro no domínio. Você quis dizer <strong id="texto-sugestao-email"></strong>?</div>
+                            <div class="sugestao-acoes">
+                                <button type="button" class="btn-corrigir-email" id="btn-corrigir-email">Corrigir automaticamente</button>
+                                <button type="button" class="btn-manter-email" id="btn-manter-email">Meu e-mail é esse mesmo</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="campo-grupo">
+                        <label for="cad-email-confirm">Confirme seu e-mail (digite novamente)</label>
+                        <input type="email" id="cad-email-confirm" required autocomplete="off" placeholder="Digite o mesmo e-mail novamente">
+                        <div class="campo-dica" id="dica-email-confirm">Digite novamente sem colar para garantir que não haja nenhuma letra errada.</div>
+                    </div>
+
+                    <div class="campo-grupo">
+                        <label for="cad-senha">Crie uma senha</label>
+                        <input type="password" id="cad-senha" required autocomplete="new-password" placeholder="Mínimo 6 caracteres">
+                    </div>
+
+                    <div class="campo-grupo">
+                        <label for="cad-cpf">CPF</label>
+                        <input type="text" id="cad-cpf" required inputmode="numeric" maxlength="14" autocomplete="off" placeholder="000.000.000-00">
+                    </div>
+
+                    <div class="aviso-email-pagamento">
+                        ⚠️ <strong>Importante:</strong> na próxima tela (Mercado Pago), informe <strong>exatamente este mesmo e-mail</strong> para que o seu acesso Premium seja liberado automaticamente.
+                    </div>
+
+                    <button type="submit" class="btn-acao" id="btn-cad-pagar">
+                        💳 CONTINUAR PARA O PAGAMENTO (PIX OU CARTÃO)
+                    </button>
+
+                    <div class="msg-retorno" id="msg-cadastro"></div>
+
+                    <div class="selo-seguranca">
+                        🔒 Ambiente seguro · Liberação automática após o pagamento
+                    </div>
+                </form>
+
+                <!-- FORMULÁRIO 2: JÁ TEM CONTA -->
+                <form id="form-login-pagamento" style="display: none;" novalidate>
+                    <p class="checkout-intro">
+                        Entre na sua conta para seguir direto ao pagamento do Plano Premium.
+                    </p>
+
+                    <div class="campo-grupo">
+                        <label for="log-email">E-mail cadastrado</label>
+                        <input type="email" id="log-email" required autocomplete="email" placeholder="seuemail@exemplo.com">
+                    </div>
+
+                    <div class="campo-grupo">
+                        <label for="log-senha">Senha</label>
+                        <input type="password" id="log-senha" required autocomplete="current-password" placeholder="Sua senha">
+                    </div>
+
+                    <div class="aviso-email-pagamento">
+                        ⚠️ <strong>Importante:</strong> na tela do Mercado Pago, informe o <strong>mesmo e-mail da sua conta</strong> para liberação automática.
+                    </div>
+
+                    <button type="submit" class="btn-acao" id="btn-log-pagar">
+                        💳 ENTRAR E IR PARA O PAGAMENTO
+                    </button>
+
+                    <div class="msg-retorno" id="msg-login"></div>
+
+                    <div class="selo-seguranca">
+                        🔒 Pagamento seguro via Mercado Pago (Pix ou Cartão)
+                    </div>
+                </form>
+            </div>
         </div>
 
         <a href="index.html" class="btn-voltar">◀ Voltar para as Aulas Gratuitas</a>
@@ -334,157 +576,558 @@
     <script>
         // ==========================================================================
         // INTERRUPTOR DE VENDAS
-        // Enquanto for false, a página funciona exatamente como hoje (lista de espera).
-        // Quando você quiser abrir o pagamento de verdade, troque para true e
-        // preencha o LINK_PAGAMENTO com o link de cobrança do Mercado Pago.
         // ==========================================================================
         const VENDAS_ATIVAS = true;
-        const LINK_PAGAMENTO = "https://mpago.la/1Ej8ex8";
         const LINK_LISTA_ESPERA = "https://tally.so/r/MeqQyl";
 
-        const btnEspera = document.getElementById("btn-espera");
-        const btnPasso1 = document.getElementById("btn-passo1");
-        const btnPasso2 = document.getElementById("btn-passo2");
-        const btnJaPremium = document.getElementById("btn-ja-premium");
-        const linkLogin = document.getElementById("link-login");
-        const linkTrocarConta = document.getElementById("link-trocar-conta");
-        const statusConta = document.getElementById("status-conta");
-        const blocoComoFunciona = document.getElementById("bloco-como-funciona");
+        const SUPABASE_URL = "https://kulaumnlntcepiikqpts.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt1bGF1bW5sbnRjZXBpaWtxcHRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQzNDU2NDMsImV4cCI6MjA5OTkyMTY0M30.GFPptPiuy1TEao-_n_GQVlfvX7R4gDwTaY8h1ZxU76s";
+        const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
         const badgeTopo = document.getElementById("badge-topo");
         const tituloPrincipal = document.getElementById("titulo-principal");
         const subtituloPrincipal = document.getElementById("subtitulo-principal");
+        const precoDestaque = document.getElementById("preco-destaque");
+        const blocoEspera = document.getElementById("bloco-espera");
+        const btnEspera = document.getElementById("btn-espera");
+        const blocoCheckout = document.getElementById("bloco-checkout");
+
+        const areaLogado = document.getElementById("area-logado");
+        const areaVisitante = document.getElementById("area-visitante");
+        const statusConta = document.getElementById("status-conta");
+        const btnPagarLogado = document.getElementById("btn-pagar-logado");
+        const btnJaPremium = document.getElementById("btn-ja-premium");
+        const seloLogado = document.getElementById("selo-logado");
+        const msgLogado = document.getElementById("msg-logado");
+
+        const abaNovo = document.getElementById("aba-novo");
+        const abaExistente = document.getElementById("aba-existente");
+        const formCadastro = document.getElementById("form-cadastro-pagamento");
+        const formLogin = document.getElementById("form-login-pagamento");
+
+        const cadEmail = document.getElementById("cad-email");
+        const cadEmailConfirm = document.getElementById("cad-email-confirm");
+        const dicaEmailConfirm = document.getElementById("dica-email-confirm");
+        const boxSugestaoEmail = document.getElementById("box-sugestao-email");
+        const textoSugestaoEmail = document.getElementById("texto-sugestao-email");
+        const btnCorrigirEmail = document.getElementById("btn-corrigir-email");
+        const btnManterEmail = document.getElementById("btn-manter-email");
+        const cadSenha = document.getElementById("cad-senha");
+        const cadCpf = document.getElementById("cad-cpf");
+        const btnCadPagar = document.getElementById("btn-cad-pagar");
+        const msgCadastro = document.getElementById("msg-cadastro");
+
+        const logEmail = document.getElementById("log-email");
+        const logSenha = document.getElementById("log-senha");
+        const btnLogPagar = document.getElementById("btn-log-pagar");
+        const msgLogin = document.getElementById("msg-login");
 
         if (VENDAS_ATIVAS) {
             badgeTopo.textContent = "👑 Acesso Premium Disponível";
             tituloPrincipal.innerHTML = 'Desbloqueie a <span>Versão Completa Premium</span>';
             subtituloPrincipal.textContent = "Garanta agora o acesso completo aos simulados inéditos e de alta performance.";
-
-            // Esconde o botão antigo de lista de espera
-            btnEspera.style.display = "none";
-
-            // Mostra os dois passos por padrão (ajustados automaticamente se o aluno já estiver logado)
-            btnPasso2.href = "#";
-            btnPasso1.style.display = "block";
-            btnPasso2.style.display = "block";
-            blocoComoFunciona.style.display = "block";
-            document.getElementById("preco-destaque").style.display = "block";
-            linkLogin.style.display = "block";
+            blocoEspera.style.display = "none";
+            precoDestaque.style.display = "block";
+            blocoCheckout.style.display = "block";
         } else {
             btnEspera.href = LINK_LISTA_ESPERA;
         }
 
-        // Pagar agora: cria o checkout ligado à conta do aluno logado
-        const SUPABASE_URL = "https://kulaumnlntcepiikqpts.supabase.co";
-        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt1bGF1bW5sbnRjZXBpaWtxcHRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQzNDU2NDMsImV4cCI6MjA5OTkyMTY0M30.GFPptPiuy1TEao-_n_GQVlfvX7R4gDwTaY8h1ZxU76s";
-        const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        // ==========================================================================
+        // UTILITÁRIOS DE MENSAGEM E VALIDAÇÃO
+        // ==========================================================================
+        function definirMsg(el, texto, tipo) {
+            el.textContent = texto || "";
+            el.className = "msg-retorno" + (texto && tipo ? " " + tipo : "");
+        }
 
-        // Adapta a tela automaticamente quando o aluno já está logado
-        (async function verificarSessaoAtual() {
+        function emailFormatoValido(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+        }
+
+        function cpfValido(cpf) {
+            cpf = cpf.replace(/\D/g, "");
+            if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false;
+            for (let t = 9; t < 11; t++) {
+                let soma = 0;
+                for (let i = 0; i < t; i++) soma += Number(cpf[i]) * (t + 1 - i);
+                const dig = ((soma * 10) % 11) % 10;
+                if (dig !== Number(cpf[t])) return false;
+            }
+            return true;
+        }
+
+        // Máscara automática de CPF
+        cadCpf.addEventListener("input", function () {
+            let v = cadCpf.value.replace(/\D/g, "").slice(0, 11);
+            if (v.length > 9) {
+                v = v.replace(/(\d{3})(\d{3})(\d{3})(\d{1,2})/, "$1.$2.$3-$4");
+            } else if (v.length > 6) {
+                v = v.replace(/(\d{3})(\d{3})(\d{1,3})/, "$1.$2.$3");
+            } else if (v.length > 3) {
+                v = v.replace(/(\d{3})(\d{1,3})/, "$1.$2");
+            }
+            cadCpf.value = v;
+        });
+
+        // ==========================================================================
+        // DETECTOR AUTOMÁTICO DE DOMÍNIOS ERRADOS
+        // ==========================================================================
+        const DOMINIOS_ERRADOS = {
+            "gmal.com": "gmail.com",
+            "gmial.com": "gmail.com",
+            "gamil.com": "gmail.com",
+            "gnail.com": "gmail.com",
+            "gmai.com": "gmail.com",
+            "gmaill.com": "gmail.com",
+            "gmali.com": "gmail.com",
+            "gimail.com": "gmail.com",
+            "gmail.com.br": "gmail.com",
+            "gmail.con": "gmail.com",
+            "gmail.co": "gmail.com",
+            "gmail.cm": "gmail.com",
+            "gmail.om": "gmail.com",
+            "gmail.br": "gmail.com",
+            "hotmial.com": "hotmail.com",
+            "hotmal.com": "hotmail.com",
+            "homtail.com": "hotmail.com",
+            "hotmai.com": "hotmail.com",
+            "hotmaill.com": "hotmail.com",
+            "hotamil.com": "hotmail.com",
+            "hotmail.con": "hotmail.com",
+            "hotmail.cm": "hotmail.com",
+            "hotmail.co": "hotmail.com",
+            "hotmail.com.b": "hotmail.com.br",
+            "outlok.com": "outlook.com",
+            "outllok.com": "outlook.com",
+            "outook.com": "outlook.com",
+            "outloook.com": "outlook.com",
+            "outlook.con": "outlook.com",
+            "outlook.cm": "outlook.com",
+            "outlook.co": "outlook.com",
+            "yaho.com": "yahoo.com",
+            "yahho.com": "yahoo.com",
+            "yahoo.con": "yahoo.com",
+            "yahoo.cm": "yahoo.com",
+            "yaho.com.br": "yahoo.com.br",
+            "iclod.com": "icloud.com",
+            "icoud.com": "icloud.com",
+            "iclould.com": "icloud.com",
+            "icloud.con": "icloud.com",
+            "icloud.com.br": "icloud.com",
+            "uol.com.b": "uol.com.br",
+            "bol.com.b": "bol.com.br",
+            "terra.com.b": "terra.com.br",
+            "live.con": "live.com"
+        };
+
+        let sugestaoEmailAtual = null;
+        let emailIgnoradoPeloUsuario = "";
+
+        function verificarDominioEmail() {
+            const valor = cadEmail.value.trim().toLowerCase();
+            const partes = valor.split("@");
+            if (partes.length !== 2 || !partes[0] || !partes[1]) {
+                sugestaoEmailAtual = null;
+                boxSugestaoEmail.style.display = "none";
+                return null;
+            }
+
+            const dominioCorreto = DOMINIOS_ERRADOS[partes[1]];
+            if (dominioCorreto && valor !== emailIgnoradoPeloUsuario) {
+                sugestaoEmailAtual = partes[0] + "@" + dominioCorreto;
+                textoSugestaoEmail.textContent = sugestaoEmailAtual;
+                boxSugestaoEmail.style.display = "block";
+                return sugestaoEmailAtual;
+            }
+
+            sugestaoEmailAtual = null;
+            boxSugestaoEmail.style.display = "none";
+            return null;
+        }
+
+        btnCorrigirEmail.addEventListener("click", function () {
+            if (!sugestaoEmailAtual) return;
+            const antigo = cadEmail.value.trim().toLowerCase();
+            cadEmail.value = sugestaoEmailAtual;
+            if (cadEmailConfirm.value.trim().toLowerCase() === antigo) {
+                cadEmailConfirm.value = "";
+            }
+            sugestaoEmailAtual = null;
+            boxSugestaoEmail.style.display = "none";
+            validarConfirmacaoEmail();
+            cadEmailConfirm.focus();
+        });
+
+        btnManterEmail.addEventListener("click", function () {
+            emailIgnoradoPeloUsuario = cadEmail.value.trim().toLowerCase();
+            sugestaoEmailAtual = null;
+            boxSugestaoEmail.style.display = "none";
+        });
+
+        // ==========================================================================
+        // CONFIRMAÇÃO DE E-MAIL (DIGITAR DUAS VEZES, SEM PERMITIR COLAR)
+        // ==========================================================================
+        function validarConfirmacaoEmail() {
+            const e1 = cadEmail.value.trim().toLowerCase();
+            const e2 = cadEmailConfirm.value.trim().toLowerCase();
+
+            if (!e2) {
+                cadEmailConfirm.classList.remove("campo-erro", "campo-ok");
+                dicaEmailConfirm.textContent = "Digite novamente sem colar para garantir que não haja nenhuma letra errada.";
+                dicaEmailConfirm.className = "campo-dica";
+                return false;
+            }
+
+            if (e1 !== e2) {
+                cadEmailConfirm.classList.add("campo-erro");
+                cadEmailConfirm.classList.remove("campo-ok");
+                dicaEmailConfirm.textContent = "❌ Os e-mails não estão iguais. Confira letra por letra.";
+                dicaEmailConfirm.className = "campo-dica erro";
+                return false;
+            }
+
+            cadEmailConfirm.classList.remove("campo-erro");
+            cadEmailConfirm.classList.add("campo-ok");
+            dicaEmailConfirm.textContent = "✅ Os e-mails conferem!";
+            dicaEmailConfirm.className = "campo-dica ok";
+            return true;
+        }
+
+        cadEmail.addEventListener("input", function () {
+            verificarDominioEmail();
+            if (cadEmailConfirm.value.trim()) {
+                validarConfirmacaoEmail();
+            }
+        });
+
+        cadEmail.addEventListener("blur", verificarDominioEmail);
+        cadEmailConfirm.addEventListener("input", validarConfirmacaoEmail);
+
+        // Bloqueia colar e arrastar texto no campo de confirmação
+        function bloquearColagem(e) {
+            e.preventDefault();
+            cadEmailConfirm.classList.add("campo-erro");
+            dicaEmailConfirm.textContent = "⚠️ Colar está desativado aqui. Digite o e-mail novamente para evitar erros.";
+            dicaEmailConfirm.className = "campo-dica erro";
+        }
+        cadEmailConfirm.addEventListener("paste", bloquearColagem);
+        cadEmailConfirm.addEventListener("drop", bloquearColagem);
+
+        // ==========================================================================
+        // TROCA DE ABAS (NOVO POR AQUI / JÁ TENHO CONTA)
+        // ==========================================================================
+        function ativarAba(qual) {
+            const novo = (qual === "novo");
+            abaNovo.classList.toggle("ativa", novo);
+            abaExistente.classList.toggle("ativa", !novo);
+            formCadastro.style.display = novo ? "block" : "none";
+            formLogin.style.display = novo ? "none" : "block";
+            definirMsg(msgCadastro, "", "");
+            definirMsg(msgLogin, "", "");
+        }
+
+        abaNovo.addEventListener("click", () => ativarAba("novo"));
+        abaExistente.addEventListener("click", () => ativarAba("existente"));
+
+        // ==========================================================================
+        // EXIBIÇÃO DO ESTADO LOGADO E CHAMADA DO MERCADO PAGO
+        // ==========================================================================
+        function mostrarTelaLogado(emailUsuario, planoAtual) {
+            areaVisitante.style.display = "none";
+            areaLogado.style.display = "block";
+            statusConta.textContent = "";
+            definirMsg(msgLogado, "", "");
+
+            if (String(planoAtual).toLowerCase() === "premium") {
+                const l1 = document.createElement("div");
+                l1.textContent = "👑 Seu Plano Premium já está ativo na conta:";
+                const st = document.createElement("strong");
+                st.textContent = emailUsuario;
+                statusConta.appendChild(l1);
+                statusConta.appendChild(st);
+                statusConta.style.display = "block";
+
+                btnPagarLogado.style.display = "none";
+                seloLogado.style.display = "none";
+                btnJaPremium.style.display = "block";
+                return;
+            }
+
+            const l1 = document.createElement("div");
+            l1.appendChild(document.createTextNode("✅ Conta conectada: "));
+            const st = document.createElement("strong");
+            st.textContent = emailUsuario;
+            l1.appendChild(st);
+
+            const sub = document.createElement("span");
+            sub.className = "status-conta-sub";
+            sub.textContent = "Na tela do Mercado Pago, informe este mesmo e-mail para liberação automática.";
+
+            statusConta.appendChild(l1);
+            statusConta.appendChild(sub);
+            statusConta.style.display = "block";
+
+            btnJaPremium.style.display = "none";
+            btnPagarLogado.style.display = "block";
+            seloLogado.style.display = "block";
+        }
+
+        async function consultarPlano(userId) {
+            try {
+                const { data: perfil } = await client
+                    .from("profiles")
+                    .select("plano")
+                    .eq("id", userId)
+                    .single();
+                return (perfil && perfil.plano) ? String(perfil.plano).toLowerCase() : "gratuito";
+            } catch (err) {
+                return "gratuito";
+            }
+        }
+
+        async function abrirMercadoPago(sessao, botaoEl, textoOriginal, msgEl) {
+            botaoEl.disabled = true;
+            botaoEl.textContent = "Abrindo Mercado Pago...";
+            definirMsg(msgEl, "", "");
+
+            try {
+                const opcoes = (sessao && sessao.access_token)
+                    ? { headers: { Authorization: "Bearer " + sessao.access_token } }
+                    : undefined;
+
+                const { data, error } = await client.functions.invoke("criar-pagamento", opcoes);
+                if (error || !data || !data.url) {
+                    console.error("Erro ao criar pagamento:", error, data);
+                    botaoEl.disabled = false;
+                    botaoEl.textContent = textoOriginal;
+                    definirMsg(msgEl, "Não foi possível abrir o Mercado Pago agora. Clique novamente no botão acima para tentar de novo.", "erro");
+                    return false;
+                }
+
+                window.location.href = data.url;
+                return true;
+            } catch (err) {
+                console.error("Falha ao invocar criar-pagamento:", err);
+                botaoEl.disabled = false;
+                botaoEl.textContent = textoOriginal;
+                definirMsg(msgEl, "Falha de conexão ao abrir o pagamento. Verifique sua internet e tente novamente.", "erro");
+                return false;
+            }
+        }
+
+        // Verifica se o aluno já chegou logado
+        (async function verificarSessaoInicial() {
             if (!VENDAS_ATIVAS) return;
             try {
                 const { data: { session } } = await client.auth.getSession();
                 if (!session || !session.user) return;
-
-                const emailUsuario = session.user.email || "";
-                let planoAtual = "gratuito";
-
-                const { data: perfil } = await client
-                    .from("profiles")
-                    .select("plano")
-                    .eq("id", session.user.id)
-                    .single();
-
-                if (perfil && perfil.plano) {
-                    planoAtual = String(perfil.plano).toLowerCase();
-                }
-
-                statusConta.textContent = "";
-
-                if (planoAtual === "premium") {
-                    const linha1 = document.createElement("div");
-                    linha1.textContent = "👑 Seu Plano Premium já está ativo na conta:";
-                    const strongEmail = document.createElement("strong");
-                    strongEmail.textContent = emailUsuario;
-                    statusConta.appendChild(linha1);
-                    statusConta.appendChild(strongEmail);
-                    statusConta.style.display = "block";
-
-                    btnPasso1.style.display = "none";
-                    btnPasso2.style.display = "none";
-                    linkLogin.style.display = "none";
-                    btnJaPremium.style.display = "block";
-                    linkTrocarConta.style.display = "block";
-                    return;
-                }
-
-                // Aluno logado no plano gratuito: remove passo 1 e destaca pagamento direto
-                const linhaConectado = document.createElement("div");
-                linhaConectado.appendChild(document.createTextNode("✅ Conta conectada: "));
-                const strongEmail = document.createElement("strong");
-                strongEmail.textContent = emailUsuario;
-                linhaConectado.appendChild(strongEmail);
-
-                const subAviso = document.createElement("span");
-                subAviso.className = "status-conta-sub";
-                subAviso.textContent = "Informe este mesmo e-mail na tela do Mercado Pago para liberação automática.";
-
-                statusConta.appendChild(linhaConectado);
-                statusConta.appendChild(subAviso);
-                statusConta.style.display = "block";
-
-                btnPasso1.style.display = "none";
-                linkLogin.style.display = "none";
-                btnPasso2.textContent = "💳 Pagar agora (Pix ou Cartão) — R$ 29,90";
-                linkTrocarConta.style.display = "block";
+                const planoAtual = await consultarPlano(session.user.id);
+                mostrarTelaLogado(session.user.email || "", planoAtual);
             } catch (err) {
-                console.error("Erro ao verificar sessão em acesso-premium:", err);
+                console.error("Erro ao verificar sessão inicial:", err);
             }
         })();
 
-        let processandoPagamento = false;
+        // Botão de pagamento quando já está logado
+        btnPagarLogado.addEventListener("click", async function () {
+            const textoOriginal = btnPagarLogado.textContent;
+            const { data: { session } } = await client.auth.getSession();
+            if (!session) {
+                areaLogado.style.display = "none";
+                areaVisitante.style.display = "block";
+                ativarAba("existente");
+                definirMsg(msgLogin, "Sua sessão expirou. Entre novamente para ir ao pagamento.", "info");
+                return;
+            }
+            await abrirMercadoPago(session, btnPagarLogado, textoOriginal, msgLogado);
+        });
 
-        btnPasso2.addEventListener("click", async (e) => {
+        // ==========================================================================
+        // ENVIO DO FORMULÁRIO 1: CRIAR CONTA + IR DIRETO PARA O MERCADO PAGO
+        // ==========================================================================
+        formCadastro.addEventListener("submit", async function (e) {
             e.preventDefault();
-            if (processandoPagamento) return;
+            definirMsg(msgCadastro, "", "");
 
-            processandoPagamento = true;
-            const textoOriginal = btnPasso2.textContent;
-            btnPasso2.textContent = "Aguarde...";
+            const email1 = cadEmail.value.trim().toLowerCase();
+            const email2 = cadEmailConfirm.value.trim().toLowerCase();
+            const senha = cadSenha.value;
+            const cpfLimpo = cadCpf.value.replace(/\D/g, "");
+
+            if (!emailFormatoValido(email1)) {
+                definirMsg(msgCadastro, "Digite um endereço de e-mail válido.", "erro");
+                cadEmail.focus();
+                return;
+            }
+
+            // Bloqueia se houver domínio errado ainda não corrigido/confirmado
+            const sugestao = verificarDominioEmail();
+            if (sugestao) {
+                definirMsg(msgCadastro, "Confira o aviso amarelo acima do e-mail antes de continuar.", "info");
+                boxSugestaoEmail.scrollIntoView({ behavior: "smooth", block: "center" });
+                return;
+            }
+
+            if (!email2 || email1 !== email2) {
+                validarConfirmacaoEmail();
+                definirMsg(msgCadastro, "Os dois campos de e-mail precisam estar idênticos.", "erro");
+                cadEmailConfirm.focus();
+                return;
+            }
+
+            if (senha.length < 6) {
+                definirMsg(msgCadastro, "A senha precisa ter pelo menos 6 caracteres.", "erro");
+                cadSenha.focus();
+                return;
+            }
+
+            if (!cpfValido(cpfLimpo)) {
+                definirMsg(msgCadastro, "Informe um CPF válido para continuar.", "erro");
+                cadCpf.focus();
+                return;
+            }
+
+            const textoOriginal = btnCadPagar.textContent;
+            btnCadPagar.disabled = true;
+            btnCadPagar.textContent = "Criando conta e abrindo pagamento...";
 
             try {
-                const { data: { session } } = await client.auth.getSession();
-                if (!session) {
-                    window.location.href = "login.html?redirect=acesso-premium.html";
+                const { data, error } = await client.auth.signUp({
+                    email: email1,
+                    password: senha,
+                    options: { data: { cpf: cpfLimpo } }
+                });
+
+                if (error) {
+                    console.error("Erro no signUp:", error);
+                    btnCadPagar.disabled = false;
+                    btnCadPagar.textContent = textoOriginal;
+
+                    const low = String(error.message || "").toLowerCase();
+                    if (low.includes("database error")) {
+                        definirMsg(msgCadastro, "Este CPF já está cadastrado em outra conta. Se você já tem conta, clique na aba 'Já tenho conta' acima.", "erro");
+                        return;
+                    }
+                    if (low.includes("already registered") || low.includes("already been registered")) {
+                        logEmail.value = email1;
+                        ativarAba("existente");
+                        definirMsg(msgLogin, "Este e-mail já tem cadastro! Digite sua senha abaixo para ir direto ao pagamento.", "info");
+                        logSenha.focus();
+                        return;
+                    }
+                    definirMsg(msgCadastro, "Não foi possível criar sua conta: " + error.message, "erro");
                     return;
                 }
 
-                const { data, error } = await client.functions.invoke("criar-pagamento");
-                if (error || !data || !data.url) {
-                    console.error("Erro ao criar pagamento:", error, data);
-                    btnPasso2.textContent = textoOriginal;
-                    processandoPagamento = false;
-                    alert("Não foi possível abrir o pagamento no momento. Tente novamente em instantes.");
+                // Se Confirm email estiver desligado no Supabase, data.session já vem ativa na hora!
+                if (data && data.session) {
+                    const abriu = await abrirMercadoPago(data.session, btnCadPagar, textoOriginal, msgCadastro);
+                    if (!abriu) {
+                        // Conta já foi criada e logada: troca para tela logada para o aluno só clicar em pagar de novo
+                        mostrarTelaLogado(email1, "gratuito");
+                        definirMsg(msgLogado, "Sua conta já foi criada! Clique no botão verde acima para abrir o Mercado Pago.", "info");
+                    }
                     return;
                 }
-                window.location.href = data.url;
+
+                // Fallback caso Confirm email ainda esteja ativado no painel do Supabase
+                btnCadPagar.disabled = false;
+                btnCadPagar.textContent = textoOriginal;
+                logEmail.value = email1;
+                definirMsg(
+                    msgCadastro,
+                    "Conta criada! Confirme o link enviado para o seu e-mail (confira também o Spam) e depois clique na aba 'Já tenho conta' acima para ir ao pagamento.",
+                    "sucesso"
+                );
             } catch (err) {
-                console.error("Falha inesperada ao iniciar pagamento:", err);
-                btnPasso2.textContent = textoOriginal;
-                processandoPagamento = false;
-                alert("Não foi possível abrir o pagamento. Verifique sua conexão e tente novamente.");
+                console.error("Erro inesperado no cadastro:", err);
+                btnCadPagar.disabled = false;
+                btnCadPagar.textContent = textoOriginal;
+                definirMsg(msgCadastro, "Erro de conexão ao criar conta. Tente novamente.", "erro");
+            }
+        });
+
+        // ==========================================================================
+        // ENVIO DO FORMULÁRIO 2: ENTRAR NA CONTA + IR DIRETO PARA O MERCADO PAGO
+        // ==========================================================================
+        formLogin.addEventListener("submit", async function (e) {
+            e.preventDefault();
+            definirMsg(msgLogin, "", "");
+
+            const email = logEmail.value.trim().toLowerCase();
+            const senha = logSenha.value;
+
+            if (!emailFormatoValido(email) || !senha) {
+                definirMsg(msgLogin, "Informe seu e-mail e sua senha para continuar.", "erro");
+                return;
+            }
+
+            const textoOriginal = btnLogPagar.textContent;
+            btnLogPagar.disabled = true;
+            btnLogPagar.textContent = "Entrando e abrindo pagamento...";
+
+            try {
+                const { data, error } = await client.auth.signInWithPassword({
+                    email: email,
+                    password: senha
+                });
+
+                if (error) {
+                    console.error("Erro no login:", error);
+                    btnLogPagar.disabled = false;
+                    btnLogPagar.textContent = textoOriginal;
+
+                    const low = String(error.message || "").toLowerCase();
+                    if (low.includes("email not confirmed")) {
+                        definirMsg(msgLogin, "Seu e-mail ainda não foi confirmado. Verifique sua caixa de entrada (e o spam) antes de entrar.", "erro");
+                    } else if (low.includes("invalid login credentials")) {
+                        definirMsg(msgLogin, "E-mail ou senha incorretos. Confira os dados digitados.", "erro");
+                    } else if (low.includes("too many requests") || low.includes("rate limit")) {
+                        definirMsg(msgLogin, "Muitas tentativas seguidas. Aguarde alguns instantes e tente novamente.", "erro");
+                    } else {
+                        definirMsg(msgLogin, "Não foi possível entrar: " + error.message, "erro");
+                    }
+                    return;
+                }
+
+                // Evita cobrança duplicada se a conta já for Premium
+                const planoAtual = await consultarPlano(data.user.id);
+                if (planoAtual === "premium") {
+                    mostrarTelaLogado(data.user.email || email, "premium");
+                    return;
+                }
+
+                const abriu = await abrirMercadoPago(data.session, btnLogPagar, textoOriginal, msgLogin);
+                if (!abriu) {
+                    mostrarTelaLogado(data.user.email || email, planoAtual);
+                    definirMsg(msgLogado, "Você já está conectado! Clique no botão verde acima para tentar abrir o Mercado Pago novamente.", "info");
+                }
+            } catch (err) {
+                console.error("Erro inesperado no login:", err);
+                btnLogPagar.disabled = false;
+                btnLogPagar.textContent = textoOriginal;
+                definirMsg(msgLogin, "Erro de conexão ao entrar. Tente novamente.", "erro");
             }
         });
     </script>
 
-    <!-- PROTOCOLO RED TEAM: PROTEÇÃO INTEGRAL DA PÁGINA -->
+    <!-- PROTOCOLO RED TEAM: PROTEÇÃO INTEGRAL DA PÁGINA (PRESERVANDO DIGITAÇÃO NOS CAMPOS) -->
     <script>
-        document.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+        document.addEventListener('contextmenu', function (e) {
+            if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+            e.preventDefault();
+        });
         document.addEventListener('keydown', function (e) {
             if (e.key === 'F12') { e.preventDefault(); return false; }
-            if (e.ctrlKey && e.shiftKey && e.key === 'I') { e.preventDefault(); return false; }
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i')) { e.preventDefault(); return false; }
             if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) { e.preventDefault(); return false; }
             if (e.ctrlKey && (e.key === 's' || e.key === 'S')) { e.preventDefault(); return false; }
-            if (e.ctrlKey && (e.key === 'c' || e.key === 'C')) { e.preventDefault(); return false; }
+            if (e.ctrlKey && (e.key === 'c' || e.key === 'C')) {
+                if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+                e.preventDefault();
+                return false;
+            }
         });
         window.addEventListener('blur', function () {
             const container = document.getElementById('simulador-container');
@@ -495,7 +1138,7 @@
             if (container) container.style.filter = 'none';
         });
         const estiloAntiSelecao = document.createElement('style');
-        estiloAntiSelecao.innerHTML = 'body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }';
+        estiloAntiSelecao.innerHTML = 'body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } input, textarea { -webkit-user-select: text !important; -moz-user-select: text !important; user-select: text !important; }';
         document.head.appendChild(estiloAntiSelecao);
     </script>
 
