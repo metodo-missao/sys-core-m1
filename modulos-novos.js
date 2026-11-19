@@ -99,3 +99,48 @@ window.MM_MODULOS = {
     }
 
 };
+
+/* ==========================================================================
+   5. AJUSTE ISOLADO DE INTERFACE (SEM MEXER NO index.html)
+   - Visitante (deslogado): esconde "#btn-gabarita" para evitar duplicidade
+     com o botão "⚡ COMEÇAR GRÁTIS" dentro da Área do Aluno.
+   - Aluno logado (gratuito ou premium): assim que o MM-LOGIN atualiza a
+     Área do Aluno e remove o botão "COMEÇAR GRÁTIS", o botão do Simulador
+     Interativo reaparece automaticamente.
+   ========================================================================== */
+(function () {
+    try {
+        function sincronizarBotaoSimulador() {
+            var area = document.getElementById('area-aluno');
+            var btnSimulador = document.getElementById('btn-gabarita');
+            if (!btnSimulador) return;
+
+            var areaVisivel = area && window.getComputedStyle(area).display !== 'none';
+            var temComecarGratis = areaVisivel && !!area.querySelector('#btn-comecar-gratis');
+
+            btnSimulador.style.display = temComecarGratis ? 'none' : '';
+        }
+
+        function iniciarObservador() {
+            sincronizarBotaoSimulador();
+
+            var areaAluno = document.getElementById('area-aluno');
+            if (areaAluno && typeof MutationObserver !== 'undefined') {
+                var observador = new MutationObserver(sincronizarBotaoSimulador);
+                observador.observe(areaAluno, {
+                    childList: true,
+                    attributes: true,
+                    attributeFilter: ['style']
+                });
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', iniciarObservador);
+        } else {
+            iniciarObservador();
+        }
+    } catch (err) {
+        console.error('MM-MODULOS | erro ao sincronizar botão do simulador:', err);
+    }
+})();
