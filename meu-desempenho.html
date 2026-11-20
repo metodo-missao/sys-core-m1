@@ -337,6 +337,62 @@
             const painel = document.getElementById('conteudo-painel');
             const subtitulo = document.getElementById('subtitulo-conta');
 
+            // Mapa oficial de nomes (Matéria — Aula) para garantir exibição exata
+            // mesmo quando o <title> da página for genérico (ex.: "Simulados Premium")
+            const MAPA_AULAS = {
+                // Direito Penal
+                'questoes-aplicacao-lei-penal.html': 'Direito Penal — Da Aplicação da Lei Penal',
+                'questoes-imputabilidade-penal.html': 'Direito Penal — Da Imputabilidade Penal',
+                'questoes-concurso-de-pessoas.html': 'Direito Penal — Do Concurso de Pessoas',
+                'questoes-das-penas.html': 'Direito Penal — Das Penas',
+                'questoes-medidas-seguranca.html': 'Direito Penal — Das Medidas de Segurança',
+                'questoes-acao-penal.html': 'Direito Penal — Da Ação Penal',
+                'direito-penal-extincao-punibilidade.html': 'Direito Penal — Da Extinção da Punibilidade',
+                'dados-direito-penal-crimes-contra-pessoa.html': 'Direito Penal — Dos Crimes Contra a Pessoa',
+                'direito-penal-crimes-contra-patrimonio.html': 'Direito Penal — Dos Crimes Contra o Patrimônio',
+
+                // Direito Constitucional
+                'questoes-constitucional-principios-fundamentais.html': 'Direito Constitucional — Princípios Fundamentais (Art. 1º ao 4º)',
+                'questoes-constitucional-direitos-fundamentais.html': 'Direito Constitucional — Direitos e Garantias Fundamentais (Art. 5º ao 10 e 14 ao 17)',
+                'constitucional-organizacao-estado.html': 'Direito Constitucional — Organização do Estado (Art. 21 ao 28)',
+                'constitucional-administracao-publica.html': 'Direito Constitucional — Administração Pública (Art. 37 ao 41)',
+                'constitucional-poder-judiciario.html': 'Direito Constitucional — Poder Judiciário (Art. 92 ao 100, 125 e 126)',
+                'constitucional-ministerio-publico.html': 'Direito Constitucional — Ministério Público (Art. 127 ao 129)',
+                'constitucional-advocacia-defensoria.html': 'Direito Constitucional — Advocacia e Defensoria Pública (Art. 131 ao 134)',
+                'constitucional-seguranca-publica.html': 'Direito Constitucional — Segurança Pública (Art. 144)',
+
+                // Declaração Universal dos Direitos Humanos (DUDH)
+                'dudh-preambulo-principios.html': 'DUDH — Preâmbulo e Princípios Fundamentais (Art. 1º e 2º)',
+                'dudh-direitos-civis-politicos.html': 'DUDH — Direitos Civis e Políticos (Art. 3º ao 21)',
+                'dudh-direitos-sociais-culturais.html': 'DUDH — Direitos Econômicos, Sociais e Culturais (Art. 22 ao 27)',
+                'dudh-deveres-disposicoes-finais.html': 'DUDH — Deveres do Indivíduo e Disposições Finais (Art. 28 ao 30)',
+
+                // Lei Maria da Penha
+                'legislacao-maria-da-penha.html': 'Lei Maria da Penha — Disposições Preliminares e Formas de Violência (Art. 1º ao 7º)',
+                'legislacao-maria-da-penha-assistencia.html': 'Lei Maria da Penha — Assistência à Mulher e Atendimento Policial (Art. 8º ao 12-C)',
+                'legislacao-maria-da-penha-procedimentos.html': 'Lei Maria da Penha — Procedimentos Gerais e Órgãos (Art. 13 ao 17)',
+                'legislacao-maria-da-penha-medidas-protetivas.html': 'Lei Maria da Penha — Medidas Protetivas de Urgência (Art. 18 ao 24)',
+                'legislacao-maria-da-penha-crime-descumprimento.html': 'Lei Maria da Penha — Crime de Descumprimento de Medida Protetiva (Art. 24-A)',
+                'legislacao-maria-da-penha-processo-julgamento.html': 'Lei Maria da Penha — Processo, Julgamento e Finais (Art. 25 ao 46)',
+
+                // Estatuto da Pessoa com Deficiência
+                'estatuto-pcd-arts-1-ao-8.html': 'Estatuto da Pessoa com Deficiência — Disposições Preliminares e Igualdade (Art. 1º ao 8º)',
+                'estatuto-pcd-acesso-justica-crimes.html': 'Estatuto da Pessoa com Deficiência — Acesso à Justiça e Crimes (Art. 79 ao 91)',
+
+                // Estatuto da Igualdade Racial
+                'estatuto-igualdade-racial-disposicoes-gerais.html': 'Estatuto da Igualdade Racial — Disposições Gerais (Art. 1º ao 10)',
+                'estatuto-igualdade-racial-direitos-fundamentais.html': 'Estatuto da Igualdade Racial — Direitos Fundamentais (Art. 11 ao 32)',
+                'estatuto-igualdade-racial-sistema-promocao.html': 'Estatuto da Igualdade Racial — Sistema de Promoção da Igualdade (Art. 33 ao 49)'
+            };
+
+            function resolverNomeAula(pagina, tituloSalvo) {
+                const arquivo = (pagina || '').trim().toLowerCase();
+                if (arquivo && MAPA_AULAS[arquivo]) {
+                    return MAPA_AULAS[arquivo];
+                }
+                return tituloSalvo || pagina || 'Aula';
+            }
+
             function mostrarAviso(titulo, texto, textoBtn, hrefBtn) {
                 painel.textContent = '';
                 const box = document.createElement('div');
@@ -414,11 +470,11 @@
                 // Agrupamento por aula
                 const porAula = {};
                 registros.forEach(r => {
-                    const chave = r.pagina || r.titulo_aula || 'aula';
+                    const chave = (r.pagina || r.titulo_aula || 'aula').toLowerCase();
                     if (!porAula[chave]) {
                         porAula[chave] = {
                             pagina: r.pagina,
-                            titulo: r.titulo_aula || r.pagina || 'Aula',
+                            titulo: resolverNomeAula(r.pagina, r.titulo_aula),
                             total: 0,
                             acertos: 0,
                             ultimaData: r.criado_em
