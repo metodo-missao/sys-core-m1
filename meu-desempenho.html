@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Desempenho — Método Missão</title>
+
+    <style>
+        :root {
+            --cor-fundo-site: #02112e;
+            --cor-fundo-bloco: #031842;
+            --cor-borda: #0b2c6e;
+            --cor-ouro: #ffca28;
+            --cor-texto: #ffffff;
+            --cor-sucesso: #2ecc71;
+            --cor-erro: #ff5252;
+            --cor-texto-mutado: #8a99ad;
+        }
+
+        @media print {
+            body { display: none !important; }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--cor-fundo-site);
+            color: var(--cor-texto);
+            min-height: 100vh;
+            padding: 24px 14px 40px;
+            display: flex;
+            justify-content: center;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='450' height='200'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' transform='rotate(-25 225 100)' fill='rgba(255,202,40,0.05)' font-family='Segoe UI, sans-serif' font-weight='800' font-size='14px'%3EMÉTODO MISSÃO • METODOMISSAO.COM%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 780px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .topo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            border-bottom: 2px solid var(--cor-ouro);
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .marca {
+            font-size: 1.45rem;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+        }
+
+        .marca span {
+            color: var(--cor-ouro);
+        }
+
+        .btn-voltar {
+            display: inline-block;
+            padding: 9px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--cor-borda);
+            background-color: var(--cor-fundo-bloco);
+            color: var(--cor-texto);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .btn-voltar:hover {
+            border-color: var(--cor-ouro);
+            color: var(--cor-ouro);
+        }
+
+        .cabecalho-aluno {
+            margin-bottom: 20px;
+        }
+
+        .cabecalho-aluno h1 {
+            font-size: 1.4rem;
+            color: var(--cor-ouro);
+            margin-bottom: 4px;
+        }
+
+        .cabecalho-aluno p {
+            font-size: 13px;
+            color: var(--cor-texto-mutado);
+        }
+
+        .bloco-aviso {
+            background-color: var(--cor-fundo-bloco);
+            border: 1px solid var(--cor-borda);
+            border-radius: 12px;
+            padding: 28px 20px;
+            text-align: center;
+        }
+
+        .bloco-aviso h2 {
+            color: var(--cor-ouro);
+            font-size: 1.15rem;
+            margin-bottom: 10px;
+        }
+
+        .bloco-aviso p {
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 18px;
+        }
+
+        .btn-ouro {
+            display: inline-block;
+            padding: 13px 22px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #ffe082 0%, #ffca28 50%, #ffa000 100%);
+            color: var(--cor-fundo-site);
+            font-weight: 800;
+            font-size: 14px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .grid-resumo {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .card-metrica {
+            background-color: var(--cor-fundo-bloco);
+            border: 1px solid var(--cor-borda);
+            border-radius: 12px;
+            padding: 16px 12px;
+            text-align: center;
+        }
+
+        .metrica-valor {
+            font-size: 1.7rem;
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        .metrica-rotulo {
+            font-size: 12px;
+            color: var(--cor-texto-mutado);
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cor-ouro { color: var(--cor-ouro); }
+        .cor-verde { color: var(--cor-sucesso); }
+        .cor-vermelho { color: var(--cor-erro); }
+
+        .secao-titulo {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--cor-ouro);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .lista-aulas {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .card-aula {
+            background-color: var(--cor-fundo-bloco);
+            border: 1px solid var(--cor-borda);
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .card-aula-topo {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .card-aula-titulo {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--cor-texto);
+            line-height: 1.35;
+        }
+
+        .badge-pct {
+            flex-shrink: 0;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .pct-alto { background: rgba(46, 204, 113, 0.16); color: var(--cor-sucesso); border: 1px solid rgba(46, 204, 113, 0.4); }
+        .pct-medio { background: rgba(255, 202, 40, 0.16); color: var(--cor-ouro); border: 1px solid rgba(255, 202, 40, 0.4); }
+        .pct-baixo { background: rgba(255, 82, 82, 0.16); color: var(--cor-erro); border: 1px solid rgba(255, 82, 82, 0.4); }
+
+        .barra-fundo {
+            width: 100%;
+            height: 8px;
+            background-color: var(--cor-fundo-site);
+            border-radius: 99px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .barra-preenchida {
+            height: 100%;
+            border-radius: 99px;
+        }
+
+        .card-aula-rodape {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            font-size: 13px;
+            color: var(--cor-texto-mutado);
+        }
+
+        .contadores {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn-refazer {
+            color: var(--cor-ouro);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .btn-refazer:hover {
+            text-decoration: underline;
+        }
+
+        .rodape-acoes {
+            margin-top: 26px;
+            text-align: center;
+        }
+
+        .btn-limpar {
+            background: transparent;
+            border: 1px solid rgba(255, 82, 82, 0.45);
+            color: #ff8a8a;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .btn-limpar:hover {
+            background: rgba(255, 82, 82, 0.12);
+        }
+
+        .footer-institucional {
+            margin-top: 36px;
+            font-size: 11px;
+            color: var(--cor-texto-mutado);
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 600px) {
+            .grid-resumo {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .metrica-valor {
+                font-size: 1.45rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="topo">
+            <div class="marca">MÉTODO<span>MISSÃO</span></div>
+            <a href="index.html" class="btn-voltar">◀ Voltar ao Início</a>
+        </div>
+
+        <div class="cabecalho-aluno">
+            <h1>📊 Meu Desempenho</h1>
+            <p id="subtitulo-conta">Carregando seus dados...</p>
+        </div>
+
+        <div id="conteudo-painel">
+            <div class="bloco-aviso">
+                <p style="margin-bottom: 0;">Buscando seu histórico de questões...</p>
+            </div>
+        </div>
+
+        <footer class="footer-institucional">
+            &copy; 2026 Método Missão. Todos os direitos reservados.
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-init.js"></script>
+    <script>
+        (async function () {
+            const painel = document.getElementById('conteudo-painel');
+            const subtitulo = document.getElementById('subtitulo-conta');
+
+            function mostrarAviso(titulo, texto, textoBtn, hrefBtn) {
+                painel.textContent = '';
+                const box = document.createElement('div');
+                box.className = 'bloco-aviso';
+
+                const h2 = document.createElement('h2');
+                h2.textContent = titulo;
+                box.appendChild(h2);
+
+                const p = document.createElement('p');
+                p.textContent = texto;
+                box.appendChild(p);
+
+                if (textoBtn && hrefBtn) {
+                    const a = document.createElement('a');
+                    a.className = 'btn-ouro';
+                    a.href = hrefBtn;
+                    a.textContent = textoBtn;
+                    box.appendChild(a);
+                }
+
+                painel.appendChild(box);
+            }
+
+            try {
+                const { data: sessaoData } = await supabaseClient.auth.getSession();
+                const sessao = sessaoData && sessaoData.session;
+
+                if (!sessao || !sessao.user) {
+                    subtitulo.textContent = 'Acesso restrito a alunos logados';
+                    mostrarAviso(
+                        '🔒 Entre na sua conta para ver seu desempenho',
+                        'Seus acertos e erros ficam salvos automaticamente na sua conta sempre que você resolve questões logado.',
+                        'ENTRAR NA MINHA CONTA',
+                        'login.html?redirect=meu-desempenho.html'
+                    );
+                    return;
+                }
+
+                subtitulo.textContent = 'Conta conectada: ' + (sessao.user.email || '');
+
+                const { data: registros, error } = await supabaseClient
+                    .from('desempenho_respostas')
+                    .select('pagina, titulo_aula, acertou, criado_em')
+                    .eq('user_id', sessao.user.id)
+                    .order('criado_em', { ascending: false });
+
+                if (error) {
+                    console.error('Erro ao buscar desempenho:', error);
+                    mostrarAviso(
+                        '⚠️ Não foi possível carregar agora',
+                        'Verifique sua conexão e recarregue a página.',
+                        'RECARREGAR',
+                        'meu-desempenho.html'
+                    );
+                    return;
+                }
+
+                if (!registros || registros.length === 0) {
+                    mostrarAviso(
+                        '🎯 Nenhuma questão registrada ainda',
+                        'Resolva as questões das matérias enquanto estiver logado para acompanhar seus acertos, erros e percentual por aula aqui.',
+                        'IR PARA AS AULAS',
+                        'index.html'
+                    );
+                    return;
+                }
+
+                // Totais gerais
+                const total = registros.length;
+                const acertos = registros.filter(r => r.acertou).length;
+                const erros = total - acertos;
+                const aproveitamentoGeral = Math.round((acertos / total) * 100);
+
+                // Agrupamento por aula
+                const porAula = {};
+                registros.forEach(r => {
+                    const chave = r.pagina || r.titulo_aula || 'aula';
+                    if (!porAula[chave]) {
+                        porAula[chave] = {
+                            pagina: r.pagina,
+                            titulo: r.titulo_aula || r.pagina || 'Aula',
+                            total: 0,
+                            acertos: 0,
+                            ultimaData: r.criado_em
+                        };
+                    }
+                    porAula[chave].total++;
+                    if (r.acertou) porAula[chave].acertos++;
+                });
+
+                const listaAulas = Object.values(porAula);
+
+                // Montagem segura da interface
+                painel.textContent = '';
+
+                // 1. Cards de resumo geral
+                const grid = document.createElement('div');
+                grid.className = 'grid-resumo';
+
+                const metricas = [
+                    { valor: String(total), rotulo: 'Respondidas', classe: '' },
+                    { valor: String(acertos), rotulo: 'Acertos', classe: 'cor-verde' },
+                    { valor: String(erros), rotulo: 'Erros', classe: 'cor-vermelho' },
+                    { valor: aproveitamentoGeral + '%', rotulo: 'Aproveitamento', classe: 'cor-ouro' }
+                ];
+
+                metricas.forEach(m => {
+                    const card = document.createElement('div');
+                    card.className = 'card-metrica';
+
+                    const val = document.createElement('div');
+                    val.className = 'metrica-valor ' + m.classe;
+                    val.textContent = m.valor;
+
+                    const rot = document.createElement('div');
+                    rot.className = 'metrica-rotulo';
+                    rot.textContent = m.rotulo;
+
+                    card.appendChild(val);
+                    card.appendChild(rot);
+                    grid.appendChild(card);
+                });
+
+                painel.appendChild(grid);
+
+                // 2. Desempenho por aula
+                const secTitulo = document.createElement('div');
+                secTitulo.className = 'secao-titulo';
+                secTitulo.textContent = '📚 Desempenho por Aula';
+                painel.appendChild(secTitulo);
+
+                const listaEl = document.createElement('div');
+                listaEl.className = 'lista-aulas';
+
+                listaAulas.forEach(aula => {
+                    const pct = Math.round((aula.acertos / aula.total) * 100);
+                    const errosAula = aula.total - aula.acertos;
+                    const corBarra = pct >= 70 ? '#2ecc71' : (pct >= 50 ? '#ffca28' : '#ff5252');
+                    const classeBadge = pct >= 70 ? 'pct-alto' : (pct >= 50 ? 'pct-medio' : 'pct-baixo');
+
+                    const card = document.createElement('div');
+                    card.className = 'card-aula';
+
+                    const topoCard = document.createElement('div');
+                    topoCard.className = 'card-aula-topo';
+
+                    const tituloEl = document.createElement('div');
+                    tituloEl.className = 'card-aula-titulo';
+                    tituloEl.textContent = aula.titulo;
+
+                    const badge = document.createElement('span');
+                    badge.className = 'badge-pct ' + classeBadge;
+                    badge.textContent = pct + '%';
+
+                    topoCard.appendChild(tituloEl);
+                    topoCard.appendChild(badge);
+                    card.appendChild(topoCard);
+
+                    const barraFundo = document.createElement('div');
+                    barraFundo.className = 'barra-fundo';
+                    const barraFill = document.createElement('div');
+                    barraFill.className = 'barra-preenchida';
+                    barraFill.style.width = pct + '%';
+                    barraFill.style.backgroundColor = corBarra;
+                    barraFundo.appendChild(barraFill);
+                    card.appendChild(barraFundo);
+
+                    const rodapeCard = document.createElement('div');
+                    rodapeCard.className = 'card-aula-rodape';
+
+                    const contadores = document.createElement('div');
+                    contadores.className = 'contadores';
+
+                    const sTotal = document.createElement('span');
+                    sTotal.textContent = 'Respondidas: ' + aula.total;
+                    const sAcertos = document.createElement('span');
+                    sAcertos.className = 'cor-verde';
+                    sAcertos.textContent = '✅ ' + aula.acertos;
+                    const sErros = document.createElement('span');
+                    sErros.className = 'cor-vermelho';
+                    sErros.textContent = '❌ ' + errosAula;
+
+                    contadores.appendChild(sTotal);
+                    contadores.appendChild(sAcertos);
+                    contadores.appendChild(sErros);
+                    rodapeCard.appendChild(contadores);
+
+                    if (aula.pagina && /^[a-zA-Z0-9_-]+\.html$/.test(aula.pagina)) {
+                        const linkRefazer = document.createElement('a');
+                        linkRefazer.className = 'btn-refazer';
+                        linkRefazer.href = aula.pagina;
+                        linkRefazer.textContent = 'Abrir aula ▶';
+                        rodapeCard.appendChild(linkRefazer);
+                    }
+
+                    card.appendChild(rodapeCard);
+                    listaEl.appendChild(card);
+                });
+
+                painel.appendChild(listaEl);
+
+                // 3. Botão de zerar histórico
+                const rodapeAcoes = document.createElement('div');
+                rodapeAcoes.className = 'rodape-acoes';
+
+                const btnLimpar = document.createElement('button');
+                btnLimpar.type = 'button';
+                btnLimpar.className = 'btn-limpar';
+                btnLimpar.textContent = '🗑️ Zerar meu histórico';
+                btnLimpar.addEventListener('click', async function () {
+                    if (!confirm('Tem certeza que deseja apagar todo o seu histórico de desempenho?')) return;
+                    btnLimpar.disabled = true;
+                    btnLimpar.textContent = 'Apagando...';
+                    const { error: errDel } = await supabaseClient
+                        .from('desempenho_respostas')
+                        .delete()
+                        .eq('user_id', sessao.user.id);
+                    if (errDel) {
+                        alert('Erro ao limpar histórico. Tente novamente.');
+                        btnLimpar.disabled = false;
+                        btnLimpar.textContent = '🗑️ Zerar meu histórico';
+                        return;
+                    }
+                    window.location.reload();
+                });
+
+                rodapeAcoes.appendChild(btnLimpar);
+                painel.appendChild(rodapeAcoes);
+
+            } catch (err) {
+                console.error('Erro inesperado no painel de desempenho:', err);
+                mostrarAviso(
+                    '⚠️ Erro ao carregar',
+                    'Não foi possível exibir seus dados no momento.',
+                    'VOLTAR AO INÍCIO',
+                    'index.html'
+                );
+            }
+        })();
+    </script>
+</body>
+
+</html>
