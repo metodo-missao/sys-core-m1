@@ -29,6 +29,39 @@ let totalQuestoes = 0;
 let respondidas = 0;
 let acertos = 0;
 
+// ==========================================
+// REGISTRO DE DESEMPENHO NO SUPABASE (ISOLADO)
+// Ignora páginas de simulados (simulado-*.html)
+// ==========================================
+async function registrarDesempenho(questaoNumero, acertou) {
+    try {
+        const caminho = window.location.pathname.split('/').pop() || 'aula.html';
+        if (/^simulado-/i.test(caminho)) return;
+
+        if (typeof supabaseClient === 'undefined' || !supabaseClient || !supabaseClient.auth) return;
+        const { data } = await supabaseClient.auth.getSession();
+        const sessao = data && data.session;
+        if (!sessao || !sessao.user) return;
+
+        const tituloLimpo = (document.title || caminho)
+            .replace(/^Método Missão\s*[-—|]\s*/i, '')
+            .replace(/\s*\(Premium\)\s*$/i, '')
+            .trim() || caminho;
+
+        await supabaseClient
+            .from('desempenho_respostas')
+            .insert({
+                user_id: sessao.user.id,
+                pagina: caminho,
+                titulo_aula: tituloLimpo,
+                questao_numero: questaoNumero,
+                acertou: Boolean(acertou)
+            });
+    } catch (err) {
+        console.error('MM-DESEMPENHO | erro ao salvar resposta (simulador segue normal):', err);
+    }
+}
+
 // Renderiza as questões na tela com base nos dados formatados recebidos da aula
 function renderizarSimulador(listaQuestoes) {
     totalQuestoes = listaQuestoes.length;
@@ -51,7 +84,6 @@ function renderizarSimulador(listaQuestoes) {
         bloco.className = 'questao-bloco';
         bloco.id = `bloco-q${qIndex}`;
 
-        // Usa os arrays formatados que vêm direto do dados-aplicacao-lei.js
         const alternativas = q.alternativas;
         const indexCorreto = q.correta;
         const letraGab = q.letraGabarito;
@@ -125,8 +157,9 @@ function validarResposta(qIndex, indexCorreto) {
     const feedbackBox = document.getElementById(`feed-q${qIndex}`);
 
     respondidas++;
+    const acertou = (selecionadoIndex === indexCorreto);
 
-    if (selecionadoIndex === indexCorreto) {
+    if (acertou) {
         if (elementoCorreto) elementoCorreto.style.borderColor = '#2ecc71';
         statusBox.innerHTML = "✅ Certo!";
         statusBox.className = "status-alerta status-acertou";
@@ -140,6 +173,7 @@ function validarResposta(qIndex, indexCorreto) {
     }
 
     feedbackBox.style.display = 'block';
+    registrarDesempenho(qIndex + 1, acertou);
 
     if (respondidas === totalQuestoes) {
         gerarPlacarFinal();
