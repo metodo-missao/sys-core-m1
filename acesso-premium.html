@@ -112,6 +112,10 @@
             margin-top: 4px;
         }
 
+        .preco-prazo strong {
+            color: #ffffff;
+        }
+
         /* Card unificado de checkout (Modelo 1 — 1 tela só) */
         .checkout-card {
             background: #031842;
@@ -433,12 +437,12 @@
             <div class="beneficio-item" id="beneficio-total-questoes">🔒 Acesso a <strong>+420 questões 100% inéditas</strong></div>
             <div class="beneficio-item">📈 Banco de questões crescendo continuamente, sem custo extra</div>
             <div class="beneficio-item">🎯 Mini-aula + explicação completa em cada questão</div>
-            <div class="beneficio-item">💰 Apenas <strong>R$ 29,90</strong> — acesso por <strong>2 meses</strong></div>
+            <div class="beneficio-item">🎁 <strong>1 mês + 1 mês de bônus</strong> (2 meses de acesso por <strong>R$ 49,90</strong>)</div>
         </div>
 
         <div class="preco-destaque" id="preco-destaque" style="display: none;">
-            <div class="preco-valor">R$ 29,90</div>
-            <div class="preco-prazo">acesso por 2 meses · pagamento único · liberação automática</div>
+            <div class="preco-valor">R$ 49,90</div>
+            <div class="preco-prazo"><strong>1 mês + 1 mês de bônus</strong> (2 meses de acesso) · pagamento único · liberação automática</div>
         </div>
 
         <!-- MODO LISTA DE ESPERA (só aparece se VENDAS_ATIVAS = false) -->
@@ -456,7 +460,7 @@
                 <div class="status-conta" id="status-conta"></div>
 
                 <button type="button" id="btn-pagar-logado" class="btn-acao" style="display: none;">
-                    💳 PAGAR AGORA (PIX OU CARTÃO) — R$ 29,90
+                    💳 PAGAR AGORA (PIX OU CARTÃO) — R$ 49,90
                 </button>
 
                 <a href="index.html" id="btn-ja-premium" class="btn-acao btn-ouro" style="display: none;">
@@ -520,13 +524,13 @@
                     </div>
 
                     <button type="submit" class="btn-acao" id="btn-cad-pagar">
-                        💳 CONTINUAR PARA O PAGAMENTO (PIX OU CARTÃO)
+                        💳 CRIAR CONTA E IR PARA O PAGAMENTO
                     </button>
 
                     <div class="msg-retorno" id="msg-cadastro"></div>
 
                     <div class="selo-seguranca">
-                        🔒 Ambiente seguro · Liberação automática após o pagamento
+                        🔒 Pix ou Cartão via Mercado Pago · Liberação automática
                     </div>
                 </form>
 
