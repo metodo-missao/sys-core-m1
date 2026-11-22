@@ -308,7 +308,7 @@
     </style>
     <style>
         /* ==========================================================================
-           MM-VITRINE + MODO PC WIDESCREEN / CELULAR COMPACTO
+           MM-VITRINE CINEMATOGRAFICA + MODO PC WIDESCREEN / CELULAR COMPACTO
            ========================================================================== */
 
         /* Padronizacao base (Celular - ate 899px) */
@@ -322,27 +322,27 @@
         .secao-vitrine {
             width: 100%;
             max-width: 480px;
-            margin: 30px auto 0;
+            margin: 34px auto 0;
         }
 
         .vitrine-cabecalho {
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         .vitrine-cabecalho::before {
             content: "";
             width: 5px;
-            height: 24px;
+            height: 26px;
             background-color: var(--cor-ouro, #ffca28);
             border-radius: 3px;
         }
 
         .vitrine-cabecalho h2 {
             margin: 0;
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             font-weight: 800;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -352,48 +352,23 @@
         .vitrine-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 16px;
+            gap: 24px;
             width: 100%;
         }
 
+        /* Card em formato capa cinematografica */
         .card-concurso {
-            position: relative;
             display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 18px;
-            background: linear-gradient(135deg, #052259 0%, var(--cor-fundo-bloco, #031842) 100%);
-            border: 1.5px solid rgba(255, 202, 40, 0.28);
-            border-radius: 14px;
+            flex-direction: column;
             text-decoration: none;
             color: var(--cor-texto, #ffffff);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-            overflow: hidden;
+            transition: transform 0.22s ease;
             user-select: none;
             -webkit-user-select: none;
         }
 
-        .card-concurso::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background-color: var(--cor-ouro, #ffca28);
-            opacity: 0.75;
-            transition: opacity 0.2s ease;
-        }
-
         .card-concurso:hover {
-            transform: translateY(-3px);
-            border-color: var(--cor-ouro, #ffca28);
-            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.48);
-        }
-
-        .card-concurso:hover::after {
-            opacity: 1;
+            transform: translateY(-4px);
         }
 
         .card-em-breve {
@@ -404,15 +379,80 @@
             transform: none;
         }
 
+        /* Area da capa (paisagem + brasao iluminado + marca) */
+        .card-capa {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1.5px solid rgba(255, 202, 40, 0.32);
+            background-color: #02112e;
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.48);
+            transition: border-color 0.22s ease, box-shadow 0.22s ease;
+        }
+
+        .card-concurso:hover .card-capa {
+            border-color: var(--cor-ouro, #ffca28);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.6), 0 0 22px rgba(255, 202, 40, 0.22);
+        }
+
+        .capa-fundo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.05);
+            filter: brightness(0.74) contrast(1.08) saturate(1.12);
+            transition: transform 0.35s ease, filter 0.35s ease;
+        }
+
+        /* Zoom extra em Florianopolis para esconder a borda preta da foto original */
+        .fundo-floripa {
+            transform: scale(1.1);
+        }
+
+        .card-concurso:hover .capa-fundo {
+            transform: scale(1.1);
+            filter: brightness(0.84) contrast(1.1) saturate(1.15);
+        }
+
+        .card-concurso:hover .fundo-floripa {
+            transform: scale(1.15);
+        }
+
+        /* Banho cinematografico azul-marinho + halo dourado central */
+        .capa-overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 50% 42%, rgba(255, 202, 40, 0.28) 0%, rgba(2, 17, 46, 0.18) 38%, rgba(2, 17, 46, 0.72) 100%),
+                linear-gradient(to bottom, rgba(2, 17, 46, 0.15) 0%, rgba(2, 17, 46, 0.25) 52%, rgba(2, 17, 46, 0.92) 100%);
+        }
+
+        .capa-conteudo {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px;
+        }
+
+        /* Medalhao do brasao oficial com brilho dourado */
         .medalhao-brasao {
-            width: 82px;
-            height: 82px;
-            min-width: 82px;
+            width: 96px;
+            height: 96px;
             border-radius: 50%;
             overflow: hidden;
-            border: 2px solid var(--cor-ouro, #ffca28);
+            border: 2.5px solid #ffca28;
             background-color: #02112e;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+            box-shadow: 0 0 26px rgba(255, 202, 40, 0.65), 0 6px 18px rgba(0, 0, 0, 0.65);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -425,7 +465,7 @@
             display: block;
         }
 
-        /* Ajustes finos para esconder bordas externas dos 4 arquivos */
+        /* Ajustes finos para esconder bordas externas dos 4 brasoes */
         .ajuste-circulo {
             transform: scale(1.14);
         }
@@ -434,14 +474,34 @@
             transform: scale(1.05) translateY(3%);
         }
 
+        /* Assinatura dourada na base da capa */
+        .capa-marca {
+            font-size: 1.25rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #ffca28;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 18px rgba(255, 202, 40, 0.45);
+            line-height: 1;
+        }
+
+        /* Informacoes abaixo da capa (independentes e faceis de editar) */
         .card-info {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            gap: 5px;
-            flex: 1;
-            min-width: 0;
-            text-align: left;
+            align-items: center;
+            text-align: center;
+            gap: 6px;
+            padding: 14px 8px 4px;
+        }
+
+        .card-titulo {
+            margin: 0;
+            font-size: 1.12rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 0.4px;
+            line-height: 1.25;
         }
 
         .badge-status {
@@ -449,9 +509,9 @@
             font-size: 11px;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.6px;
-            padding: 3px 9px;
-            border-radius: 4px;
+            letter-spacing: 0.8px;
+            padding: 3px 12px;
+            border-radius: 50px;
         }
 
         .status-pos {
@@ -460,22 +520,14 @@
         }
 
         .status-pre {
-            background-color: rgba(255, 202, 40, 0.14);
+            background-color: rgba(255, 202, 40, 0.12);
             color: var(--cor-ouro, #ffca28);
-            border: 1px solid rgba(255, 202, 40, 0.45);
-        }
-
-        .card-titulo {
-            margin: 2px 0 0;
-            font-size: 1.05rem;
-            font-weight: 800;
-            color: #ffffff;
-            line-height: 1.25;
+            border: 1px solid rgba(255, 202, 40, 0.55);
         }
 
         .card-detalhes {
-            margin: 0;
-            font-size: 0.84rem;
+            margin: 2px 0 0;
+            font-size: 0.86rem;
             color: #b8c4d9;
             line-height: 1.4;
         }
@@ -485,8 +537,8 @@
         }
 
         .card-acao {
-            margin-top: 5px;
-            font-size: 0.78rem;
+            margin-top: 2px;
+            font-size: 0.82rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -502,19 +554,18 @@
         }
 
         @media (max-width: 480px) {
-            .card-concurso {
-                padding: 15px;
-                gap: 13px;
+            .medalhao-brasao {
+                width: 80px;
+                height: 80px;
             }
 
-            .medalhao-brasao {
-                width: 74px;
-                height: 74px;
-                min-width: 74px;
+            .capa-marca {
+                font-size: 1.05rem;
+                letter-spacing: 1.5px;
             }
 
             .card-titulo {
-                font-size: 0.98rem;
+                font-size: 1.02rem;
             }
         }
 
@@ -524,12 +575,12 @@
         @media (min-width: 720px) {
             .secao-vitrine {
                 max-width: 100%;
-                margin-top: 36px;
+                margin-top: 38px;
             }
 
             .vitrine-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 18px;
+                gap: 28px 24px;
             }
         }
 
@@ -578,7 +629,6 @@
                 margin-top: 0 !important;
             }
 
-            /* Se o aluno estiver logado no plano gratuito (1 botao), mantem centralizado */
             .area-aluno > a.aa-btn:only-of-type {
                 grid-column: 1 / -1;
                 max-width: 420px;
@@ -597,13 +647,17 @@
             }
 
             .medalhao-brasao {
-                width: 92px;
-                height: 92px;
-                min-width: 92px;
+                width: 120px;
+                height: 120px;
+            }
+
+            .capa-marca {
+                font-size: 1.55rem;
+                letter-spacing: 2.5px;
             }
 
             .card-titulo {
-                font-size: 1.12rem;
+                font-size: 1.2rem;
             }
 
             .footer-institucional {
@@ -614,6 +668,7 @@
         /* OPCIONAL: para esconder o botao verde antigo de Joinville sem apagar do HTML, remova as barras e asteriscos abaixo */
         /* #btn-simulado-gmj { display: none; } */
     </style>
+
 </head>
 
 <body>
@@ -970,12 +1025,19 @@
 
                 <!-- CARD 1: GM CAMPINAS (SP) -->
                 <a href="javascript:void(0);" class="card-concurso card-em-breve">
-                    <div class="medalhao-brasao">
-                        <img src="img/brasoes/gm-campinas.png" alt="Brasão Guarda Municipal de Campinas" class="ajuste-circulo">
+                    <div class="card-capa">
+                        <img src="img/fundos/campinas.png" alt="Campinas - Lagoa do Taquaral" class="capa-fundo">
+                        <div class="capa-overlay"></div>
+                        <div class="capa-conteudo">
+                            <div class="medalhao-brasao">
+                                <img src="img/brasoes/gm-campinas.png" alt="Brasão Guarda Municipal de Campinas" class="ajuste-circulo">
+                            </div>
+                            <span class="capa-marca">MÉTODO MISSÃO</span>
+                        </div>
                     </div>
                     <div class="card-info">
-                        <span class="badge-status status-pos">Pós-Edital</span>
                         <h3 class="card-titulo">GM CAMPINAS (SP)</h3>
+                        <span class="badge-status status-pos">Pós-Edital</span>
                         <p class="card-detalhes">Banca: <strong>Vunesp</strong> • Prova: <strong>21/03/2027</strong></p>
                         <span class="card-acao card-acao-breve">Simulados em breve ⏳</span>
                     </div>
@@ -984,12 +1046,19 @@
                 <!-- CARD 2: GCM JOINVILLE (SC) -->
                 <a href="javascript:void(0);" class="card-concurso"
                     onclick="var b = document.getElementById('btn-simulado-gmj'); if (b) b.click();">
-                    <div class="medalhao-brasao">
-                        <img src="img/brasoes/gcm-joinville.png" alt="Brasão Guarda Civil Municipal de Joinville" class="ajuste-circulo">
+                    <div class="card-capa">
+                        <img src="img/fundos/joinville.jpg" alt="Joinville - Pórtico e Moinho" class="capa-fundo">
+                        <div class="capa-overlay"></div>
+                        <div class="capa-conteudo">
+                            <div class="medalhao-brasao">
+                                <img src="img/brasoes/gcm-joinville.png" alt="Brasão Guarda Civil Municipal de Joinville" class="ajuste-circulo">
+                            </div>
+                            <span class="capa-marca">MÉTODO MISSÃO</span>
+                        </div>
                     </div>
                     <div class="card-info">
-                        <span class="badge-status status-pre">Pré-Edital</span>
                         <h3 class="card-titulo">GCM JOINVILLE (SC)</h3>
+                        <span class="badge-status status-pre">Pré-Edital</span>
                         <p class="card-detalhes">Banca: <strong>Instituto AOCP</strong></p>
                         <span class="card-acao card-acao-liberado">Acessar 1º Simulado Grátis →</span>
                     </div>
@@ -997,12 +1066,19 @@
 
                 <!-- CARD 3: GM BALNEÁRIO CAMBORIÚ (SC) -->
                 <a href="javascript:void(0);" class="card-concurso card-em-breve">
-                    <div class="medalhao-brasao">
-                        <img src="img/brasoes/gm-balneario-camboriu.png" alt="Brasão Guarda Municipal de Balneário Camboriú" class="ajuste-bc">
+                    <div class="card-capa">
+                        <img src="img/fundos/balneario-camboriu.png" alt="Balneário Camboriú - Praia Central" class="capa-fundo">
+                        <div class="capa-overlay"></div>
+                        <div class="capa-conteudo">
+                            <div class="medalhao-brasao">
+                                <img src="img/brasoes/gm-balneario-camboriu.png" alt="Brasão Guarda Municipal de Balneário Camboriú" class="ajuste-bc">
+                            </div>
+                            <span class="capa-marca">MÉTODO MISSÃO</span>
+                        </div>
                     </div>
                     <div class="card-info">
-                        <span class="badge-status status-pre">Pré-Edital</span>
                         <h3 class="card-titulo">GM BALNEÁRIO CAMBORIÚ (SC)</h3>
+                        <span class="badge-status status-pre">Pré-Edital</span>
                         <p class="card-detalhes">Banca: <strong>FURB</strong></p>
                         <span class="card-acao card-acao-breve">Simulados em breve ⏳</span>
                     </div>
@@ -1010,12 +1086,19 @@
 
                 <!-- CARD 4: GCM FLORIANÓPOLIS (SC) -->
                 <a href="javascript:void(0);" class="card-concurso card-em-breve">
-                    <div class="medalhao-brasao">
-                        <img src="img/brasoes/gcm-florianopolis.png" alt="Brasão Guarda Civil Municipal de Florianópolis" class="ajuste-circulo">
+                    <div class="card-capa">
+                        <img src="img/fundos/florianopolis.png" alt="Florianópolis - Ponte Hercílio Luz" class="capa-fundo fundo-floripa">
+                        <div class="capa-overlay"></div>
+                        <div class="capa-conteudo">
+                            <div class="medalhao-brasao">
+                                <img src="img/brasoes/gcm-florianopolis.png" alt="Brasão Guarda Civil Municipal de Florianópolis" class="ajuste-circulo">
+                            </div>
+                            <span class="capa-marca">MÉTODO MISSÃO</span>
+                        </div>
                     </div>
                     <div class="card-info">
-                        <span class="badge-status status-pre">Pré-Edital</span>
                         <h3 class="card-titulo">GCM FLORIANÓPOLIS (SC)</h3>
+                        <span class="badge-status status-pre">Pré-Edital</span>
                         <p class="card-detalhes">Banca: <strong>A definir</strong></p>
                         <span class="card-acao card-acao-breve">Simulados em breve ⏳</span>
                     </div>
