@@ -1,129 +1,62 @@
 /* ==========================================================================
    MÉTODO MISSÃO — GAVETA MODULAR (modulos-novos.js)
-   --------------------------------------------------------------------------
-   REGRA DE OURO:
-   - Tudo o que for NOVO na plataforma entra SOMENTE neste arquivo.
-   - O index.html principal fica CONGELADO e BLINDADO.
-   - Se este arquivo tiver qualquer erro, o site principal continua 100% no ar.
+   - Roda de forma 100% isolada sem mexer nos scripts blindados do index.html
    ========================================================================== */
 
 window.MM_MODULOS = {
 
     /* ----------------------------------------------------------------------
-       1. BOTÕES ISOLADOS NA PÁGINA INICIAL (VITRINE)
-       - Pode ser um link direto (ex: Assinar Premium)
-       - Ou um novo Simulado com vários blocos (adicionando "itens: [...]")
-       - posicao: "base" (abaixo do Simulado GMJ) ou "topo" (acima do Simulador)
-       - ocultarParaPremium: true -> some automaticamente para quem já pagou
+       1. CARDS DE APOIO (MEU DESEMPENHO + ASSINAR PREMIUM LADO A LADO)
        ---------------------------------------------------------------------- */
     botoesVitrine: [
         {
             id: 'meu-desempenho',
-            titulo: '📊 Meu Desempenho (Acertos e Erros)',
+            titulo: 'Meu Desempenho',
             href: 'meu-desempenho.html',
-            posicao: 'topo',
+            posicao: 'base',
             cor: '#00e5ff',
-            fundo: '#031842',
             corTexto: '#ffffff',
-            brilho: '0 0 15px rgba(0, 229, 255, 0.18)',
+            brilho: '0 10px 26px rgba(0, 229, 255, 0.12)',
             ocultarParaPremium: false
         },
         {
             id: 'assinar-premium',
-            titulo: '👑 Assinar Acesso Premium (R$ 49,90 · 1 mês + 1 mês bônus)',
+            titulo: 'Assinar Acesso Premium',
             href: 'acesso-premium.html',
             posicao: 'base',
             cor: '#ffca28',
-            fundo: '#041d4d',
             corTexto: '#ffca28',
-            brilho: '0 0 18px rgba(255, 202, 40, 0.25)',
+            brilho: '0 10px 28px rgba(255, 202, 40, 0.16)',
             ocultarParaPremium: true
         }
-
-        /* EXEMPLO PARA FUTURO SIMULADO (basta eu gerar e colar aqui):
-        ,{
-            id: 'simulado-pmsc-1',
-            titulo: '🚓 1º Simulado PMSC (Grátis)',
-            tituloMenu: '🎯 1º Simulado PMSC — Blocos',
-            posicao: 'base',
-            cor: '#00e5ff',
-            itens: [
-                { titulo: 'Bloco 1: Português', arquivo: 'simulado-pmsc-bloco1.html', premium: false },
-                { titulo: 'Bloco 2: Direito Penal', arquivo: 'simulado-pmsc-bloco2.html', premium: true }
-            ]
-        }
-        */
     ],
 
     /* ----------------------------------------------------------------------
        2. NOVAS MATÉRIAS COMPLETAS (entram dentro de "Escolha a Matéria")
        ---------------------------------------------------------------------- */
-    novasMaterias: [
-        /* EXEMPLO PARA FUTURA MATÉRIA:
-        {
-            id: 'direito-administrativo',
-            titulo: '🏛️ DIREITO ADMINISTRATIVO',
-            tituloMenu: '👑 Aulas de Direito Administrativo',
-            cor: '#ffcc00',
-            fundo: '#041d4d',
-            badge: 'VER AULAS 👇',
-            aulas: [
-                { titulo: 'Princípios da Administração (Aula Grátis)', arquivo: 'adm-principios.html', premium: false },
-                { titulo: 'Poderes Administrativos', arquivo: 'adm-poderes.html', premium: true }
-            ]
-        }
-        */
-    ],
+    novasMaterias: [],
 
     /* ----------------------------------------------------------------------
        3. NOVAS AULAS EM MATÉRIAS QUE JÁ EXISTEM NO INDEX
-       IDs disponíveis:
-       - menu-aulas-penal
-       - menu-aulas-constitucional
-       - menu-aulas-informatica
-       - menu-aulas-dudh
-       - menu-aulas-maria-penha
-       - menu-aulas-convencao
-       - menu-aulas-estatuto-pcd
-       - menu-aulas-igualdade-racial
        ---------------------------------------------------------------------- */
-    novasAulas: [
-        /* EXEMPLO PARA NOVA AULA EM MATÉRIA EXISTENTE:
-        {
-            menuId: 'menu-aulas-penal',
-            titulo: 'Questões: Crimes Contra a Administração Pública',
-            arquivo: 'direito-penal-crimes-administracao.html',
-            premium: true
-        }
-        */
-    ],
+    novasAulas: [],
 
     /* ----------------------------------------------------------------------
        4. LIBERAR AULAS QUE HOJE ESTÃO COMO "EM BREVE" NO INDEX
-       Quando você criar o HTML de uma aula antiga que ainda está sem link,
-       basta colocar o nome exato dela e o arquivo aqui.
        ---------------------------------------------------------------------- */
-    liberarEmBreve: {
-        /* EXEMPLO:
-        'Poder Judiciário (Art. 92 ao 100, 125 e 126)': 'constitucional-poder-judiciario.html'
-        */
-    }
+    liberarEmBreve: {}
 
 };
 
 /* ==========================================================================
-   5. AJUSTES VISUAIS MODULARES (SEM TOCAR NO index.html BLINDADO)
-   - Botão dourado "COMEÇAR GRÁTIS" -> "RESOLUÇÃO DE QUESTÕES / Acesso Liberado"
-   - Botão verde do 1º Simulado GMJ -> duas linhas centralizadas com "(50 Questões Gratuitas)"
-   - Botão "Assinar Acesso Premium" -> duas linhas centralizadas com "(R$ 49,90 · 1 mês + 1 mês de bônus)"
-   - Oculta "Clique Aqui para Iniciar o Simulador Interativo" enquanto o cartão
-     de visitante ("RESOLUÇÃO DE QUESTÕES / Acesso Liberado") estiver visível,
-     evitando dois botões redundantes com o mesmo destino; volta automaticamente
-     quando o aluno entra na conta.
-   - Oculta o botão repetido "Assinar Acesso Premium" quando o aluno já está logado
-     no Plano Gratuito (pois o cartão da Área do Aluno já exibe "DESBLOQUEAR VERSÃO PREMIUM")
+   5. ORGANIZAÇÃO MODULAR DA INTERFACE + ÍCONES SVG + SINCRONIZAÇÃO DE LOGIN
    ========================================================================== */
 (function () {
+    var SVG_GRAFICO = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>';
+    var SVG_ESTRELA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>';
+    var SVG_CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>';
+    var SVG_SETA = '<svg class="cam-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>';
+
     function estaVisivel(el) {
         if (!el) return false;
         var atual = el;
@@ -138,132 +71,137 @@ window.MM_MODULOS = {
         return rect.width > 0 && rect.height > 0;
     }
 
-    function aplicarAjustesVisuais() {
+    function transformarCardModerno(linkEl, titulo, subtitulo, cor, iconeSvg) {
+        if (!linkEl || linkEl.dataset.mmCard === '1') return;
+        linkEl.classList.remove('link-item');
+        linkEl.classList.add('card-acao-moderno');
+        linkEl.style.borderColor = cor;
+
+        linkEl.innerHTML =
+            '<span class="cam-icone" style="color:' + cor + ';border-color:' + cor + ';">' + iconeSvg + '</span>' +
+            '<span class="cam-texto">' +
+                '<span class="cam-titulo" style="color:' + (linkEl.style.color || '#ffffff') + ';">' + titulo + '</span>' +
+                '<span class="cam-subtitulo">' + subtitulo + '</span>' +
+            '</span>' +
+            SVG_SETA;
+
+        linkEl.dataset.mmCard = '1';
+    }
+
+    function organizarBlocos() {
+        var vitrine = document.querySelector('.secao-vitrine');
+        var menuGmj = document.getElementById('menu-simulado-gmj');
+        var slotBase = document.getElementById('slot-vitrine-base');
+
+        // 1. Move os 4 blocos de Joinville para abrir logo abaixo da vitrine de Guardas Municipais
+        if (vitrine && menuGmj && menuGmj.parentElement !== vitrine) {
+            vitrine.appendChild(menuGmj);
+        }
+
+        // 2. Move o slot de cards (Meu Desempenho + Assinar Premium) para baixo da vitrine
+        if (vitrine && slotBase) {
+            slotBase.classList.add('mm-cards-base');
+            if (slotBase.previousElementSibling !== vitrine) {
+                vitrine.insertAdjacentElement('afterend', slotBase);
+            }
+
+            var cardDesempenho = slotBase.querySelector('a[href="meu-desempenho.html"]');
+            transformarCardModerno(
+                cardDesempenho,
+                'Meu Desempenho',
+                'Acompanhe seus acertos, erros e evolução por aula',
+                '#00e5ff',
+                SVG_GRAFICO
+            );
+
+            var cardPremium = slotBase.querySelector('a[href="acesso-premium.html"]');
+            transformarCardModerno(
+                cardPremium,
+                'Assinar Acesso Premium',
+                'R$ 49,90 · 1 mês + 1 mês de bônus (liberação automática)',
+                '#ffca28',
+                SVG_ESTRELA
+            );
+        }
+
+        // 3. Troca o emoji do botão do Simulador (exibido quando o aluno faz login) por ícone SVG
+        var btnSimulador = document.getElementById('btn-gabarita');
+        if (btnSimulador && btnSimulador.dataset.mmSvg !== '1') {
+            btnSimulador.innerHTML = SVG_CHECK + '<span>Iniciar Simulador por Matérias</span>';
+            btnSimulador.dataset.mmSvg = '1';
+        }
+    }
+
+    function sincronizarInterface() {
         try {
-            var botoes = document.querySelectorAll('button, a, [onclick], [role="button"]');
-            var temDesbloquearVisivel = false;
-            var temBtnVisitanteVisivel = false;
-            var btnAssinarVitrine = null;
-            var btnSimuladorVitrine = null;
+            organizarBlocos();
 
-            for (var i = 0; i < botoes.length; i++) {
-                var el = botoes[i];
-                // Ignora containers que envolvem outros botões/links
-                if (el.querySelector && el.querySelector('button, a')) continue;
+            var area = document.getElementById('area-aluno');
+            var btnSimulador = document.getElementById('btn-gabarita');
+            var btnComecarGratis = area ? area.querySelector('#btn-comecar-gratis') : null;
+            var temVisitanteVisivel = !!(btnComecarGratis && estaVisivel(btnComecarGratis));
 
-                var texto = (el.textContent || '').replace(/\s+/g, ' ').trim();
-                if (!texto) continue;
+            // Visitante vê "RESOLUÇÃO DE QUESTÕES"; logado vê "Iniciar Simulador por Matérias"
+            if (btnSimulador) {
+                btnSimulador.style.display = temVisitanteVisivel ? 'none' : '';
+            }
 
-                // 1. Botão dourado: COMEÇAR GRÁTIS -> RESOLUÇÃO DE QUESTÕES + Acesso Liberado
-                if (el.dataset.mmBtnGratuito === '1' || /come[cç]ar\s+gr[aá]tis/i.test(texto)) {
-                    if (el.dataset.mmBtnGratuito !== '1') {
-                        var iconeRaio = el.querySelector('svg, img');
-                        var iconeHtml = iconeRaio ? iconeRaio.outerHTML : '⚡';
+            // Detecta quando o MM-LOGIN blindado trocou a Área do Aluno para o estado logado
+            var estaLogado = !!(area && area.querySelector('.aa-topo'));
+            if (estaLogado) {
+                area.classList.add('area-aluno-logado');
 
-                        el.innerHTML =
-                            '<span style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;line-height:1.2;text-align:center;width:100%;">' +
-                                '<span style="display:inline-flex;align-items:center;justify-content:center;gap:6px;">' + iconeHtml + '<span>RESOLUÇÃO DE QUESTÕES</span></span>' +
-                                '<span style="font-size:0.78em;font-weight:700;opacity:0.86;letter-spacing:0.4px;text-transform:none;">Acesso Liberado</span>' +
-                            '</span>';
-                        el.dataset.mmBtnGratuito = '1';
-                    }
-                    if (estaVisivel(el)) {
-                        temBtnVisitanteVisivel = true;
-                    }
-                    continue;
+                // Atualiza o botão "Entrar" da barra superior para "Sair"
+                var tbLogin = document.getElementById('topbar-login');
+                if (tbLogin && tbLogin.dataset.mmLogado !== '1') {
+                    tbLogin.href = 'sair.html';
+                    var spLogin = tbLogin.querySelector('span');
+                    if (spLogin) spLogin.textContent = 'Sair';
+                    tbLogin.dataset.mmLogado = '1';
                 }
 
-                // 2. Botão verde: 1º Simulado Guarda Municipal de Joinville + (50 Questões Gratuitas)
-                if (
-                    el.dataset.mmBtnSimulado !== '1' &&
-                    /1[º°]?\s*simulado\s+guarda\s+municipal\s+de\s+joinville/i.test(texto) &&
-                    /50\s*quest/i.test(texto)
-                ) {
-                    var iconeEscudo = el.querySelector('svg, img');
-                    var escudoHtml = iconeEscudo ? iconeEscudo.outerHTML + ' ' : '🛡️ ';
-
-                    el.innerHTML =
-                        '<span style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;line-height:1.25;text-align:center;width:100%;">' +
-                            '<span>' + escudoHtml + '1º Simulado Guarda Municipal de Joinville</span>' +
-                            '<span style="font-size:0.88em;font-weight:600;opacity:0.92;">(50 Questões Gratuitas)</span>' +
-                        '</span>';
-                    el.dataset.mmBtnSimulado = '1';
-                    continue;
+                // Remove emojis caseiros do estado logado gerado pelo script blindado
+                var badge = area.querySelector('.aa-badge');
+                if (badge && badge.textContent.indexOf('\uD83D\uDC51') !== -1) {
+                    badge.textContent = badge.textContent.replace('\uD83D\uDC51', '').trim();
                 }
-
-                // 3. Localiza o botão "Clique Aqui para Iniciar o Simulador Interativo"
-                if (/iniciar\s+o\s+simulador\s+interativo/i.test(texto)) {
-                    btnSimuladorVitrine = el;
-                    continue;
+                var sub = area.querySelector('.aa-sub');
+                if (sub && sub.textContent.indexOf('\uD83D\uDC47') !== -1) {
+                    sub.textContent = sub.textContent.replace('\uD83D\uDC47', '').trim();
                 }
-
-                // 4. Detecta se o cartão da Área do Aluno já mostra "DESBLOQUEAR VERSÃO PREMIUM" (conta gratuita logada)
-                if (/desbloquear\s+vers[aã]o\s+premium/i.test(texto) && estaVisivel(el)) {
-                    temDesbloquearVisivel = true;
-                }
-
-                // 5. Localiza e formata em duas linhas o botão de vitrine "Assinar Acesso Premium"
-                if (/assinar\s+acesso\s+premium/i.test(texto)) {
-                    btnAssinarVitrine = el;
-                    if (el.dataset.mmBtnAssinar !== '1') {
-                        el.innerHTML =
-                            '<span style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;line-height:1.25;text-align:center;width:100%;">' +
-                                '<span>👑 Assinar Acesso Premium</span>' +
-                                '<span style="font-size:0.88em;font-weight:600;opacity:0.92;">(R$ 49,90 · 1 mês + 1 mês de bônus)</span>' +
-                            '</span>';
-                        el.dataset.mmBtnAssinar = '1';
-                    }
+                var btnDesb = area.querySelector('a[href="acesso-premium.html"]');
+                if (btnDesb && btnDesb.textContent.indexOf('\uD83D\uDC51') !== -1) {
+                    btnDesb.textContent = btnDesb.textContent.replace('\uD83D\uDC51', '').trim();
                 }
             }
 
-            // Oculta "Clique Aqui para Iniciar o Simulador Interativo" para visitantes
-            // (enquanto o botão "RESOLUÇÃO DE QUESTÕES / Acesso Liberado" estiver visível)
-            if (btnSimuladorVitrine) {
-                if (temBtnVisitanteVisivel) {
-                    if (btnSimuladorVitrine.style.display !== 'none') {
-                        btnSimuladorVitrine.style.setProperty('display', 'none', 'important');
-                        btnSimuladorVitrine.dataset.mmOcultoVisitante = '1';
-                    }
-                } else if (btnSimuladorVitrine.dataset.mmOcultoVisitante === '1') {
-                    btnSimuladorVitrine.style.removeProperty('display');
-                    delete btnSimuladorVitrine.dataset.mmOcultoVisitante;
-                }
-            }
-
-            // Oculta o botão repetido "Assinar Acesso Premium" apenas para quem já está logado no plano gratuito
-            if (btnAssinarVitrine) {
-                if (temDesbloquearVisivel) {
-                    if (btnAssinarVitrine.style.display !== 'none') {
-                        btnAssinarVitrine.style.setProperty('display', 'none', 'important');
-                        btnAssinarVitrine.dataset.mmOcultoGratuito = '1';
-                    }
-                } else if (btnAssinarVitrine.dataset.mmOcultoGratuito === '1') {
-                    btnAssinarVitrine.style.removeProperty('display');
-                    delete btnAssinarVitrine.dataset.mmOcultoGratuito;
+            // Oculta card repetido "Assinar Acesso Premium" quando o aluno logado no plano gratuito já vê o botão na Área do Aluno
+            var slotBase = document.getElementById('slot-vitrine-base');
+            var cardPremium = slotBase ? slotBase.querySelector('a[href="acesso-premium.html"]') : null;
+            if (cardPremium && String(window.MM_PLANO || '').toLowerCase() !== 'premium') {
+                var temDesbloquear = !!(area && /desbloquear\s+vers[aã]o\s+premium/i.test(area.textContent || ''));
+                if (temDesbloquear) {
+                    cardPremium.style.display = 'none';
+                    cardPremium.dataset.mmOcultoGratuito = '1';
+                } else if (cardPremium.dataset.mmOcultoGratuito === '1') {
+                    cardPremium.style.display = '';
+                    delete cardPremium.dataset.mmOcultoGratuito;
                 }
             }
         } catch (err) {
-            console.warn('Aviso nos ajustes visuais de modulos-novos.js:', err);
+            console.warn('MM-MODULOS | aviso na sincronização:', err);
         }
     }
 
     function iniciarObservador() {
-        aplicarAjustesVisuais();
-        setTimeout(aplicarAjustesVisuais, 300);
-        setTimeout(aplicarAjustesVisuais, 1000);
-        setTimeout(aplicarAjustesVisuais, 2500);
+        sincronizarInterface();
+        setTimeout(sincronizarInterface, 300);
+        setTimeout(sincronizarInterface, 1200);
 
-        if (typeof MutationObserver !== 'undefined' && document.body) {
-            var agendado = false;
-            var observer = new MutationObserver(function () {
-                if (agendado) return;
-                agendado = true;
-                setTimeout(function () {
-                    agendado = false;
-                    aplicarAjustesVisuais();
-                }, 60);
-            });
-            observer.observe(document.body, {
+        var areaAluno = document.getElementById('area-aluno');
+        if (areaAluno && typeof MutationObserver !== 'undefined') {
+            var observer = new MutationObserver(sincronizarInterface);
+            observer.observe(areaAluno, {
                 childList: true,
                 subtree: true,
                 attributes: true,
