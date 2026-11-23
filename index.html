@@ -1211,6 +1211,32 @@
                 </div>
             </section>
 
+            <!-- 1º SIMULADO GUARDA MUNICIPAL DE CAMPINAS (4 BLOCOS - PADRÃO VUNESP) -->
+            <section id="menu-simulado-gmc" class="secao-topicos"
+                style="display: none; margin-top: 24px; border-style: dashed; border-color: var(--cor-ouro);">
+                <h3 class="titulo-secao" style="color: var(--cor-ouro); font-size: 13px;">
+                    <i class="fa-solid fa-bullseye fa-fw" style="margin-right: 6px;"></i>1º Simulado GM Campinas (Vunesp) | 4 Blocos
+                </h3>
+                <div class="lista-aulas">
+                    <a href="simulado-gmc-bloco1-portugues.html" class="aula-item" style="border-left: 4px solid var(--cor-sucesso);">
+                        <span><i class="fa-solid fa-file-lines fa-fw" style="margin-right: 8px; color: var(--cor-sucesso);"></i>Bloco 1: Língua Portuguesa (Q01 a Q12)</span>
+                        <span class="seta-iniciar" style="color: var(--cor-sucesso);">INICIAR <i class="fa-solid fa-play" style="margin-left: 4px;"></i></span>
+                    </a>
+                    <a href="javascript:void(0);" class="aula-item" style="border-left: 4px solid var(--cor-ouro); opacity: 0.65; cursor: default;">
+                        <span><i class="fa-regular fa-clock fa-fw" style="margin-right: 8px; color: var(--cor-ouro);"></i>Bloco 2: Matemática, Raciocínio Lógico e Leg. Municipal (Q13 a Q20)</span>
+                        <span class="seta-iniciar">EM BREVE</span>
+                    </a>
+                    <a href="javascript:void(0);" class="aula-item" style="border-left: 4px solid var(--cor-ouro); opacity: 0.65; cursor: default;">
+                        <span><i class="fa-regular fa-clock fa-fw" style="margin-right: 8px; color: var(--cor-ouro);"></i>Bloco 3: Conhecimentos Específicos I (Q21 a Q35)</span>
+                        <span class="seta-iniciar">EM BREVE</span>
+                    </a>
+                    <a href="javascript:void(0);" class="aula-item" style="border-left: 4px solid var(--cor-ouro); opacity: 0.65; cursor: default;">
+                        <span><i class="fa-regular fa-clock fa-fw" style="margin-right: 8px; color: var(--cor-ouro);"></i>Bloco 4: Conhecimentos Específicos II (Q36 a Q50)</span>
+                        <span class="seta-iniciar">EM BREVE</span>
+                    </a>
+                </div>
+            </section>
+            
             <!-- SLOT MODULAR BASE: novos botoes e simulados configurados em modulos-novos.js entram aqui -->
             <div id="slot-vitrine-base" style="display: none; flex-direction: column; gap: 16px; width: 100%;"></div>
 
@@ -1488,8 +1514,8 @@
 
             <div class="vitrine-grid">
 
-                <!-- CARD 1: GM CAMPINAS (SP) -->
-                <a href="javascript:void(0);" class="card-concurso card-em-breve">
+               <!-- CARD 1: GM CAMPINAS (SP) -->
+                <a href="javascript:void(0);" id="card-gm-campinas" class="card-concurso">
                     <div class="card-capa">
                         <img src="img/fundos/campinas.png" alt="Campinas - Lagoa do Taquaral" class="capa-fundo">
                         <div class="capa-overlay"></div>
@@ -1504,7 +1530,7 @@
                         <h3 class="card-titulo">GM CAMPINAS (SP)</h3>
                         <span class="badge-status status-pos">Pós-Edital</span>
                         <p class="card-detalhes">Banca: <strong>Vunesp</strong> • Prova: <strong>21/03/2027</strong></p>
-                        <span class="card-acao card-acao-breve">Simulados em breve ⏳</span>
+                        <span class="card-acao card-acao-liberado">1º Simulado Grátis (Bloco 1 Liberado) →</span>
                     </div>
                 </a>
 
@@ -1587,6 +1613,7 @@
             // LISTA DE SUBMENUS REGISTRADOS
             const submenus = [
                 'menu-simulado-gmj',
+                'menu-simulado-gmc',
                 'menu-aulas-penal',
                 'menu-aulas-constitucional',
                 'menu-aulas-informatica',
@@ -1654,6 +1681,16 @@
                 if (menuMaterias) menuMaterias.style.display = 'none';
                 alternarSubmenu('menu-simulado-gmj');
             });
+
+            // 1C. Card do 1º Simulado Guarda Municipal de Campinas (4 Blocos)
+            var cardGmCampinas = document.getElementById('card-gm-campinas');
+            if (cardGmCampinas) {
+                cardGmCampinas.addEventListener('click', function () {
+                    var menuMaterias = document.getElementById('menu-materias');
+                    if (menuMaterias) menuMaterias.style.display = 'none';
+                    alternarSubmenu('menu-simulado-gmc');
+                });
+            }
 
             // 2. Mapeamento dos Eventos de Clique de Cada Matéria
             document.getElementById('btn-penal').addEventListener('click', function () { alternarSubmenu('menu-aulas-penal'); });
