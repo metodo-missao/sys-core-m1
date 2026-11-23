@@ -422,7 +422,7 @@
 
     <div class="container-captura" id="simulador-container">
 
-        <div class="badge-premium" id="badge-topo">👑 Lote VIP Encerrado</div>
+       <div class="badge-premium" id="badge-topo"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px;"><path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"/></svg>Lote VIP Encerrado</div>
 
         <h1 id="titulo-principal">Você tentou acessar um conteúdo da <span>Versão Completa Premium</span></h1>
 
@@ -434,15 +434,15 @@
 
         <div class="beneficios-box">
             <div class="beneficios-titulo">Ao garantir seu acesso você tem:</div>
-            <div class="beneficio-item" id="beneficio-total-questoes">🔒 Acesso a <strong>+420 questões 100% inéditas</strong></div>
-            <div class="beneficio-item">📈 Banco de questões crescendo continuamente, sem custo extra</div>
-            <div class="beneficio-item">🎯 Mini-aula + explicação completa em cada questão</div>
-            <div class="beneficio-item">🎁 <strong>1 mês + 1 mês de bônus</strong> (2 meses de acesso por <strong>R$ 49,90</strong>)</div>
+            <div class="beneficio-item" id="beneficio-total-questoes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffca28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg><span>Acesso a <strong>+420 questões 100% inéditas</strong></span></div>
+            <div class="beneficio-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffca28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg><span>Banco de questões crescendo continuamente, sem custo extra</span></div>
+            <div class="beneficio-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffca28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg><span>Mini-aula + explicação completa em cada questão</span></div>
+            <div class="beneficio-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffca28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg><span><strong>1 mês + 1 mês de bônus</strong> (2 meses de acesso por <strong>R$ 49,90</strong>)</span></div>
         </div>
 
         <div class="preco-destaque" id="preco-destaque" style="display: none;">
             <div class="preco-valor">R$ 49,90</div>
-            <div class="preco-prazo"><strong>1 mês + 1 mês de bônus</strong> (2 meses de acesso) · pagamento único · liberação automática</div>
+           <div class="preco-prazo"><strong>1 mês + 1 mês de bônus</strong> (2 meses de acesso)<br>Pagamento único · Liberação automática</div>
         </div>
 
         <!-- MODO LISTA DE ESPERA (só aparece se VENDAS_ATIVAS = false) -->
@@ -627,7 +627,7 @@
         const msgLogin = document.getElementById("msg-login");
 
         if (VENDAS_ATIVAS) {
-            badgeTopo.textContent = "👑 Acesso Premium Disponível";
+            badgeTopo.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px;"><path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"/></svg>Acesso Premium Disponível';
             tituloPrincipal.innerHTML = 'Desbloqueie a <span>Versão Completa Premium</span>';
             subtituloPrincipal.textContent = "Garanta agora o acesso completo aos simulados inéditos e de alta performance.";
             blocoEspera.style.display = "none";
