@@ -668,33 +668,434 @@
         /* OPCIONAL: para esconder o botao verde antigo de Joinville sem apagar do HTML, remova as barras e asteriscos abaixo */
         /* #btn-simulado-gmj { display: none; } */
     </style>
+<style id="mm-upgrade-visual">
+        /* ==========================================================================
+           UPGRADE VISUAL CIRÚRGICO (NÃO ALTERA OS SCRIPTS BLINDADOS)
+           ========================================================================== */
+        body {
+            padding: 0 15px 30px;
+        }
 
+        .container {
+            max-width: 1140px;
+        }
+
+        /* Barra superior discreta com login no canto superior direito */
+        .topbar {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 14px 0;
+            margin-bottom: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .topbar-marca {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .topbar-marca svg {
+            width: 18px;
+            height: 18px;
+            color: var(--cor-ouro);
+            flex-shrink: 0;
+        }
+
+        .topbar-marca span {
+            color: var(--cor-ouro);
+        }
+
+        .topbar-acoes {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tb-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: transform 0.15s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .tb-btn svg {
+            width: 15px;
+            height: 15px;
+            flex-shrink: 0;
+        }
+
+        .tb-btn-login {
+            color: #e2e8f0;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+        }
+
+        .tb-btn-login:hover {
+            color: #ffffff;
+            border-color: var(--cor-ouro);
+            background: rgba(255, 202, 40, 0.08);
+        }
+
+        .tb-btn-premium {
+            color: #02112e;
+            background: linear-gradient(135deg, #ffe082 0%, #ffca28 50%, #ffa000 100%);
+            border: 1px solid transparent;
+            box-shadow: 0 4px 14px rgba(255, 202, 40, 0.25);
+        }
+
+        .tb-btn-premium:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(255, 202, 40, 0.38);
+        }
+
+        .tb-texto-curto {
+            display: none;
+        }
+
+        @media (max-width: 480px) {
+            .topbar-marca {
+                font-size: 11.5px;
+                letter-spacing: 1.1px;
+            }
+            .tb-btn {
+                padding: 7px 10px;
+                font-size: 11px;
+                gap: 5px;
+            }
+            .tb-texto-longo {
+                display: none;
+            }
+            .tb-texto-curto {
+                display: inline;
+            }
+        }
+
+        /* Trava de escala do banner principal para não ocupar a tela inteira no PC */
+        .container-logo {
+            max-width: 680px;
+            margin: 0 auto 16px;
+        }
+
+        .logo-oficial {
+            border-radius: 14px;
+            border: 1px solid rgba(255, 202, 40, 0.22);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.48);
+        }
+
+        .header-perfil {
+            max-width: 680px;
+            margin: 0 auto 18px;
+        }
+
+        .slogan-destaque {
+            font-size: 13px;
+            margin-top: 4px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Área do Aluno refinada */
+        .area-aluno {
+            max-width: 820px;
+            margin: 0 auto 16px;
+            padding: 20px;
+            display: block;
+        }
+
+        .aa-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 54px;
+            padding: 12px 22px;
+        }
+
+        .aa-btn svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        .aa-btn-stack {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            line-height: 1.2;
+        }
+
+        .aa-btn-sub {
+            font-size: 11.5px;
+            font-weight: 700;
+            opacity: 0.82;
+            letter-spacing: 0.3px;
+            text-transform: none;
+        }
+
+        .aa-sair {
+            display: inline-flex;
+            width: auto;
+            min-height: 36px;
+        }
+
+        .links-container {
+            max-width: 820px;
+        }
+
+        .link-item {
+            gap: 10px;
+        }
+
+        .link-item svg {
+            width: 19px;
+            height: 19px;
+            flex-shrink: 0;
+        }
+
+        /* Oculta o botão avulso de Joinville mantendo o clique da capa 100% funcional */
+        #btn-simulado-gmj {
+            display: none !important;
+        }
+
+        #menu-simulado-gmj {
+            margin-top: 24px !important;
+        }
+
+        .secao-vitrine {
+            margin-top: 24px;
+        }
+
+        /* Cards modernos lado a lado abaixo da vitrine (zero espaços vazios) */
+        #slot-vitrine-base.mm-cards-base {
+            flex-direction: row !important;
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+            gap: 16px !important;
+            width: 100% !important;
+            margin-top: 32px !important;
+        }
+
+        .card-acao-moderno {
+            flex: 1 1 320px;
+            max-width: 540px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 18px 20px;
+            border-radius: 14px;
+            text-decoration: none;
+            text-align: left;
+            background: linear-gradient(150deg, #052052 0%, #03153a 100%);
+            border: 1.5px solid rgba(255, 255, 255, 0.14);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card-acao-moderno:hover {
+            transform: translateY(-2px);
+        }
+
+        .cam-icone {
+            width: 44px;
+            height: 44px;
+            border-radius: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+        }
+
+        .cam-icone svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .cam-texto {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .cam-titulo {
+            font-size: 15.5px;
+            font-weight: 800;
+            line-height: 1.25;
+            letter-spacing: 0.2px;
+        }
+
+        .cam-subtitulo {
+            font-size: 12.5px;
+            color: #9fb0c7;
+            font-weight: 500;
+            line-height: 1.35;
+        }
+
+        .cam-seta {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            opacity: 0.7;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .card-acao-moderno:hover .cam-seta {
+            transform: translateX(3px);
+            opacity: 1;
+        }
+
+        /* Ajustes para computador (widescreen) */
+        @media (min-width: 900px) {
+            body {
+                padding: 0 28px 40px;
+            }
+
+            .container {
+                width: 94%;
+                max-width: 1140px;
+            }
+
+            .header-perfil {
+                max-width: 680px;
+            }
+
+            .links-container {
+                max-width: 820px;
+            }
+
+            .area-aluno {
+                max-width: 820px;
+                display: block;
+                padding: 22px 26px;
+            }
+
+            .area-aluno:not(.area-aluno-logado) {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 24px;
+                text-align: left;
+                padding: 20px 26px;
+            }
+
+            .area-aluno:not(.area-aluno-logado) .aa-texto-grupo {
+                flex: 1;
+                min-width: 0;
+            }
+
+            .area-aluno:not(.area-aluno-logado) .aa-sub {
+                margin-bottom: 0;
+            }
+
+            .area-aluno:not(.area-aluno-logado) > a.aa-btn {
+                width: auto;
+                min-width: 280px;
+                flex-shrink: 0;
+                margin: 0 !important;
+                max-width: none;
+            }
+
+            .area-aluno.area-aluno-logado {
+                max-width: 680px;
+                display: block;
+                text-align: center;
+            }
+
+            .area-aluno.area-aluno-logado > a.aa-btn {
+                display: flex;
+                max-width: 360px;
+                margin: 12px auto 0 !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
     <div id="simulador-container" class="container">
 
+      <!-- BARRA SUPERIOR DISCRETA COM LOGIN NO CANTO SUPERIOR DIREITO -->
+        <nav class="topbar" aria-label="Navegação principal">
+            <a href="index.html" class="topbar-marca">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    <path d="m9 12 2 2 4-4"></path>
+                </svg>
+                MÉTODO <span>MISSÃO</span>
+            </a>
+
+            <div class="topbar-acoes">
+                <a href="login.html" id="topbar-login" class="tb-btn tb-btn-login">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>Entrar</span>
+                </a>
+
+                <a href="acesso-premium.html" id="topbar-premium" class="tb-btn tb-btn-premium" data-ocultar-premium="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                    <span class="tb-texto-longo">Assinar Premium</span>
+                    <span class="tb-texto-curto">Premium</span>
+                </a>
+            </div>
+        </nav>
+
         <div class="container-logo">
-            <!-- A imagem widescreen gerada foi adicionada aqui -->
             <img src="logo.png" alt="Método Missão" class="logo-oficial">
         </div>
 
         <header class="header-perfil">
-            <div class="badge-missao">Método Missão</div>
             <p class="tagline">
                 Preparação de Alta Performance para Concursos das Carreiras Policiais.
                 <span class="slogan-destaque">Estude. Pratique. Gabarite.</span>
             </p>
         </header>
 
-        <!-- MM-LOGIN: area do aluno (visivel imediatamente por padrao, sem depender do Supabase responder) -->
+        <!-- MM-LOGIN: área do aluno (faixa horizontal limpa sem emojis caseiros) -->
         <section id="area-aluno" class="area-aluno">
-            <div class="aa-eyebrow">ÁREA DO ALUNO</div>
-            <div class="aa-titulo">Como você quer começar?</div>
-            <p class="aa-sub">Sem cadastro: a primeira aula de cada matéria é aberta e gratuita.</p>
-            <a href="javascript:void(0);" id="btn-comecar-gratis" class="aa-btn aa-btn-ouro">⚡ COMEÇAR GRÁTIS</a>
-            <a href="login.html" class="aa-btn aa-btn-ouro" style="margin-top: 10px;">👑 JÁ SOU ALUNO PREMIUM - ENTRAR</a>
+            <div class="aa-texto-grupo">
+                <div class="aa-eyebrow">ÁREA DO ALUNO</div>
+                <div class="aa-titulo">Comece a resolver questões agora</div>
+                <p class="aa-sub">Sem cadastro: a primeira aula de cada matéria é aberta e gratuita.</p>
+            </div>
+            <a href="javascript:void(0);" id="btn-comecar-gratis" class="aa-btn aa-btn-ouro" data-mm-btn-gratuito="1">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M9 11l3 3L22 4"></path>
+                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                </svg>
+                <span class="aa-btn-stack">
+                    <span>RESOLUÇÃO DE QUESTÕES</span>
+                    <span class="aa-btn-sub">Acesso Liberado por Matéria</span>
+                </span>
+            </a>
         </section>
 
         <main class="links-container">
@@ -1115,7 +1516,7 @@
     </div>
 
     <!-- GAVETA EXTERNA MODULAR: tudo o que for novo entra em modulos-novos.js sem mexer neste index.html -->
-    <script src="modulos-novos.js"></script>
+    <script src="modulos-novos.js?v=2"></script>
 
     <script>
         (function () {
