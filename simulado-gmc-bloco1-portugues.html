@@ -1,0 +1,1712 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1º Simulado GM Campinas | Bloco 1: Língua Portuguesa | Método Missão</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        /* ==========================================================================
+           PROTEÇÃO CONTRA IMPRESSÃO E IDENTIDADE VISUAL MÉTODO MISSÃO
+           ========================================================================== */
+        @media print {
+            body {
+                display: none !important;
+            }
+        }
+
+        :root {
+            --mm-navy: #02112e;
+            --mm-navy-card: #031842;
+            --mm-gold: #ffca28;
+            --mm-gold-soft: rgba(255, 202, 40, 0.16);
+            --mm-cyan: #38bdf8;
+            --mm-green: #22c55e;
+            --mm-red: #ef4444;
+
+            /* Paleta Única Oficial Método Missão (HUD / Caderno de Prova) */
+            --folha-bg: #04163a;
+            --folha-borda: rgba(56, 189, 248, 0.3);
+            --folha-texto: #f1f5f9;
+            --folha-texto-sec: #cbd5e1;
+            --folha-muted: #94a3b8;
+            --folha-divisor: rgba(148, 163, 184, 0.34);
+            --folha-barra-coluna: #ffca28;
+            --folha-caixa: rgba(2, 12, 34, 0.78);
+            --folha-caixa-borda: rgba(255, 202, 40, 0.34);
+            --folha-hover: rgba(56, 189, 248, 0.1);
+            --folha-sel-bg: rgba(255, 202, 40, 0.15);
+            --folha-sel-borda: #ffca28;
+            --folha-bolinha-bg: transparent;
+            --folha-bolinha-borda: #94a3b8;
+            --folha-bolinha-sel-bg: #ffca28;
+            --folha-bolinha-sel-txt: #02112e;
+            --folha-ok-bg: rgba(22, 163, 74, 0.18);
+            --folha-ok-borda: #22c55e;
+            --folha-err-bg: rgba(220, 38, 38, 0.18);
+            --folha-err-borda: #ef4444;
+            --folha-com-bg: rgba(2, 12, 34, 0.88);
+            --folha-com-borda: #ffca28;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--mm-navy);
+            color: var(--folha-texto);
+            min-height: 100vh;
+            padding-bottom: 50px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='460' height='220'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' transform='rotate(-25 230 110)' fill='rgba(255,202,40,0.045)' font-family='Segoe UI, sans-serif' font-weight='800' font-size='13px'%3EMÉTODO MISSÃO • SIMULADO GM CAMPINAS%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+
+        /* Largura calibrada para proporção real de folha A4 */
+        #simulador-container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 940px;
+            margin: 0 auto;
+            padding: 0 14px;
+            transition: filter 0.2s ease;
+        }
+
+        /* ==========================================================================
+           BARRA SUPERIOR E PAINEL FIXO DE CONTROLE (HUD)
+           ========================================================================== */
+        .hud-topo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 16px 0 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hud-marca {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .hud-marca i {
+            color: var(--mm-gold);
+            font-size: 16px;
+        }
+
+        .hud-marca span {
+            color: var(--mm-gold);
+        }
+
+        .hud-acoes {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn-hud {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 13px;
+            border-radius: 9px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            color: #e2e8f0;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-hud:hover {
+            border-color: var(--mm-gold);
+            color: var(--mm-gold);
+            background: rgba(255, 202, 40, 0.08);
+        }
+
+        /* Barra fixa com contador de questões e cronômetro */
+        .barra-status {
+            position: sticky;
+            top: 0;
+            z-index: 30;
+            margin: 14px 0 20px;
+            padding: 11px 16px;
+            border-radius: 12px;
+            background: rgba(3, 20, 56, 0.96);
+            border: 1px solid rgba(255, 202, 40, 0.4);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.48);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .status-esquerda {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .pilula-info {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #e2e8f0;
+        }
+
+        .pilula-info i {
+            color: var(--mm-gold);
+        }
+
+        .pilula-info strong {
+            color: var(--mm-gold);
+        }
+
+        .barra-progresso-wrap {
+            width: 120px;
+            height: 7px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 99px;
+            overflow: hidden;
+        }
+
+        .barra-progresso-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ffca28, #22c55e);
+            transition: width 0.25s ease;
+        }
+
+        .btn-atalho-finalizar {
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(134, 239, 172, 0.45);
+            background: linear-gradient(135deg, #22c55e, #15803d);
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.4px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: transform 0.15s ease, filter 0.15s ease;
+        }
+
+        .btn-atalho-finalizar:hover {
+            filter: brightness(1.08);
+            transform: translateY(-1px);
+        }
+
+        /* ==========================================================================
+           BOLETIM DE DESEMPENHO (APARECE SOMENTE APÓS FINALIZAR)
+           ========================================================================== */
+        #painel-resultado {
+            display: none;
+            margin-bottom: 24px;
+            padding: 22px;
+            border-radius: 14px;
+            background: linear-gradient(155deg, #062158 0%, #031336 100%);
+            border: 1.5px solid rgba(255, 202, 40, 0.55);
+            box-shadow: 0 16px 38px rgba(0, 0, 0, 0.5);
+        }
+
+        .res-cabecalho {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .res-titulo {
+            font-size: 17px;
+            font-weight: 900;
+            color: var(--mm-gold);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .res-sub {
+            font-size: 13px;
+            color: #cbd5e1;
+            margin-top: 4px;
+        }
+
+        .res-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+            gap: 12px;
+            margin: 18px 0;
+        }
+
+        .res-card {
+            background: rgba(2, 12, 34, 0.72);
+            border: 1px solid rgba(56, 189, 248, 0.22);
+            border-radius: 12px;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .res-card-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .res-card-valor {
+            font-size: 25px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-top: 4px;
+        }
+
+        .res-card-valor.aprovado {
+            color: #4ade80;
+        }
+
+        .res-card-valor.atencao {
+            color: #f87171;
+        }
+
+        .gabarito-mini-titulo {
+            font-size: 12px;
+            font-weight: 800;
+            color: #cbd5e1;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 10px;
+        }
+
+        .gabarito-mini-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .gab-pill {
+            width: 52px;
+            padding: 7px 4px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 800;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: transform 0.15s ease;
+        }
+
+        .gab-pill:hover {
+            transform: translateY(-2px);
+        }
+
+        .gab-pill.ok {
+            background: rgba(34, 197, 94, 0.18);
+            border-color: #22c55e;
+            color: #86efac;
+        }
+
+        .gab-pill.err {
+            background: rgba(239, 68, 68, 0.18);
+            border-color: #ef4444;
+            color: #fca5a5;
+        }
+
+        .gab-pill.branco {
+            background: rgba(148, 163, 184, 0.16);
+            border-color: #94a3b8;
+            color: #cbd5e1;
+        }
+
+        .res-acoes {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+        }
+
+        /* ==========================================================================
+           PILHA DE FOLHAS A4 COM QUEBRA DE PÁGINA REAL (ESPAÇO ENTRE PÁGINAS)
+           ========================================================================== */
+        .caderno-paginas {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .folha-a4 {
+            background: linear-gradient(165deg, #051c4a 0%, #031336 100%);
+            color: var(--folha-texto);
+            border: 1.5px solid var(--folha-borda);
+            border-radius: 8px;
+            box-shadow: 0 20px 44px rgba(0, 0, 0, 0.62), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            padding: 26px 24px 22px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Cabeçalho contínuo das páginas seguintes (padrão caderno de prova) */
+        .topo-pagina {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.9px;
+            text-transform: uppercase;
+            color: var(--mm-gold);
+        }
+
+        .topo-pagina-linha {
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 202, 40, 0.45);
+        }
+
+        .topo-pagina-dir {
+            color: var(--folha-texto-sec);
+            letter-spacing: 0.5px;
+            text-transform: none;
+            font-weight: 700;
+        }
+
+        /* Rodapé individual de cada página (marca centralizada + número à direita) */
+        .rodape-pagina {
+            margin-top: 26px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 202, 40, 0.28);
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+        }
+
+        .rodape-pagina-marca {
+            grid-column: 2;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.82);
+        }
+
+        .rodape-pagina-marca i {
+            color: var(--mm-gold);
+            font-size: 14px;
+        }
+
+        .rodape-pagina-num {
+            grid-column: 3;
+            justify-self: end;
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--mm-gold);
+            padding: 2px 8px;
+            border: 1px solid rgba(255, 202, 40, 0.35);
+            border-radius: 5px;
+            background: rgba(2, 12, 34, 0.55);
+        }
+
+        /* Cabeçalho da Página 1 */
+        .cabecalho-prova {
+            border: 1.5px solid rgba(255, 202, 40, 0.48);
+            border-radius: 8px;
+            padding: 15px 18px;
+            margin-bottom: 18px;
+            background: var(--folha-caixa);
+        }
+
+        .cabecalho-prova-linha1 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 10.5px;
+            font-weight: 800;
+            letter-spacing: 0.9px;
+            text-transform: uppercase;
+            color: var(--mm-gold);
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--folha-divisor);
+        }
+
+        .cabecalho-prova h1 {
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: 0.4px;
+            margin-top: 10px;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        .cabecalho-prova-meta {
+            margin-top: 6px;
+            font-size: 12.8px;
+            color: var(--folha-texto-sec);
+            line-height: 1.48;
+        }
+
+        .faixa-disciplina {
+            font-size: 11.5px;
+            font-weight: 900;
+            letter-spacing: 1.3px;
+            text-transform: uppercase;
+            color: var(--mm-gold);
+            border-top: 2px solid var(--folha-barra-coluna);
+            border-bottom: 1px solid var(--folha-divisor);
+            padding: 7px 0;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        /* Texto de apoio inserido dentro da coluna (padrão caderno Vunesp) */
+        .bloco-texto {
+            background: var(--folha-caixa);
+            border: 1px solid var(--folha-caixa-borda);
+            border-left: 3px solid var(--mm-gold);
+            border-radius: 7px;
+            padding: 15px 15px 13px;
+        }
+
+        .texto-instrucao {
+            font-size: 12.8px;
+            font-weight: 700;
+            color: var(--mm-gold);
+            line-height: 1.45;
+            margin-bottom: 11px;
+        }
+
+        .texto-titulo {
+            font-size: 14.5px;
+            font-weight: 800;
+            font-style: italic;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 11px;
+        }
+
+        .texto-corpo {
+            font-size: 13.5px;
+            line-height: 1.64;
+            color: var(--folha-texto);
+            text-align: justify;
+        }
+
+        .texto-corpo p {
+            text-indent: 20px;
+            margin-bottom: 8px;
+        }
+
+        .texto-corpo p:last-child {
+            margin-bottom: 0;
+        }
+
+        .texto-anuncio {
+            border: 1.5px dashed rgba(255, 202, 40, 0.45);
+            border-radius: 6px;
+            padding: 13px 14px;
+            background: rgba(4, 22, 58, 0.7);
+        }
+
+        .texto-anuncio .anuncio-selo {
+            display: inline-block;
+            font-size: 10.5px;
+            font-weight: 900;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            padding: 3px 9px;
+            border-radius: 4px;
+            background: var(--mm-gold);
+            color: #02112e;
+            margin-bottom: 9px;
+        }
+
+        .texto-anuncio p {
+            text-indent: 0;
+            font-size: 13.5px;
+            line-height: 1.64;
+            color: var(--folha-texto);
+            text-align: justify;
+        }
+
+        .lacuna {
+            display: inline-block;
+            min-width: 36px;
+            border-bottom: 1.5px solid var(--mm-gold);
+            margin: 0 3px;
+            vertical-align: baseline;
+        }
+
+        .texto-fonte {
+            margin-top: 9px;
+            font-size: 11px;
+            font-style: italic;
+            color: var(--folha-muted);
+            text-align: right;
+        }
+
+        /* Grade de 2 colunas com fluxo vertical real */
+        .grade-colunas {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            position: relative;
+        }
+
+        .coluna-prova {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            min-width: 0;
+        }
+
+        @media (min-width: 820px) {
+            .folha-a4 {
+                padding: 30px 32px 24px;
+            }
+
+            .grade-colunas {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 0 40px;
+                align-items: stretch;
+            }
+
+            /* Barra vertical forte e evidente separando as 2 colunas */
+            .grade-colunas::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 50%;
+                width: 2px;
+                background: var(--folha-barra-coluna);
+                box-shadow: 0 0 8px rgba(255, 202, 40, 0.35);
+                transform: translateX(-1px);
+                pointer-events: none;
+            }
+
+            .coluna-prova .questao-item:last-child {
+                border-bottom: none;
+                padding-bottom: 4px;
+            }
+        }
+
+        /* Cartão de cada questão */
+        .questao-item {
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--folha-divisor);
+            scroll-margin-top: 86px;
+        }
+
+        .questao-topo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 7px;
+        }
+
+        .questao-num {
+            font-size: 13.5px;
+            font-weight: 900;
+            color: var(--mm-gold);
+            letter-spacing: 0.4px;
+        }
+
+        .questao-status-badge {
+            display: none;
+            font-size: 10.5px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 99px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .questao-status-badge.ok {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(22, 163, 74, 0.2);
+            color: #86efac;
+            border: 1px solid #22c55e;
+        }
+
+        .questao-status-badge.err {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(220, 38, 38, 0.2);
+            color: #fca5a5;
+            border: 1px solid #ef4444;
+        }
+
+        .questao-status-badge.branco {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(148, 163, 184, 0.16);
+            color: #cbd5e1;
+            border: 1px solid #94a3b8;
+        }
+
+        .questao-enunciado {
+            font-size: 13.6px;
+            line-height: 1.56;
+            color: var(--folha-texto);
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        .questao-citacao {
+            margin: 8px 0 10px;
+            padding: 8px 11px;
+            border-left: 3px solid var(--mm-gold);
+            background: var(--folha-caixa);
+            font-size: 13px;
+            line-height: 1.54;
+            color: var(--folha-texto-sec);
+        }
+
+        .questao-citacao div + div {
+            margin-top: 6px;
+        }
+
+        .alternativas-lista {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .alternativa-btn {
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            padding: 8px 10px;
+            border-radius: 7px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--folha-texto);
+            text-align: left;
+            font-size: 13.4px;
+            line-height: 1.48;
+            cursor: pointer;
+            transition: background-color 0.15s ease, border-color 0.15s ease;
+        }
+
+        .alternativa-btn:hover:not(:disabled) {
+            background: var(--folha-hover);
+            border-color: rgba(56, 189, 248, 0.35);
+        }
+
+        .alternativa-btn:disabled {
+            cursor: default;
+        }
+
+        .alt-letra {
+            flex-shrink: 0;
+            width: 23px;
+            height: 23px;
+            border-radius: 50%;
+            border: 1.5px solid var(--folha-bolinha-borda);
+            background: var(--folha-bolinha-bg);
+            color: var(--folha-texto);
+            font-size: 11.5px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1px;
+            transition: all 0.15s ease;
+        }
+
+        .alt-texto {
+            flex: 1;
+        }
+
+        /* Estado marcado pelo aluno antes da correção */
+        .alternativa-btn.selecionada {
+            background: var(--folha-sel-bg);
+            border-color: var(--folha-sel-borda);
+        }
+
+        .alternativa-btn.selecionada .alt-letra {
+            background: var(--folha-bolinha-sel-bg);
+            border-color: var(--folha-bolinha-sel-bg);
+            color: var(--folha-bolinha-sel-txt);
+        }
+
+        /* Estados após correção final */
+        .alternativa-btn.correta {
+            background: var(--folha-ok-bg) !important;
+            border-color: var(--folha-ok-borda) !important;
+        }
+
+        .alternativa-btn.correta .alt-letra {
+            background: #16a34a !important;
+            border-color: #16a34a !important;
+            color: #ffffff !important;
+        }
+
+        .alternativa-btn.incorreta {
+            background: var(--folha-err-bg) !important;
+            border-color: var(--folha-err-borda) !important;
+        }
+
+        .alternativa-btn.incorreta .alt-letra {
+            background: #dc2626 !important;
+            border-color: #dc2626 !important;
+            color: #ffffff !important;
+        }
+
+        /* Caixa de comentário (invisível até finalizar) */
+        .comentario-box {
+            display: none;
+            margin-top: 11px;
+            padding: 12px 13px;
+            border-radius: 8px;
+            background: var(--folha-com-bg);
+            border: 1px solid var(--folha-divisor);
+            border-left: 4px solid var(--folha-com-borda);
+            font-size: 12.8px;
+            line-height: 1.56;
+            color: var(--folha-texto-sec);
+        }
+
+        .comentario-box.visivel {
+            display: block;
+        }
+
+        .comentario-titulo {
+            font-size: 11.5px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: var(--mm-gold);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .comentario-box p + p {
+            margin-top: 6px;
+        }
+
+        /* ==========================================================================
+           ÁREA DE FINALIZAÇÃO ABAIXO DA ÚLTIMA PÁGINA
+           ========================================================================== */
+        .rodape-finalizacao {
+            margin-top: 26px;
+            padding: 24px 20px;
+            border-radius: 12px;
+            background: linear-gradient(155deg, #062158 0%, #031336 100%);
+            border: 1.5px solid rgba(255, 202, 40, 0.42);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.48);
+            text-align: center;
+        }
+
+        .aviso-incompleto {
+            display: none;
+            max-width: 560px;
+            margin: 0 auto 14px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            background: rgba(245, 158, 11, 0.16);
+            border: 1px solid #f59e0b;
+            color: var(--folha-texto);
+            font-size: 13.5px;
+            line-height: 1.5;
+        }
+
+        .aviso-incompleto-acoes {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-finalizar-prova {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 15px 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(134, 239, 172, 0.5);
+            background: linear-gradient(135deg, #22c55e 0%, #15803d 100%);
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 10px 26px rgba(22, 163, 74, 0.34);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+        }
+
+        .btn-finalizar-prova:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.06);
+            box-shadow: 0 14px 32px rgba(22, 163, 74, 0.48);
+        }
+
+        .btn-secundario {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 11px 18px;
+            border-radius: 10px;
+            border: 1px solid var(--folha-divisor);
+            background: var(--folha-caixa);
+            color: var(--folha-texto);
+            font-size: 13px;
+            font-weight: 800;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn-secundario:hover {
+            border-color: var(--mm-gold);
+        }
+
+        .btn-ouro {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 11px 18px;
+            border-radius: 10px;
+            border: none;
+            background: linear-gradient(135deg, #ffd54f, #f59e0b);
+            color: #02112e;
+            font-size: 13px;
+            font-weight: 900;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .rodape-institucional {
+            text-align: center;
+            font-size: 11.5px;
+            color: #8a99ad;
+            margin-top: 26px;
+            line-height: 1.55;
+        }
+
+        @media (max-width: 600px) {
+            .folha-a4 {
+                padding: 18px 14px 18px;
+            }
+            .barra-progresso-wrap {
+                display: none;
+            }
+            .cabecalho-prova h1 {
+                font-size: 15.5px;
+            }
+            .topo-pagina {
+                font-size: 10px;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="simulador-container">
+
+        <!-- TOPO MÉTODO MISSÃO -->
+        <header class="hud-topo">
+            <a href="index.html" class="hud-marca">
+                <i class="fa-solid fa-shield-halved"></i>
+                MÉTODO <span>MISSÃO</span>
+            </a>
+
+            <div class="hud-acoes">
+                <a href="index.html" class="btn-hud">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Voltar ao Início</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- BARRA FIXA DE CONTROLE (CONTADOR + CRONÔMETRO) -->
+        <div class="barra-status" role="region" aria-label="Status do Simulado">
+            <div class="status-esquerda">
+                <div class="pilula-info">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span>Respondidas: <strong id="contador-respondidas">0 / 12</strong></span>
+                </div>
+                <div class="barra-progresso-wrap" aria-hidden="true">
+                    <div class="barra-progresso-fill" id="barra-progresso"></div>
+                </div>
+                <div class="pilula-info">
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Tempo: <strong id="cronometro">00:00</strong></span>
+                </div>
+            </div>
+
+            <button type="button" id="btn-ir-finalizar" class="btn-atalho-finalizar">
+                <i class="fa-solid fa-clipboard-check"></i>
+                <span>Finalizar Bloco</span>
+            </button>
+        </div>
+
+        <!-- BOLETIM DE DESEMPENHO (LIBERADO SOMENTE APÓS CORREÇÃO) -->
+        <section id="painel-resultado" aria-live="polite">
+            <div class="res-cabecalho">
+                <div>
+                    <div class="res-titulo"><i class="fa-solid fa-award" style="margin-right:8px;"></i>Resultado Oficial: Bloco 1 (Língua Portuguesa)</div>
+                    <div class="res-sub" id="res-mensagem">Confira seu desempenho e os comentários detalhados no caderno abaixo.</div>
+                </div>
+            </div>
+
+            <div class="res-cards">
+                <div class="res-card">
+                    <div class="res-card-label">Acertos</div>
+                    <div class="res-card-valor" id="res-acertos">0 / 12</div>
+                </div>
+                <div class="res-card">
+                    <div class="res-card-label">Aproveitamento</div>
+                    <div class="res-card-valor" id="res-percentual">0%</div>
+                </div>
+                <div class="res-card">
+                    <div class="res-card-label">Em Branco</div>
+                    <div class="res-card-valor" id="res-branco">0</div>
+                </div>
+                <div class="res-card">
+                    <div class="res-card-label">Tempo Total</div>
+                    <div class="res-card-valor" id="res-tempo">00:00</div>
+                </div>
+            </div>
+
+            <div class="gabarito-mini-titulo">Mapa de Gabarito (clique no número para ir à questão comentada):</div>
+            <div class="gabarito-mini-grid" id="gabarito-mini-grid"></div>
+
+            <div class="res-acoes">
+                <button type="button" id="btn-refazer-topo" class="btn-ouro">
+                    <i class="fa-solid fa-rotate-right"></i>
+                    <span>Refazer Bloco 1</span>
+                </button>
+                <a href="index.html" class="btn-hud">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Voltar aos Simulados</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- CADERNO DE PROVA DIVIDIDO EM FOLHAS A4 COM QUEBRA DE PÁGINA REAL -->
+        <main class="caderno-paginas" id="folha-prova">
+
+            <!-- ==================== PÁGINA 1: TEXTO I + Q01 A Q03 ==================== -->
+            <section class="folha-a4" aria-label="Página 1">
+                <div class="cabecalho-prova">
+                    <div class="cabecalho-prova-linha1">
+                        <span>1º SIMULADO INÉDITO • PADRÃO VUNESP (EDITAL Nº 02/2026)</span>
+                        <span>GUARDA MUNICIPAL DE CAMPINAS (3ª CLASSE)</span>
+                    </div>
+                    <h1>Bloco 1: Língua Portuguesa (Questões 01 a 12)</h1>
+                    <p class="cabecalho-prova-meta">
+                        Modo Prova Real: marque suas respostas normalmente (5 alternativas: A a E). O gabarito oficial e os comentários completos serão exibidos somente ao clicar em <strong>Finalizar e Corrigir</strong>.
+                    </p>
+                </div>
+
+                <div class="faixa-disciplina">
+                    <span>CONHECIMENTOS GERAIS: LÍNGUA PORTUGUESA</span>
+                    <span>12 QUESTÕES • PESO 1</span>
+                </div>
+
+                <div class="grade-colunas">
+                    <div class="coluna-prova" id="g1-esq">
+                        <div class="bloco-texto">
+                            <div class="texto-instrucao">Leia o comunicado a seguir para responder às questões de números <strong>01 a 03</strong>.</div>
+                            <div class="texto-anuncio">
+                                <span class="anuncio-selo">Campanha Cidade Segura</span>
+                                <p>
+                                    A Secretaria Municipal lança um painel interativo com diretrizes voltadas <span class="lacuna"></span> orientar moradores quanto <span class="lacuna"></span> prevenção de incidentes <strong>urbanos</strong>. O sistema também oferece suporte <span class="lacuna"></span> qualquer cidadão que deseje aderir <span class="lacuna"></span> rede comunitária de monitoramento.
+                                </p>
+                            </div>
+                            <div class="texto-fonte">(Material institucional fictício. Elaboração inédita Método Missão)</div>
+                        </div>
+                    </div>
+                    <div class="coluna-prova" id="g1-dir"></div>
+                </div>
+
+                <div class="rodape-pagina">
+                    <div class="rodape-pagina-marca">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>MÉTODO MISSÃO</span>
+                    </div>
+                    <span class="rodape-pagina-num">1</span>
+                </div>
+            </section>
+
+            <!-- ==================== PÁGINA 2: TEXTO II + Q04 A Q08 ==================== -->
+            <section class="folha-a4" aria-label="Página 2">
+                <div class="topo-pagina">
+                    <span>MÉTODO MISSÃO</span>
+                    <div class="topo-pagina-linha"></div>
+                    <span class="topo-pagina-dir">1º Simulado GM Campinas • Pós-Edital</span>
+                </div>
+
+                <div class="grade-colunas">
+                    <div class="coluna-prova" id="g2-esq">
+                        <div class="bloco-texto">
+                            <div class="texto-instrucao">Leia o texto a seguir para responder às questões de números <strong>04 a 08</strong>.</div>
+                            <div class="texto-titulo">A arquitetura invisível da prevenção urbana</div>
+                            <div class="texto-corpo">
+                                <p>Durante décadas, o debate sobre segurança nas médias e grandes cidades brasileiras concentrou-se quase exclusivamente no aumento do efetivo policial e na ampliação de punições. Sem desmerecer o papel indispensável da resposta repressiva diante do crime, urbanistas e gestores públicos passaram a demonstrar que o desenho do espaço urbano exerce influência direta sobre a vulnerabilidade de ruas, praças e terminais de transporte.</p>
+                                <p>Estudos conduzidos em centros metropolitanos indicam que áreas degradadas, calçadas mal conservadas e iluminação deficiente não produzem, por si sós, a criminalidade, mas criam condições propícias para a prática de delitos oportunistas. Quando um logradouro permanece às escuras e esvaziado após o expediente comercial, rompe-se aquilo que a pesquisadora norte-americana Jane Jacobs denominou "olhos da rua": a vigilância natural exercida pela própria circulação cotidiana de moradores, trabalhadores e comerciantes.</p>
+                                <p>Experiências recentes de requalificação (que combinam luminárias de LED de alto alcance, poda regular de árvores, recuperação de mobiliário público e policiamento comunitário de proximidade) vêm apresentando resultados consistentes. Em bairros que receberam tais intervenções integradas, observou-se redução expressiva de furtos e roubos noturnos, além de sensível melhora na percepção de segurança pelos frequentadores. Ainda assim, especialistas advertem que medidas isoladas tendem a surtir efeito efêmero caso não sejam acompanhadas de manutenção contínua e diálogo com a comunidade local.</p>
+                                <p>A segurança urbana contemporânea, portanto, não se esgota na lógica reativa do atendimento a emergências. Ela pressupõe planejamento intersetorial capaz de articular zeladoria, mobilidade e patrulhamento preventivo. Tratar o ambiente físico como aliado estratégico da proteção social significa reconhecer que uma cidade bem cuidada inibe condutas ilícitas antes mesmo que elas se concretizem.</p>
+                            </div>
+                            <div class="texto-fonte">(Texto inédito para fins avaliativos. Método Missão)</div>
+                        </div>
+                    </div>
+                    <div class="coluna-prova" id="g2-dir"></div>
+                </div>
+
+                <div class="rodape-pagina">
+                    <div class="rodape-pagina-marca">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>MÉTODO MISSÃO</span>
+                    </div>
+                    <span class="rodape-pagina-num">2</span>
+                </div>
+            </section>
+
+            <!-- ==================== PÁGINA 3: TEXTO III + Q09 A Q12 ==================== -->
+            <section class="folha-a4" aria-label="Página 3">
+                <div class="topo-pagina">
+                    <span>MÉTODO MISSÃO</span>
+                    <div class="topo-pagina-linha"></div>
+                    <span class="topo-pagina-dir">1º Simulado GM Campinas • Pós-Edital</span>
+                </div>
+
+                <div class="grade-colunas">
+                    <div class="coluna-prova" id="g3-esq">
+                        <div class="bloco-texto">
+                            <div class="texto-instrucao">Leia a crônica a seguir para responder às questões de números <strong>09 a 12</strong>.</div>
+                            <div class="texto-titulo">A cidade que respira antes do sol</div>
+                            <div class="texto-corpo">
+                                <p>Poucos conhecem o rosto verdadeiro da cidade entre quatro e cinco da manhã. A essa hora, o asfalto ainda guarda o frescor da madrugada, os semáforos piscam quase sem testemunhas e o ruído apressado dos buzinaços ainda não se espalhou pelas avenidas. É um intervalo breve, mas suficiente para revelar uma coreografia silenciosa que passa despercebida a quem só desperta depois das sete.</p>
+                                <p>Da janela do terceiro andar, costumava observar a praça defronte ao meu prédio. Ouvia-se, primeiro, o estrondo metálico da porta de aço do padeiro, que parecia dar a partida no dia. Logo atrás, os varredores distribuíam-se pela calçada com movimentos cadenciados, e a viatura de ronda desenhava arcos pacientes de luz ao redor do coreto vazio. Ninguém ali parecia ter pressa, embora todos carregassem a responsabilidade silenciosa de preparar o palco para milhões de desconhecidos.</p>
+                                <p>Conquanto a rotina parecesse idêntica todos os dias, havia sempre um detalhe inédito para quem se dispusesse a reparar. Um cão comunitário que acompanhava a caminhada do gari, o vapor subindo do café quente servido no balcão da esquina ou o cumprimento discreto entre dois estranhos que dividiam o mesmo ponto de ônibus. Naquele horário, a cidade parecia menos hostil, como se o sono geral suspendesse, por alguns minutos, a aspereza das relações humanas.</p>
+                                <p>Hoje, morando distante daquela praça, já não escuto o som da porta de aço nem vejo os faróis contornarem o coreto. Tudo deve continuar acontecendo no mesmo compasso, mesmo sem o meu olhar na janela. Às vezes, quando acordo antes do despertador, bate-me uma saudade serena daquela vigília anônima, não pela nostalgia de um passado idealizado, mas pela certeza reconfortante de que, enquanto nos entregamos ao sono, há mãos anônimas cuidando para que o dia amanheça inteiro.</p>
+                            </div>
+                            <div class="texto-fonte">(Crônica inédita para fins avaliativos. Método Missão)</div>
+                        </div>
+                    </div>
+                    <div class="coluna-prova" id="g3-dir"></div>
+                </div>
+
+                <div class="rodape-pagina">
+                    <div class="rodape-pagina-marca">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>MÉTODO MISSÃO</span>
+                    </div>
+                    <span class="rodape-pagina-num">3</span>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- ÁREA DE FINALIZAÇÃO -->
+        <div class="rodape-finalizacao" id="area-finalizar">
+            <div class="aviso-incompleto" id="aviso-incompleto">
+                <div id="aviso-incompleto-texto"></div>
+                <div class="aviso-incompleto-acoes">
+                    <button type="button" id="btn-confirmar-corrigir" class="btn-ouro">Corrigir mesmo assim</button>
+                    <button type="button" id="btn-voltar-revisar" class="btn-secundario">Voltar e revisar</button>
+                </div>
+            </div>
+
+            <button type="button" id="btn-finalizar-prova" class="btn-finalizar-prova">
+                <i class="fa-solid fa-check-double"></i>
+                <span>Finalizar e Corrigir Bloco 1</span>
+            </button>
+        </div>
+
+        <footer class="rodape-institucional">
+            &copy; 2026 Método Missão. Conteúdo 100% inédito protegido pela Lei nº 9.610/98.<br>
+            Simulado elaborado no padrão da Banca Vunesp conforme o Edital nº 02/2026 (Guarda Municipal de Campinas).
+        </footer>
+
+    </div>
+
+    <script>
+        (function () {
+            // ======================================================================
+            // BANCO DE QUESTÕES INÉDITAS: BLOCO 1 (LÍNGUA PORTUGUESA - Q01 A Q12)
+            // ======================================================================
+            const QUESTOES = [
+                {
+                    numero: 1,
+                    destino: "g1-esq",
+                    enunciado: "De acordo com a norma-padrão de emprego do sinal indicativo de crase, as lacunas do comunicado devem ser preenchidas, correta e respectivamente, por:",
+                    alternativas: [
+                        "à ... a ... a ... à",
+                        "a ... à ... a ... à",
+                        "a ... à ... à ... a",
+                        "à ... à ... a ... a",
+                        "a ... a ... à ... à"
+                    ],
+                    correta: 1,
+                    comentario: `
+                        <p><strong>Gabarito: (B) a ... à ... a ... à.</strong></p>
+                        <p><strong>1ª lacuna (a):</strong> antes de verbo no infinitivo (<em>orientar</em>) não ocorre crase, pois não há artigo feminino antes de verbo.</p>
+                        <p><strong>2ª lacuna (à):</strong> a locução prepositiva <em>quanto a</em> soma-se ao artigo feminino <em>a</em> que antecede o substantivo <em>prevenção</em> (quanto a + a prevenção = à prevenção).</p>
+                        <p><strong>3ª lacuna (a):</strong> não há crase antes de pronome indefinido (<em>qualquer</em>), além de <em>cidadão</em> ser palavra masculina.</p>
+                        <p><strong>4ª lacuna (à):</strong> o verbo <em>aderir</em> é transitivo indireto regido pela preposição <em>a</em> (quem adere, adere a algo), que se funde ao artigo <em>a</em> de <em>rede</em> (aderir à rede).</p>
+                    `
+                },
+                {
+                    numero: 2,
+                    destino: "g1-dir",
+                    enunciado: "Assinale a alternativa em que as duas palavras retiradas do comunicado pertencem à mesma classe gramatical do termo destacado em: <em>incidentes <strong>urbanos</strong></em>.",
+                    alternativas: [
+                        "painel, prevenção.",
+                        "também, qualquer.",
+                        "diretrizes, municipal.",
+                        "monitoramento, suporte.",
+                        "interativo, comunitária."
+                    ],
+                    correta: 4,
+                    comentario: `
+                        <p><strong>Gabarito: (E) interativo, comunitária.</strong></p>
+                        <p>No texto, <strong>urbanos</strong> é um <strong>adjetivo</strong> que caracteriza o substantivo <em>incidentes</em>. Da mesma forma, <strong>interativo</strong> qualifica <em>painel</em> e <strong>comunitária</strong> qualifica <em>rede</em>. Ambos são adjetivos.</p>
+                        <p><strong>Erros das demais alternativas:</strong> (A) <em>painel</em> e <em>prevenção</em> são substantivos; (B) <em>também</em> é advérbio e <em>qualquer</em> é pronome indefinido; (C) <em>diretrizes</em> é substantivo (apenas <em>municipal</em> é adjetivo); (D) <em>monitoramento</em> e <em>suporte</em> são substantivos.</p>
+                    `
+                },
+                {
+                    numero: 3,
+                    destino: "g1-dir",
+                    enunciado: "Considerando as ideias do comunicado, assinale a alternativa correta quanto à norma-padrão de regência verbal e nominal.",
+                    alternativas: [
+                        "Os moradores aspiram a uma convivência pacífica e obedecem às orientações da equipe.",
+                        "A população local prefere mais o monitoramento preventivo do que ações meramente repressivas.",
+                        "O novo painel interativo implica em maior agilidade no atendimento às ocorrências de bairro.",
+                        "A iniciativa municipal visa o fortalecimento dos vínculos de confiança sobre a comunidade.",
+                        "Os comerciantes simpatizam-se com o projeto e mostram-se aptos em colaborar com a prevenção."
+                    ],
+                    correta: 0,
+                    comentario: `
+                        <p><strong>Gabarito: (A).</strong></p>
+                        <p>Em (A), <strong>aspirar</strong> no sentido de <em>almejar/desejar</em> é transitivo indireto com preposição <em>a</em> (<em>aspiram a uma convivência</em>, sem crase antes do artigo indefinido <em>uma</em>), e <strong>obedecer</strong> exige preposição <em>a</em> (<em>obedecem às orientações</em>).</p>
+                        <p><strong>Erros das demais alternativas:</strong> (B) <em>preferir</em> não admite intensificador (<em>mais</em>) nem <em>do que</em>, pois o padrão é <em>prefere X a Y</em>; (C) <em>implicar</em> no sentido de <em>acarretar</em> é transitivo direto (<em>implica maior agilidade</em>, sem <em>em</em>); (D) na norma culta cobrada pela Vunesp, <em>visar</em> (= almejar) rege preposição <em>a</em> (<em>visa ao fortalecimento</em>), e <em>confiança</em> rege <em>em</em> (<em>confiança na comunidade</em>); (E) <em>simpatizar</em> não é pronominal (<em>simpatizam com</em>) e <em>apto</em> rege <em>a</em> ou <em>para</em> (não <em>em</em>).</p>
+                    `
+                },
+                {
+                    numero: 4,
+                    destino: "g2-esq",
+                    enunciado: "De acordo com o texto <em>A arquitetura invisível da prevenção urbana</em>, é correto afirmar que",
+                    alternativas: [
+                        "a ampliação do efetivo policial e o endurecimento punitivo tornaram-se dispensáveis diante das novas técnicas de urbanismo preventivo.",
+                        "a degradação de calçadas e a iluminação precária são apontadas nos estudos como a causa primária e suficiente do surgimento da criminalidade.",
+                        "o conceito de \"olhos da rua\" refere-se à instalação de sistemas eletrônicos de câmeras em estabelecimentos comerciais após o expediente.",
+                        "intervenções físicas de requalificação urbana tendem a perder durabilidade quando aplicadas de maneira isolada, sem manutenção contínua e diálogo comunitário.",
+                        "o policiamento comunitário só alcança eficácia na redução de delitos noturnos quando substitui integralmente o atendimento a emergências."
+                    ],
+                    correta: 3,
+                    comentario: `
+                        <p><strong>Gabarito: (D).</strong></p>
+                        <p>A alternativa parafraseia com fidelidade o final do 3º parágrafo: <em>"especialistas advertem que medidas isoladas tendem a surtir efeito efêmero caso não sejam acompanhadas de manutenção contínua e diálogo com a comunidade local"</em>.</p>
+                        <p><strong>Erros das demais alternativas:</strong> (A) o 1º parágrafo diz <em>"Sem desmerecer o papel indispensável da resposta repressiva"</em>; (B) o 2º parágrafo afirma expressamente que tais fatores <em>"não produzem, por si sós, a criminalidade"</em>; (C) <em>"olhos da rua"</em> designa a vigilância natural pela circulação cotidiana de pessoas, não câmeras eletrônicas; (E) o 4º parágrafo indica que a segurança <em>"não se esgota"</em> na lógica reativa, ou seja, soma-se a ela sem substituí-la integralmente.</p>
+                    `
+                },
+                {
+                    numero: 5,
+                    destino: "g2-esq",
+                    enunciado: "Considerando o contexto em que ocorrem no texto, as palavras <strong>propícias</strong> (2º parágrafo) e <strong>efêmero</strong> (3º parágrafo) têm como <strong>sinônimo</strong> e <strong>antônimo</strong>, correta e respectivamente:",
+                    alternativas: [
+                        "adversas ... passageiro.",
+                        "favoráveis ... fugaz.",
+                        "favoráveis ... duradouro.",
+                        "impróprias ... perene.",
+                        "oportunas ... transitório."
+                    ],
+                    correta: 2,
+                    comentario: `
+                        <p><strong>Gabarito: (C) favoráveis ... duradouro.</strong></p>
+                        <p>Atenção ao comando duplo (muito recorrente na Vunesp): pede-se o <strong>sinônimo</strong> da 1ª palavra e o <strong>antônimo</strong> da 2ª.</p>
+                        <p>• <strong>propícias</strong> (<em>condições propícias</em>) = <strong>favoráveis</strong> / adequadas (sinônimo).<br>
+                        • <strong>efêmero</strong> (<em>efeito efêmero</em> = breve, passageiro) tem como <strong>antônimo</strong> <strong>duradouro</strong> / permanente.</p>
+                        <p><strong>Erros das demais alternativas:</strong> (B) e (E) trazem dois sinônimos (<em>fugaz</em> e <em>transitório</em> são sinônimos de <em>efêmero</em>); (A) inverte a ordem (antônimo + sinônimo); (D) traz dois antônimos.</p>
+                    `
+                },
+                {
+                    numero: 6,
+                    destino: "g2-dir",
+                    enunciado: "Assinale a alternativa em que a palavra destacada pode ser substituída, mantendo-se o sentido do trecho, pela que está entre colchetes, empregada em <strong>sentido figurado</strong>.",
+                    alternativas: [
+                        "Sem desmerecer o papel <strong>indispensável</strong> [imprescindível] da resposta repressiva diante do crime... (1º parágrafo)",
+                        "...mas criam condições <strong>propícias</strong> [favoráveis] para a prática de delitos oportunistas. (2º parágrafo)",
+                        "...a vigilância natural exercida pela própria circulação <strong>cotidiana</strong> [diária] de moradores... (2º parágrafo)",
+                        "...observou-se redução <strong>expressiva</strong> [significativa] de furtos e roubos noturnos... (3º parágrafo)",
+                        "...reconhecer que uma cidade bem cuidada <strong>inibe</strong> [freia] condutas ilícitas antes mesmo que elas se concretizem. (4º parágrafo)"
+                    ],
+                    correta: 4,
+                    comentario: `
+                        <p><strong>Gabarito: (E).</strong></p>
+                        <p>Todas as alternativas mantêm o sentido do texto, mas somente em (E) o termo entre colchetes está empregado em <strong>sentido figurado</strong>: <em>frear</em>, em sentido literal (próprio), refere-se a acionar o freio de um veículo ou mecanismo; aplicado a <em>condutas ilícitas</em>, assume valor metafórico de <em>conter, refrear, inibir</em>.</p>
+                        <p><strong>Erros das demais alternativas:</strong> em (A), (B), (C) e (D), os vocábulos <em>imprescindível, favoráveis, diária</em> e <em>significativa</em> estão empregados em sentido literal (próprio).</p>
+                    `
+                },
+                {
+                    numero: 7,
+                    destino: "g2-dir",
+                    enunciado: "O acréscimo de uma vírgula ao trecho adaptado do texto manteve a conformidade com a norma-padrão do emprego desse sinal de pontuação em:",
+                    alternativas: [
+                        "O desenho do espaço urbano, exerce influência direta sobre a vulnerabilidade de ruas, praças e terminais de transporte.",
+                        "Estudos conduzidos em centros metropolitanos indicam, que áreas degradadas não produzem a criminalidade por si sós.",
+                        "Especialistas advertem que, medidas isoladas tendem a surtir efeito efêmero sem manutenção contínua.",
+                        "Tratar o ambiente físico como aliado estratégico da proteção social significa reconhecer que uma cidade bem cuidada inibe condutas ilícitas, antes mesmo que elas se concretizem.",
+                        "Experiências recentes de requalificação que combinam luminárias de LED e policiamento comunitário, vêm apresentando resultados consistentes."
+                    ],
+                    correta: 3,
+                    comentario: `
+                        <p><strong>Gabarito: (D).</strong></p>
+                        <p>Em (D), a vírgula antecede uma <strong>oração subordinada adverbial temporal posposta</strong> (<em>antes mesmo que elas se concretizem</em>), emprego perfeitamente aceito pela norma-padrão (vírgula facultativa de realce antes de oração adverbial na ordem direta).</p>
+                        <p><strong>Erros das demais alternativas:</strong> (A) e (E) cometem o erro grave de separar o sujeito do seu verbo com uma única vírgula; (B) separa o verbo transitivo direto (<em>indicam</em>) do seu objeto direto oracional; (C) separa indevidamente a conjunção integrante (<em>que</em>) da oração subordinada que ela introduz.</p>
+                    `
+                },
+                {
+                    numero: 8,
+                    destino: "g2-dir",
+                    enunciado: "Assinale a alternativa em que a frase, elaborada a partir do texto, está em conformidade com a norma-padrão de concordância verbal e nominal.",
+                    alternativas: [
+                        "Devem haver políticas permanentes de zeladoria para que a requalificação urbana não perca eficácia.",
+                        "A circulação cotidiana e a iluminação adequada tornam bastante seguros os espaços públicos da cidade.",
+                        "Observou-se, nos bairros requalificados, reduções expressivas nos índices de furtos noturnos.",
+                        "Cabem aos gestores municipais articular ações integradas de iluminação pública, mobilidade e patrulhamento.",
+                        "Segue anexo ao relatório municipal as planilhas com os dados sobre iluminação e policiamento comunitário."
+                    ],
+                    correta: 1,
+                    comentario: `
+                        <p><strong>Gabarito: (B).</strong></p>
+                        <p>Em (B), o sujeito composto (<em>A circulação cotidiana e a iluminação adequada</em>) leva o verbo ao plural (<em>tornam</em>); <strong>bastante</strong> atua como <strong>advérbio de intensidade</strong> modificando o adjetivo <em>seguros</em> (= <em>muito seguros</em>), permanecendo corretamente invariável; e <em>seguros</em> concorda com o objeto direto plural <em>os espaços públicos</em>.</p>
+                        <p><strong>Erros das demais alternativas:</strong> (A) <em>haver</em> no sentido de <em>existir</em> é impessoal e transmite a impessoalidade ao auxiliar (<em>Deve haver</em>); (C) <em>se</em> é pronome apassivador e <em>reduções expressivas</em> é o sujeito paciente plural (<em>Observaram-se</em>); (D) o sujeito de <em>caber</em> é oracional (<em>articular ações...</em>), exigindo 3ª pessoa do singular (<em>Cabe aos gestores</em>); (E) o sujeito é <em>as planilhas</em> (feminino plural), exigindo <em>Seguem anexas</em>.</p>
+                    `
+                },
+                {
+                    numero: 9,
+                    destino: "g3-esq",
+                    enunciado: "A partir da leitura da crônica <em>A cidade que respira antes do sol</em>, é correto afirmar que o narrador",
+                    alternativas: [
+                        "idealiza romanticamente o passado vivido no antigo bairro, lamentando que a modernidade tenha extinguido os trabalhadores da madrugada.",
+                        "atribui a aparente tranquilidade da madrugada à ausência de responsabilidades por parte daqueles que circulam nesse horário.",
+                        "reconhece, com apreço e sensibilidade, o trabalho discreto de pessoas anônimas que sustentam o funcionamento cotidiano da cidade antes do amanhecer.",
+                        "critica a indiferença dos moradores que acordam após as sete horas, acusando-os de provocar a hostilidade nas relações urbanas.",
+                        "demonstra ceticismo quanto à continuidade daquela rotina na antiga praça, uma vez que mudou de endereço e perdeu contato com o local."
+                    ],
+                    correta: 2,
+                    comentario: `
+                        <p><strong>Gabarito: (C).</strong></p>
+                        <p>Ao longo da crônica, o narrador descreve com olhar atento e respeitoso o padeiro, os varredores e a viatura de ronda, culminando no 4º parágrafo com a <em>"certeza reconfortante de que, enquanto nos entregamos ao sono, há mãos anônimas cuidando para que o dia amanheça inteiro"</em>.</p>
+                        <p><strong>Erros das demais alternativas:</strong> (A) contradiz expressamente <em>"não pela nostalgia de um passado idealizado"</em> e <em>"Tudo deve continuar acontecendo"</em>; (B) contradiz <em>"embora todos carregassem a responsabilidade silenciosa"</em>; (D) extrapola o texto, pois o narrador apenas menciona que a cena <em>"passa despercebida"</em>, sem acusar ninguém; (E) contradiz a convicção de continuidade no último parágrafo.</p>
+                    `
+                },
+                {
+                    numero: 10,
+                    destino: "g3-dir",
+                    enunciado: "Considere os trechos retirados da crônica:",
+                    citacao: [
+                        "• \"Ninguém ali parecia ter pressa, <strong>embora</strong> todos carregassem a responsabilidade silenciosa...\" (2º parágrafo)",
+                        "• \"<strong>Conquanto</strong> a rotina parecesse idêntica todos os dias, havia sempre um detalhe inédito...\" (3º parágrafo)",
+                        "• \"...não pela nostalgia de um passado idealizado, <strong>mas</strong> pela certeza reconfortante...\" (4º parágrafo)"
+                    ],
+                    enunciadoPos: "No contexto em que foram empregados, os termos destacados estabelecem, correta e respectivamente, relações de sentido de:",
+                    alternativas: [
+                        "concessão, concessão e oposição.",
+                        "concessão, condição e oposição.",
+                        "oposição, causa e conclusão.",
+                        "concessão, explicação e adição.",
+                        "adversidade, conformidade e explicação."
+                    ],
+                    correta: 0,
+                    comentario: `
+                        <p><strong>Gabarito: (A) concessão, concessão e oposição.</strong></p>
+                        <p>• <strong>embora</strong>: conjunção subordinativa <strong>concessiva</strong> clássica.<br>
+                        • <strong>Conquanto</strong>: conjunção subordinativa <strong>concessiva</strong> (equivale a <em>embora / ainda que</em>). É uma das pegadinhas favoritas da Vunesp para confundir com <em>contanto que</em> (condição) ou <em>porquanto</em> (causa/explicação).<br>
+                        • <strong>mas</strong>: conjunção coordenativa adversativa, expressando <strong>oposição</strong> (contraste entre <em>não pela nostalgia</em> e <em>pela certeza reconfortante</em>).</p>
+                    `
+                },
+                {
+                    numero: 11,
+                    destino: "g3-dir",
+                    enunciado: "No trecho \"Tudo <strong>deve continuar acontecendo</strong> no mesmo compasso, mesmo sem o meu olhar na janela.\" (4º parágrafo), considerando o contexto da crônica, a locução verbal destacada expressa",
+                    alternativas: [
+                        "uma obrigação imposta aos trabalhadores noturnos para manterem a rotina da praça.",
+                        "uma certeza absoluta de que nenhuma transformação ocorreu no bairro desde a partida do narrador.",
+                        "um desejo nostálgico de que eventos passados voltem a se repetir em um futuro distante.",
+                        "uma suposição fundamentada de que uma rotina habitual prossegue no tempo presente.",
+                        "uma condição hipotética que depende diretamente da observação do narrador para se realizar."
+                    ],
+                    correta: 3,
+                    comentario: `
+                        <p><strong>Gabarito: (D).</strong></p>
+                        <p>O verbo auxiliar <em>dever</em>, nesse contexto, não tem sentido de obrigatoriedade (dever legal ou moral), mas valor epistêmico de <strong>probabilidade / suposição</strong>: como o narrador mudou-se e já não vê a praça, ele presume que a rotina <em>prossegue no presente</em> (<em>continuar acontecendo</em>).</p>
+                        <p><strong>Erros das demais alternativas:</strong> (A) confunde probabilidade com obrigação; (B) <em>deve continuar</em> denota suposição, não certeza absoluta; (C) não indica desejo voltado ao futuro, mas continuidade provável no presente; (E) contradiz literalmente <em>"mesmo sem o meu olhar na janela"</em>.</p>
+                    `
+                },
+                {
+                    numero: 12,
+                    destino: "g3-dir",
+                    enunciado: "Assinale a alternativa em que a expressão destacada da crônica pode ser substituída pela que está entre colchetes, preservando-se a norma-padrão de colocação pronominal.",
+                    alternativas: [
+                        "...o ruído apressado dos buzinaços ainda <strong>não se espalhou</strong> [não espalhou-se] pelas avenidas. (1º parágrafo)",
+                        "<strong>Ouvia-se</strong> [Se ouvia], primeiro, o estrondo metálico da porta de aço do padeiro... (2º parágrafo)",
+                        "Logo atrás, os varredores <strong>distribuíam-se</strong> [se distribuíam] pela calçada com movimentos cadenciados... (2º parágrafo)",
+                        "...havia sempre um detalhe inédito para <strong>quem se dispusesse</strong> [quem dispusesse-se] a reparar. (3º parágrafo)",
+                        "...pela certeza reconfortante de que, <strong>enquanto nos entregamos</strong> [enquanto entregamo-nos] ao sono... (4º parágrafo)"
+                    ],
+                    correta: 2,
+                    comentario: `
+                        <p><strong>Gabarito: (C).</strong></p>
+                        <p>Em (C), o verbo (<em>distribuíam</em>) é precedido de <strong>sujeito substantivo expresso</strong> (<em>os varredores</em>), sem nenhuma palavra atrativa. Nessa condição, a norma-padrão admite facultativamente tanto a ênclise (<em>distribuíam-se</em>) quanto a próclise (<em>se distribuíam</em>).</p>
+                        <p><strong>Erros das demais alternativas (próclise ou ênclise obrigatória):</strong> (A) palavra negativa (<em>não</em>) exige próclise obrigatória; (B) a norma-padrão proíbe iniciar período com pronome oblíquo átono (<em>Se ouvia</em>); (D) pronome <em>quem</em> exige próclise obrigatória; (E) conjunção subordinativa (<em>enquanto</em>) exige próclise obrigatória.</p>
+                    `
+                }
+            ];
+
+            const LETRAS = ["A", "B", "C", "D", "E"];
+            const respostas = {};
+            let finalizado = false;
+            let segundos = 0;
+            let timerId = null;
+
+            const elContador = document.getElementById("contador-respondidas");
+            const elBarra = document.getElementById("barra-progresso");
+            const elCronometro = document.getElementById("cronometro");
+            const elPainelRes = document.getElementById("painel-resultado");
+            const elAviso = document.getElementById("aviso-incompleto");
+            const elAvisoTexto = document.getElementById("aviso-incompleto-texto");
+            const btnFinalizar = document.getElementById("btn-finalizar-prova");
+            const btnAtalho = document.getElementById("btn-ir-finalizar");
+
+            function formatarTempo(totalSeg) {
+                const m = String(Math.floor(totalSeg / 60)).padStart(2, "0");
+                const s = String(totalSeg % 60).padStart(2, "0");
+                return m + ":" + s;
+            }
+
+            function iniciarCronometro() {
+                if (timerId) clearInterval(timerId);
+                segundos = 0;
+                elCronometro.textContent = "00:00";
+                timerId = setInterval(function () {
+                    segundos++;
+                    elCronometro.textContent = formatarTempo(segundos);
+                }, 1000);
+            }
+
+            function atualizarContador() {
+                const qtd = Object.keys(respostas).length;
+                elContador.textContent = qtd + " / " + QUESTOES.length;
+                elBarra.style.width = ((qtd / QUESTOES.length) * 100) + "%";
+            }
+
+            function criarElementoQuestao(q) {
+                const art = document.createElement("article");
+                art.className = "questao-item";
+                art.id = "questao-" + q.numero;
+
+                const numFmt = String(q.numero).padStart(2, "0");
+
+                let citacaoHtml = "";
+                if (q.citacao && q.citacao.length) {
+                    citacaoHtml = '<div class="questao-citacao">' +
+                        q.citacao.map(function (c) { return "<div>" + c + "</div>"; }).join("") +
+                        "</div>";
+                }
+
+                let enunciadoPosHtml = q.enunciadoPos
+                    ? '<p class="questao-enunciado">' + q.enunciadoPos + "</p>"
+                    : "";
+
+                const altsHtml = q.alternativas.map(function (texto, idx) {
+                    return (
+                        '<button type="button" class="alternativa-btn" data-q="' + q.numero + '" data-idx="' + idx + '">' +
+                        '<span class="alt-letra">' + LETRAS[idx] + "</span>" +
+                        '<span class="alt-texto">' + texto + "</span>" +
+                        "</button>"
+                    );
+                }).join("");
+
+                art.innerHTML =
+                    '<div class="questao-topo">' +
+                        '<span class="questao-num">QUESTÃO ' + numFmt + "</span>" +
+                        '<span class="questao-status-badge" id="badge-q-' + q.numero + '"></span>' +
+                    "</div>" +
+                    '<p class="questao-enunciado">' + q.enunciado + "</p>" +
+                    citacaoHtml +
+                    enunciadoPosHtml +
+                    '<div class="alternativas-lista">' + altsHtml + "</div>" +
+                    '<div class="comentario-box" id="com-q-' + q.numero + '">' +
+                        '<div class="comentario-titulo"><i class="fa-solid fa-book-open"></i> Comentário Padrão Vunesp</div>' +
+                        q.comentario +
+                    "</div>";
+
+                return art;
+            }
+
+            function renderizarQuestoes() {
+                document.querySelectorAll(".questao-item").forEach(function (el) {
+                    el.remove();
+                });
+
+                QUESTOES.forEach(function (q) {
+                    const col = document.getElementById(q.destino);
+                    if (col) {
+                        col.appendChild(criarElementoQuestao(q));
+                    }
+                });
+
+                document.querySelectorAll(".alternativa-btn").forEach(function (btn) {
+                    btn.addEventListener("click", function () {
+                        if (finalizado) return;
+                        const numQ = Number(btn.getAttribute("data-q"));
+                        const idx = Number(btn.getAttribute("data-idx"));
+                        respostas[numQ] = idx;
+
+                        const grupoBtns = document.querySelectorAll('.alternativa-btn[data-q="' + numQ + '"]');
+                        grupoBtns.forEach(function (b) { b.classList.remove("selecionada"); });
+                        btn.classList.add("selecionada");
+
+                        elAviso.style.display = "none";
+                        atualizarContador();
+                    });
+                });
+            }
+
+            function executarCorrecao() {
+                finalizado = true;
+                if (timerId) clearInterval(timerId);
+                elAviso.style.display = "none";
+                btnFinalizar.style.display = "none";
+                btnAtalho.style.display = "none";
+                document.getElementById("area-finalizar").style.display = "none";
+
+                let acertos = 0;
+                let brancos = 0;
+                const miniGrid = document.getElementById("gabarito-mini-grid");
+                miniGrid.innerHTML = "";
+
+                QUESTOES.forEach(function (q) {
+                    const marcada = respostas.hasOwnProperty(q.numero) ? respostas[q.numero] : null;
+                    const btns = document.querySelectorAll('.alternativa-btn[data-q="' + q.numero + '"]');
+                    const badge = document.getElementById("badge-q-" + q.numero);
+                    const com = document.getElementById("com-q-" + q.numero);
+
+                    btns.forEach(function (b) {
+                        b.disabled = true;
+                        const idx = Number(b.getAttribute("data-idx"));
+                        if (idx === q.correta) {
+                            b.classList.add("correta");
+                        } else if (marcada !== null && idx === marcada && marcada !== q.correta) {
+                            b.classList.add("incorreta");
+                        }
+                    });
+
+                    const pill = document.createElement("button");
+                    pill.type = "button";
+                    const numFmt = String(q.numero).padStart(2, "0");
+
+                    if (marcada === null) {
+                        brancos++;
+                        badge.className = "questao-status-badge branco";
+                        badge.innerHTML = '<i class="fa-regular fa-circle"></i> Em branco • Gab: ' + LETRAS[q.correta];
+                        pill.className = "gab-pill branco";
+                        pill.textContent = numFmt + " (" + LETRAS[q.correta] + ")";
+                    } else if (marcada === q.correta) {
+                        acertos++;
+                        badge.className = "questao-status-badge ok";
+                        badge.innerHTML = '<i class="fa-solid fa-check"></i> Acertou';
+                        pill.className = "gab-pill ok";
+                        pill.textContent = numFmt + " (" + LETRAS[q.correta] + ")";
+                    } else {
+                        badge.className = "questao-status-badge err";
+                        badge.innerHTML = '<i class="fa-solid fa-xmark"></i> Errou • Gab: ' + LETRAS[q.correta];
+                        pill.className = "gab-pill err";
+                        pill.textContent = numFmt + " (" + LETRAS[q.correta] + ")";
+                    }
+
+                    pill.addEventListener("click", function () {
+                        const alvo = document.getElementById("questao-" + q.numero);
+                        if (alvo) alvo.scrollIntoView({ behavior: "smooth", block: "start" });
+                    });
+                    miniGrid.appendChild(pill);
+
+                    com.classList.add("visivel");
+                });
+
+                const pct = Math.round((acertos / QUESTOES.length) * 100);
+                const elAcertos = document.getElementById("res-acertos");
+                const elPct = document.getElementById("res-percentual");
+                const elBranco = document.getElementById("res-branco");
+                const elTempo = document.getElementById("res-tempo");
+                const elMsg = document.getElementById("res-mensagem");
+
+                elAcertos.textContent = acertos + " / " + QUESTOES.length;
+                elPct.textContent = pct + "%";
+                elPct.className = "res-card-valor " + (pct >= 50 ? "aprovado" : "atencao");
+                elBranco.textContent = brancos;
+                elTempo.textContent = formatarTempo(segundos);
+
+                if (pct >= 80) {
+                    elMsg.textContent = "Excelente desempenho no nível máximo da Vunesp! Revise os comentários das questões em que teve dúvida.";
+                } else if (pct >= 50) {
+                    elMsg.textContent = "Acima do corte mínimo de 50% do edital. Aproveite os comentários abaixo para revisar as alternativas que geraram dúvida.";
+                } else {
+                    elMsg.textContent = "Abaixo do mínimo de 50% previsto no edital. Leia com atenção cada comentário abaixo, pois eles mostram exatamente as armadilhas da Vunesp.";
+                }
+
+                elPainelRes.style.display = "block";
+                elPainelRes.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+
+            function tentarFinalizar() {
+                if (finalizado) return;
+                const respondidas = Object.keys(respostas).length;
+                const faltam = QUESTOES.length - respondidas;
+                if (faltam > 0) {
+                    elAvisoTexto.innerHTML =
+                        "<strong>Atenção:</strong> você deixou <strong>" + faltam +
+                        (faltam === 1 ? " questão</strong> em branco." : " questões</strong> em branco.") +
+                        " No dia da prova não há penalidade por chute. Deseja revisar antes de corrigir?";
+                    elAviso.style.display = "block";
+                    elAviso.scrollIntoView({ behavior: "smooth", block: "center" });
+                } else {
+                    executarCorrecao();
+                }
+            }
+
+            function refazerBloco() {
+                finalizado = false;
+                Object.keys(respostas).forEach(function (k) { delete respostas[k]; });
+                elPainelRes.style.display = "none";
+                elAviso.style.display = "none";
+                document.getElementById("area-finalizar").style.display = "block";
+                btnFinalizar.style.display = "inline-flex";
+                btnAtalho.style.display = "inline-flex";
+                renderizarQuestoes();
+                atualizarContador();
+                iniciarCronometro();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+
+            btnFinalizar.addEventListener("click", tentarFinalizar);
+            btnAtalho.addEventListener("click", function () {
+                document.getElementById("area-finalizar").scrollIntoView({ behavior: "smooth", block: "center" });
+            });
+            document.getElementById("btn-confirmar-corrigir").addEventListener("click", executarCorrecao);
+            document.getElementById("btn-voltar-revisar").addEventListener("click", function () {
+                elAviso.style.display = "none";
+                for (let i = 1; i <= QUESTOES.length; i++) {
+                    if (!respostas.hasOwnProperty(i)) {
+                        const alvo = document.getElementById("questao-" + i);
+                        if (alvo) alvo.scrollIntoView({ behavior: "smooth", block: "center" });
+                        break;
+                    }
+                }
+            });
+            document.getElementById("btn-refazer-topo").addEventListener("click", refazerBloco);
+
+            renderizarQuestoes();
+            atualizarContador();
+            iniciarCronometro();
+
+            // ======================================================================
+            // PROTOCOLO RED TEAM: PROTEÇÃO INTEGRAL DO CONTEÚDO INÉDITO
+            // ======================================================================
+            const msgSeg = "🔒 PROTOCOLO DE SEGURANÇA:\nEsta ação não é permitida na plataforma Método Missão. Este simulado é 100% inédito e protegido por direitos autorais (Lei nº 9.610/98).";
+
+            document.addEventListener("contextmenu", function (e) {
+                e.preventDefault();
+                alert(msgSeg);
+            });
+
+            document.addEventListener("keydown", function (e) {
+                const k = (e.key || "").toLowerCase();
+                if (
+                    e.key === "F12" ||
+                    (e.ctrlKey && e.shiftKey && (k === "i" || k === "j" || k === "c")) ||
+                    (e.ctrlKey && (k === "u" || k === "s" || k === "c" || k === "p"))
+                ) {
+                    e.preventDefault();
+                    alert(msgSeg);
+                    return false;
+                }
+            });
+
+            document.addEventListener("keyup", function (e) {
+                if (e.key === "PrintScreen" || e.keyCode === 44) {
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText("Conteúdo Protegido por Direitos Autorais - Método Missão 2026").catch(function () {});
+                    }
+                    alert(msgSeg);
+                }
+            });
+
+            window.addEventListener("blur", function () {
+                const c = document.getElementById("simulador-container");
+                if (c) c.style.filter = "blur(15px)";
+            });
+
+            window.addEventListener("focus", function () {
+                const c = document.getElementById("simulador-container");
+                if (c) c.style.filter = "none";
+            });
+        })();
+    </script>
+</body>
+
+</html>
