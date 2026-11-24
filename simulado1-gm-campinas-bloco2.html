@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1º Simulado GM Campinas | Bloco 2: Matemática, Raciocínio Lógico e Legislação Municipal | Método Missão</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        /* ==========================================================================
+           PROTEÇÃO CONTRA IMPRESSÃO E IDENTIDADE VISUAL MÉTODO MISSÃO
+           ========================================================================== */
+        @media print {
+            body {
+                display: none !important;
+            }
+        }
+
+        :root {
+            --mm-navy: #02112e;
+            --mm-navy-card: #031842;
+            --mm-gold: #ffca28;
+            --mm-cyan: #38bdf8;
+            --mm-green: #22c55e;
+            --mm-red: #ef4444;
+
+            /* Paleta Padrão da Folha A4: Azul do Método Missão */
+            --folha-fundo: linear-gradient(165deg, #051c4a 0%, #031336 100%);
+            --folha-borda: rgba(56, 189, 248, 0.32);
+            --folha-sombra: 0 20px 44px rgba(0, 0, 0, 0.62), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            --folha-texto: #f1f5f9;
+            --folha-texto-sec: #cbd5e1;
+            --folha-muted: #94a3b8;
+            --folha-titulo: #ffffff;
+            --folha-destaque: #ffca28;
+            --folha-divisor-questao: rgba(148, 163, 184, 0.28);
+            --folha-traco-coluna: rgba(255, 202, 40, 0.85);
+            --folha-traco-topo: rgba(255, 202, 40, 0.55);
+            --folha-traco-disciplina: #ffca28;
+            --folha-caixa-bg: rgba(2, 12, 34, 0.78);
+            --folha-caixa-borda: rgba(255, 202, 40, 0.34);
+            --folha-caixa-esq: #ffca28;
+            --folha-hover: rgba(56, 189, 248, 0.1);
+            --folha-hover-borda: rgba(56, 189, 248, 0.35);
+            --folha-sel-bg: rgba(255, 202, 40, 0.16);
+            --folha-sel-borda: #ffca28;
+            --folha-bolinha-borda: #94a3b8;
+            --folha-bolinha-sel-bg: #ffca28;
+            --folha-bolinha-sel-txt: #02112e;
+            --folha-ok-bg: rgba(22, 163, 74, 0.2);
+            --folha-ok-borda: #22c55e;
+            --folha-err-bg: rgba(220, 38, 38, 0.2);
+            --folha-err-borda: #ef4444;
+            --folha-com-bg: rgba(2, 12, 34, 0.9);
+            --folha-com-borda: #ffca28;
+            --folha-rodape-borda: rgba(255, 202, 40, 0.28);
+            --folha-rodape-marca: rgba(255, 255, 255, 0.86);
+            --folha-rodape-num: #ffca28;
+            --badge-ok-bg: rgba(22, 163, 74, 0.2);
+            --badge-ok-txt: #86efac;
+            --badge-err-bg: rgba(220, 38, 38, 0.2);
+            --badge-err-txt: #fca5a5;
+            --badge-br-bg: rgba(148, 163, 184, 0.18);
+            --badge-br-txt: #cbd5e1;
+        }
+
+        /* Paleta Alternativa: Folha Branca (Padrão Caderno de Prova Real A4) */
+        .caderno-paginas.modo-papel {
+            --folha-fundo: #ffffff;
+            --folha-borda: #cbd5e1;
+            --folha-sombra: 0 18px 42px rgba(0, 0, 0, 0.58);
+            --folha-texto: #111827;
+            --folha-texto-sec: #334155;
+            --folha-muted: #64748b;
+            --folha-titulo: #0f172a;
+            --folha-destaque: #0f172a;
+            --folha-divisor-questao: #e2e8f0;
+            --folha-traco-coluna: #111827;
+            --folha-traco-topo: #111827;
+            --folha-traco-disciplina: #111827;
+            --folha-caixa-bg: #f8fafc;
+            --folha-caixa-borda: #cbd5e1;
+            --folha-caixa-esq: #111827;
+            --folha-hover: #f1f5f9;
+            --folha-hover-borda: #94a3b8;
+            --folha-sel-bg: #eff6ff;
+            --folha-sel-borda: #02112e;
+            --folha-bolinha-borda: #334155;
+            --folha-bolinha-sel-bg: #02112e;
+            --folha-bolinha-sel-txt: #ffffff;
+            --folha-ok-bg: #dcfce7;
+            --folha-ok-borda: #16a34a;
+            --folha-err-bg: #fee2e2;
+            --folha-err-borda: #dc2626;
+            --folha-com-bg: #f8fafc;
+            --folha-com-borda: #02112e;
+            --folha-rodape-borda: #cbd5e1;
+            --folha-rodape-marca: #111827;
+            --folha-rodape-num: #111827;
+            --badge-ok-bg: #dcfce7;
+            --badge-ok-txt: #166534;
+            --badge-err-bg: #fee2e2;
+            --badge-err-txt: #991b1b;
+            --badge-br-bg: #f1f5f9;
+            --badge-br-txt: #475569;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--mm-navy);
+            color: #f1f5f9;
+            min-height: 100vh;
+            padding-bottom: 50px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='460' height='220'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' transform='rotate(-25 230 110)' fill='rgba(255,202,40,0.045)' font-family='Segoe UI, sans-serif' font-weight='800' font-size='13px'%3EMÉTODO MISSÃO • SIMULADO GM CAMPINAS%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+
+        /* Largura calibrada para proporção real de folha A4 */
+        #simulador-container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 0 14px;
+            transition: filter 0.2s ease;
+        }
+
+        /* ==========================================================================
+           BARRA SUPERIOR E PAINEL FIXO DE CONTROLE (SEMPRE NO PADRÃO MÉTODO MISSÃO)
+           ========================================================================== */
+        .hud-topo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 16px 0 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hud-marca {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .hud-marca i {
+            color: var(--mm-gold);
+            font-size: 16px;
+        }
+
+        .hud-marca span {
+            color: var(--mm-gold);
+        }
+
+        .hud-acoes {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn-hud {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 13px;
+            border-radius: 9px;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            background: rgba(255, 255, 255, 0.05);
+            color: #e2e8f0;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-hud:hover {
+            border-color: var(--mm-gold);
+            color: var(--mm-gold);
+            background: rgba(255, 202, 40, 0.08);
+        }
+
+        .btn-folha-branca {
+            border-color: rgba(255, 202, 40, 0.55);
+            background: rgba(255, 202, 40, 0.1);
+            color: var(--mm-gold);
+        }
+
+        .btn-folha-branca.ativo {
+            background: #ffffff;
+            color: #02112e;
+            border-color: #ffffff;
+        }
+
+        .btn-folha-branca.ativo:hover {
+            background: #f1f5f9;
+            color: #02112e;
+            border-color: var(--mm-gold);
+        }
+
+        /* Barra fixa com contador de questões e cronômetro */
+        .barra-status {
+            position: sticky;
+            top: 0;
+            z-index: 30;
+            margin: 14px 0 22px;
+            padding: 11px 16px;
+            border-radius: 12px;
+            background: rgba(3, 20, 56, 0.96);
+            border: 1px solid rgba(255, 202, 40, 0.4);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.48);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .status-esquerda {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .pilula-info {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #e2e8f0;
+        }
+
+        .pilula-info i {
+            color: var(--mm-gold);
+        }
+
+        .pilula-info strong {
+            color: var(--mm-gold);
+        }
+
+        .barra-progresso-wrap {
+            width: 115px;
+            height: 7px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 99px;
+            overflow: hidden;
+        }
+
+        .barra-progresso-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ffca28, #22c55e);
+            transition: width 0.25s ease;
+        }
+
+        .btn-atalho-finalizar {
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(134, 239, 172, 0.45);
+            background: linear-gradient(135deg, #22c55e, #15803d);
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.4px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: transform 0.15s ease, filter 0.15s ease;
+        }
+
+        .btn-atalho-finalizar:hover {
+            filter: brightness(1.08);
+            transform: translateY(-1px);
+        }
+
+        /* ==========================================================================
+           BOLETIM DE DESEMPENHO (APARECE SOMENTE APÓS FINALIZAR)
+           ========================================================================== */
+        #painel-resultado {
+            display: none;
+            margin-bottom: 24px;
+            padding: 22px;
+            border-radius: 14px;
+            background: linear-gradient(155deg, #062158 0%, #031336 100%);
+            border: 1.5px solid rgba(255, 202, 40, 0.55);
+            box-shadow: 0 16px 38px rgba(0, 0, 0, 0.5);
+        }
+
+        .res-cabecalho {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .res-titulo {
+            font-size: 17px;
+            font-weight: 900;
+            color: var(--mm-gold);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .res-sub {
+            font-size: 13px;
+            color: #cbd5e1;
+            margin-top: 4px;
+        }
+
+        .res-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+            gap: 12px;
+            margin: 18px 0;
+        }
+
+        .res-card {
+            background: rgba(2, 12, 34, 0.72);
+            border: 1px solid rgba(56, 189, 248, 0.22);
+            border-radius: 12px;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .res-card-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .res-card-valor {
+            font-size: 25px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-top: 4px;
+        }
+
+        .res-card-valor.aprovado {
+            color: #4ade80;
+        }
+
+        .res-card-valor.atencao {
+            color: #f87171;
+        }
+
+        .gabarito-mini-titulo {
+            font-size: 12px;
+            font-weight: 800;
+            color: #cbd5e1;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 10px;
+        }
+
+        .gabarito-mini-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .gab-pill {
+            width: 52px;
+            padding: 7px 4px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 800;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: transform 0.15s ease;
+        }
+
+        .gab-pill:hover {
+            transform: translateY(-2px);
+        }
+
+        .gab-pill.ok {
+            background: rgba(34, 197, 94, 0.18);
+            border-color: #22c55e;
+            color: #86efac;
+        }
+
+        .gab-pill.err {
+            background: rgba(239, 68, 68, 0.18);
+            border-color: #ef4444;
+            color: #fca5a5;
+        }
+
+        .gab-pill.branco {
+            background: rgba(148, 163, 184, 0.16);
+            border-color: #94a3b8;
+            color: #cbd5e1;
+        }
+
+        .res-acoes {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+        }
+
+        /* ==========================================================================
+           PILHA DE FOLHAS A4 COM QUEBRA DE PÁGINA REAL E PADRÃO DE PROVA OFICIAL
+           ========================================================================== */
+        .caderno-paginas {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .folha-a4 {
+            background: var(--folha-fundo);
+            color: var(--folha-texto);
+            border: 1.5px solid var(--folha-borda);
+            border-radius: 4px;
+            box-shadow: var(--folha-sombra);
+            padding: 24px 20px 22px;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+
+        /* Cabeçalho contínuo em todas as folhas */
+        .topo-pagina {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.7px;
+            text-transform: uppercase;
+            color: var(--folha-destaque);
+        }
+
+        .topo-pagina-linha {
+            flex: 1;
+            height: 1px;
+            background: var(--folha-traco-topo);
+        }
+
+        .topo-pagina-dir {
+            color: var(--folha-texto);
+            letter-spacing: 0.3px;
+            text-transform: none;
+            font-weight: 700;
+            font-size: 11.5px;
+        }
+
+        /* Cabeçalho de identificação do Bloco na Página 1 */
+        .cabecalho-prova {
+            border: 1.5px solid var(--folha-caixa-borda);
+            border-radius: 5px;
+            padding: 13px 16px;
+            margin-bottom: 18px;
+            background: var(--folha-caixa-bg);
+        }
+
+        .cabecalho-prova-linha1 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 10.5px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: var(--folha-destaque);
+            padding-bottom: 7px;
+            border-bottom: 1px solid var(--folha-divisor-questao);
+        }
+
+        .cabecalho-prova h1 {
+            font-size: 16.5px;
+            font-weight: 900;
+            letter-spacing: 0.3px;
+            margin-top: 9px;
+            color: var(--folha-titulo);
+            text-transform: uppercase;
+        }
+
+        .cabecalho-prova-meta {
+            margin-top: 5px;
+            font-size: 12.5px;
+            color: var(--folha-texto-sec);
+            line-height: 1.46;
+        }
+
+        /* Faixa de disciplina com traço firme abaixo */
+        .faixa-disciplina {
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--folha-destaque);
+            border-bottom: 2px solid var(--folha-traco-disciplina);
+            padding: 0 0 6px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .faixa-disciplina-coluna {
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: var(--folha-destaque);
+            border-bottom: 2px solid var(--folha-traco-disciplina);
+            padding-bottom: 5px;
+            margin-bottom: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .faixa-disciplina-sub {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--folha-texto-sec);
+            letter-spacing: 0.4px;
+            text-transform: none;
+        }
+
+        /* Grade de 2 colunas com traço central nítido */
+        .grade-colunas {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            position: relative;
+        }
+
+        .coluna-prova {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            min-width: 0;
+        }
+
+        @media (min-width: 800px) {
+            .folha-a4 {
+                padding: 32px 40px 26px;
+            }
+
+            .grade-colunas {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 0 38px;
+                align-items: stretch;
+            }
+
+            /* Traço vertical nítido separando as 2 colunas (fiel ao caderno A4) */
+            .grade-colunas::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 50%;
+                width: 1.5px;
+                background: var(--folha-traco-coluna);
+                transform: translateX(-0.75px);
+                pointer-events: none;
+            }
+
+            .coluna-prova .questao-item:last-child {
+                border-bottom: none;
+                padding-bottom: 2px;
+            }
+        }
+
+        /* Rodapé individual de cada página (marca centralizada + número limpo à direita) */
+        .rodape-pagina {
+            margin-top: 28px;
+            padding-top: 14px;
+            border-top: 1px solid var(--folha-rodape-borda);
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+        }
+
+        .rodape-pagina-marca {
+            grid-column: 2;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 12.5px;
+            font-weight: 900;
+            letter-spacing: 2.2px;
+            text-transform: uppercase;
+            color: var(--folha-rodape-marca);
+        }
+
+        .rodape-pagina-marca i {
+            color: var(--folha-destaque);
+            font-size: 14px;
+        }
+
+        .rodape-pagina-num {
+            grid-column: 3;
+            justify-self: end;
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--folha-rodape-num);
+        }
+
+        /* Cartão de cada questão */
+        .questao-item {
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--folha-divisor-questao);
+            scroll-margin-top: 86px;
+        }
+
+        .questao-topo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .questao-num {
+            font-size: 13.5px;
+            font-weight: 900;
+            color: var(--folha-destaque);
+            letter-spacing: 0.3px;
+        }
+
+        .questao-status-badge {
+            display: none;
+            font-size: 10.5px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 99px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .questao-status-badge.ok {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: var(--badge-ok-bg);
+            color: var(--badge-ok-txt);
+            border: 1px solid #22c55e;
+        }
+
+        .questao-status-badge.err {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: var(--badge-err-bg);
+            color: var(--badge-err-txt);
+            border: 1px solid #ef4444;
+        }
+
+        .questao-status-badge.branco {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: var(--badge-br-bg);
+            color: var(--badge-br-txt);
+            border: 1px solid #94a3b8;
+        }
+
+        .questao-enunciado {
+            font-size: 13.3px;
+            line-height: 1.54;
+            color: var(--folha-texto);
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        .questao-citacao {
+            margin: 8px 0 10px;
+            padding: 8px 11px;
+            border-left: 3px solid var(--folha-caixa-esq);
+            background: var(--folha-caixa-bg);
+            font-size: 13px;
+            line-height: 1.52;
+            color: var(--folha-texto);
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .alternativas-lista {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .alternativa-btn {
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            padding: 7px 9px;
+            border-radius: 6px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--folha-texto);
+            text-align: left;
+            font-size: 13.1px;
+            line-height: 1.46;
+            cursor: pointer;
+            transition: background-color 0.15s ease, border-color 0.15s ease;
+        }
+
+        .alternativa-btn:hover:not(:disabled) {
+            background: var(--folha-hover);
+            border-color: var(--folha-hover-borda);
+        }
+
+        .alternativa-btn:disabled {
+            cursor: default;
+        }
+
+        .alt-letra {
+            flex-shrink: 0;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 1.5px solid var(--folha-bolinha-borda);
+            background: transparent;
+            color: var(--folha-texto);
+            font-size: 11px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1px;
+            transition: all 0.15s ease;
+        }
+
+        .alt-texto {
+            flex: 1;
+            text-align: justify;
+        }
+
+        /* Estado marcado pelo aluno antes da correção */
+        .alternativa-btn.selecionada {
+            background: var(--folha-sel-bg);
+            border-color: var(--folha-sel-borda);
+        }
+
+        .alternativa-btn.selecionada .alt-letra {
+            background: var(--folha-bolinha-sel-bg);
+            border-color: var(--folha-bolinha-sel-bg);
+            color: var(--folha-bolinha-sel-txt);
+        }
+
+        /* Estados após correção final */
+        .alternativa-btn.correta {
+            background: var(--folha-ok-bg) !important;
+            border-color: var(--folha-ok-borda) !important;
+        }
+
+        .alternativa-btn.correta .alt-letra {
+            background: #16a34a !important;
+            border-color: #16a34a !important;
+            color: #ffffff !important;
+        }
+
+        .alternativa-btn.incorreta {
+            background: var(--folha-err-bg) !important;
+            border-color: var(--folha-err-borda) !important;
+        }
+
+        .alternativa-btn.incorreta .alt-letra {
+            background: #dc2626 !important;
+            border-color: #dc2626 !important;
+            color: #ffffff !important;
+        }
+
+        /* Caixa de comentário (invisível até finalizar) */
+        .comentario-box {
+            display: none;
+            margin-top: 11px;
+            padding: 12px 13px;
+            border-radius: 6px;
+            background: var(--folha-com-bg);
+            border: 1px solid var(--folha-divisor-questao);
+            border-left: 4px solid var(--folha-com-borda);
+            font-size: 12.6px;
+            line-height: 1.54;
+            color: var(--folha-texto-sec);
+            text-align: justify;
+        }
+
+        .comentario-box.visivel {
+            display: block;
+        }
+
+        .comentario-titulo {
+            font-size: 11.2px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: var(--folha-destaque);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .comentario-box p + p {
+            margin-top: 6px;
+        }
+
+        /* ==========================================================================
+           ÁREA DE FINALIZAÇÃO ABAIXO DA ÚLTIMA PÁGINA
+           ========================================================================== */
+        .rodape-finalizacao {
+            margin-top: 28px;
+            padding: 24px 20px;
+            border-radius: 12px;
+            background: linear-gradient(155deg, #062158 0%, #031336 100%);
+            border: 1.5px solid rgba(255, 202, 40, 0.42);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.48);
+            text-align: center;
+        }
+
+        .aviso-incompleto {
+            display: none;
+            max-width: 560px;
+            margin: 0 auto 14px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            background: rgba(245, 158, 11, 0.16);
+            border: 1px solid #f59e0b;
+            color: #f1f5f9;
+            font-size: 13.5px;
+            line-height: 1.5;
+        }
+
+        .aviso-incompleto-acoes {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-finalizar-prova {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 15px 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(134, 239, 172, 0.5);
+            background: linear-gradient(135deg, #22c55e 0%, #15803d 100%);
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 10px 26px rgba(22, 163, 74, 0.34);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+        }
+
+        .btn-finalizar-prova:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.06);
+            box-shadow: 0 14px 32px rgba(22, 163, 74, 0.48);
+        }
+
+        .btn-secundario {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 11px 18px;
+            border-radius: 10px;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            background: rgba(2, 12, 34, 0.78);
+            color: #f1f5f9;
+            font-size: 13px;
+            font-weight: 800;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn-secundario:hover {
+            border-color: var(--mm-gold);
+        }
+
+        .btn-ouro {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 11px 18px;
+            border-radius: 10px;
+            border: none;
+            background: linear-gradient(135deg, #ffd54f, #f59e0b);
+            color: #02112e;
+            font-size: 13px;
+            font-weight: 900;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .rodape-institucional {
+            text-align: center;
+            font-size: 11.5px;
+            color: #8a99ad;
+            margin-top: 26px;
+            line-height: 1.55;
+        }
+
+        @media (max-width: 600px) {
+            .folha-a4 {
+                padding: 18px 15px 18px;
+            }
+            .barra-progresso-wrap {
+                display: none;
+            }
+            .cabecalho-prova h1 {
+                font-size: 15px;
+            }
+            .topo-pagina {
+                font-size: 9.8px;
+                gap: 8px;
+            }
+            .topo-pagina-dir {
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="simulador-container">
+
+        <!-- TOPO MÉTODO MISSÃO -->
+        <header class="hud-topo">
+            <a href="index.html" class="hud-marca">
+                <i class="fa-solid fa-shield-halved"></i>
+                MÉTODO <span>MISSÃO</span>
+            </a>
+
+            <div class="hud-acoes">
+                <button type="button" id="btn-tema-folha" class="btn-hud btn-folha-branca" title="Alternar entre o padrão azul do Método Missão e a folha branca de prova">
+                    <i class="fa-regular fa-file-lines"></i>
+                    <span>Folha Branca</span>
+                </button>
+                <a href="index.html" class="btn-hud">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Voltar ao Início</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- BARRA FIXA DE CONTROLE (CONTADOR + CRONÔMETRO) -->
+        <div class="barra-status" role="region" aria-label="Status do Simulado">
+            <div class="status-esquerda">
+                <div class="pilula-info">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span>Respondidas: <strong id="contador-respondidas">0 / 8</strong></span>
+                </div>
+                <div class="barra-progresso-wrap" aria-hidden="true">
+                    <div class="barra-progresso-fill" id="barra-progresso"></div>
+                </div>
+                <div class="pilula-info">
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Tempo: <strong id="cronometro">00:00</strong></span>
+                </div>
+            </div>
+
+            <button type="button" id="btn-ir-finalizar" class="btn-atalho-finalizar">
+                <i class="fa-solid fa-clipboard-check"></i>
+                <span>Finalizar Bloco</span>
+            </button>
+        </div>
+
+        <!-- BOLETIM DE DESEMPENHO (LIBERADO SOMENTE APÓS CORREÇÃO) -->
+        <section id="painel-resultado" aria-live="polite">
+            <div class="res-cabecalho">
+                <div>
+                    <div class="res-titulo"><i class="fa-solid fa-award" style="margin-right:8px;"></i>Resultado Oficial: Bloco 2 (Matemática, RLM e Legislação Municipal)</div>
+                    <div class="res-sub" id="res-mensagem">Confira seu desempenho e os comentários detalhados no caderno abaixo.</div>
+                </div>
+            </div>
+
+            <div class="res-cards">
+                <div class="res-card">
+                    <div class="res-card-label">Acertos</div>
+                    <div class="res-card-valor" id="res-acertos">0 / 8</div>
+                </div>
+                <div class="res-card">
+                    <div class="res-card-label">Aproveitamento</div>
+                    <div class="res-card-valor" id="res-percentual">0%</div>
+                </div>
+                <div class="res-card">
+                    <div class="res-card-label">Em Branco</div>
+                    <div class="res-card-valor" id="res-branco">0</div>
+                </div>
+                <div class="res-card">
+                    <div class="res-card-label">Tempo Total</div>
+                    <div class="res-card-valor" id="res-tempo">00:00</div>
+                </div>
+            </div>
+
+            <div class="gabarito-mini-titulo">Mapa de Gabarito (clique no número para ir à questão comentada):</div>
+            <div class="gabarito-mini-grid" id="gabarito-mini-grid"></div>
+
+            <div class="res-acoes">
+                <button type="button" id="btn-refazer-topo" class="btn-ouro">
+                    <i class="fa-solid fa-rotate-right"></i>
+                    <span>Refazer Bloco 2</span>
+                </button>
+                <a href="index.html" class="btn-hud">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Voltar aos Simulados</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- CADERNO DE PROVA DIVIDIDO EM FOLHAS A4 COM QUEBRA DE PÁGINA REAL -->
+        <main class="caderno-paginas" id="folha-prova">
+
+            <!-- ==================== PÁGINA 1: MATEMÁTICA E RLM (Q13 A Q16) ==================== -->
+            <section class="folha-a4" aria-label="Página 1">
+                <div class="topo-pagina">
+                    <span>MÉTODO MISSÃO</span>
+                    <div class="topo-pagina-linha"></div>
+                    <span class="topo-pagina-dir">1º Simulado • GM Campinas • Pós-Edital</span>
+                </div>
+
+                <div class="cabecalho-prova">
+                    <div class="cabecalho-prova-linha1">
+                        <span>PADRÃO VUNESP (EDITAL Nº 02/2026)</span>
+                        <span>GUARDA MUNICIPAL DE CAMPINAS (3ª CLASSE)</span>
+                    </div>
+                    <h1>Bloco 2: Matemática, Raciocínio Lógico e Legislação Municipal (Questões 13 a 20)</h1>
+                    <p class="cabecalho-prova-meta">
+                        Modo Prova Real: marque suas respostas normalmente (5 alternativas: A a E). O gabarito oficial e os comentários completos serão exibidos somente ao clicar em <strong>Finalizar e Corrigir</strong>.
+                    </p>
+                </div>
+
+                <div class="faixa-disciplina">
+                    <span>CONHECIMENTOS GERAIS • MATEMÁTICA E RACIOCÍNIO LÓGICO</span>
+                    <span class="faixa-disciplina-sub">6 Questões • Peso 1</span>
+                </div>
+
+                <div class="grade-colunas">
+                    <div class="coluna-prova" id="p1-esq"></div>
+                    <div class="coluna-prova" id="p1-dir"></div>
+                </div>
+
+                <div class="rodape-pagina">
+                    <div class="rodape-pagina-marca">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>MÉTODO MISSÃO</span>
+                    </div>
+                    <span class="rodape-pagina-num">1</span>
+                </div>
+            </section>
+
+            <!-- ==================== PÁGINA 2: RLM (Q17 A Q18) + LEGISLAÇÃO MUNICIPAL (Q19 A Q20) ==================== -->
+            <section class="folha-a4" aria-label="Página 2">
+                <div class="topo-pagina">
+                    <span>MÉTODO MISSÃO</span>
+                    <div class="topo-pagina-linha"></div>
+                    <span class="topo-pagina-dir">1º Simulado • GM Campinas • Pós-Edital</span>
+                </div>
+
+                <div class="grade-colunas">
+                    <div class="coluna-prova" id="p2-esq"></div>
+                    <div class="coluna-prova" id="p2-dir">
+                        <div class="faixa-disciplina-coluna">
+                            <span>LEGISLAÇÃO MUNICIPAL</span>
+                            <span class="faixa-disciplina-sub">2 Questões • Peso 1</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rodape-pagina">
+                    <div class="rodape-pagina-marca">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>MÉTODO MISSÃO</span>
+                    </div>
+                    <span class="rodape-pagina-num">2</span>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- ÁREA DE FINALIZAÇÃO -->
+        <div class="rodape-finalizacao" id="area-finalizar">
+            <div class="aviso-incompleto" id="aviso-incompleto">
+                <div id="aviso-incompleto-texto"></div>
+                <div class="aviso-incompleto-acoes">
+                    <button type="button" id="btn-confirmar-corrigir" class="btn-ouro">Corrigir mesmo assim</button>
+                    <button type="button" id="btn-voltar-revisar" class="btn-secundario">Voltar e revisar</button>
+                </div>
+            </div>
+
+            <button type="button" id="btn-finalizar-prova" class="btn-finalizar-prova">
+                <i class="fa-solid fa-check-double"></i>
+                <span>Finalizar e Corrigir Bloco 2</span>
+            </button>
+        </div>
+
+        <footer class="rodape-institucional">
+            &copy; 2026 Método Missão. Conteúdo 100% inédito protegido pela Lei nº 9.610/98.<br>
+            Simulado elaborado no padrão da Banca Vunesp conforme o Edital nº 02/2026 (Guarda Municipal de Campinas).
+        </footer>
+
+    </div>
+
+    <script>
+        (function () {
+            // ======================================================================
+            // ALTERNADOR: AZUL DO MÉTODO MISSÃO (PADRÃO) <-> FOLHA BRANCA DE PROVA
+            // ======================================================================
+            const elCaderno = document.getElementById("folha-prova");
+            const btnTema = document.getElementById("btn-tema-folha");
+            const CHAVE_TEMA = "mm_tema_folha_simulado";
+
+            function aplicarTema(modoPapel) {
+                if (!elCaderno || !btnTema) return;
+                if (modoPapel) {
+                    elCaderno.classList.add("modo-papel");
+                    btnTema.classList.add("ativo");
+                    btnTema.innerHTML = '<i class="fa-solid fa-moon"></i><span>Azul Missão</span>';
+                } else {
+                    elCaderno.classList.remove("modo-papel");
+                    btnTema.classList.remove("ativo");
+                    btnTema.innerHTML = '<i class="fa-regular fa-file-lines"></i><span>Folha Branca</span>';
+                }
+            }
+
+            try {
+                if (localStorage.getItem(CHAVE_TEMA) === "papel") {
+                    aplicarTema(true);
+                }
+            } catch (e) {}
+
+            if (btnTema) {
+                btnTema.addEventListener("click", function () {
+                    const ativarPapel = !elCaderno.classList.contains("modo-papel");
+                    aplicarTema(ativarPapel);
+                    try {
+                        localStorage.setItem(CHAVE_TEMA, ativarPapel ? "papel" : "missao");
+                    } catch (e) {}
+                });
+            }
+
+            // ======================================================================
+            // BANCO DE QUESTÕES INÉDITAS: BLOCO 2 (MATEMÁTICA, RLM E LEG. MUNICIPAL)
+            // ======================================================================
+            const QUESTOES = [
+                {
+                    numero: 13,
+                    destino: "p1-esq",
+                    enunciado: "Em uma operação preventiva na região central de Campinas, três viaturas da Guarda Municipal partem simultaneamente da base operacional às 07h00 para realizar rondas em rotas distintas. A viatura A retorna à base a cada 45 minutos, a viatura B retorna a cada 60 minutos e a viatura C retorna a cada 75 minutos. Mantendo rigorosamente esses intervalos, o próximo horário em que as três viaturas estarão novamente juntas na base operacional será às:",
+                    alternativas: [
+                        "19h00.",
+                        "20h30.",
+                        "21h00.",
+                        "22h00.",
+                        "23h30."
+                    ],
+                    correta: 3,
+                    comentario: `
+                        <p><strong>Gabarito: (D) 22h00.</strong></p>
+                        <p>Problemas de encontros periódicos são resolvidos pelo <strong>Mínimo Múltiplo Comum (MMC)</strong> dos intervalos de tempo:</p>
+                        <p>• Fatorando os tempos: 45 = 3² × 5; 60 = 2² × 3 × 5; 75 = 3 × 5².<br>
+                        • MMC(45, 60, 75) = 2² × 3² × 5² = 4 × 9 × 25 = <strong>900 minutos</strong>.</p>
+                        <p>Convertendo 900 minutos em horas: 900 ÷ 60 = <strong>15 horas</strong>. Somando 15 horas ao horário de saída (07h00), obtemos 07h00 + 15h00 = <strong>22h00</strong>.</p>
+                    `
+                },
+                {
+                    numero: 14,
+                    destino: "p1-esq",
+                    enunciado: "Um lote de coletes balísticos recebido pelo almoxarifado foi distribuído entre três bases operacionais. A Base Norte recebeu 2/5 do total de coletes do lote. Do restante, 35% foram destinados à Base Sul, e os 78 coletes que sobraram foram entregues à Base Leste. A diferença entre a quantidade de coletes recebida pela Base Norte e a quantidade recebida pela Base Sul foi igual a:",
+                    alternativas: [
+                        "34.",
+                        "38.",
+                        "42.",
+                        "46.",
+                        "52."
+                    ],
+                    correta: 1,
+                    comentario: `
+                        <p><strong>Gabarito: (B) 38.</strong></p>
+                        <p>Se a Base Norte recebeu 2/5 (= 40%) do lote, sobrou para as demais bases 3/5 (= 60%) do total.</p>
+                        <p>Desse restante, 35% foram para a Base Sul e os outros 65% corresponderam aos 78 coletes da Base Leste. Logo:<br>
+                        • 65% do restante = 78 → Restante = 78 ÷ 0,65 = <strong>120 coletes</strong>.<br>
+                        • Como 120 equivale a 60% (3/5) do total, o lote completo possui 120 ÷ 0,60 = <strong>200 coletes</strong>.</p>
+                        <p>Calculando cada base: Base Norte = 40% de 200 = <strong>80 coletes</strong>; Base Sul = 35% de 120 = <strong>42 coletes</strong>. Portanto, a diferença solicitada é 80 - 42 = <strong>38 coletes</strong>.</p>
+                    `
+                },
+                {
+                    numero: 15,
+                    destino: "p1-dir",
+                    enunciado: "Para a revisão preventiva de 180 câmeras do sistema de monitoramento urbano, uma equipe de 6 técnicos trabalha durante 5 dias, cumprindo 6 horas diárias de serviço. Supondo o mesmo ritmo de trabalho, a quantidade de dias necessária para que 8 técnicos, trabalhando 5 horas por dia, façam a revisão preventiva de 240 câmeras será:",
+                    alternativas: [
+                        "4.",
+                        "5.",
+                        "6.",
+                        "7.",
+                        "8."
+                    ],
+                    correta: 2,
+                    comentario: `
+                        <p><strong>Gabarito: (C) 6.</strong></p>
+                        <p>Trata-se de uma regra de três composta comparando todas as grandezas com a incógnita <strong>dias (x)</strong>:</p>
+                        <p>• Mais câmeras exigem <strong>mais</strong> dias (diretamente proporcional: 180 / 240).<br>
+                        • Mais técnicos exigem <strong>menos</strong> dias (inversamente proporcional: inverte para 8 / 6).<br>
+                        • Menos horas por dia exigem <strong>mais</strong> dias (inversamente proporcional: inverte para 5 / 6).</p>
+                        <p>Montando a proporção: 5 / x = (180 / 240) × (8 / 6) × (5 / 6). Simplificando as frações: (3 / 4) × (4 / 3) × (5 / 6) = 5 / 6. Logo, 5 / x = 5 / 6, resultando em <strong>x = 6 dias</strong>.</p>
+                    `
+                },
+                {
+                    numero: 16,
+                    destino: "p1-dir",
+                    enunciado: "Um terreno retangular destinado à construção de um posto avançado de treinamento possui 32 metros de comprimento e 24 metros de largura. Para delimitar uma área de exercícios, será construída uma cerca reta ligando dois vértices opostos desse terreno (ao longo de sua diagonal) e instalado alambrado em todo o contorno externo do retângulo. O comprimento total de tela necessário para cobrir todo o contorno externo somado à cerca da diagonal será igual a:",
+                    alternativas: [
+                        "96 m.",
+                        "112 m.",
+                        "136 m.",
+                        "148 m.",
+                        "152 m."
+                    ],
+                    correta: 4,
+                    comentario: `
+                        <p><strong>Gabarito: (E) 152 m.</strong></p>
+                        <p><strong>1º passo (perímetro externo):</strong> somando os quatro lados do retângulo, temos 2 × (32 + 24) = 2 × 56 = <strong>112 m</strong>.</p>
+                        <p><strong>2º passo (diagonal pelo Teorema de Pitágoras):</strong> a diagonal divide o retângulo em dois triângulos retângulos de catetos 32 m e 24 m:<br>
+                        • d² = 32² + 24² = 1024 + 576 = 1600 → d = √1600 = <strong>40 m</strong> (triângulo pitagórico 3, 4, 5 multiplicado por 8).</p>
+                        <p><strong>3º passo (comprimento total):</strong> 112 m + 40 m = <strong>152 m</strong>. Atenção para não parar no perímetro (112 m, letra B) sem somar a diagonal.</p>
+                    `
+                },
+                {
+                    numero: 17,
+                    destino: "p2-esq",
+                    enunciado: "Considere verdadeira a afirmação: \"Se a viatura realiza o patrulhamento escolar, então o trânsito permanece organizado ou os pedestres atravessam com segurança.\" Uma negação lógica para essa afirmação está contida na alternativa:",
+                    alternativas: [
+                        "A viatura realiza o patrulhamento escolar, o trânsito não permanece organizado e os pedestres não atravessam com segurança.",
+                        "Se a viatura não realiza o patrulhamento escolar, então o trânsito não permanece organizado e os pedestres não atravessam com segurança.",
+                        "A viatura não realiza o patrulhamento escolar, e o trânsito não permanece organizado ou os pedestres não atravessam com segurança.",
+                        "A viatura realiza o patrulhamento escolar, e o trânsito não permanece organizado ou os pedestres não atravessam com segurança.",
+                        "Se o trânsito não permanece organizado e os pedestres não atravessam com segurança, então a viatura não realiza o patrulhamento escolar."
+                    ],
+                    correta: 0,
+                    comentario: `
+                        <p><strong>Gabarito: (A).</strong></p>
+                        <p>A proposição tem a estrutura condicional <strong>P → (Q ou R)</strong>. Para negar uma condicional, mantém-se a primeira parte verdadeira, troca-se o conectivo por <strong>E</strong> e nega-se toda a segunda parte: <strong>P e não(Q ou R)</strong>.</p>
+                        <p>Aplicando a Lei de De Morgan na disjunção, negar <em>(Q ou R)</em> resulta em <em>(não Q e não R)</em>. Unindo tudo: <strong>P e não Q e não R</strong>, que corresponde exatamente à alternativa (A).</p>
+                        <p><strong>Erros das demais alternativas:</strong> (B) mantém a estrutura condicional; (C) nega a primeira parte e mantém o conectivo "ou"; (D) esquece de trocar o "ou" por "e" ao negar a segunda parte; (E) apresenta a contrapositiva, que é uma <em>equivalência</em> da frase original, e não a sua negação.</p>
+                    `
+                },
+                {
+                    numero: 18,
+                    destino: "p2-esq",
+                    enunciado: "Considere a sequência formada pela repetição sucessiva das letras da palavra <strong>CAMPINAS</strong>, conforme indicado a seguir:",
+                    citacao: "C, A, M, P, I, N, A, S, C, A, M, P, I, N, A, S, C, A, ...",
+                    enunciadoPos: "Mantendo-se esse padrão indefinidamente, a letra que ocupará a 2027ª posição dessa sequência será:",
+                    alternativas: [
+                        "C.",
+                        "A.",
+                        "P.",
+                        "M.",
+                        "N."
+                    ],
+                    correta: 3,
+                    comentario: `
+                        <p><strong>Gabarito: (D) M.</strong></p>
+                        <p>A palavra <strong>CAMPINAS</strong> forma um ciclo fixo que se repete a cada <strong>8 letras</strong>: 1ª(C), 2ª(A), 3ª(M), 4ª(P), 5ª(I), 6ª(N), 7ª(A), 8ª(S).</p>
+                        <p>Para descobrir qual letra está na 2027ª posição, dividimos 2027 por 8:<br>
+                        • 2027 ÷ 8 = 253 ciclos completos (253 × 8 = 2024) com <strong>resto 3</strong>.</p>
+                        <p>O resto 3 indica que devemos avançar até a <strong>3ª letra</strong> do novo ciclo, que é a letra <strong>M</strong>.</p>
+                    `
+                },
+                {
+                    numero: 19,
+                    destino: "p2-dir",
+                    enunciado: "Com base nas disposições sobre proibições, penalidades e prescrição previstas na Lei Municipal nº 1.399/1955 (Estatuto dos Funcionários Públicos do Município de Campinas), assinale a alternativa correta.",
+                    alternativas: [
+                        "A pena de suspensão não excederá de 60 (sessenta) dias e, havendo conveniência para o serviço, poderá ser convertida em multa de até 30% por dia do vencimento, dispensado o funcionário do comparecimento ao serviço.",
+                        "Compete ao Prefeito Municipal a imposição das penas disciplinares de demissão, multa, cassação de aposentadoria e disponibilidade e suspensão por mais de 30 (trinta) dias, cabendo ao Diretor do Departamento e ao Inspetor Fiscal os demais casos.",
+                        "A pena de advertência será aplicada por escrito em casos de falta grave ou reincidência, enquanto a pena de repreensão será aplicada verbalmente em casos de natureza leve.",
+                        "Prescreverá em 5 (cinco) anos a falta sujeita à pena de demissão por 60 (sessenta) faltas interpoladas no período de 12 (doze) meses, e em 1 (um) ano a falta sujeita a repreensão, multa ou suspensão.",
+                        "É absolutamente proibido ao funcionário pleitear como procurador ou intermediário junto às repartições públicas municipais, sem qualquer exceção, bem como participar da gerência de empresa comercial mesmo durante licença para tratar de interesses particulares."
+                    ],
+                    correta: 1,
+                    comentario: `
+                        <p><strong>Gabarito: (B).</strong></p>
+                        <p>A alternativa reproduz fielmente o <strong>art. 201, incisos I e II, da Lei Municipal nº 1.399/1955</strong>: compete ao Prefeito Municipal impor demissão, multa, cassação de aposentadoria e disponibilidade e suspensão por mais de 30 dias; ao Diretor do Departamento e ao Inspetor Fiscal competem os demais casos.</p>
+                        <p><strong>Erros das demais alternativas:</strong> (A) pelo art. 197 e seu parágrafo único, a suspensão não excederá de <strong>90 dias</strong>, pode ser convertida em multa de até <strong>50%</strong> por dia e o funcionário fica <strong>obrigado a permanecer em serviço</strong>; (C) inverte os arts. 194, 196 e 197, pois a advertência é aplicada <strong>verbalmente</strong> em casos de natureza leve, a repreensão é aplicada <strong>por escrito</strong> e falta grave ou reincidência sujeitam à suspensão; (D) pelo art. 204, I e II, a prescrição ocorre em <strong>2 anos</strong> (repreensão, multa ou suspensão) e em <strong>4 anos</strong> (demissão do § 2º do art. 198 e cassação de aposentadoria e disponibilidade); (E) o art. 185, VI e VIII, traz exceções expressas para a licença para tratar de interesses particulares ou disponibilidade e para pleitear vencimentos ou vantagens de parente até 2º grau.</p>
+                    `
+                },
+                {
+                    numero: 20,
+                    destino: "p2-dir",
+                    enunciado: "De acordo com o Decreto Municipal nº 21.019/2020, que regulamenta o Programa de Avaliação Probatória no Município de Campinas, assinale a alternativa correta.",
+                    alternativas: [
+                        "O estágio probatório ocorrerá durante os 03 (três) anos iniciais de efetivo exercício e será composto de 03 (três) avaliações anuais, exigindo-se na média final aproveitamento mínimo de 60% do total de pontos.",
+                        "O servidor estagiário que não registrar sua ciência no Sistema de Avaliação Probatória no prazo de 05 (cinco) dias corridos terá sua avaliação automaticamente anulada, devendo o superior hierárquico refazê-la.",
+                        "A avaliação probatória para os servidores admitidos no cargo de Guarda Municipal será realizada pelo superior hierárquico em conjunto com a comissão interna nomeada pelo(a) Secretário(a) da Pasta.",
+                        "O servidor que não obtiver conceito favorável para a aquisição de estabilidade poderá protocolizar defesa escrita no prazo de 05 (cinco) dias úteis, sendo o ato de exoneração expedido diretamente pela Comissão Permanente de Avaliação Probatória.",
+                        "A Comissão Permanente de Avaliação Probatória, nomeada pelo Secretário Municipal de Recursos Humanos com mandato de 02 (dois) anos, é composta por 03 (três) servidores efetivos estáveis, sendo todos titulares."
+                    ],
+                    correta: 2,
+                    comentario: `
+                        <p><strong>Gabarito: (C).</strong></p>
+                        <p>A alternativa traz a regra específica do <strong>art. 4º, § 2º, do Decreto Municipal nº 21.019/2020</strong>: para os servidores admitidos no cargo de Guarda Municipal, a avaliação probatória será realizada pelo superior hierárquico em conjunto com a comissão interna nomeada pelo(a) Secretário(a) da Pasta.</p>
+                        <p><strong>Erros das demais alternativas:</strong> (A) pelo art. 2º, § 3º, e art. 12, o estágio probatório possui <strong>06 (seis) avaliações semestrais</strong> e exige aproveitamento de <strong>70%</strong> na média final; (B) pelo art. 10, parágrafo único, quem não registrar ciência no prazo de 05 dias corridos será considerado cientificado com <strong>concordância tácita</strong> no dia imediatamente seguinte; (D) pelos arts. 25 e 26, a defesa escrita tem prazo contínuo de <strong>15 dias</strong> no Protocolo Geral, e o ato de exoneração será expedido pelo <strong>Chefe do Poder Executivo</strong> por portaria publicada no Diário Oficial do Município; (E) pelo art. 35, a Comissão é nomeada pelo <strong>Prefeito Municipal</strong>, com mandato de <strong>04 anos</strong>, composta por <strong>05 servidores efetivos estáveis</strong> (03 titulares e 02 suplentes).</p>
+                    `
+                }
+            ];
+
+            const LETRAS = ["A", "B", "C", "D", "E"];
+            const respostas = {};
+            let finalizado = false;
+            let segundos = 0;
+            let timerId = null;
+
+            const elContador = document.getElementById("contador-respondidas");
+            const elBarra = document.getElementById("barra-progresso");
+            const elCronometro = document.getElementById("cronometro");
+            const elPainelRes = document.getElementById("painel-resultado");
+            const elAviso = document.getElementById("aviso-incompleto");
+            const elAvisoTexto = document.getElementById("aviso-incompleto-texto");
+            const btnFinalizar = document.getElementById("btn-finalizar-prova");
+            const btnAtalho = document.getElementById("btn-ir-finalizar");
+
+            function formatarTempo(totalSeg) {
+                const m = String(Math.floor(totalSeg / 60)).padStart(2, "0");
+                const s = String(totalSeg % 60).padStart(2, "0");
+                return m + ":" + s;
+            }
+
+            function iniciarCronometro() {
+                if (timerId) clearInterval(timerId);
+                segundos = 0;
+                elCronometro.textContent = "00:00";
+                timerId = setInterval(function () {
+                    segundos++;
+                    elCronometro.textContent = formatarTempo(segundos);
+                }, 1000);
+            }
+
+            function atualizarContador() {
+                const qtd = Object.keys(respostas).length;
+                elContador.textContent = qtd + " / " + QUESTOES.length;
+                elBarra.style.width = ((qtd / QUESTOES.length) * 100) + "%";
+            }
+
+            function criarElementoQuestao(q) {
+                const art = document.createElement("article");
+                art.className = "questao-item";
+                art.id = "questao-" + q.numero;
+
+                const numFmt = String(q.numero).padStart(2, "0");
+
+                let citacaoHtml = q.citacao
+                    ? '<div class="questao-citacao">' + q.citacao + "</div>"
+                    : "";
+
+                let enunciadoPosHtml = q.enunciadoPos
+                    ? '<p class="questao-enunciado">' + q.enunciadoPos + "</p>"
+                    : "";
+
+                const altsHtml = q.alternativas.map(function (texto, idx) {
+                    return (
+                        '<button type="button" class="alternativa-btn" data-q="' + q.numero + '" data-idx="' + idx + '">' +
+                        '<span class="alt-letra">' + LETRAS[idx] + "</span>" +
+                        '<span class="alt-texto">' + texto + "</span>" +
+                        "</button>"
+                    );
+                }).join("");
+
+                art.innerHTML =
+                    '<div class="questao-topo">' +
+                        '<span class="questao-num">QUESTÃO ' + numFmt + "</span>" +
+                        '<span class="questao-status-badge" id="badge-q-' + q.numero + '"></span>' +
+                    "</div>" +
+                    '<p class="questao-enunciado">' + q.enunciado + "</p>" +
+                    citacaoHtml +
+                    enunciadoPosHtml +
+                    '<div class="alternativas-lista">' + altsHtml + "</div>" +
+                    '<div class="comentario-box" id="com-q-' + q.numero + '">' +
+                        '<div class="comentario-titulo"><i class="fa-solid fa-book-open"></i> Comentário Padrão Vunesp</div>' +
+                        q.comentario +
+                    "</div>";
+
+                return art;
+            }
+
+            function renderizarQuestoes() {
+                document.querySelectorAll(".questao-item").forEach(function (el) {
+                    el.remove();
+                });
+
+                QUESTOES.forEach(function (q) {
+                    const col = document.getElementById(q.destino);
+                    if (col) {
+                        col.appendChild(criarElementoQuestao(q));
+                    }
+                });
+
+                document.querySelectorAll(".alternativa-btn").forEach(function (btn) {
+                    btn.addEventListener("click", function () {
+                        if (finalizado) return;
+                        const numQ = Number(btn.getAttribute("data-q"));
+                        const idx = Number(btn.getAttribute("data-idx"));
+                        respostas[numQ] = idx;
+
+                        const grupoBtns = document.querySelectorAll('.alternativa-btn[data-q="' + numQ + '"]');
+                        grupoBtns.forEach(function (b) { b.classList.remove("selecionada"); });
+                        btn.classList.add("selecionada");
+
+                        elAviso.style.display = "none";
+                        atualizarContador();
+                    });
+                });
+            }
+
+            function executarCorrecao() {
+                finalizado = true;
+                if (timerId) clearInterval(timerId);
+                elAviso.style.display = "none";
+                btnFinalizar.style.display = "none";
+                btnAtalho.style.display = "none";
+                document.getElementById("area-finalizar").style.display = "none";
+
+                let acertos = 0;
+                let brancos = 0;
+                const miniGrid = document.getElementById("gabarito-mini-grid");
+                miniGrid.innerHTML = "";
+
+                QUESTOES.forEach(function (q) {
+                    const marcada = respostas.hasOwnProperty(q.numero) ? respostas[q.numero] : null;
+                    const btns = document.querySelectorAll('.alternativa-btn[data-q="' + q.numero + '"]');
+                    const badge = document.getElementById("badge-q-" + q.numero);
+                    const com = document.getElementById("com-q-" + q.numero);
+
+                    btns.forEach(function (b) {
+                        b.disabled = true;
+                        const idx = Number(b.getAttribute("data-idx"));
+                        if (idx === q.correta) {
+                            b.classList.add("correta");
+                        } else if (marcada !== null && idx === marcada && marcada !== q.correta) {
+                            b.classList.add("incorreta");
+                        }
+                    });
+
+                    const pill = document.createElement("button");
+                    pill.type = "button";
+                    const numFmt = String(q.numero).padStart(2, "0");
+
+                    if (marcada === null) {
+                        brancos++;
+                        badge.className = "questao-status-badge branco";
+                        badge.innerHTML = '<i class="fa-regular fa-circle"></i> Em branco • Gab: ' + LETRAS[q.correta];
+                        pill.className = "gab-pill branco";
+                        pill.textContent = numFmt + " (" + LETRAS[q.correta] + ")";
+                    } else if (marcada === q.correta) {
+                        acertos++;
+                        badge.className = "questao-status-badge ok";
+                        badge.innerHTML = '<i class="fa-solid fa-check"></i> Acertou';
+                        pill.className = "gab-pill ok";
+                        pill.textContent = numFmt + " (" + LETRAS[q.correta] + ")";
+                    } else {
+                        badge.className = "questao-status-badge err";
+                        badge.innerHTML = '<i class="fa-solid fa-xmark"></i> Errou • Gab: ' + LETRAS[q.correta];
+                        pill.className = "gab-pill err";
+                        pill.textContent = numFmt + " (" + LETRAS[q.correta] + ")";
+                    }
+
+                    pill.addEventListener("click", function () {
+                        const alvo = document.getElementById("questao-" + q.numero);
+                        if (alvo) alvo.scrollIntoView({ behavior: "smooth", block: "start" });
+                    });
+                    miniGrid.appendChild(pill);
+
+                    com.classList.add("visivel");
+                });
+
+                const pct = Math.round((acertos / QUESTOES.length) * 100);
+                const elAcertos = document.getElementById("res-acertos");
+                const elPct = document.getElementById("res-percentual");
+                const elBranco = document.getElementById("res-branco");
+                const elTempo = document.getElementById("res-tempo");
+                const elMsg = document.getElementById("res-mensagem");
+
+                elAcertos.textContent = acertos + " / " + QUESTOES.length;
+                elPct.textContent = pct + "%";
+                elPct.className = "res-card-valor " + (pct >= 50 ? "aprovado" : "atencao");
+                elBranco.textContent = brancos;
+                elTempo.textContent = formatarTempo(segundos);
+
+                if (pct >= 80) {
+                    elMsg.textContent = "Excelente desempenho no padrão Vunesp! Revise os comentários das questões em que teve dúvida.";
+                } else if (pct >= 50) {
+                    elMsg.textContent = "Acima do corte mínimo de 50% do edital. Aproveite os comentários abaixo para revisar os detalhes de cálculo e letra de lei.";
+                } else {
+                    elMsg.textContent = "Abaixo do mínimo de 50% previsto no edital. Leia com atenção cada comentário abaixo para fixar o raciocínio e os prazos cobrados pela banca.";
+                }
+
+                elPainelRes.style.display = "block";
+                elPainelRes.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+
+            function tentarFinalizar() {
+                if (finalizado) return;
+                const respondidas = Object.keys(respostas).length;
+                const faltam = QUESTOES.length - respondidas;
+                if (faltam > 0) {
+                    elAvisoTexto.innerHTML =
+                        "<strong>Atenção:</strong> você deixou <strong>" + faltam +
+                        (faltam === 1 ? " questão</strong> em branco." : " questões</strong> em branco.") +
+                        " No dia da prova não há penalidade por chute. Deseja revisar antes de corrigir?";
+                    elAviso.style.display = "block";
+                    elAviso.scrollIntoView({ behavior: "smooth", block: "center" });
+                } else {
+                    executarCorrecao();
+                }
+            }
+
+            function refazerBloco() {
+                finalizado = false;
+                Object.keys(respostas).forEach(function (k) { delete respostas[k]; });
+                elPainelRes.style.display = "none";
+                elAviso.style.display = "none";
+                document.getElementById("area-finalizar").style.display = "block";
+                btnFinalizar.style.display = "inline-flex";
+                btnAtalho.style.display = "inline-flex";
+                renderizarQuestoes();
+                atualizarContador();
+                iniciarCronometro();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+
+            btnFinalizar.addEventListener("click", tentarFinalizar);
+            btnAtalho.addEventListener("click", function () {
+                document.getElementById("area-finalizar").scrollIntoView({ behavior: "smooth", block: "center" });
+            });
+            document.getElementById("btn-confirmar-corrigir").addEventListener("click", executarCorrecao);
+            document.getElementById("btn-voltar-revisar").addEventListener("click", function () {
+                elAviso.style.display = "none";
+                for (let i = 0; i < QUESTOES.length; i++) {
+                    const numQ = QUESTOES[i].numero;
+                    if (!respostas.hasOwnProperty(numQ)) {
+                        const alvo = document.getElementById("questao-" + numQ);
+                        if (alvo) alvo.scrollIntoView({ behavior: "smooth", block: "center" });
+                        break;
+                    }
+                }
+            });
+            document.getElementById("btn-refazer-topo").addEventListener("click", refazerBloco);
+
+            renderizarQuestoes();
+            atualizarContador();
+            iniciarCronometro();
+
+            // ======================================================================
+            // PROTOCOLO RED TEAM: PROTEÇÃO INTEGRAL DO CONTEÚDO INÉDITO
+            // ======================================================================
+            const msgSeg = "🔒 PROTOCOLO DE SEGURANÇA:\nEsta ação não é permitida na plataforma Método Missão. Este simulado é 100% inédito e protegido por direitos autorais (Lei nº 9.610/98).";
+
+            document.addEventListener("contextmenu", function (e) {
+                e.preventDefault();
+                alert(msgSeg);
+            });
+
+            document.addEventListener("keydown", function (e) {
+                const k = (e.key || "").toLowerCase();
+                if (
+                    e.key === "F12" ||
+                    (e.ctrlKey && e.shiftKey && (k === "i" || k === "j" || k === "c")) ||
+                    (e.ctrlKey && (k === "u" || k === "s" || k === "c" || k === "p"))
+                ) {
+                    e.preventDefault();
+                    alert(msgSeg);
+                    return false;
+                }
+            });
+
+            document.addEventListener("keyup", function (e) {
+                if (e.key === "PrintScreen" || e.keyCode === 44) {
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText("Conteúdo Protegido por Direitos Autorais - Método Missão 2026").catch(function () {});
+                    }
+                    alert(msgSeg);
+                }
+            });
+
+            window.addEventListener("blur", function () {
+                const c = document.getElementById("simulador-container");
+                if (c) c.style.filter = "blur(15px)";
+            });
+
+            window.addEventListener("focus", function () {
+                const c = document.getElementById("simulador-container");
+                if (c) c.style.filter = "none";
+            });
+        })();
+    </script>
+</body>
+
+</html>
