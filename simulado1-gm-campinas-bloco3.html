@@ -962,9 +962,9 @@
             </a>
 
             <div class="hud-acoes">
-                <button type="button" id="btn-tema-folha" class="btn-hud btn-folha-branca" title="Alternar entre o padrão azul do Método Missão e a folha branca de prova">
-                    <i class="fa-regular fa-file-lines"></i>
-                    <span>Folha Branca</span>
+                <button type="button" id="btn-tema-folha" class="btn-hud btn-folha-branca" title="Alternar entre o Modo Noturno (Folha Azul) e o Modo Claro (Folha Branca)">
+                    <i class="fa-solid fa-sun"></i>
+                    <span>Modo Claro (Folha Branca)</span>
                 </button>
                 <a href="index.html" class="btn-hud">
                     <i class="fa-solid fa-arrow-left"></i>
@@ -1162,11 +1162,11 @@
                 if (modoPapel) {
                     elCaderno.classList.add("modo-papel");
                     btnTema.classList.add("ativo");
-                    btnTema.innerHTML = '<i class="fa-solid fa-moon"></i><span>Azul Missão</span>';
+                    btnTema.innerHTML = '<i class="fa-solid fa-moon"></i><span>Modo Noturno (Folha Azul)</span>';
                 } else {
                     elCaderno.classList.remove("modo-papel");
                     btnTema.classList.remove("ativo");
-                    btnTema.innerHTML = '<i class="fa-regular fa-file-lines"></i><span>Folha Branca</span>';
+                    btnTema.innerHTML = '<i class="fa-solid fa-sun"></i><span>Modo Claro (Folha Branca)</span>';
                 }
             }
 
