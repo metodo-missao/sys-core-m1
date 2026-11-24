@@ -13,10 +13,10 @@
             status: "Pós-Edital",
             classeStatus: "status-pos",
             detalhesHtml: "Banca: <strong>Vunesp</strong> • Prova: <strong>21/03/2027</strong>",
-            textoAcao: "Acessar 1º Simulado Grátis (Completo) →",
+            textoAcao: "Acessar 1º Simulado Gratuito →",
             liberado: true,
             corBordaMenu: "var(--cor-ouro)",
-            tituloMenu: "1º Simulado GM Campinas (Vunesp) | 4 Blocos",
+            tituloMenu: "1º Simulado Gratuito GM Campinas (Vunesp) | 4 Blocos",
             fundo: "img/fundos/campinas.png",
             altFundo: "Campinas - Lagoa do Taquaral",
             classeFundo: "",
@@ -43,6 +43,30 @@
                     titulo: "Bloco 4: Conhecimentos Específicos II (Q36 a Q50)",
                     arquivo: "simulado1-gm-campinas-bloco4.html",
                     cor: "var(--cor-sucesso)"
+                },
+                {
+                    separador: true,
+                    titulo: "Série Pós-Edital Premium • Mais 5 Simulados Inéditos até a Prova"
+                },
+                {
+                    titulo: "2º Simulado Completo GM Campinas (50 Questões • Vunesp)",
+                    premium: true
+                },
+                {
+                    titulo: "3º Simulado Completo GM Campinas (50 Questões • Vunesp)",
+                    premium: true
+                },
+                {
+                    titulo: "4º Simulado Completo GM Campinas (50 Questões • Vunesp)",
+                    premium: true
+                },
+                {
+                    titulo: "5º Simulado Completo GM Campinas (50 Questões • Vunesp)",
+                    premium: true
+                },
+                {
+                    titulo: "6º Simulado Completo GM Campinas • Revisão Final (50 Questões)",
+                    premium: true
                 }
             ]
         },
@@ -52,10 +76,10 @@
             status: "Pré-Edital",
             classeStatus: "status-pre",
             detalhesHtml: "Banca: <strong>Instituto AOCP</strong>",
-            textoAcao: "Acessar 1º Simulado Grátis →",
+            textoAcao: "Acessar 1º Simulado Gratuito →",
             liberado: true,
             corBordaMenu: "var(--cor-sucesso)",
-            tituloMenu: "1º Simulado GMJ | 4 Blocos",
+            tituloMenu: "1º Simulado Gratuito GMJ | 4 Blocos",
             fundo: "img/fundos/joinville.jpg",
             altFundo: "Joinville - Pórtico e Moinho",
             classeFundo: "",
@@ -229,6 +253,17 @@
                     lista.className = "lista-aulas";
 
                     c.blocos.forEach(function (b) {
+                        if (b.separador) {
+                            const divSep = document.createElement("div");
+                            divSep.style.cssText =
+                                "margin:14px 0 4px;padding-top:12px;border-top:1px dashed rgba(255,204,0,0.35);" +
+                                "font-size:11.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;" +
+                                "color:#ffcc00;text-align:left;";
+                            divSep.innerHTML = '<i class="fa-solid fa-crown fa-fw" style="margin-right: 6px;"></i>' + b.titulo;
+                            lista.appendChild(divSep);
+                            return;
+                        }
+
                         const a = document.createElement("a");
                         a.className = "aula-item";
 
