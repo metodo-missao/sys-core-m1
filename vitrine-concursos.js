@@ -79,7 +79,7 @@
             textoAcao: "Acessar 1º Simulado Gratuito →",
             liberado: true,
             corBordaMenu: "var(--cor-sucesso)",
-            tituloMenu: "1º Simulado Gratuito GMJ | 4 Blocos",
+            tituloMenu: "1º Simulado Gratuito GCM Joinville (Instituto AOCP) | 4 Blocos",
             fundo: "img/fundos/joinville.jpg",
             altFundo: "Joinville - Pórtico e Moinho",
             classeFundo: "",
@@ -106,6 +106,30 @@
                     titulo: "Bloco 4: Conhecimentos Específicos II (Q36 a Q50)",
                     arquivo: "simulado-gmj-bloco4.html",
                     cor: "var(--cor-sucesso)"
+                },
+                {
+                    separador: true,
+                    titulo: "Série Pré-Edital Premium • Mais 5 Simulados Inéditos (Instituto AOCP)"
+                },
+                {
+                    titulo: "2º Simulado Completo GCM Joinville (50 Questões • Instituto AOCP)",
+                    premium: true
+                },
+                {
+                    titulo: "3º Simulado Completo GCM Joinville (50 Questões • Instituto AOCP)",
+                    premium: true
+                },
+                {
+                    titulo: "4º Simulado Completo GCM Joinville (50 Questões • Instituto AOCP)",
+                    premium: true
+                },
+                {
+                    titulo: "5º Simulado Completo GCM Joinville (50 Questões • Instituto AOCP)",
+                    premium: true
+                },
+                {
+                    titulo: "6º Simulado Completo GCM Joinville • Revisão Final (50 Questões)",
+                    premium: true
                 }
             ]
         },
