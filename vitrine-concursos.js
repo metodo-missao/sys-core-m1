@@ -13,7 +13,7 @@
             status: "Pós-Edital",
             classeStatus: "status-pos",
             detalhesHtml: "Banca: <strong>Vunesp</strong> • Prova: <strong>21/03/2027</strong>",
-            textoAcao: "1º Simulado Grátis (Blocos 1 a 3 Liberados) →",
+            textoAcao: "Acessar 1º Simulado Grátis (Completo) →",
             liberado: true,
             corBordaMenu: "var(--cor-ouro)",
             tituloMenu: "1º Simulado GM Campinas (Vunesp) | 4 Blocos",
@@ -41,7 +41,8 @@
                 },
                 {
                     titulo: "Bloco 4: Conhecimentos Específicos II (Q36 a Q50)",
-                    emBreve: true
+                    arquivo: "simulado1-gm-campinas-bloco4.html",
+                    cor: "var(--cor-sucesso)"
                 }
             ]
         },
