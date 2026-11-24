@@ -20,34 +20,97 @@
             --mm-navy: #02112e;
             --mm-navy-card: #031842;
             --mm-gold: #ffca28;
-            --mm-gold-soft: rgba(255, 202, 40, 0.16);
             --mm-cyan: #38bdf8;
             --mm-green: #22c55e;
             --mm-red: #ef4444;
 
-            /* Paleta Única Oficial Método Missão (HUD / Caderno de Prova) */
-            --folha-bg: #04163a;
-            --folha-borda: rgba(56, 189, 248, 0.3);
+            /* Paleta Padrão da Folha A4: Azul do Método Missão */
+            --folha-fundo: linear-gradient(165deg, #051c4a 0%, #031336 100%);
+            --folha-borda: rgba(56, 189, 248, 0.32);
+            --folha-sombra: 0 20px 44px rgba(0, 0, 0, 0.62), inset 0 1px 0 rgba(255, 255, 255, 0.08);
             --folha-texto: #f1f5f9;
             --folha-texto-sec: #cbd5e1;
             --folha-muted: #94a3b8;
-            --folha-divisor: rgba(148, 163, 184, 0.34);
-            --folha-barra-coluna: #ffca28;
-            --folha-caixa: rgba(2, 12, 34, 0.78);
+            --folha-titulo: #ffffff;
+            --folha-destaque: #ffca28;
+            --folha-divisor-questao: rgba(148, 163, 184, 0.28);
+            --folha-traco-coluna: rgba(255, 202, 40, 0.85);
+            --folha-traco-topo: rgba(255, 202, 40, 0.55);
+            --folha-traco-disciplina: #ffca28;
+            --folha-caixa-bg: rgba(2, 12, 34, 0.78);
             --folha-caixa-borda: rgba(255, 202, 40, 0.34);
+            --folha-caixa-esq: #ffca28;
+            --folha-anuncio-bg: rgba(4, 22, 58, 0.72);
+            --folha-anuncio-borda: rgba(255, 202, 40, 0.45);
+            --folha-selo-bg: #ffca28;
+            --folha-selo-txt: #02112e;
             --folha-hover: rgba(56, 189, 248, 0.1);
-            --folha-sel-bg: rgba(255, 202, 40, 0.15);
+            --folha-hover-borda: rgba(56, 189, 248, 0.35);
+            --folha-sel-bg: rgba(255, 202, 40, 0.16);
             --folha-sel-borda: #ffca28;
-            --folha-bolinha-bg: transparent;
             --folha-bolinha-borda: #94a3b8;
             --folha-bolinha-sel-bg: #ffca28;
             --folha-bolinha-sel-txt: #02112e;
-            --folha-ok-bg: rgba(22, 163, 74, 0.18);
+            --folha-ok-bg: rgba(22, 163, 74, 0.2);
             --folha-ok-borda: #22c55e;
-            --folha-err-bg: rgba(220, 38, 38, 0.18);
+            --folha-err-bg: rgba(220, 38, 38, 0.2);
             --folha-err-borda: #ef4444;
-            --folha-com-bg: rgba(2, 12, 34, 0.88);
+            --folha-com-bg: rgba(2, 12, 34, 0.9);
             --folha-com-borda: #ffca28;
+            --folha-rodape-borda: rgba(255, 202, 40, 0.28);
+            --folha-rodape-marca: rgba(255, 255, 255, 0.86);
+            --folha-rodape-num: #ffca28;
+            --badge-ok-bg: rgba(22, 163, 74, 0.2);
+            --badge-ok-txt: #86efac;
+            --badge-err-bg: rgba(220, 38, 38, 0.2);
+            --badge-err-txt: #fca5a5;
+            --badge-br-bg: rgba(148, 163, 184, 0.18);
+            --badge-br-txt: #cbd5e1;
+        }
+
+        /* Paleta Alternativa: Folha Branca (Padrão Caderno de Prova Real A4) */
+        .caderno-paginas.modo-papel {
+            --folha-fundo: #ffffff;
+            --folha-borda: #cbd5e1;
+            --folha-sombra: 0 18px 42px rgba(0, 0, 0, 0.58);
+            --folha-texto: #111827;
+            --folha-texto-sec: #334155;
+            --folha-muted: #64748b;
+            --folha-titulo: #0f172a;
+            --folha-destaque: #0f172a;
+            --folha-divisor-questao: #e2e8f0;
+            --folha-traco-coluna: #111827;
+            --folha-traco-topo: #111827;
+            --folha-traco-disciplina: #111827;
+            --folha-caixa-bg: #f8fafc;
+            --folha-caixa-borda: #cbd5e1;
+            --folha-caixa-esq: #111827;
+            --folha-anuncio-bg: #ffffff;
+            --folha-anuncio-borda: #334155;
+            --folha-selo-bg: #111827;
+            --folha-selo-txt: #ffffff;
+            --folha-hover: #f1f5f9;
+            --folha-hover-borda: #94a3b8;
+            --folha-sel-bg: #eff6ff;
+            --folha-sel-borda: #02112e;
+            --folha-bolinha-borda: #334155;
+            --folha-bolinha-sel-bg: #02112e;
+            --folha-bolinha-sel-txt: #ffffff;
+            --folha-ok-bg: #dcfce7;
+            --folha-ok-borda: #16a34a;
+            --folha-err-bg: #fee2e2;
+            --folha-err-borda: #dc2626;
+            --folha-com-bg: #f8fafc;
+            --folha-com-borda: #02112e;
+            --folha-rodape-borda: #cbd5e1;
+            --folha-rodape-marca: #111827;
+            --folha-rodape-num: #111827;
+            --badge-ok-bg: #dcfce7;
+            --badge-ok-txt: #166534;
+            --badge-err-bg: #fee2e2;
+            --badge-err-txt: #991b1b;
+            --badge-br-bg: #f1f5f9;
+            --badge-br-txt: #475569;
         }
 
         * {
@@ -60,7 +123,7 @@
 
         body {
             background-color: var(--mm-navy);
-            color: var(--folha-texto);
+            color: #f1f5f9;
             min-height: 100vh;
             padding-bottom: 50px;
             -webkit-user-select: none;
@@ -83,14 +146,14 @@
             position: relative;
             z-index: 2;
             width: 100%;
-            max-width: 940px;
+            max-width: 880px;
             margin: 0 auto;
             padding: 0 14px;
             transition: filter 0.2s ease;
         }
 
         /* ==========================================================================
-           BARRA SUPERIOR E PAINEL FIXO DE CONTROLE (HUD)
+           BARRA SUPERIOR E PAINEL FIXO DE CONTROLE (SEMPRE NO PADRÃO MÉTODO MISSÃO)
            ========================================================================== */
         .hud-topo {
             display: flex;
@@ -136,7 +199,7 @@
             gap: 6px;
             padding: 8px 13px;
             border-radius: 9px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.22);
             background: rgba(255, 255, 255, 0.05);
             color: #e2e8f0;
             font-size: 12px;
@@ -152,12 +215,30 @@
             background: rgba(255, 202, 40, 0.08);
         }
 
+        .btn-folha-branca {
+            border-color: rgba(255, 202, 40, 0.55);
+            background: rgba(255, 202, 40, 0.1);
+            color: var(--mm-gold);
+        }
+
+        .btn-folha-branca.ativo {
+            background: #ffffff;
+            color: #02112e;
+            border-color: #ffffff;
+        }
+
+        .btn-folha-branca.ativo:hover {
+            background: #f1f5f9;
+            color: #02112e;
+            border-color: var(--mm-gold);
+        }
+
         /* Barra fixa com contador de questões e cronômetro */
         .barra-status {
             position: sticky;
             top: 0;
             z-index: 30;
-            margin: 14px 0 20px;
+            margin: 14px 0 22px;
             padding: 11px 16px;
             border-radius: 12px;
             background: rgba(3, 20, 56, 0.96);
@@ -196,7 +277,7 @@
         }
 
         .barra-progresso-wrap {
-            width: 120px;
+            width: 115px;
             height: 7px;
             background: rgba(255, 255, 255, 0.12);
             border-radius: 99px;
@@ -363,97 +444,60 @@
         }
 
         /* ==========================================================================
-           PILHA DE FOLHAS A4 COM QUEBRA DE PÁGINA REAL (ESPAÇO ENTRE PÁGINAS)
+           PILHA DE FOLHAS A4 COM QUEBRA DE PÁGINA REAL E PADRÃO DE PROVA OFICIAL
            ========================================================================== */
         .caderno-paginas {
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 32px;
         }
 
         .folha-a4 {
-            background: linear-gradient(165deg, #051c4a 0%, #031336 100%);
+            background: var(--folha-fundo);
             color: var(--folha-texto);
             border: 1.5px solid var(--folha-borda);
-            border-radius: 8px;
-            box-shadow: 0 20px 44px rgba(0, 0, 0, 0.62), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-            padding: 26px 24px 22px;
+            border-radius: 4px;
+            box-shadow: var(--folha-sombra);
+            padding: 24px 20px 22px;
             display: flex;
             flex-direction: column;
+            transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
         }
 
-        /* Cabeçalho contínuo das páginas seguintes (padrão caderno de prova) */
+        /* Cabeçalho contínuo em todas as folhas (igual ao padrão de prova impressa) */
         .topo-pagina {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
             margin-bottom: 20px;
             font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 0.9px;
+            font-weight: 900;
+            letter-spacing: 0.7px;
             text-transform: uppercase;
-            color: var(--mm-gold);
+            color: var(--folha-destaque);
         }
 
         .topo-pagina-linha {
             flex: 1;
             height: 1px;
-            background: rgba(255, 202, 40, 0.45);
+            background: var(--folha-traco-topo);
         }
 
         .topo-pagina-dir {
-            color: var(--folha-texto-sec);
-            letter-spacing: 0.5px;
+            color: var(--folha-texto);
+            letter-spacing: 0.3px;
             text-transform: none;
             font-weight: 700;
+            font-size: 11.5px;
         }
 
-        /* Rodapé individual de cada página (marca centralizada + número à direita) */
-        .rodape-pagina {
-            margin-top: 26px;
-            padding-top: 14px;
-            border-top: 1px solid rgba(255, 202, 40, 0.28);
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            align-items: center;
-        }
-
-        .rodape-pagina-marca {
-            grid-column: 2;
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            font-size: 12px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.82);
-        }
-
-        .rodape-pagina-marca i {
-            color: var(--mm-gold);
-            font-size: 14px;
-        }
-
-        .rodape-pagina-num {
-            grid-column: 3;
-            justify-self: end;
-            font-size: 13px;
-            font-weight: 800;
-            color: var(--mm-gold);
-            padding: 2px 8px;
-            border: 1px solid rgba(255, 202, 40, 0.35);
-            border-radius: 5px;
-            background: rgba(2, 12, 34, 0.55);
-        }
-
-        /* Cabeçalho da Página 1 */
+        /* Cabeçalho de identificação do Bloco na Página 1 */
         .cabecalho-prova {
-            border: 1.5px solid rgba(255, 202, 40, 0.48);
-            border-radius: 8px;
-            padding: 15px 18px;
+            border: 1.5px solid var(--folha-caixa-borda);
+            border-radius: 5px;
+            padding: 13px 16px;
             margin-bottom: 18px;
-            background: var(--folha-caixa);
+            background: var(--folha-caixa-bg);
         }
 
         .cabecalho-prova-linha1 {
@@ -464,81 +508,88 @@
             gap: 8px;
             font-size: 10.5px;
             font-weight: 800;
-            letter-spacing: 0.9px;
+            letter-spacing: 0.8px;
             text-transform: uppercase;
-            color: var(--mm-gold);
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--folha-divisor);
+            color: var(--folha-destaque);
+            padding-bottom: 7px;
+            border-bottom: 1px solid var(--folha-divisor-questao);
         }
 
         .cabecalho-prova h1 {
-            font-size: 18px;
+            font-size: 16.5px;
             font-weight: 900;
-            letter-spacing: 0.4px;
-            margin-top: 10px;
-            color: #ffffff;
+            letter-spacing: 0.3px;
+            margin-top: 9px;
+            color: var(--folha-titulo);
             text-transform: uppercase;
         }
 
         .cabecalho-prova-meta {
-            margin-top: 6px;
-            font-size: 12.8px;
+            margin-top: 5px;
+            font-size: 12.5px;
             color: var(--folha-texto-sec);
-            line-height: 1.48;
+            line-height: 1.46;
         }
 
+        /* Faixa de disciplina com traço firme abaixo (padrão caderno de prova) */
         .faixa-disciplina {
-            font-size: 11.5px;
+            font-size: 12px;
             font-weight: 900;
-            letter-spacing: 1.3px;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            color: var(--mm-gold);
-            border-top: 2px solid var(--folha-barra-coluna);
-            border-bottom: 1px solid var(--folha-divisor);
-            padding: 7px 0;
+            color: var(--folha-destaque);
+            border-bottom: 2px solid var(--folha-traco-disciplina);
+            padding: 0 0 6px;
             margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: baseline;
             flex-wrap: wrap;
             gap: 8px;
         }
 
-        /* Texto de apoio inserido dentro da coluna (padrão caderno Vunesp) */
+        .faixa-disciplina-sub {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--folha-texto-sec);
+            letter-spacing: 0.4px;
+        }
+
+        /* Texto de apoio inserido dentro da coluna */
         .bloco-texto {
-            background: var(--folha-caixa);
+            background: var(--folha-caixa-bg);
             border: 1px solid var(--folha-caixa-borda);
-            border-left: 3px solid var(--mm-gold);
-            border-radius: 7px;
-            padding: 15px 15px 13px;
+            border-left: 3px solid var(--folha-caixa-esq);
+            border-radius: 5px;
+            padding: 14px 14px 12px;
         }
 
         .texto-instrucao {
-            font-size: 12.8px;
+            font-size: 12.5px;
             font-weight: 700;
-            color: var(--mm-gold);
-            line-height: 1.45;
-            margin-bottom: 11px;
+            color: var(--folha-destaque);
+            line-height: 1.44;
+            margin-bottom: 10px;
         }
 
         .texto-titulo {
-            font-size: 14.5px;
+            font-size: 14px;
             font-weight: 800;
             font-style: italic;
-            color: #ffffff;
+            color: var(--folha-titulo);
             text-align: center;
-            margin-bottom: 11px;
+            margin-bottom: 10px;
         }
 
         .texto-corpo {
-            font-size: 13.5px;
-            line-height: 1.64;
+            font-size: 13.2px;
+            line-height: 1.6;
             color: var(--folha-texto);
             text-align: justify;
         }
 
         .texto-corpo p {
-            text-indent: 20px;
+            text-indent: 18px;
             margin-bottom: 8px;
         }
 
@@ -547,50 +598,50 @@
         }
 
         .texto-anuncio {
-            border: 1.5px dashed rgba(255, 202, 40, 0.45);
-            border-radius: 6px;
-            padding: 13px 14px;
-            background: rgba(4, 22, 58, 0.7);
+            border: 1.5px dashed var(--folha-anuncio-borda);
+            border-radius: 5px;
+            padding: 12px 13px;
+            background: var(--folha-anuncio-bg);
         }
 
         .texto-anuncio .anuncio-selo {
             display: inline-block;
-            font-size: 10.5px;
+            font-size: 10px;
             font-weight: 900;
-            letter-spacing: 1.2px;
+            letter-spacing: 1.1px;
             text-transform: uppercase;
             padding: 3px 9px;
-            border-radius: 4px;
-            background: var(--mm-gold);
-            color: #02112e;
-            margin-bottom: 9px;
+            border-radius: 3px;
+            background: var(--folha-selo-bg);
+            color: var(--folha-selo-txt);
+            margin-bottom: 8px;
         }
 
         .texto-anuncio p {
             text-indent: 0;
-            font-size: 13.5px;
-            line-height: 1.64;
+            font-size: 13.2px;
+            line-height: 1.6;
             color: var(--folha-texto);
             text-align: justify;
         }
 
         .lacuna {
             display: inline-block;
-            min-width: 36px;
-            border-bottom: 1.5px solid var(--mm-gold);
+            min-width: 34px;
+            border-bottom: 1.5px solid var(--folha-destaque);
             margin: 0 3px;
             vertical-align: baseline;
         }
 
         .texto-fonte {
-            margin-top: 9px;
-            font-size: 11px;
+            margin-top: 8px;
+            font-size: 10.8px;
             font-style: italic;
             color: var(--folha-muted);
             text-align: right;
         }
 
-        /* Grade de 2 colunas com fluxo vertical real */
+        /* Grade de 2 colunas com traço central nítido */
         .grade-colunas {
             display: grid;
             grid-template-columns: 1fr;
@@ -605,41 +656,75 @@
             min-width: 0;
         }
 
-        @media (min-width: 820px) {
+        @media (min-width: 800px) {
             .folha-a4 {
-                padding: 30px 32px 24px;
+                padding: 32px 40px 26px;
             }
 
             .grade-colunas {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 0 40px;
+                gap: 0 38px;
                 align-items: stretch;
             }
 
-            /* Barra vertical forte e evidente separando as 2 colunas */
+            /* Traço vertical nítido separando as 2 colunas (fiel ao caderno A4) */
             .grade-colunas::before {
                 content: "";
                 position: absolute;
                 top: 0;
                 bottom: 0;
                 left: 50%;
-                width: 2px;
-                background: var(--folha-barra-coluna);
-                box-shadow: 0 0 8px rgba(255, 202, 40, 0.35);
-                transform: translateX(-1px);
+                width: 1.5px;
+                background: var(--folha-traco-coluna);
+                transform: translateX(-0.75px);
                 pointer-events: none;
             }
 
             .coluna-prova .questao-item:last-child {
                 border-bottom: none;
-                padding-bottom: 4px;
+                padding-bottom: 2px;
             }
+        }
+
+        /* Rodapé individual de cada página (marca centralizada + número limpo à direita) */
+        .rodape-pagina {
+            margin-top: 28px;
+            padding-top: 14px;
+            border-top: 1px solid var(--folha-rodape-borda);
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+        }
+
+        .rodape-pagina-marca {
+            grid-column: 2;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 12.5px;
+            font-weight: 900;
+            letter-spacing: 2.2px;
+            text-transform: uppercase;
+            color: var(--folha-rodape-marca);
+        }
+
+        .rodape-pagina-marca i {
+            color: var(--folha-destaque);
+            font-size: 14px;
+        }
+
+        .rodape-pagina-num {
+            grid-column: 3;
+            justify-self: end;
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--folha-rodape-num);
         }
 
         /* Cartão de cada questão */
         .questao-item {
             padding-bottom: 16px;
-            border-bottom: 1px solid var(--folha-divisor);
+            border-bottom: 1px solid var(--folha-divisor-questao);
             scroll-margin-top: 86px;
         }
 
@@ -648,14 +733,14 @@
             align-items: center;
             justify-content: space-between;
             gap: 8px;
-            margin-bottom: 7px;
+            margin-bottom: 6px;
         }
 
         .questao-num {
             font-size: 13.5px;
             font-weight: 900;
-            color: var(--mm-gold);
-            letter-spacing: 0.4px;
+            color: var(--folha-destaque);
+            letter-spacing: 0.3px;
         }
 
         .questao-status-badge {
@@ -672,8 +757,8 @@
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            background: rgba(22, 163, 74, 0.2);
-            color: #86efac;
+            background: var(--badge-ok-bg);
+            color: var(--badge-ok-txt);
             border: 1px solid #22c55e;
         }
 
@@ -681,8 +766,8 @@
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            background: rgba(220, 38, 38, 0.2);
-            color: #fca5a5;
+            background: var(--badge-err-bg);
+            color: var(--badge-err-txt);
             border: 1px solid #ef4444;
         }
 
@@ -690,14 +775,14 @@
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            background: rgba(148, 163, 184, 0.16);
-            color: #cbd5e1;
+            background: var(--badge-br-bg);
+            color: var(--badge-br-txt);
             border: 1px solid #94a3b8;
         }
 
         .questao-enunciado {
-            font-size: 13.6px;
-            line-height: 1.56;
+            font-size: 13.3px;
+            line-height: 1.54;
             color: var(--folha-texto);
             margin-bottom: 10px;
             text-align: justify;
@@ -706,10 +791,10 @@
         .questao-citacao {
             margin: 8px 0 10px;
             padding: 8px 11px;
-            border-left: 3px solid var(--mm-gold);
-            background: var(--folha-caixa);
-            font-size: 13px;
-            line-height: 1.54;
+            border-left: 3px solid var(--folha-caixa-esq);
+            background: var(--folha-caixa-bg);
+            font-size: 12.8px;
+            line-height: 1.52;
             color: var(--folha-texto-sec);
         }
 
@@ -720,7 +805,7 @@
         .alternativas-lista {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 5px;
         }
 
         .alternativa-btn {
@@ -728,21 +813,21 @@
             display: flex;
             align-items: flex-start;
             gap: 9px;
-            padding: 8px 10px;
-            border-radius: 7px;
+            padding: 7px 9px;
+            border-radius: 6px;
             border: 1px solid transparent;
             background: transparent;
             color: var(--folha-texto);
             text-align: left;
-            font-size: 13.4px;
-            line-height: 1.48;
+            font-size: 13.1px;
+            line-height: 1.46;
             cursor: pointer;
             transition: background-color 0.15s ease, border-color 0.15s ease;
         }
 
         .alternativa-btn:hover:not(:disabled) {
             background: var(--folha-hover);
-            border-color: rgba(56, 189, 248, 0.35);
+            border-color: var(--folha-hover-borda);
         }
 
         .alternativa-btn:disabled {
@@ -751,13 +836,13 @@
 
         .alt-letra {
             flex-shrink: 0;
-            width: 23px;
-            height: 23px;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
             border: 1.5px solid var(--folha-bolinha-borda);
-            background: var(--folha-bolinha-bg);
+            background: transparent;
             color: var(--folha-texto);
-            font-size: 11.5px;
+            font-size: 11px;
             font-weight: 800;
             display: flex;
             align-items: center;
@@ -768,6 +853,7 @@
 
         .alt-texto {
             flex: 1;
+            text-align: justify;
         }
 
         /* Estado marcado pelo aluno antes da correção */
@@ -810,13 +896,14 @@
             display: none;
             margin-top: 11px;
             padding: 12px 13px;
-            border-radius: 8px;
+            border-radius: 6px;
             background: var(--folha-com-bg);
-            border: 1px solid var(--folha-divisor);
+            border: 1px solid var(--folha-divisor-questao);
             border-left: 4px solid var(--folha-com-borda);
-            font-size: 12.8px;
-            line-height: 1.56;
+            font-size: 12.6px;
+            line-height: 1.54;
             color: var(--folha-texto-sec);
+            text-align: justify;
         }
 
         .comentario-box.visivel {
@@ -824,11 +911,11 @@
         }
 
         .comentario-titulo {
-            font-size: 11.5px;
+            font-size: 11.2px;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 0.6px;
-            color: var(--mm-gold);
+            color: var(--folha-destaque);
             margin-bottom: 6px;
             display: flex;
             align-items: center;
@@ -843,7 +930,7 @@
            ÁREA DE FINALIZAÇÃO ABAIXO DA ÚLTIMA PÁGINA
            ========================================================================== */
         .rodape-finalizacao {
-            margin-top: 26px;
+            margin-top: 28px;
             padding: 24px 20px;
             border-radius: 12px;
             background: linear-gradient(155deg, #062158 0%, #031336 100%);
@@ -860,7 +947,7 @@
             border-radius: 10px;
             background: rgba(245, 158, 11, 0.16);
             border: 1px solid #f59e0b;
-            color: var(--folha-texto);
+            color: #f1f5f9;
             font-size: 13.5px;
             line-height: 1.5;
         }
@@ -904,9 +991,9 @@
             gap: 7px;
             padding: 11px 18px;
             border-radius: 10px;
-            border: 1px solid var(--folha-divisor);
-            background: var(--folha-caixa);
-            color: var(--folha-texto);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            background: rgba(2, 12, 34, 0.78);
+            color: #f1f5f9;
             font-size: 13px;
             font-weight: 800;
             text-decoration: none;
@@ -943,17 +1030,20 @@
 
         @media (max-width: 600px) {
             .folha-a4 {
-                padding: 18px 14px 18px;
+                padding: 18px 15px 18px;
             }
             .barra-progresso-wrap {
                 display: none;
             }
             .cabecalho-prova h1 {
-                font-size: 15.5px;
+                font-size: 15px;
             }
             .topo-pagina {
-                font-size: 10px;
+                font-size: 9.8px;
                 gap: 8px;
+            }
+            .topo-pagina-dir {
+                font-size: 10px;
             }
         }
     </style>
@@ -971,6 +1061,10 @@
             </a>
 
             <div class="hud-acoes">
+                <button type="button" id="btn-tema-folha" class="btn-hud btn-folha-branca" title="Alternar entre o padrão azul do Método Missão e a folha branca de prova">
+                    <i class="fa-regular fa-file-lines"></i>
+                    <span>Folha Branca</span>
+                </button>
                 <a href="index.html" class="btn-hud">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>Voltar ao Início</span>
@@ -1048,9 +1142,15 @@
 
             <!-- ==================== PÁGINA 1: TEXTO I + Q01 A Q03 ==================== -->
             <section class="folha-a4" aria-label="Página 1">
+                <div class="topo-pagina">
+                    <span>MÉTODO MISSÃO</span>
+                    <div class="topo-pagina-linha"></div>
+                    <span class="topo-pagina-dir">1º Simulado • GM Campinas • Pós-Edital</span>
+                </div>
+
                 <div class="cabecalho-prova">
                     <div class="cabecalho-prova-linha1">
-                        <span>1º SIMULADO INÉDITO • PADRÃO VUNESP (EDITAL Nº 02/2026)</span>
+                        <span>PADRÃO VUNESP (EDITAL Nº 02/2026)</span>
                         <span>GUARDA MUNICIPAL DE CAMPINAS (3ª CLASSE)</span>
                     </div>
                     <h1>Bloco 1: Língua Portuguesa (Questões 01 a 12)</h1>
@@ -1060,8 +1160,8 @@
                 </div>
 
                 <div class="faixa-disciplina">
-                    <span>CONHECIMENTOS GERAIS: LÍNGUA PORTUGUESA</span>
-                    <span>12 QUESTÕES • PESO 1</span>
+                    <span>CONHECIMENTOS GERAIS • LÍNGUA PORTUGUESA</span>
+                    <span class="faixa-disciplina-sub">12 Questões • Peso 1</span>
                 </div>
 
                 <div class="grade-colunas">
@@ -1094,7 +1194,7 @@
                 <div class="topo-pagina">
                     <span>MÉTODO MISSÃO</span>
                     <div class="topo-pagina-linha"></div>
-                    <span class="topo-pagina-dir">1º Simulado GM Campinas • Pós-Edital</span>
+                    <span class="topo-pagina-dir">1º Simulado • GM Campinas • Pós-Edital</span>
                 </div>
 
                 <div class="grade-colunas">
@@ -1128,7 +1228,7 @@
                 <div class="topo-pagina">
                     <span>MÉTODO MISSÃO</span>
                     <div class="topo-pagina-linha"></div>
-                    <span class="topo-pagina-dir">1º Simulado GM Campinas • Pós-Edital</span>
+                    <span class="topo-pagina-dir">1º Simulado • GM Campinas • Pós-Edital</span>
                 </div>
 
                 <div class="grade-colunas">
@@ -1184,6 +1284,42 @@
 
     <script>
         (function () {
+            // ======================================================================
+            // ALTERNADOR: AZUL DO MÉTODO MISSÃO (PADRÃO) <-> FOLHA BRANCA DE PROVA
+            // ======================================================================
+            const elCaderno = document.getElementById("folha-prova");
+            const btnTema = document.getElementById("btn-tema-folha");
+            const CHAVE_TEMA = "mm_tema_folha_simulado";
+
+            function aplicarTema(modoPapel) {
+                if (!elCaderno || !btnTema) return;
+                if (modoPapel) {
+                    elCaderno.classList.add("modo-papel");
+                    btnTema.classList.add("ativo");
+                    btnTema.innerHTML = '<i class="fa-solid fa-moon"></i><span>Azul Missão</span>';
+                } else {
+                    elCaderno.classList.remove("modo-papel");
+                    btnTema.classList.remove("ativo");
+                    btnTema.innerHTML = '<i class="fa-regular fa-file-lines"></i><span>Folha Branca</span>';
+                }
+            }
+
+            try {
+                if (localStorage.getItem(CHAVE_TEMA) === "papel") {
+                    aplicarTema(true);
+                }
+            } catch (e) {}
+
+            if (btnTema) {
+                btnTema.addEventListener("click", function () {
+                    const ativarPapel = !elCaderno.classList.contains("modo-papel");
+                    aplicarTema(ativarPapel);
+                    try {
+                        localStorage.setItem(CHAVE_TEMA, ativarPapel ? "papel" : "missao");
+                    } catch (e) {}
+                });
+            }
+
             // ======================================================================
             // BANCO DE QUESTÕES INÉDITAS: BLOCO 1 (LÍNGUA PORTUGUESA - Q01 A Q12)
             // ======================================================================
