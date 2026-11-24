@@ -13,7 +13,7 @@
             status: "Pós-Edital",
             classeStatus: "status-pos",
             detalhesHtml: "Banca: <strong>Vunesp</strong> • Prova: <strong>21/03/2027</strong>",
-            textoAcao: "1º Simulado Grátis (Bloco 1 Liberado) →",
+            textoAcao: "1º Simulado Grátis (Blocos 1 e 2 Liberados) →",
             liberado: true,
             corBordaMenu: "var(--cor-ouro)",
             tituloMenu: "1º Simulado GM Campinas (Vunesp) | 4 Blocos",
@@ -31,7 +31,8 @@
                 },
                 {
                     titulo: "Bloco 2: Matemática, Raciocínio Lógico e Leg. Municipal (Q13 a Q20)",
-                    emBreve: true
+                    arquivo: "simulado1-gm-campinas-bloco2.html",
+                    cor: "var(--cor-sucesso)"
                 },
                 {
                     titulo: "Bloco 3: Conhecimentos Específicos I (Q21 a Q35)",
