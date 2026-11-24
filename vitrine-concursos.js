@@ -194,7 +194,7 @@
                     brasao: "img/brasoes/pmpr.png",
                     brasaoFallback: "img/brasoes/pmpr.svg",
                     altBrasao: "Brasão Oficial da Polícia Militar do Paraná",
-                    classeBrasao: "ajuste-circulo",
+                    classeBrasao: "ajuste-pmpr",
                     blocos: []
                 }
             ]
@@ -232,7 +232,7 @@
                 styleCat.id = "mm-vitrine-categorias-css";
                 styleCat.textContent =
                     "#mm-vitrine-categorias{width:100%;display:flex;flex-direction:column;gap:14px;margin-top:6px;}" +
-                    ".mm-cat-bloco{width:100%;}" +
+                    ".mm-cat-bloco{width:100%;scroll-margin-top:18px;}" +
                     ".mm-cat-btn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;" +
                     "padding:14px 18px;border-radius:12px;cursor:pointer;text-align:left;" +
                     "background:linear-gradient(145deg,rgba(6,28,72,0.88) 0%,rgba(2,15,42,0.94) 100%);" +
@@ -259,6 +259,11 @@
                     "background:rgba(3,18,48,0.78);border:1px dashed rgba(255,202,40,0.35);" +
                     "color:#cbd5e1;font-size:13.5px;line-height:1.5;display:flex;align-items:center;gap:12px;}" +
                     ".mm-cat-vazio i{color:#ffca28;font-size:18px;flex-shrink:0;}" +
+                    ".medalhao-brasao.medalhao-pmpr{overflow:visible !important;border-radius:0 !important;" +
+                    "background:transparent !important;border:none !important;box-shadow:none !important;}" +
+                    ".medalhao-brasao img.ajuste-pmpr{width:100% !important;height:100% !important;" +
+                    "object-fit:contain !important;transform:none !important;" +
+                    "filter:drop-shadow(0 4px 10px rgba(0,0,0,0.65));}" +
                     "@media(min-width:681px){.mm-cat-conteudo .vitrine-grid.mm-grid-unico{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}}" +
                     "@media(max-width:600px){.mm-cat-btn{padding:12px 14px;}.mm-cat-titulo{font-size:13.2px;letter-spacing:0.6px;}" +
                     ".mm-cat-badge{font-size:10px;padding:3px 7px;}}";
@@ -365,6 +370,7 @@
                         const classeFundo = c.classeFundo ? "capa-fundo " + c.classeFundo : "capa-fundo";
                         const classeAcao = c.liberado ? "card-acao card-acao-liberado" : "card-acao card-acao-breve";
                         const iconeAcao = c.liberado ? "" : ' <i class="fa-regular fa-clock" style="margin-left: 4px;"></i>';
+                        const classeMedalhao = c.classeBrasao === "ajuste-pmpr" ? "medalhao-brasao medalhao-pmpr" : "medalhao-brasao";
                         const onErrorFundo = c.fundoFallback
                             ? ' onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src=\'' + c.fundoFallback + '\';}"'
                             : "";
@@ -377,7 +383,7 @@
                                 '<img src="' + c.fundo + '" alt="' + c.altFundo + '" class="' + classeFundo + '"' + onErrorFundo + '>' +
                                 '<div class="capa-overlay"></div>' +
                                 '<div class="capa-conteudo">' +
-                                    '<div class="medalhao-brasao">' +
+                                    '<div class="' + classeMedalhao + '">' +
                                         '<img src="' + c.brasao + '" alt="' + c.altBrasao + '" class="' + (c.classeBrasao || "") + '"' + onErrorBrasao + '>' +
                                     '</div>' +
                                     '<span class="capa-marca">MÉTODO MISSÃO</span>' +
@@ -481,19 +487,20 @@
                 btnCat.addEventListener("click", function () {
                     const jaAberta = conteudo.classList.contains("aberta");
 
-                    containerCategorias.querySelectorAll(".mm-cat-btn").forEach(function (b) {
-                        b.classList.remove("aberta");
-                        b.setAttribute("aria-expanded", "false");
-                    });
-                    containerCategorias.querySelectorAll(".mm-cat-conteudo").forEach(function (ct) {
-                        ct.classList.remove("aberta");
-                    });
-                    fecharTodosOsMenus();
-
-                    if (!jaAberta) {
+                    if (jaAberta) {
+                        btnCat.classList.remove("aberta");
+                        btnCat.setAttribute("aria-expanded", "false");
+                        conteudo.classList.remove("aberta");
+                        conteudo.querySelectorAll(".secao-topicos").forEach(function (sec) {
+                            sec.style.display = "none";
+                        });
+                    } else {
                         btnCat.classList.add("aberta");
                         btnCat.setAttribute("aria-expanded", "true");
                         conteudo.classList.add("aberta");
+                        setTimeout(function () {
+                            bloco.scrollIntoView({ behavior: "smooth", block: "nearest" });
+                        }, 40);
                     }
                 });
 
