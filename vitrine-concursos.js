@@ -202,11 +202,55 @@
         {
             id: "policia-civil",
             titulo: "CONCURSOS POLÍCIA CIVIL",
-            etiqueta: "Em breve",
-            emBreve: true,
+            etiqueta: "1 concurso",
             abertaPorPadrao: false,
-            mensagemBreve: "Simulados inéditos focados em carreiras da Polícia Civil (Agente, Investigador e Escrivão) estão em fase de produção.",
-            concursos: []
+            concursos: [
+                {
+                    id: "pcmg-pre-edital",
+                    titulo: "PCMG • CARREIRAS POLICIAIS (MG)",
+                    status: "Pré-Edital",
+                    classeStatus: "status-pre",
+                    detalhesHtml: "Concurso autorizado • <strong>Mini Simulados em 2 Blocos</strong>",
+                    textoAcao: "Acessar 1º Mini Simulado Gratuito →",
+                    liberado: true,
+                    corBordaMenu: "var(--cor-ouro)",
+                    tituloMenu: "1º Mini Simulado Gratuito PCMG (Pré-Edital) | 2 Blocos • 40 Questões",
+                    fundo: "img/fundos/pcmg.jpg",
+                    altFundo: "Polícia Civil de Minas Gerais",
+                    classeFundo: "",
+                    brasao: "img/brasoes/pcmg.png",
+                    altBrasao: "Brasão Oficial da Polícia Civil de Minas Gerais",
+                    classeBrasao: "ajuste-pmpr",
+                    blocos: [
+                        {
+                            titulo: "Bloco 1: Legislação PCMG (LC 129/13) e Servidor Estadual (Lei 869/52) — Q01 a Q20",
+                            arquivo: "simulado-pcmg-bloco1.html",
+                            cor: "var(--cor-sucesso)"
+                        },
+                        {
+                            titulo: "Bloco 2: Direito Penal e Direito Processual Penal — Q21 a Q40",
+                            arquivo: "simulado-pcmg-bloco2.html",
+                            cor: "var(--cor-sucesso)"
+                        },
+                        {
+                            separador: true,
+                            titulo: "Série Pré-Edital Premium • Próximos Mini Simulados Inéditos PCMG"
+                        },
+                        {
+                            titulo: "2º Mini Simulado PCMG: Direito Constitucional + Direito Administrativo (40 Questões)",
+                            premium: true
+                        },
+                        {
+                            titulo: "3º Mini Simulado PCMG: Criminologia + Direitos Humanos + Leg. Extravagante (40 Questões)",
+                            premium: true
+                        },
+                        {
+                            titulo: "4º Mini Simulado PCMG: Língua Portuguesa + Raciocínio Lógico/Informática (40 Questões)",
+                            premium: true
+                        }
+                    ]
+                }
+            ]
         },
         {
             id: "policia-penal",
