@@ -1,0 +1,1927 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1º Mini Simulado PCMG | Bloco 2: Direito Penal e Processo Penal | Método Missão</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        /* ==========================================================================
+           PROTEÇÃO CONTRA IMPRESSÃO E IDENTIDADE VISUAL MÉTODO MISSÃO
+           ========================================================================== */
+        @media print {
+            body {
+                display: none !important;
+            }
+        }
+
+        :root {
+            --mm-navy: #02112e;
+            --mm-navy-card: #031842;
+            --mm-gold: #ffca28;
+            --mm-cyan: #38bdf8;
+            --mm-green: #22c55e;
+            --mm-red: #ef4444;
+
+            /* Paleta Padrão da Folha A4: Azul do Método Missão */
+            --folha-fundo: linear-gradient(165deg, #051c4a 0%, #031336 100%);
+            --folha-borda: rgba(56, 189, 248, 0.32);
+            --folha-sombra: 0 20px 44px rgba(0, 0, 0, 0.62), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            --folha-texto: #f1f5f9;
+            --folha-texto-sec: #cbd5e1;
+            --folha-muted: #94a3b8;
+            --folha-titulo: #ffffff;
+            --folha-destaque: #ffca28;
+            --folha-divisor-questao: rgba(148, 163, 184, 0.28);
+            --folha-traco-coluna: rgba(255, 202, 40, 0.85);
+            --folha-traco-topo: rgba(255, 202, 40, 0.55);
+            --folha-traco-disciplina: #ffca28;
+            --folha-caixa-bg: rgba(2, 12, 34, 0.78);
+            --folha-caixa-borda: rgba(255, 202, 40, 0.34);
+            --folha-caixa-esq: #ffca28;
+            --folha-anuncio-bg: rgba(4, 22, 58, 0.72);
+            --folha-anuncio-borda: rgba(255, 202, 40, 0.45);
+            --folha-selo-bg: #ffca28;
+            --folha-selo-txt: #02112e;
+            --folha-hover: rgba(56, 189, 248, 0.1);
+            --folha-hover-borda: rgba(56, 189, 248, 0.35);
+            --folha-sel-bg: rgba(255, 202, 40, 0.16);
+            --folha-sel-borda: #ffca28;
+            --folha-bolinha-borda: #94a3b8;
+            --folha-bolinha-sel-bg: #ffca28;
+            --folha-bolinha-sel-txt: #02112e;
+            --folha-ok-bg: rgba(22, 163, 74, 0.2);
+            --folha-ok-borda: #22c55e;
+            --folha-err-bg: rgba(220, 38, 38, 0.2);
+            --folha-err-borda: #ef4444;
+            --folha-com-bg: rgba(2, 12, 34, 0.9);
+            --folha-com-borda: #ffca28;
+            --folha-rodape-borda: rgba(255, 202, 40, 0.28);
+            --folha-rodape-marca: rgba(255, 255, 255, 0.86);
+            --folha-rodape-num: #ffca28;
+            --badge-ok-bg: rgba(22, 163, 74, 0.2);
+            --badge-ok-txt: #86efac;
+            --badge-err-bg: rgba(220, 38, 38, 0.2);
+            --badge-err-txt: #fca5a5;
+            --badge-br-bg: rgba(148, 163, 184, 0.18);
+            --badge-br-txt: #cbd5e1;
+        }
+
+        /* Paleta Alternativa: Folha Branca (Padrão Caderno de Prova Real A4) */
+        .caderno-paginas.modo-papel {
+            --folha-fundo: #ffffff;
+            --folha-borda: #cbd5e1;
+            --folha-sombra: 0 18px 42px rgba(0, 0, 0, 0.58);
+            --folha-texto: #111827;
+            --folha-texto-sec: #334155;
+            --folha-muted: #64748b;
+            --folha-titulo: #0f172a;
+            --folha-destaque: #0f172a;
+            --folha-divisor-questao: #e2e8f0;
+            --folha-traco-coluna: #111827;
+            --folha-traco-topo: #111827;
+            --folha-traco-disciplina: #111827;
+            --folha-caixa-bg: #f8fafc;
+            --folha-caixa-borda: #cbd5e1;
+            --folha-caixa-esq: #111827;
+            --folha-anuncio-bg: #ffffff;
+            --folha-anuncio-borda: #334155;
+            --folha-selo-bg: #111827;
+            --folha-selo-txt: #ffffff;
+            --folha-hover: #f1f5f9;
+            --folha-hover-borda: #94a3b8;
+            --folha-sel-bg: #eff6ff;
+            --folha-sel-borda: #02112e;
+            --folha-bolinha-borda: #334155;
+            --folha-bolinha-sel-bg: #02112e;
+            --folha-bolinha-sel-txt: #ffffff;
+            --folha-ok-bg: #dcfce7;
+            --folha-ok-borda: #16a34a;
+            --folha-err-bg: #fee2e2;
+            --folha-err-borda: #dc2626;
+            --folha-com-bg: #f8fafc;
+            --folha-com-borda: #02112e;
+            --folha-rodape-borda: #cbd5e1;
+            --folha-rodape-marca: #111827;
+            --folha-rodape-num: #111827;
+            --badge-ok-bg: #dcfce7;
+            --badge-ok-txt: #166534;
+            --badge-err-bg: #fee2e2;
+            --badge-err-txt: #991b1b;
+            --badge-br-bg: #f1f5f9;
+            --badge-br-txt: #475569;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--mm-navy);
+            color: #f1f5f9;
+            min-height: 100vh;
+            padding-bottom: 50px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='460' height='220'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' transform='rotate(-25 230 110)' fill='rgba(255,202,40,0.045)' font-family='Segoe UI, Arial, sans-serif' font-weight='800' font-size='13px'%3EM%C3%89TODO MISS%C3%83O %E2%80%A2 SIMULADO PCMG%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+
+        /* Largura calibrada para proporção real de folha A4 */
+        #simulador-container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 0 14px;
+            transition: filter 0.2s ease;
+        }
+
+        /* ==========================================================================
+           BARRA SUPERIOR E PAINEL FIXO DE CONTROLE
+           ========================================================================== */
+        .hud-topo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 16px 0 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hud-marca {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .hud-marca i {
+            color: var(--mm-gold);
+            font-size: 16px;
+        }
+
+        .hud-marca span {
+            color: var(--mm-gold);
+        }
+
+        .hud-acoes {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn-hud {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 13px;
+            border-radius: 9px;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            background: rgba(255, 255, 255, 0.05);
+            color: #e2e8f0;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-hud:hover {
+            border-color: var(--mm-gold);
+            color: var(--mm-gold);
+            background: rgba(255, 202, 40, 0.08);
+        }
+
+        .btn-folha-branca {
+            border-color: rgba(255, 202, 40, 0.55);
+            background: rgba(255, 202, 40, 0.1);
+            color: var(--mm-gold);
+        }
+
+        .btn-folha-branca.ativo {
+            background: #ffffff;
+            color: #02112e;
+            border-color: #ffffff;
+        }
+
+        .btn-folha-branca.ativo:hover {
+            background: #f1f5f9;
+            color: #02112e;
+            border-color: var(--mm-gold);
+        }
+
+        /* Barra fixa com contador de questões e cronômetro */
+        .barra-status {
+            position: sticky;
+            top: 0;
+            z-index: 30;
+            margin: 14px 0 22px;
+            padding: 11px 16px;
+            border-radius: 12px;
+            background: rgba(3, 20, 56, 0.96);
+            border: 1px solid rgba(255, 202, 40, 0.4);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.48);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .status-esquerda {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .pilula-info {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #e2e8f0;
+        }
+
+        .pilula-info i {
+            color: var(--mm-gold);
+        }
+
+        .pilula-info strong {
+            color: var(--mm-gold);
+        }
+
+        .barra-progresso-wrap {
+            width: 115px;
+            height: 7px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 99px;
+            overflow: hidden;
+        }
+
+        .barra-progresso-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ffca28, #22c55e);
+            transition: width 0.25s ease;
+        }
+
+        .btn-atalho-finalizar {
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(134, 239, 172, 0.45);
+            background: linear-gradient(135deg, #22c55e, #15803d);
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.4px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: transform 0.15s ease, filter 0.15s ease;
+        }
+
+        .btn-atalho-finalizar:hover {
+            filter: brightness(1.08);
+            transform: translateY(-1px);
+        }
+
+        /* ==========================================================================
+           BOLETIM DE DESEMPENHO (APARECE SOMENTE APÓS FINALIZAR)
+           ========================================================================== */
+        #painel-resultado {
+            display: none;
+            margin-bottom: 24px;
+            padding: 22px;
+            border-radius: 14px;
+            background: linear-gradient(155deg, #062158 0%, #031336 100%);
+            border: 1.5px solid rgba(255, 202, 40, 0.55);
+            box-shadow: 0 16px 38px rgba(0, 0, 0, 0.5);
+        }
+
+        .res-cabecalho {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .res-titulo {
+            font-size: 17px;
+            font-weight: 900;
+            color: var(--mm-gold);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .res-sub {
+            font-size: 13px;
+            color: #cbd5e1;
+            margin-top: 4px;
+        }
+
+        .res-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+            gap: 12px;
+            margin: 18px 0;
+        }
+
+        .res-card {
+            background: rgba(2, 12, 34, 0.72);
+            border: 1px solid rgba(56, 189, 248, 0.22);
+            border-radius: 12px;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .res-card-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .res-card-valor {
+            font-size: 25px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-top: 4px;
+        }
+
+        .res-card-valor.aprovado {
+            color: #4ade80;
+        }
+
+        .res-card-valor.atencao {
+            color: #f87171;
+        }
+
+        .gabarito-mini-titulo {
+            font-size: 12px;
+            font-weight: 800;
+            color: #cbd5e1;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 10px;
+        }
+
+        .gabarito-mini-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .gab-pill {
+            width: 56px;
+            padding: 7px 4px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 800;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: transform 0.15s ease;
+        }
+
+        .gab-pill:hover {
+            transform: translateY(-2px);
+        }
+
+        .gab-pill.ok {
+            background: rgba(34, 197, 94, 0.18);
+            border-color: #22c55e;
+            color: #86efac;
+        }
+
+        .gab-pill.err {
+            background: rgba(239, 68, 68, 0.18);
+            border-color: #ef4444;
+            color: #fca5a5;
+        }
+
+        .gab-pill.branco {
+            background: rgba(148, 163, 184, 0.16);
+            border-color: #94a3b8;
+            color: #cbd5e1;
+        }
+
+        .res-acoes {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+        }
+
+        /* ==========================================================================
+           PILHA DE FOLHAS A4 COM QUEBRA DE PÁGINA REAL E PADRÃO DE PROVA OFICIAL
+           ========================================================================== */
+        .caderno-paginas {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .folha-a4 {
+            background: var(--folha-fundo);
+            color: var(--folha-texto);
+            border: 1.5px solid var(--folha-borda);
+            border-radius: 4px;
+            box-shadow: var(--folha-sombra);
+            padding: 24px 20px 22px;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .topo-pagina {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.7px;
+            text-transform: uppercase;
+            color: var(--folha-destaque);
+        }
+
+        .topo-pagina-linha {
+            flex: 1;
+            height: 1px;
+            background: var(--folha-traco-topo);
+        }
+
+        .topo-pagina-dir {
+            color: var(--folha-texto);
+            letter-spacing: 0.3px;
+            text-transform: none;
+            font-weight: 700;
+            font-size: 11.5px;
+        }
+
+        .cabecalho-prova {
+            border: 1.5px solid var(--folha-caixa-borda);
+            border-radius: 5px;
+            padding: 13px 16px;
+            margin-bottom: 18px;
+            background: var(--folha-caixa-bg);
+        }
+
+        .cabecalho-prova-linha1 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 10.5px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: var(--folha-destaque);
+            padding-bottom: 7px;
+            border-bottom: 1px solid var(--folha-divisor-questao);
+        }
+
+        .cabecalho-prova h1 {
+            font-size: 16.5px;
+            font-weight: 900;
+            letter-spacing: 0.3px;
+            margin-top: 9px;
+            color: var(--folha-titulo);
+            text-transform: uppercase;
+        }
+
+        .cabecalho-prova-meta {
+            margin-top: 5px;
+            font-size: 12.5px;
+            color: var(--folha-texto-sec);
+            line-height: 1.46;
+        }
+
+        .faixa-disciplina {
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--folha-destaque);
+            border-bottom: 2px solid var(--folha-traco-disciplina);
+            padding: 0 0 6px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .faixa-disciplina-sub {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--folha-texto-sec);
+            letter-spacing: 0.4px;
+        }
+
+        .faixa-coluna {
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.9px;
+            text-transform: uppercase;
+            color: var(--folha-destaque);
+            border-bottom: 2px solid var(--folha-traco-disciplina);
+            padding: 0 0 5px;
+            margin-bottom: 4px;
+        }
+
+        .grade-colunas {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            position: relative;
+        }
+
+        .coluna-prova {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            min-width: 0;
+        }
+
+        @media (min-width: 800px) {
+            .folha-a4 {
+                padding: 32px 40px 26px;
+            }
+
+            .grade-colunas {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 0 38px;
+                align-items: stretch;
+            }
+
+            .grade-colunas::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 50%;
+                width: 1.5px;
+                background: var(--folha-traco-coluna);
+                transform: translateX(-0.75px);
+                pointer-events: none;
+            }
+
+            .coluna-prova .questao-item:last-child {
+                border-bottom: none;
+                padding-bottom: 2px;
+            }
+        }
+
+        .rodape-pagina {
+            margin-top: 28px;
+            padding-top: 14px;
+            border-top: 1px solid var(--folha-rodape-borda);
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+        }
+
+        .rodape-pagina-marca {
+            grid-column: 2;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 12.5px;
+            font-weight: 900;
+            letter-spacing: 2.2px;
+            text-transform: uppercase;
+            color: var(--folha-rodape-marca);
+        }
+
+        .rodape-pagina-marca i {
+            color: var(--folha-destaque);
+            font-size: 14px;
+        }
+
+        .rodape-pagina-num {
+            grid-column: 3;
+            justify-self: end;
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--folha-rodape-num);
+        }
+
+        .questao-item {
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--folha-divisor-questao);
+            scroll-margin-top: 86px;
+        }
+
+        .questao-topo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 6px;
+            flex-wrap: wrap;
+        }
+
+        .questao-num {
+            font-size: 13px;
+            font-weight: 900;
+            color: var(--folha-destaque);
+            letter-spacing: 0.3px;
+        }
+
+        .questao-tag-materia {
+            font-size: 10px;
+            font-weight: 800;
+            color: var(--folha-muted);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .questao-status-badge {
+            display: none;
+            font-size: 10.5px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 99px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .questao-status-badge.ok {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: var(--badge-ok-bg);
+            color: var(--badge-ok-txt);
+            border: 1px solid #22c55e;
+        }
+
+        .questao-status-badge.err {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: var(--badge-err-bg);
+            color: var(--badge-err-txt);
+            border: 1px solid #ef4444;
+        }
+
+        .questao-status-badge.branco {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: var(--badge-br-bg);
+            color: var(--badge-br-txt);
+            border: 1px solid #94a3b8;
+        }
+
+        .questao-enunciado {
+            font-size: 13.2px;
+            line-height: 1.54;
+            color: var(--folha-texto);
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        .questao-citacao {
+            margin: 8px 0 10px;
+            padding: 8px 11px;
+            border-left: 3px solid var(--folha-caixa-esq);
+            background: var(--folha-caixa-bg);
+            font-size: 12.6px;
+            line-height: 1.52;
+            color: var(--folha-texto-sec);
+        }
+
+        .questao-citacao div + div {
+            margin-top: 6px;
+        }
+
+        .alternativas-lista {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .alternativa-btn {
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            padding: 7px 9px;
+            border-radius: 6px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--folha-texto);
+            text-align: left;
+            font-size: 13px;
+            line-height: 1.46;
+            cursor: pointer;
+            transition: background-color 0.15s ease, border-color 0.15s ease;
+        }
+
+        .alternativa-btn:hover:not(:disabled) {
+            background: var(--folha-hover);
+            border-color: var(--folha-hover-borda);
+        }
+
+        .alternativa-btn:disabled {
+            cursor: default;
+        }
+
+        .alt-letra {
+            flex-shrink: 0;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 1.5px solid var(--folha-bolinha-borda);
+            background: transparent;
+            color: var(--folha-texto);
+            font-size: 11px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1px;
+            transition: all 0.15s ease;
+        }
+
+        .alt-texto {
+            flex: 1;
+            text-align: justify;
+        }
+
+        .alternativa-btn.selecionada {
+            background: var(--folha-sel-bg);
+            border-color: var(--folha-sel-borda);
+        }
+
+        .alternativa-btn.selecionada .alt-letra {
+            background: var(--folha-bolinha-sel-bg);
+            border-color: var(--folha-bolinha-sel-bg);
+            color: var(--folha-bolinha-sel-txt);
+        }
+
+        .alternativa-btn.correta {
+            background: var(--folha-ok-bg) !important;
+            border-color: var(--folha-ok-borda) !important;
+        }
+
+        .alternativa-btn.correta .alt-letra {
+            background: #16a34a !important;
+            border-color: #16a34a !important;
+            color: #ffffff !important;
+        }
+
+        .alternativa-btn.incorreta {
+            background: var(--folha-err-bg) !important;
+            border-color: var(--folha-err-borda) !important;
+        }
+
+        .alternativa-btn.incorreta .alt-letra {
+            background: #dc2626 !important;
+            border-color: #dc2626 !important;
+            color: #ffffff !important;
+        }
+
+        .comentario-box {
+            display: none;
+            margin-top: 11px;
+            padding: 12px 13px;
+            border-radius: 6px;
+            background: var(--folha-com-bg);
+            border: 1px solid var(--folha-divisor-questao);
+            border-left: 4px solid var(--folha-com-borda);
+            font-size: 12.5px;
+            line-height: 1.54;
+            color: var(--folha-texto-sec);
+            text-align: justify;
+        }
+
+        .comentario-box.visivel {
+            display: block;
+        }
+
+        .comentario-titulo {
+            font-size: 11.2px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: var(--folha-destaque);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .comentario-box p + p {
+            margin-top: 6px;
+        }
+
+        .rodape-finalizacao {
+            margin-top: 28px;
+            padding: 24px 20px;
+            border-radius: 12px;
+            background: linear-gradient(155deg, #062158 0%, #031336 100%);
+            border: 1.5px solid rgba(255, 202, 40, 0.42);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.48);
+            text-align: center;
+        }
+
+        .aviso-incompleto {
+            display: none;
+            max-width: 560px;
+            margin: 0 auto 14px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            background: rgba(245, 158, 11, 0.16);
+            border: 1px solid #f59e0b;
+            color: #f1f5f9;
+            font-size: 13.5px;
+            line-height: 1.5;
+        }
+
+        .aviso-incompleto-acoes {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-finalizar-prova {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 15px 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(134, 239, 172, 0.5);
+            background: linear-gradient(135deg, #22c55e 0%, #15803d 100%);
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 10px 26px rgba(22, 163, 74, 0.34);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+        }
+
+        .btn-finalizar-prova:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.06);
+            box-shadow: 0 14px 32px rgba(22, 163, 74, 0.48);
+        }
+
+        .btn-secundario {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 11px 18px;
+            border-radius: 10px;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            background: rgba(2, 12, 34, 0.78);
+            color: #f1f5f9;
+            font-size: 13px;
+            font-weight: 800;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn-secundario:hover {
+            border-color: var(--mm-gold);
+        }
+
+        .btn-ouro {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 11px 18px;
+            border-radius: 10px;
+            border: none;
+            background: linear-gradient(135deg, #ffd54f, #f59e0b);
+            color: #02112e;
+            font-size: 13px;
+            font-weight: 900;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .rodape-institucional {
+            text-align: center;
+            font-size: 11.5px;
+            color: #8a99ad;
+            margin-top: 26px;
+            line-height: 1.55;
+        }
+
+        @media (max-width: 600px) {
+            .folha-a4 {
+                padding: 18px 15px 18px;
+            }
+            .barra-progresso-wrap {
+                display: none;
+            }
+            .cabecalho-prova h1 {
+                font-size: 15px;
+            }
+            .topo-pagina {
+                font-size: 9.8px;
+                gap: 8px;
+            }
+            .topo-pagina-dir {
+                font-size: 10px;
+            }
+        }
+
+        /* ==========================================================================
+           MARCAS D'ÁGUA NATIVAS SOBRE A FOLHA A4 + ASSINATURA NAS QUESTÕES
+           (Compatível com protecao-simulado.js sem duplicação)
+           ========================================================================== */
+        html, body, .folha-a4, .questao-item, .comentario-box, .alternativa-btn {
+            -webkit-touch-callout: none !important;
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+            -webkit-user-drag: none !important;
+        }
+
+        img {
+            -webkit-touch-callout: none !important;
+            -webkit-user-drag: none !important;
+            pointer-events: none;
+        }
+
+        .folha-a4 {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .folha-a4::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 5;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='440' height='215'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' transform='rotate(-25 220 107)' fill='rgba(255,255,255,0.045)' font-family='Segoe UI, Arial, sans-serif' font-weight='800' font-size='12px' letter-spacing='1'%3EM%C3%89TODO MISS%C3%83O %E2%80%A2 METODOMISSAO.COM%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+
+        .caderno-paginas.modo-papel .folha-a4::after {
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='440' height='215'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' transform='rotate(-25 220 107)' fill='rgba(2,17,46,0.05)' font-family='Segoe UI, Arial, sans-serif' font-weight='800' font-size='12px' letter-spacing='1'%3EM%C3%89TODO MISS%C3%83O %E2%80%A2 METODOMISSAO.COM%3C/text%3E%3C/svg%3E");
+        }
+
+        .alternativas-lista::before {
+            content: "MÉTODO MISSÃO • METODOMISSAO.COM";
+            display: block;
+            width: 100%;
+            text-align: right;
+            font-size: 9.5px;
+            font-weight: 800;
+            letter-spacing: 0.9px;
+            color: rgba(255, 255, 255, 0.18);
+            margin: -4px 0 2px;
+            padding-right: 4px;
+            pointer-events: none;
+        }
+
+        .caderno-paginas.modo-papel .alternativas-lista::before {
+            color: rgba(2, 17, 46, 0.24);
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div id="simulador-container">
+
+        <!-- TOPO MÉTODO MISSÃO -->
+        <header class="hud-topo">
+            <a href="index.html" class="hud-marca">
+                <i class="fa-solid fa-shield-halved"></i>
+                MÉTODO <span>MISSÃO</span>
+            </a>
+
+            <div class="hud-acoes">
+                <button type="button" id="btn-tema-folha" class="btn-hud btn-folha-branca" title="Alternar entre o Modo Noturno (Folha Azul) e o Modo Claro (Folha Branca)">
+                    <i class="fa-solid fa-sun"></i>
+                    <span>Modo Claro (Folha Branca)</span>
+                </button>
+                <a href="index.html" class="btn-hud">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Voltar ao Início</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- BARRA FIXA DE CONTROLE (CONTADOR + CRONÔMETRO) -->
+        <div class="barra-status" role="region" aria-label="Status do Simulado">
+            <div class="status-esquerda">
+                <div class="pilula-info">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span>Respondidas: <strong id="contador-respondidas">0 / 20</strong></span>
+                </div>
+                <div class="barra-progresso-wrap" aria-hidden="true">
+                    <div class="barra-progresso-fill" id="barra-progresso"></div>
+                </div>
+                <div class="pilula-info">
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Tempo: <strong id="cronometro">00:00</strong></span>
+                </div>
+            </div>
+
+            <button type="button" id="btn-ir-finalizar" class="btn-atalho-finalizar">
+                <i class="fa-solid fa-clipboard-check"></i>
+                <span>Finalizar Bloco</span>
+            </button>
+        </div>
+
+        <!-- BOLETIM DE DESEMPENHO (LIBERADO SOMENTE APÓS CORREÇÃO) -->
+        <section id="painel-resultado" aria-live="polite">
+            <div class="res-cabecalho">
+                <div>
+                    <div class="res-titulo"><i class="fa-solid fa-award" style="margin-right:8px;"></i>Resultado Oficial: Bloco 2 (Direito Penal + Processo Penal)</div>
+                    <div class="res-sub" id="res-mensagem">Confira seu desempenho e os comentários detalhados no caderno abaixo.</div>
+                </div>
+            </div>
+
+            <div class="res-cards">
+                <div class="res-card">
+                    <div class="res-card-label">Acertos</div>
+                    <div class="res-card-valor" id="res-acertos">0 / 20</div>
+                </div>
+                <div class="res-card">
+                    <div class="res-card-label">Aproveitamento</div>
+                    <div class="res-card-valor" id="res-percentual">0%</div>
+                </div>
+                <div class="res-card">
+                    <div class="res-card-label">Em Branco</div>
+                    <div class="res-card-valor" id="res-branco">0</div>
+                </div>
+                <div class="res-card">
+                    <div class="res-card-label">Tempo Total</div>
+                    <div class="res-card-valor" id="res-tempo">00:00</div>
+                </div>
+            </div>
+
+            <div class="gabarito-mini-titulo">Mapa de Gabarito (clique no número para ir à questão comentada):</div>
+            <div class="gabarito-mini-grid" id="gabarito-mini-grid"></div>
+
+            <div class="res-acoes">
+                <a href="simulado-pcmg-bloco1.html" class="btn-ouro">
+                    <i class="fa-solid fa-backward-step"></i>
+                    <span>Voltar ao Bloco 1 (Legislação PCMG)</span>
+                </a>
+                <button type="button" id="btn-refazer-topo" class="btn-secundario">
+                    <i class="fa-solid fa-rotate-right"></i>
+                    <span>Refazer Bloco 2</span>
+                </button>
+                <a href="index.html" class="btn-hud">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Voltar aos Simulados</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- CADERNO DE PROVA DIVIDIDO EM FOLHAS A4 COM QUEBRA DE PÁGINA REAL -->
+        <main class="caderno-paginas" id="folha-prova">
+
+            <!-- ==================== PÁGINA 1 ==================== -->
+            <section class="folha-a4" aria-label="Página 1">
+                <div class="topo-pagina">
+                    <span>MÉTODO MISSÃO</span>
+                    <div class="topo-pagina-linha"></div>
+                    <span class="topo-pagina-dir">1º Mini Simulado • PCMG • Pré-Edital</span>
+                </div>
+                <div class="cabecalho-prova">
+                    <div class="cabecalho-prova-linha1">
+                        <span>MINI SIMULADO PRÉ-EDITAL • CARREIRAS POLICIAIS MG</span>
+                        <span>POLÍCIA CIVIL DE MINAS GERAIS (PCMG)</span>
+                    </div>
+                    <h1>Bloco 2: Direito Penal e Direito Processual Penal (Questões 21 a 40)</h1>
+                    <p class="cabecalho-prova-meta">
+                        Modo Prova Real: marque suas respostas normalmente (5 alternativas: A a E). O gabarito oficial e os comentários completos serão exibidos somente ao clicar em <strong>Finalizar e Corrigir</strong>.
+                    </p>
+                </div>
+                <div class="faixa-disciplina">
+                    <span>CONHECIMENTOS ESPECÍFICOS • DIREITO PENAL</span>
+                    <span class="faixa-disciplina-sub">Questões 21 a 30</span>
+                </div>
+                <div class="grade-colunas">
+                    <div class="coluna-prova" id="g1-esq"></div>
+                    <div class="coluna-prova" id="g1-dir"></div>
+                </div>
+
+                <div class="rodape-pagina">
+                    <div class="rodape-pagina-marca">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>MÉTODO MISSÃO</span>
+                    </div>
+                    <span class="rodape-pagina-num">1</span>
+                </div>
+            </section>
+
+            <!-- ==================== PÁGINA 2 ==================== -->
+            <section class="folha-a4" aria-label="Página 2">
+                <div class="topo-pagina">
+                    <span>MÉTODO MISSÃO</span>
+                    <div class="topo-pagina-linha"></div>
+                    <span class="topo-pagina-dir">1º Mini Simulado • PCMG • Pré-Edital</span>
+                </div>
+                <div class="grade-colunas">
+                    <div class="coluna-prova" id="g2-esq"></div>
+                    <div class="coluna-prova" id="g2-dir"></div>
+                </div>
+
+                <div class="rodape-pagina">
+                    <div class="rodape-pagina-marca">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>MÉTODO MISSÃO</span>
+                    </div>
+                    <span class="rodape-pagina-num">2</span>
+                </div>
+            </section>
+
+            <!-- ==================== PÁGINA 3 ==================== -->
+            <section class="folha-a4" aria-label="Página 3">
+                <div class="topo-pagina">
+                    <span>MÉTODO MISSÃO</span>
+                    <div class="topo-pagina-linha"></div>
+                    <span class="topo-pagina-dir">1º Mini Simulado • PCMG • Pré-Edital</span>
+                </div>
+                <div class="grade-colunas">
+                    <div class="coluna-prova" id="g3-esq"></div>
+                    <div class="coluna-prova" id="g3-dir"><div class="faixa-coluna">DIREITO PROCESSUAL PENAL • Q31 A Q40</div></div>
+                </div>
+
+                <div class="rodape-pagina">
+                    <div class="rodape-pagina-marca">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>MÉTODO MISSÃO</span>
+                    </div>
+                    <span class="rodape-pagina-num">3</span>
+                </div>
+            </section>
+
+            <!-- ==================== PÁGINA 4 ==================== -->
+            <section class="folha-a4" aria-label="Página 4">
+                <div class="topo-pagina">
+                    <span>MÉTODO MISSÃO</span>
+                    <div class="topo-pagina-linha"></div>
+                    <span class="topo-pagina-dir">1º Mini Simulado • PCMG • Pré-Edital</span>
+                </div>
+                <div class="grade-colunas">
+                    <div class="coluna-prova" id="g4-esq"></div>
+                    <div class="coluna-prova" id="g4-dir"></div>
+                </div>
+
+                <div class="rodape-pagina">
+                    <div class="rodape-pagina-marca">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>MÉTODO MISSÃO</span>
+                    </div>
+                    <span class="rodape-pagina-num">4</span>
+                </div>
+            </section>
+
+            <!-- ==================== PÁGINA 5 ==================== -->
+            <section class="folha-a4" aria-label="Página 5">
+                <div class="topo-pagina">
+                    <span>MÉTODO MISSÃO</span>
+                    <div class="topo-pagina-linha"></div>
+                    <span class="topo-pagina-dir">1º Mini Simulado • PCMG • Pré-Edital</span>
+                </div>
+                <div class="grade-colunas">
+                    <div class="coluna-prova" id="g5-esq"></div>
+                    <div class="coluna-prova" id="g5-dir"></div>
+                </div>
+
+                <div class="rodape-pagina">
+                    <div class="rodape-pagina-marca">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>MÉTODO MISSÃO</span>
+                    </div>
+                    <span class="rodape-pagina-num">5</span>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- ÁREA DE FINALIZAÇÃO -->
+        <div class="rodape-finalizacao" id="area-finalizar">
+            <div class="aviso-incompleto" id="aviso-incompleto">
+                <div id="aviso-incompleto-texto"></div>
+                <div class="aviso-incompleto-acoes">
+                    <button type="button" id="btn-confirmar-corrigir" class="btn-ouro">Corrigir mesmo assim</button>
+                    <button type="button" id="btn-voltar-revisar" class="btn-secundario">Voltar e revisar</button>
+                </div>
+            </div>
+
+            <button type="button" id="btn-finalizar-prova" class="btn-finalizar-prova">
+                <i class="fa-solid fa-check-double"></i>
+                <span>Finalizar e Corrigir Bloco 2</span>
+            </button>
+        </div>
+
+        <footer class="rodape-institucional">
+            &copy; 2026 Método Missão. Conteúdo 100% inédito protegido pela Lei nº 9.610/98.<br>
+            Mini Simulado Pré-Edital elaborado com foco no núcleo duro das carreiras da Polícia Civil de Minas Gerais (PCMG).
+        </footer>
+
+    </div>
+
+    <script>
+        (function () {
+            // ======================================================================
+            // ALTERNADOR: AZUL DO MÉTODO MISSÃO (PADRÃO) <-> FOLHA BRANCA DE PROVA
+            // ======================================================================
+            const elCaderno = document.getElementById("folha-prova");
+            const btnTema = document.getElementById("btn-tema-folha");
+            const CHAVE_TEMA = "mm_tema_folha_simulado";
+
+            function aplicarTema(modoPapel) {
+                if (!elCaderno || !btnTema) return;
+                if (modoPapel) {
+                    elCaderno.classList.add("modo-papel");
+                    btnTema.classList.add("ativo");
+                    btnTema.innerHTML = '<i class="fa-solid fa-moon"></i><span>Modo Noturno (Folha Azul)</span>';
+                } else {
+                    elCaderno.classList.remove("modo-papel");
+                    btnTema.classList.remove("ativo");
+                    btnTema.innerHTML = '<i class="fa-solid fa-sun"></i><span>Modo Claro (Folha Branca)</span>';
+                }
+            }
+            try {
+                if (localStorage.getItem(CHAVE_TEMA) === "papel") {
+                    aplicarTema(true);
+                }
+            } catch (e) {}
+
+            if (btnTema) {
+                btnTema.addEventListener("click", function () {
+                    const ativarPapel = !elCaderno.classList.contains("modo-papel");
+                    aplicarTema(ativarPapel);
+                    try {
+                        localStorage.setItem(CHAVE_TEMA, ativarPapel ? "papel" : "missao");
+                    } catch (e) {}
+                });
+            }
+
+            // ======================================================================
+            // BANCO DE QUESTÕES INÉDITAS: BLOCO 2 (PCMG PRÉ-EDITAL)
+            // ======================================================================
+            const QUESTOES = [
+                {
+                                "numero": 21,
+                                "materia": "Direito Penal",
+                                "destino": "g1-esq",
+                                "enunciado": "João, utilizando uma faca, desfere golpes contra Carlos em 10 de março de 2026 com intenção de matá-lo. Carlos é socorrido, mas vem a falecer no hospital em 25 de março de 2026. No intervalo entre a agressão e o óbito, em 15 de março de 2026, entra em vigor lei penal mais severa aumentando a pena do delito. De acordo com o Código Penal brasileiro, qual teoria define o <strong>tempo do crime</strong> e qual lei deve ser aplicada a João?",
+                                "alternativas": [
+                                                "Teoria do resultado; aplica-se a lei mais severa vigente em 25 de março de 2026.",
+                                                "Teoria da ubiquidade; aplica-se a lei mais severa, pois o resultado morte ocorreu sob sua vigência.",
+                                                "Teoria da atividade; considera-se praticado o crime em 10 de março de 2026, aplicando-se a lei vigente na data da ação (mais benéfica), vedada a retroatividade prejudicial.",
+                                                "Teoria mista; aplica-se a lei mais severa desde que o réu seja maior de 21 anos.",
+                                                "Teoria da atividade; aplica-se a lei mais severa por se tratar de crime material contra a vida."
+                                ],
+                                "correta": 2,
+                                "comentario": "\n            <p><strong>Gabarito: (C).</strong></p>\n            <p>Pelo art. 4º do Código Penal, quanto ao <strong>tempo do crime</strong> adota-se a <strong>Teoria da Atividade</strong>: considera-se praticado o crime no momento da ação ou omissão, ainda que outro seja o momento do resultado. Como a conduta ocorreu em 10/03/2026, aplica-se a lei então vigente, pois a lei penal posterior mais grave (<em>novatio legis in pejus</em>) <strong>não retroage</strong> (art. 5º, XL, CF/88).</p>\n            <p><strong>Macete clássico (LUTA):</strong> <strong>LU</strong>gar do crime = <strong>U</strong>biquidade (art. 6º CP); <strong>T</strong>empo do crime = <strong>A</strong>tividade (art. 4º CP).</p>\n        "
+                },
+                {
+                                "numero": 22,
+                                "materia": "Direito Penal",
+                                "destino": "g1-esq",
+                                "enunciado": "Durante uma discussão em via pública, Rafael, armado, dispara uma vez contra Bruno com intenção de matá-lo, atingindo-o de raspão no ombro. Tendo ainda cinco munições intactas no carregador e podendo prosseguir nos disparos para consumar o homicídio, Rafael resolve voluntariamente cessar o ataque, guarda a arma e vai embora. Bruno sobrevive com lesão leve. Segundo o Código Penal, a conduta de Rafael configura:",
+                                "alternativas": [
+                                                "tentativa de homicídio simples, respondendo pela pena do homicídio reduzida de um a dois terços.",
+                                                "arrependimento posterior, gerando apenas redução de pena pelo homicídio tentado.",
+                                                "crime impossível por ineficácia absoluta do meio empregado.",
+                                                "desistência voluntária, respondendo Rafael apenas pelos atos já praticados (lesão corporal).",
+                                                "arrependimento eficaz, pois o agente esgotou todos os meios executórios disponíveis."
+                                ],
+                                "correta": 3,
+                                "comentario": "\n            <p><strong>Gabarito: (D) desistência voluntária.</strong></p>\n            <p>Nos termos do art. 15 do CP (<em>ponte de ouro</em>), o agente que, voluntariamente, desiste de prosseguir na execução (podendo continuar) só responde pelos <strong>atos já praticados</strong> (no caso, lesão corporal, e não tentativa de homicídio).</p>\n            <p><strong>Distinção fundamental para a prova:</strong><br>\n            • <strong>Desistência voluntária:</strong> o agente interrompe a execução antes de esgotá-la (<em>\"posso prosseguir, mas não quero\"</em>).<br>\n            • <strong>Arrependimento eficaz (E):</strong> o agente já esgotou a execução, mas age positivamente para impedir o resultado (ex.: dá o antídoto após envenenar).<br>\n            • <strong>Tentativa (A):</strong> o crime não se consuma por circunstâncias <em>alheias</em> à vontade do agente (<em>\"quero prosseguir, mas não posso\"</em>).</p>\n        "
+                },
+                {
+                                "numero": 23,
+                                "materia": "Direito Penal",
+                                "destino": "g1-dir",
+                                "enunciado": "Um agente da Polícia Civil, em operação legal de cumprimento de mandado de prisão, depara-se com criminoso armado que mantém uma vítima como refém sob iminente risco de execução. Para neutralizar a agressão iminente contra a refém, o policial efetua disparo técnico preciso que cessa o perigo. À luz do art. 25, parágrafo único, do Código Penal (incluído pela Lei nº 13.964/2019, Pacote Anticrime), essa hipótese enquadra-se expressamente em:",
+                                "alternativas": [
+                                                "legítima defesa.",
+                                                "exercício regular de direito.",
+                                                "estado de necessidade agressivo.",
+                                                "inexigibilidade de conduta diversa.",
+                                                "coação moral irresistível."
+                                ],
+                                "correta": 0,
+                                "comentario": "\n            <p><strong>Gabarito: (A) legítima defesa.</strong></p>\n            <p>O parágrafo único do art. 25 do CP, inserido pelo Pacote Anticrime, dispõe expressamente: <em>\"Observados os requisitos previstos no caput deste artigo, considera-se também em <strong>legítima defesa</strong> o agente de segurança pública que repele agressão ou risco de agressão a vítima mantida refém durante a prática de crimes\"</em>.</p>\n            <p><strong>Atenção à pegadinha:</strong> muitas bancas tentam induzir o candidato a marcar <em>estrito cumprimento de dever legal</em> ou <em>estado de necessidade</em>, mas a lei classificou essa situação expressamente como <strong>legítima defesa</strong> (desde que observados os requisitos do <em>caput</em>: meios necessários e uso moderado).</p>\n        "
+                },
+                {
+                                "numero": 24,
+                                "materia": "Direito Penal",
+                                "destino": "g1-dir",
+                                "enunciado": "Caio e Lucas combinam praticar um furto simples em residência supostamente vazia. Caio permanece do lado de fora como vigia, enquanto Lucas entra no imóvel. Surpreendido pelo morador, Lucas, sem o conhecimento ou adesão prévia de Caio, saca uma arma oculta e pratica roubo mediante grave ameaça, circunstância que não era previsível para Caio. De acordo com o art. 29, § 2º, do Código Penal (cooperação dolosamente distinta), Caio:",
+                                "alternativas": [
+                                                "responderá integralmente pelo crime de roubo majorado, por força absoluta da teoria monista.",
+                                                "ficará isento de pena, pois não ingressou no interior da residência.",
+                                                "responderá por tentativa de latrocínio em concurso formal.",
+                                                "responderá obrigatoriamente pelo crime menos grave aumentado até o triplo.",
+                                                "responderá pela pena do crime menos grave (furto), que quis participar, sem o aumento de metade, pois o resultado mais grave não lhe era previsível."
+                                ],
+                                "correta": 4,
+                                "comentario": "\n            <p><strong>Gabarito: (E).</strong></p>\n            <p>O art. 29, § 2º, do CP trata da <strong>cooperação dolosamente distinta</strong> (desvio subjetivo de condutas): <em>\"Se algum dos concorrentes quis participar de crime menos grave, ser-lhe-á aplicada a pena deste; essa pena será aumentada até metade, na hipótese de ter sido previsível o resultado mais grave\"</em>.</p>\n            <p>Como o enunciado deixou expresso que o resultado mais grave <strong>não era previsível</strong> para Caio, ele responde pelo crime menos grave (furto) <strong>sem</strong> a incidência do aumento de até metade.</p>\n        "
+                },
+                {
+                                "numero": 25,
+                                "materia": "Direito Penal",
+                                "destino": "g2-esq",
+                                "enunciado": "Com as profundas alterações promovidas pela Lei nº 14.994/2024 (Pacote Antifeminicídio) no Código Penal brasileiro, sobre o tratamento jurídico-penal atual do <strong>feminicídio</strong>, assinale a alternativa correta.",
+                                "alternativas": [
+                                                "Permanece previsto exclusivamente como qualificadora do crime de homicídio no art. 121, § 2º, inciso VI, com pena de 12 a 30 anos.",
+                                                "Passou a constituir tipo penal autônomo previsto no art. 121-A do Código Penal (matar mulher por razões da condição do sexo feminino), com pena de reclusão de 20 a 40 anos.",
+                                                "Foi reclassificado como infração de menor potencial ofensivo de competência do Juizado Especial Criminal.",
+                                                "Deixou de constar no rol legal dos crimes hediondos em razão da autonomia típica.",
+                                                "Admite, em regra, a suspensão condicional do processo e o acordo de não persecução penal (ANPP)."
+                                ],
+                                "correta": 1,
+                                "comentario": "\n            <p><strong>Gabarito: (B).</strong></p>\n            <p>Atualização legislativa indispensável para a PCMG 2026/2027: a <strong>Lei nº 14.994/2024</strong> retirou o feminicídio do rol de qualificadoras do art. 121 e o transformou em <strong>crime autônomo no art. 121-A do CP</strong>, elevando a pena para <strong>reclusão de 20 a 40 anos</strong>, a maior pena-base do Código Penal.</p>\n            <p><strong>Erros das demais:</strong> (D) continua sendo expressamente <strong>crime hediondo</strong> (Lei 8.072/90); (C) e (E) são totalmente incompatíveis com crime doloso contra a vida de pena mínima de 20 anos, julgado pelo Tribunal do Júri.</p>\n        "
+                },
+                {
+                                "numero": 26,
+                                "materia": "Direito Penal",
+                                "destino": "g2-esq",
+                                "enunciado": "Diego subtrai o aparelho celular de uma pedestre distraída sem emprego de violência ou grave ameaça. Logo após a subtração, antes de alcançar a posse mansa e pacífica, a vítima corre atrás dele e agarra sua mochila para recuperar o bem. Nesse momento, Diego desfere um soco no rosto da vítima para assegurar a detenção do celular e foge. Segundo o Código Penal, Diego praticou:",
+                                "alternativas": [
+                                                "furto consumado em concurso material com lesão corporal leve.",
+                                                "furto qualificado pela destreza.",
+                                                "roubo próprio (art. 157, <em>caput</em>, do CP).",
+                                                "roubo impróprio (art. 157, § 1º, do CP).",
+                                                "extorsão qualificada pelo resultado."
+                                ],
+                                "correta": 3,
+                                "comentario": "\n            <p><strong>Gabarito: (D) roubo impróprio (art. 157, § 1º, do CP).</strong></p>\n            <p>No <strong>roubo próprio</strong> (<em>caput</em>), a violência ou grave ameaça ocorre <em>antes ou durante</em> a subtração. No <strong>roubo impróprio</strong> (§ 1º), o agente emprega violência contra pessoa ou grave ameaça <strong>logo depois de subtraída a coisa</strong>, a fim de assegurar a impunidade do crime ou a detenção da coisa para si ou para terceiro.</p>\n            <p><strong>Atenção:</strong> no roubo impróprio, não cabe a hipótese de <em>redução da capacidade de resistência</em> (violência imprópria), exigindo-se violência física ou grave ameaça.</p>\n        "
+                },
+                {
+                                "numero": 27,
+                                "materia": "Direito Penal",
+                                "destino": "g2-dir",
+                                "enunciado": "Um servidor público estadual, valendo-se das facilidades do cargo de fiscal, <strong>exige</strong> de um comerciante o pagamento de R$ 5.000,00 para não lavrar auto de infração indevido. Assustado, o comerciante aciona a Polícia Civil antes de entregar qualquer quantia. De acordo com o Código Penal e a jurisprudência dos tribunais superiores, o servidor praticou:",
+                                "alternativas": [
+                                                "corrupção passiva tentada, pois não chegou a receber o dinheiro.",
+                                                "peculato-desvio na modalidade tentada.",
+                                                "concussão consumada, por se tratar de crime formal que se consuma com a simples exigência da vantagem indevida.",
+                                                "prevaricação consumada.",
+                                                "excesso de exação culposo."
+                                ],
+                                "correta": 2,
+                                "comentario": "\n            <p><strong>Gabarito: (C) concussão consumada.</strong></p>\n            <p>Na <strong>concussão</strong> (art. 316 do CP), o verbo nuclear é <strong>EXIGIR</strong> (imposição/intimidação). Trata-se de <strong>crime formal</strong> (de consumação antecipada): consuma-se no exato instante da exigência, sendo o efetivo recebimento da vantagem mero <em>exaurimento</em>.</p>\n            <p><strong>Distinção essencial entre os tipos penais:</strong><br>\n            • <strong>Concussão (art. 316):</strong> <em>exigir</em> vantagem indevida.<br>\n            • <strong>Corrupção passiva (art. 317):</strong> <em>solicitar</em>, <em>receber</em> ou <em>aceitar promessa</em> de vantagem indevida.</p>\n        "
+                },
+                {
+                                "numero": 28,
+                                "materia": "Direito Penal",
+                                "destino": "g2-dir",
+                                "enunciado": "Um servidor público responsável pela guarda de equipamentos eletrônicos da repartição esquece, por negligência grave, a porta do almoxarifado destrancada e o sistema de alarme desligado ao final do expediente. Aproveitando-se desse descuido, um terceiro estranho ao serviço público ingressa no local durante a madrugada e furta três notebooks oficiais. Antes do julgamento definitivo, o servidor ressarce integralmente o valor dos bens ao Estado. À luz do art. 312, §§ 2º e 3º, do Código Penal, assinale a alternativa correta.",
+                                "alternativas": [
+                                                "O servidor praticou peculato culposo, e a reparação do dano anterior à sentença irrecorrível extingue a punibilidade.",
+                                                "O servidor praticou peculato-furto doloso, e a reparação do dano apenas reduz a pena de metade.",
+                                                "O fato é atípico, pois o Código Penal não prevê modalidade culposa para crimes contra a Administração Pública.",
+                                                "O servidor praticou condescendência criminosa, sendo irrelevante a reparação do dano.",
+                                                "O servidor praticou prevaricação culposa, com redução de pena de um terço."
+                                ],
+                                "correta": 0,
+                                "comentario": "\n            <p><strong>Gabarito: (A).</strong></p>\n            <p>O art. 312, § 2º, do CP tipifica o <strong>peculato culposo</strong>: concorrer culposamente para o crime de outrem (como deixar a repartição aberta por negligência, viabilizando o furto).</p>\n            <p><strong>Regra do § 3º do art. 312 (reparação do dano no peculato culposo):</strong><br>\n            • Se precede à <strong>sentença irrecorrível</strong>: <strong>extingue a punibilidade</strong>.<br>\n            • Se é posterior à sentença irrecorrível: <strong>reduz de metade</strong> a pena imposta.</p>\n        "
+                },
+                {
+                                "numero": 29,
+                                "materia": "Direito Penal",
+                                "destino": "g3-esq",
+                                "enunciado": "Um agente policial, ao receber ordem judicial válida de prisão contra um velho amigo de infância, deixa propositalmente de cumprir o mandado e retarda o encaminhamento do expediente apenas para satisfazer sentimento pessoal de amizade, sem receber ou solicitar qualquer vantagem econômica. Tal conduta amolda-se ao crime de:",
+                                "alternativas": [
+                                                "corrupção passiva privilegiada.",
+                                                "prevaricação (art. 319 do CP).",
+                                                "concussão.",
+                                                "advocacia administrativa.",
+                                                "condescendência criminosa."
+                                ],
+                                "correta": 1,
+                                "comentario": "\n            <p><strong>Gabarito: (B) prevaricação (art. 319 do CP).</strong></p>\n            <p>Comete <strong>prevaricação</strong> o funcionário público que retarda ou deixa de praticar, indevidamente, ato de ofício, ou o pratica contra disposição expressa de lei, para <strong>satisfazer interesse ou sentimento pessoal</strong> (como amizade, ódio, compaixão ou vingança).</p>\n            <p><strong>Pegadinha clássica entre (A), (B) e (E):</strong><br>\n            • <strong>Prevaricação:</strong> age por <em>interesse ou sentimento pessoal</em> próprio.<br>\n            • <strong>Corrupção passiva privilegiada (art. 317, § 2º):</strong> cede a <em>pedido ou influência de outrem</em>.<br>\n            • <strong>Condescendência criminosa (art. 320):</strong> superior deixa, por <em>indulgência</em>, de responsabilizar subordinado que cometeu infração no cargo.</p>\n        "
+                },
+                {
+                                "numero": 30,
+                                "materia": "Direito Penal",
+                                "destino": "g3-esq",
+                                "enunciado": "Um indivíduo, acreditando sinceramente tratar-se de sua própria mala (idêntica na cor, tamanho e marca), retira da esteira do aeroporto a bagagem pertencente a outro passageiro e segue para casa. Descoberto o equívoco, devolve imediatamente o objeto intacto. Sob a ótica da teoria do erro no Código Penal (art. 20), essa situação caracteriza:",
+                                "alternativas": [
+                                                "erro de proibição inescusável, reduzindo a pena de um sexto a um terço.",
+                                                "descriminante putativa por erro de proibição indireto.",
+                                                "crime de furto privilegiado, com substituição da reclusão por detenção.",
+                                                "arrependimento posterior, mantendo-se a tipicidade do furto doloso.",
+                                                "erro de tipo essencial, que exclui o dolo e, não havendo previsão de furto culposo, torna o fato atípico."
+                                ],
+                                "correta": 4,
+                                "comentario": "\n            <p><strong>Gabarito: (E).</strong></p>\n            <p>Trata-se de clássico exemplo de <strong>erro de tipo essencial</strong> (art. 20, <em>caput</em>, do CP): o agente incide em falsa percepção da realidade sobre elementar do tipo penal (<em>\"coisa alheia\"</em> no furto). O erro de tipo <strong>sempre exclui o dolo</strong>, permitindo punição por culpa apenas se houver previsão legal da modalidade culposa. Como <strong>não existe furto culposo</strong> no CP, o fato é <strong>atípico</strong>.</p>\n            <p><strong>Ponto de atenção:</strong> no erro de tipo o agente <em>não sabe o que faz</em> (falsa percepção fática); no erro de proibição (art. 21) ele sabe o que faz, mas acredita que a conduta é permitida pelo Direito.</p>\n        "
+                },
+                {
+                                "numero": 31,
+                                "materia": "Processo Penal",
+                                "destino": "g3-dir",
+                                "enunciado": "Durante o curso de inquérito policial sigiloso presidido por Delegado da PCMG, o advogado regularmente constituído pelo investigado comparece à delegacia requerendo acesso aos autos. À luz da Súmula Vinculante nº 14 do STF, a autoridade policial:",
+                                "alternativas": [
+                                                "deve negar integralmente o acesso aos autos enquanto durar o sigilo, liberando-os apenas após o oferecimento da denúncia.",
+                                                "só pode autorizar a vista dos autos mediante prévia autorização escrita do Promotor de Justiça.",
+                                                "deve entregar ao defensor inclusive os mandados de busca e apreensão e interceptações telefônicas ainda não cumpridos, sob pena de nulidade absoluta.",
+                                                "deve franquear ao defensor acesso amplo aos elementos de prova já documentados nos autos que digam respeito ao exercício do direito de defesa, preservando o sigilo apenas quanto às diligências ainda em andamento.",
+                                                "pode condicionar o acesso do advogado ao pagamento de fiança criminal pelo investigado."
+                                ],
+                                "correta": 3,
+                                "comentario": "\n            <p><strong>Gabarito: (D).</strong></p>\n            <p>A <strong>Súmula Vinculante nº 14 do STF</strong> é presença garantida em provas de Polícia Civil: é direito do defensor, no interesse do representado, ter acesso amplo aos elementos de prova que, <strong>já documentados</strong> em procedimento investigatório realizado por órgão com competência de polícia judiciária, digam respeito ao exercício do direito de defesa.</p>\n            <p><strong>Limite fundamental:</strong> o acesso <strong>não abrange</strong> diligências ainda em andamento ou não documentadas (como interceptação telefônica em curso ou mandado de busca ainda não cumprido), cuja ciência frustraria a investigação.</p>\n        "
+                },
+                {
+                                "numero": 32,
+                                "materia": "Processo Penal",
+                                "destino": "g3-dir",
+                                "enunciado": "Após concluir a investigação de um crime de estelionato, o Delegado de Polícia convence-se da ausência de indícios mínimos de autoria. Diante disso, nos termos do art. 17 do Código de Processo Penal, a autoridade policial:",
+                                "alternativas": [
+                                                "não poderá mandar arquivar os autos de inquérito policial, devendo relatar o procedimento e encaminhá-lo à apreciação competente.",
+                                                "poderá arquivar diretamente os autos do inquérito policial por decisão fundamentada, comunicando o juiz em 48 horas.",
+                                                "poderá arquivar o inquérito apenas se o investigado estiver solto e concordar expressamente.",
+                                                "deverá destruir os autos físicos e digitais para preservar a honra do investigado.",
+                                                "deverá submeter o arquivamento diretamente ao Chefe da Polícia Civil para homologação definitiva."
+                                ],
+                                "correta": 0,
+                                "comentario": "\n            <p><strong>Gabarito: (A).</strong></p>\n            <p>O art. 17 do CPP consagra a característica da <strong>indisponibilidade do inquérito policial</strong>: <em>\"A autoridade policial não poderá mandar arquivar autos de inquérito\"</em>. Mesmo convencido da atipicidade ou da falta de provas, o Delegado deve concluir o relatório final e remeter os autos para a deliberação do titular da ação penal / controle jurisdicional (art. 28 do CPP).</p>\n            <p><strong>Atenção:</strong> o Delegado pode indeferir a <em>instauração</em> de inquérito mediante requerimento do ofendido (cabendo recurso ao Chefe de Polícia, art. 5º, § 2º, CPP), mas, uma vez instaurado, jamais pode arquivá-lo.</p>\n        "
+                },
+                {
+                                "numero": 33,
+                                "materia": "Processo Penal",
+                                "destino": "g4-esq",
+                                "enunciado": "Em regra geral prevista no art. 10 do Código de Processo Penal (para crimes comuns de competência da Justiça Estadual sem lei especial em sentido contrário), qual é o prazo para a conclusão do inquérito policial estando o indiciado <strong>preso</strong> ou <strong>solto</strong>, respectivamente?",
+                                "alternativas": [
+                                                "5 dias se preso; 15 dias se solto.",
+                                                "15 dias se preso; 60 dias se solto.",
+                                                "10 dias se preso (contados da execução da ordem de prisão); 30 dias se solto (prorrogáveis quando o fato for de difícil elucidação).",
+                                                "30 dias se preso; 90 dias se solto.",
+                                                "24 horas se preso; 10 dias se solto."
+                                ],
+                                "correta": 2,
+                                "comentario": "\n            <p><strong>Gabarito: (C) 10 dias se preso; 30 dias se solto.</strong></p>\n            <p>Regra geral do art. 10 do CPP: <strong>10 dias</strong> se o indiciado tiver sido preso em flagrante ou preventivamente (contados do dia em que se executar a ordem de prisão), ou <strong>30 dias</strong> quando estiver solto (podendo o juiz conceder prorrogação quando o fato for de difícil elucidação).</p>\n            <p><strong>Quadro comparativo de prazos:</strong><br>\n            • CPP (regra geral / Polícia Civil): <strong>10d preso / 30d solto</strong> (observada a possibilidade de prorrogação única de até 15 dias pelo juiz das garantias prevista no art. 3º-B, VIII, CPP, com interpretação conforme pelo STF).<br>\n            • Lei de Drogas (11.343/06): <strong>30d preso / 90d solto</strong> (duplicáveis).<br>\n            • Polícia Federal (Lei 5.010/66): <strong>15d (+15d) preso / 30d solto</strong>.</p>\n        "
+                },
+                {
+                                "numero": 34,
+                                "materia": "Processo Penal",
+                                "destino": "g4-esq",
+                                "enunciado": "No âmbito da <strong>cadeia de custódia</strong> disciplinada nos arts. 158-A a 158-F do Código de Processo Penal, o ato de evitar que se altere o estado das coisas, devendo isolar e preservar o ambiente imediato, mediato e relacionado aos vestígios e local de crime, corresponde à etapa denominada:",
+                                "alternativas": [
+                                                "reconhecimento.",
+                                                "armazenamento.",
+                                                "fixação.",
+                                                "acondicionamento.",
+                                                "isolamento."
+                                ],
+                                "correta": 4,
+                                "comentario": "\n            <p><strong>Gabarito: (E) isolamento.</strong></p>\n            <p>O art. 158-B do CPP lista em ordem cronológica as <strong>10 etapas</strong> da cadeia de custódia, tema muito cobrado em concursos da Polícia Civil:</p>\n            <p>1) <strong>Reconhecimento</strong> (distinguir elemento de potencial interesse); 2) <strong>Isolamento</strong> (evitar alteração do estado das coisas, isolando ambiente imediato, mediato e relacionado); 3) <strong>Fixação</strong> (descrição detalhada/ilustração do vestígio no local); 4) <strong>Coleta</strong>; 5) <strong>Acondicionamento</strong>; 6) <strong>Transporte</strong>; 7) <strong>Recebimento</strong>; 8) <strong>Processamento</strong>; 9) <strong>Armazenamento</strong>; 10) <strong>Descarte</strong>.</p>\n        "
+                },
+                {
+                                "numero": 35,
+                                "materia": "Processo Penal",
+                                "destino": "g4-dir",
+                                "enunciado": "Policiais civis em diligência recebem informação de que um roubo a residência acabou de ocorrer no bairro vizinho. Imediatamente, iniciam perseguição ininterrupta ao suspeito em fuga, logrando capturá-lo três horas depois em município limítrofe, em situação que faz presumir ser ele o autor da infração. Nos termos do art. 302 do Código de Processo Penal, essa modalidade de prisão em flagrante é classificada pela doutrina como:",
+                                "alternativas": [
+                                                "flagrante próprio (ou propriamente dito).",
+                                                "flagrante impróprio (ou quase-flagrante).",
+                                                "flagrante presumido (ou ficto).",
+                                                "flagrante preparado (ou provocado).",
+                                                "flagrante esperado ilegal."
+                                ],
+                                "correta": 1,
+                                "comentario": "\n            <p><strong>Gabarito: (B) flagrante impróprio (ou quase-flagrante).</strong></p>\n            <p>A palavra-chave do <strong>flagrante impróprio</strong> (art. 302, III, do CPP) é <strong>PERSEGUIÇÃO logo após</strong> o crime pela autoridade, pelo ofendido ou por qualquer pessoa, em situação que faça presumir ser autor da infração, ainda que a captura ocorra horas depois, desde que a perseguição seja contínua.</p>\n            <p><strong>Resumo comparativo do art. 302 CPP:</strong><br>\n            • Incisos I e II (está cometendo ou acaba de cometer): <strong>Flagrante próprio</strong>.<br>\n            • Inciso III (perseguido logo após): <strong>Flagrante impróprio / quase-flagrante</strong>.<br>\n            • Inciso IV (encontrado logo depois com instrumentos/armas/objetos, sem perseguição prévia): <strong>Flagrante presumido / ficto</strong>.</p>\n        "
+                },
+                {
+                                "numero": 36,
+                                "materia": "Processo Penal",
+                                "destino": "g4-dir",
+                                "enunciado": "Sobre a decretação da <strong>prisão preventiva</strong> no sistema processual penal brasileiro após as alterações introduzidas pelo Pacote Anticrime (Lei nº 13.964/2019), assinale a alternativa correta.",
+                                "alternativas": [
+                                                "O juiz pode decretar a prisão preventiva de ofício tanto na fase de inquérito policial quanto durante o curso da ação penal.",
+                                                "A prisão preventiva pode ser decretada com a finalidade exclusiva de antecipar o cumprimento da pena em crimes culposos.",
+                                                "A autoridade policial possui competência para decretar diretamente a prisão preventiva por até 5 dias em crimes hediondos.",
+                                                "A prisão preventiva somente pode ser decretada mediante requerimento do Ministério Público, do querelante ou do assistente, ou por representação da autoridade policial, sendo vedada a decretação de ofício pelo juiz.",
+                                                "Uma vez decretada a prisão preventiva, não há dever legal de revisão periódica da necessidade de sua manutenção."
+                                ],
+                                "correta": 3,
+                                "comentario": "\n            <p><strong>Gabarito: (D).</strong></p>\n            <p>O art. 311 do CPP (com redação da Lei nº 13.964/2019) eliminou a expressão <em>\"de ofício\"</em>: em qualquer fase da investigação policial ou do processo penal, caberá a prisão preventiva decretada pelo juiz, <strong>a requerimento</strong> do Ministério Público, do querelante ou do assistente, ou <strong>por representação da autoridade policial</strong>.</p>\n            <p><strong>Erros das demais:</strong> (C) prisão preventiva é cláusula de reserva de jurisdição (só juiz decreta); (B) art. 313, § 2º, proíbe preventiva como antecipação de pena e não cabe em crime culposo; (E) art. 316, parágrafo único, impõe a revisão da necessidade da preventiva a cada <strong>90 dias</strong>.</p>\n        "
+                },
+                {
+                                "numero": 37,
+                                "materia": "Processo Penal",
+                                "destino": "g5-esq",
+                                "enunciado": "Nos crimes que deixam vestígios, como o homicídio ou a lesão corporal, o art. 158 do Código de Processo Penal estabelece regra cogente acerca da prova pericial. Sobre o <strong>exame de corpo de delito</strong>, assinale a alternativa correta.",
+                                "alternativas": [
+                                                "Quando o acusado confessa detalhadamente o crime perante o juiz, o exame de corpo de delito torna-se dispensável.",
+                                                "Desaparecidos todos os vestígios do crime, o réu deverá ser absolvido automaticamente, sendo vedada a prova testemunhal.",
+                                                "É indispensável o exame de corpo de delito, direto ou indireto, não podendo supri-lo a confissão do acusado.",
+                                                "O exame de corpo de delito somente pode ser realizado durante o horário comercial em dias úteis.",
+                                                "O exame de corpo de delito tem prioridade idêntica a qualquer outra perícia, sem previsão legal de preferência para crimes envolvendo violência doméstica ou contra crianças."
+                                ],
+                                "correta": 2,
+                                "comentario": "\n            <p><strong>Gabarito: (C).</strong></p>\n            <p>Texto expresso do <strong>art. 158 do CPP</strong>: <em>\"Quando a infração deixar vestígios, será indispensável o exame de corpo de delito, direto ou indireto, não podendo supri-lo a confissão do acusado\"</em>.</p>\n            <p><strong>Atenção aos detalhes das demais:</strong> (B) desaparecidos os vestígios, a <strong>prova testemunhal</strong> pode suprir a falta do exame (art. 167 CPP); (D) o exame pode ser feito em <strong>qualquer dia e a qualquer hora</strong> (art. 161 CPP); (E) o parágrafo único do art. 158 prevê <strong>prioridade</strong> na realização do exame em crimes de violência doméstica e familiar contra a mulher ou violência contra criança, adolescente, idoso ou pessoa com deficiência.</p>\n        "
+                },
+                {
+                                "numero": 38,
+                                "materia": "Processo Penal",
+                                "destino": "g5-esq",
+                                "enunciado": "Sobre a <strong>busca domiciliar</strong> e a <strong>busca pessoal</strong> disciplinadas no Código de Processo Penal (arts. 240 a 245) e na Constituição Federal, assinale a alternativa correta.",
+                                "alternativas": [
+                                                "A busca pessoal exige, em todas as situações, mandado judicial prévio expedido por juiz criminal.",
+                                                "A busca domiciliar determinada por mandado judicial pode ser cumprida a qualquer hora da noite, independentemente do consentimento do morador.",
+                                                "As buscas em mulheres podem ser feitas por qualquer agente masculino mesmo havendo policial feminina disponível no local.",
+                                                "O mandado de busca domiciliar genérico, sem indicação da casa ou do motivo da diligência, é plenamente válido para facilitar operações policiais.",
+                                                "A busca pessoal independerá de mandado no caso de prisão ou quando houver fundada suspeita de que a pessoa esteja na posse de arma proibida ou de objetos ou papéis que constituam corpo de delito, ou quando a medida for determinada no curso de busca domiciliar."
+                                ],
+                                "correta": 4,
+                                "comentario": "\n            <p><strong>Gabarito: (E).</strong></p>\n            <p>Reprodução fiel do <strong>art. 244 do CPP</strong>: a busca pessoal independe de mandado judicial em três hipóteses: (1) no caso de prisão; (2) quando houver <strong>fundada suspeita</strong> de posse de arma proibida ou objetos/papéis que constituam corpo de delito; ou (3) quando determinada no curso de busca domiciliar.</p>\n            <p><strong>Erros das demais:</strong> (B) busca domiciliar por ordem judicial somente durante o <strong>dia</strong> (art. 5º, XI, CF/88 e art. 245 CPP); (D) o art. 243 do CPP exige indicação precisa da casa, do motivo e dos fins da diligência; (C) art. 249 do CPP determina que a busca em mulher será feita por outra mulher, se não importar retardamento ou prejuízo da diligência.</p>\n        "
+                },
+                {
+                                "numero": 39,
+                                "materia": "Processo Penal",
+                                "destino": "g5-dir",
+                                "enunciado": "Um Policial Civil de Minas Gerais, no exercício legítimo de suas funções, efetua disparo de arma de fogo para repelir agressão letal durante abordagem, resultando na morte do agressor. Instaurado inquérito policial para apurar o uso da força letal, o art. 14-A do Código de Processo Penal (incluído pelo Pacote Anticrime) assegura ao servidor investigado que:",
+                                "alternativas": [
+                                                "será citado da instauração do procedimento investigatório, podendo constituir defensor no prazo de até 48 horas a contar do recebimento da citação; esgotado o prazo sem constituição, a autoridade responsável intimará a instituição a que estava vinculado à época dos fatos para que, em 48 horas, indique defensor.",
+                                                "não poderá ser citado nem intimado da instauração do inquérito, que correrá sem defesa até a sentença.",
+                                                "terá o inquérito automaticamente arquivado pela própria corregedoria sem comunicação ao Ministério Público.",
+                                                "terá prazo de 30 dias úteis para constituir advogado particular, ficando vedada a atuação da Defensoria Pública ou da instituição.",
+                                                "só poderá constituir defensor após o indiciamento formal pelo Ministério Público."
+                                ],
+                                "correta": 0,
+                                "comentario": "\n            <p><strong>Gabarito: (A).</strong></p>\n            <p>O <strong>art. 14-A do CPP</strong> garante aos servidores vinculados às instituições de segurança pública (art. 144 da CF), quando investigados por fatos relacionados ao <strong>uso da força letal no exercício profissional</strong>, a citação sobre a instauração do procedimento e o prazo de <strong>até 48 horas</strong> para constituir defensor. Não o fazendo, intima-se a instituição a que estava vinculado à época dos fatos para indicar defensor em <strong>48 horas</strong> (observada a preferência da Defensoria Pública conforme ADI julgada pelo STF).</p>\n        "
+                },
+                {
+                                "numero": 40,
+                                "materia": "Processo Penal",
+                                "destino": "g5-dir",
+                                "enunciado": "Sobre a <strong>ação penal pública condicionada à representação</strong> e a <strong>ação penal de iniciativa privada</strong> no Código de Processo Penal, assinale a alternativa correta.",
+                                "alternativas": [
+                                                "A representação do ofendido na ação penal pública condicionada é irretratável desde o momento em que é registrada na delegacia.",
+                                                "Salvo disposição expressa em contrário, o ofendido decai do direito de queixa ou de representação se não o exercer dentro do prazo de 6 (seis) meses, contado do dia em que vier a saber quem é o autor do crime.",
+                                                "A representação será irretratável somente após a prolação da sentença condenatória de primeira instância.",
+                                                "Nos crimes de ação penal pública condicionada, o Delegado de Polícia pode instaurar inquérito policial de ofício mesmo sem a representação da vítima.",
+                                                "Na ação penal privada, o prazo decadencial de 6 meses interrompe-se com a instauração do inquérito policial."
+                                ],
+                                "correta": 1,
+                                "comentario": "\n            <p><strong>Gabarito: (B).</strong></p>\n            <p>Regra literal do <strong>art. 38 do CPP</strong>: o prazo decadencial para o exercício do direito de queixa ou de representação é, em regra, de <strong>6 meses</strong>, contados do dia em que o ofendido (ou representante legal) <strong>vier a saber quem é o autor do crime</strong> (e não da data do fato).</p>\n            <p><strong>Erros das demais:</strong> (A) e (C) a representação é irretratável <strong>depois de oferecida a denúncia</strong> (art. 25 do CPP, salvo na Lei Maria da Penha, em que cabe retratação perante o juiz até o recebimento); (D) art. 5º, § 4º, CPP exige a representação para instaurar o inquérito; (E) prazo decadencial <strong>não se suspende nem se interrompe</strong> pela instauração do inquérito.</p>\n        "
+                }
+];
+
+            const LETRAS = ["A", "B", "C", "D", "E"];
+            const respostas = {};
+            let finalizado = false;
+            let segundos = 0;
+            let timerId = null;
+
+            const elContador = document.getElementById("contador-respondidas");
+            const elBarra = document.getElementById("barra-progresso");
+            const elCronometro = document.getElementById("cronometro");
+            const elPainelRes = document.getElementById("painel-resultado");
+            const elAviso = document.getElementById("aviso-incompleto");
+            const elAvisoTexto = document.getElementById("aviso-incompleto-texto");
+            const btnFinalizar = document.getElementById("btn-finalizar-prova");
+            const btnAtalho = document.getElementById("btn-ir-finalizar");
+
+            function formatarTempo(totalSeg) {
+                const m = String(Math.floor(totalSeg / 60)).padStart(2, "0");
+                const s = String(totalSeg % 60).padStart(2, "0");
+                return m + ":" + s;
+            }
+
+            function iniciarCronometro() {
+                if (timerId) clearInterval(timerId);
+                segundos = 0;
+                elCronometro.textContent = "00:00";
+                timerId = setInterval(function () {
+                    segundos++;
+                    elCronometro.textContent = formatarTempo(segundos);
+                }, 1000);
+            }
+
+            function atualizarContador() {
+                const qtd = Object.keys(respostas).length;
+                elContador.textContent = qtd + " / " + QUESTOES.length;
+                elBarra.style.width = ((qtd / QUESTOES.length) * 100) + "%";
+            }
+
+            function criarElementoQuestao(q) {
+                const art = document.createElement("article");
+                art.className = "questao-item";
+                art.id = "questao-" + q.numero;
+
+                const numFmt = String(q.numero).padStart(2, "0");
+
+                const altsHtml = q.alternativas.map(function (texto, idx) {
+                    return (
+                        '<button type="button" class="alternativa-btn" data-q="' + q.numero + '" data-idx="' + idx + '">' +
+                        '<span class="alt-letra">' + LETRAS[idx] + "</span>" +
+                        '<span class="alt-texto">' + texto + "</span>" +
+                        "</button>"
+                    );
+                }).join("");
+
+                art.innerHTML =
+                    '<div class="questao-topo">' +
+                        '<span class="questao-num">QUESTÃO ' + numFmt + "</span>" +
+                        '<span class="questao-tag-materia">' + (q.materia || "") + "</span>" +
+                        '<span class="questao-status-badge" id="badge-q-' + q.numero + '"></span>' +
+                    "</div>" +
+                    '<p class="questao-enunciado">' + q.enunciado + "</p>" +
+                    '<div class="alternativas-lista">' + altsHtml + "</div>" +
+                    '<div class="comentario-box" id="com-q-' + q.numero + '">' +
+                        '<div class="comentario-titulo"><i class="fa-solid fa-book-open"></i> Comentário Padrão PCMG</div>' +
+                        q.comentario +
+                    "</div>";
+
+                return art;
+            }
+
+            function renderizarQuestoes() {
+                document.querySelectorAll(".questao-item").forEach(function (el) {
+                    el.remove();
+                });
+
+                QUESTOES.forEach(function (q) {
+                    const col = document.getElementById(q.destino);
+                    if (col) {
+                        col.appendChild(criarElementoQuestao(q));
+                    }
+                });
+
+                document.querySelectorAll(".alternativa-btn").forEach(function (btn) {
+                    btn.addEventListener("click", function () {
+                        if (finalizado) return;
+                        const numQ = Number(btn.getAttribute("data-q"));
+                        const idx = Number(btn.getAttribute("data-idx"));
+                        respostas[numQ] = idx;
+
+                        const grupoBtns = document.querySelectorAll('.alternativa-btn[data-q="' + numQ + '"]');
+                        grupoBtns.forEach(function (b) { b.classList.remove("selecionada"); });
+                        btn.classList.add("selecionada");
+
+                        elAviso.style.display = "none";
+                        atualizarContador();
+                    });
+                });
+            }
+
+            function executarCorrecao() {
+                finalizado = true;
+                if (timerId) clearInterval(timerId);
+                elAviso.style.display = "none";
+                btnFinalizar.style.display = "none";
+                btnAtalho.style.display = "none";
+                document.getElementById("area-finalizar").style.display = "none";
+
+                let acertos = 0;
+                let brancos = 0;
+                const miniGrid = document.getElementById("gabarito-mini-grid");
+                miniGrid.innerHTML = "";
+
+                QUESTOES.forEach(function (q) {
+                    const marcada = Object.prototype.hasOwnProperty.call(respostas, q.numero) ? respostas[q.numero] : null;
+                    const btns = document.querySelectorAll('.alternativa-btn[data-q="' + q.numero + '"]');
+                    const badge = document.getElementById("badge-q-" + q.numero);
+                    const com = document.getElementById("com-q-" + q.numero);
+
+                    btns.forEach(function (b) {
+                        b.disabled = true;
+                        const idx = Number(b.getAttribute("data-idx"));
+                        if (idx === q.correta) {
+                            b.classList.add("correta");
+                        } else if (marcada !== null && idx === marcada && marcada !== q.correta) {
+                            b.classList.add("incorreta");
+                        }
+                    });
+
+                    const pill = document.createElement("button");
+                    pill.type = "button";
+                    const numFmt = String(q.numero).padStart(2, "0");
+
+                    if (marcada === null) {
+                        brancos++;
+                        badge.className = "questao-status-badge branco";
+                        badge.innerHTML = '<i class="fa-regular fa-circle"></i> Em branco • Gab: ' + LETRAS[q.correta];
+                        pill.className = "gab-pill branco";
+                        pill.textContent = numFmt + " (" + LETRAS[q.correta] + ")";
+                    } else if (marcada === q.correta) {
+                        acertos++;
+                        badge.className = "questao-status-badge ok";
+                        badge.innerHTML = '<i class="fa-solid fa-check"></i> Acertou';
+                        pill.className = "gab-pill ok";
+                        pill.textContent = numFmt + " (" + LETRAS[q.correta] + ")";
+                    } else {
+                        badge.className = "questao-status-badge err";
+                        badge.innerHTML = '<i class="fa-solid fa-xmark"></i> Errou • Gab: ' + LETRAS[q.correta];
+                        pill.className = "gab-pill err";
+                        pill.textContent = numFmt + " (" + LETRAS[q.correta] + ")";
+                    }
+
+                    pill.addEventListener("click", function () {
+                        const alvo = document.getElementById("questao-" + q.numero);
+                        if (alvo) alvo.scrollIntoView({ behavior: "smooth", block: "start" });
+                    });
+                    miniGrid.appendChild(pill);
+
+                    com.classList.add("visivel");
+                });
+
+                const pct = Math.round((acertos / QUESTOES.length) * 100);
+                const elAcertos = document.getElementById("res-acertos");
+                const elPct = document.getElementById("res-percentual");
+                const elBranco = document.getElementById("res-branco");
+                const elTempo = document.getElementById("res-tempo");
+                const elMsg = document.getElementById("res-mensagem");
+
+                elAcertos.textContent = acertos + " / " + QUESTOES.length;
+                elPct.textContent = pct + "%";
+                elPct.className = "res-card-valor " + (pct >= 60 ? "aprovado" : "atencao");
+                elBranco.textContent = brancos;
+                elTempo.textContent = formatarTempo(segundos);
+
+                if (pct >= 80) {
+                    elMsg.textContent = "Excelente desempenho no padrão competitivo da PCMG! Revise os comentários das questões em que teve dúvida.";
+                } else if (pct >= 60) {
+                    elMsg.textContent = "Bom índice pré-edital! Aproveite os comentários abaixo para blindar os detalhes de lei seca e jurisprudência.";
+                } else {
+                    elMsg.textContent = "Hora de fortalecer a base! Leia cada comentário abaixo com atenção, pois eles apontam exatamente as pegadinhas mais cobradas na PCMG.";
+                }
+
+                elPainelRes.style.display = "block";
+                elPainelRes.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+
+            function tentarFinalizar() {
+                if (finalizado) return;
+                const respondidas = Object.keys(respostas).length;
+                const faltam = QUESTOES.length - respondidas;
+                if (faltam > 0) {
+                    elAvisoTexto.innerHTML =
+                        "<strong>Atenção:</strong> você deixou <strong>" + faltam +
+                        (faltam === 1 ? " questão</strong> em branco." : " questões</strong> em branco.") +
+                        " No dia da prova não há penalidade por chute. Deseja revisar antes de corrigir?";
+                    elAviso.style.display = "block";
+                    elAviso.scrollIntoView({ behavior: "smooth", block: "center" });
+                } else {
+                    executarCorrecao();
+                }
+            }
+
+            function refazerBloco() {
+                finalizado = false;
+                Object.keys(respostas).forEach(function (k) { delete respostas[k]; });
+                elPainelRes.style.display = "none";
+                elAviso.style.display = "none";
+                document.getElementById("area-finalizar").style.display = "block";
+                btnFinalizar.style.display = "inline-flex";
+                btnAtalho.style.display = "inline-flex";
+                renderizarQuestoes();
+                atualizarContador();
+                iniciarCronometro();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+
+            btnFinalizar.addEventListener("click", tentarFinalizar);
+            btnAtalho.addEventListener("click", function () {
+                document.getElementById("area-finalizar").scrollIntoView({ behavior: "smooth", block: "center" });
+            });
+            document.getElementById("btn-confirmar-corrigir").addEventListener("click", executarCorrecao);
+            document.getElementById("btn-voltar-revisar").addEventListener("click", function () {
+                elAviso.style.display = "none";
+                for (let i = 0; i < QUESTOES.length; i++) {
+                    const numQ = QUESTOES[i].numero;
+                    if (!Object.prototype.hasOwnProperty.call(respostas, numQ)) {
+                        const alvo = document.getElementById("questao-" + numQ);
+                        if (alvo) alvo.scrollIntoView({ behavior: "smooth", block: "center" });
+                        break;
+                    }
+                }
+            });
+            document.getElementById("btn-refazer-topo").addEventListener("click", refazerBloco);
+
+            renderizarQuestoes();
+            atualizarContador();
+            iniciarCronometro();
+
+            // ======================================================================
+            // PROTOCOLO RED TEAM: PROTEÇÃO INTEGRAL DO CONTEÚDO INÉDITO
+            // ======================================================================
+            const msgSeg = "🔒 PROTOCOLO DE SEGURANÇA:\nEsta ação não é permitida na plataforma Método Missão. Este simulado é 100% inédito e protegido por direitos autorais (Lei nº 9.610/98).";
+
+            document.addEventListener("contextmenu", function (e) {
+                e.preventDefault();
+                alert(msgSeg);
+            });
+
+            document.addEventListener("keydown", function (e) {
+                const k = (e.key || "").toLowerCase();
+                if (
+                    e.key === "F12" ||
+                    (e.ctrlKey && e.shiftKey && (k === "i" || k === "j" || k === "c")) ||
+                    (e.ctrlKey && (k === "u" || k === "s" || k === "c" || k === "p"))
+                ) {
+                    e.preventDefault();
+                    alert(msgSeg);
+                    return false;
+                }
+            });
+
+            document.addEventListener("keyup", function (e) {
+                if (e.key === "PrintScreen" || e.keyCode === 44) {
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText("Conteúdo Protegido por Direitos Autorais - Método Missão 2026").catch(function () {});
+                    }
+                    alert(msgSeg);
+                }
+            });
+
+            window.addEventListener("blur", function () {
+                const c = document.getElementById("simulador-container");
+                if (c) c.style.filter = "blur(15px)";
+            });
+
+            window.addEventListener("focus", function () {
+                const c = document.getElementById("simulador-container");
+                if (c) c.style.filter = "none";
+            });
+
+            document.addEventListener("selectstart", function (e) {
+                const tag = e.target && e.target.tagName;
+                if (tag !== "INPUT" && tag !== "TEXTAREA") {
+                    e.preventDefault();
+                }
+            });
+
+            document.addEventListener("dragstart", function (e) {
+                e.preventDefault();
+            });
+
+            document.addEventListener("copy", function (e) {
+                e.preventDefault();
+                if (e.clipboardData) {
+                    e.clipboardData.setData("text/plain", "Conteúdo Protegido por Direitos Autorais - Método Missão (metodomissao.com)");
+                }
+            });
+
+            document.addEventListener("cut", function (e) {
+                e.preventDefault();
+            });
+
+            document.addEventListener("visibilitychange", function () {
+                const c = document.getElementById("simulador-container");
+                if (c) c.style.filter = document.hidden ? "blur(15px)" : "none";
+            });
+
+            window.addEventListener("pageshow", function () {
+                const c = document.getElementById("simulador-container");
+                if (c) c.style.filter = "none";
+            });
+
+        })();
+    </script>
+    <script src="protecao-simulado.js"></script>
+</body>
+
+</html>
