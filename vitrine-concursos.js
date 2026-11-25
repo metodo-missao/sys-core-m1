@@ -52,7 +52,7 @@
                         },
                         {
                             separador: true,
-                            titulo: "Série Pós-Edital Premium • Mais 5 Simulados Inéditos até a Prova"
+                            titulo: "Série Pós-Edital Premium • Mais 5 Simulados Inéditos até a Prova (Padrão Vunesp)"
                         },
                         {
                             titulo: "2º Simulado Completo GM Campinas (50 Questões • Vunesp)",
@@ -115,7 +115,7 @@
                         },
                         {
                             separador: true,
-                            titulo: "Série Pré-Edital Premium • Mais 5 Simulados Inéditos (Instituto AOCP)"
+                            titulo: "Série Pré-Edital Premium • Mais 5 Simulados Inéditos até a Prova (Padrão Instituto AOCP)"
                         },
                         {
                             titulo: "2º Simulado Completo GCM Joinville (50 Questões • Instituto AOCP)",
