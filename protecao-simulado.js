@@ -1,15 +1,15 @@
 /* ==========================================================================
    PROTEÇÃO EXTRA + MARCA D'ÁGUA SOBRE A FOLHA A4 (MÉTODO MISSÃO)
-   Arquivo modular: aplica marca d'água diagonal sobre o caderno de prova
-   (com troca automática entre Folha Azul e Folha Branca) e reforça a
-   blindagem contra cópia e toque longo no celular.
+   Arquivo modular: aplica marca d'água diagonal suave sobre o caderno de
+   prova, assinatura discreta acima das alternativas (com troca automática
+   entre Folha Azul e Folha Branca) e blindagem contra cópia/toque longo.
    ========================================================================== */
 (function () {
     try {
         if (window.__MM_PROTECAO_SIMULADO_ATIVA__) return;
         window.__MM_PROTECAO_SIMULADO_ATIVA__ = true;
 
-const SVG_ESCURO =
+        const SVG_ESCURO =
             "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='440' height='215'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' transform='rotate(-25 220 107)' fill='rgba(255,255,255,0.045)' font-family='Segoe UI, Arial, sans-serif' font-weight='800' font-size='12px' letter-spacing='1'%3EM%C3%89TODO MISS%C3%83O %E2%80%A2 METODOMISSAO.COM%3C/text%3E%3C/svg%3E\")";
 
         const SVG_CLARO =
@@ -30,7 +30,7 @@ const SVG_ESCURO =
                 "}" +
                 "img{-webkit-touch-callout:none !important;-webkit-user-drag:none !important;pointer-events:none;}" +
 
-                /* Marca d'água por cima da Folha A4 (Modo Noturno / Folha Azul) */
+                /* Marca d'água diagonal suave sobre a Folha A4 (Folha Azul) */
                 ".folha-a4{position:relative !important;overflow:hidden !important;}" +
                 ".folha-a4::after{" +
                     "content:'';" +
@@ -42,9 +42,29 @@ const SVG_ESCURO =
                     "background-repeat:repeat;" +
                 "}" +
 
-                /* Adaptação automática para o Modo Claro (Folha Branca) */
+                /* Adaptação automática da diagonal para o Modo Claro (Folha Branca) */
                 ".caderno-paginas.modo-papel .folha-a4::after{" +
                     "background-image:" + SVG_CLARO + ";" +
+                "}" +
+
+                /* Assinatura horizontal discreta entre o enunciado e as alternativas */
+                ".alternativas-lista::before{" +
+                    "content:'MÉTODO MISSÃO • METODOMISSAO.COM';" +
+                    "display:block;" +
+                    "width:100%;" +
+                    "text-align:right;" +
+                    "font-size:9.5px;" +
+                    "font-weight:800;" +
+                    "letter-spacing:0.9px;" +
+                    "color:rgba(255,255,255,0.18);" +
+                    "margin:-4px 0 2px;" +
+                    "padding-right:4px;" +
+                    "pointer-events:none;" +
+                "}" +
+
+                /* Adaptação da assinatura horizontal no Modo Claro (Folha Branca) */
+                ".caderno-paginas.modo-papel .alternativas-lista::before{" +
+                    "color:rgba(2,17,46,0.24);" +
                 "}" +
 
                 /* Camada de reserva para simulados que não usam .folha-a4 */
