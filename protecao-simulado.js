@@ -9,11 +9,11 @@
         if (window.__MM_PROTECAO_SIMULADO_ATIVA__) return;
         window.__MM_PROTECAO_SIMULADO_ATIVA__ = true;
 
-        const SVG_ESCURO =
-            "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='340' height='165'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' transform='rotate(-25 170 82)' fill='rgba(255,255,255,0.065)' font-family='Segoe UI, Arial, sans-serif' font-weight='800' font-size='12px' letter-spacing='1'%3EM%C3%89TODO MISS%C3%83O %E2%80%A2 METODOMISSAO.COM%3C/text%3E%3C/svg%3E\")";
+const SVG_ESCURO =
+            "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='440' height='215'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' transform='rotate(-25 220 107)' fill='rgba(255,255,255,0.045)' font-family='Segoe UI, Arial, sans-serif' font-weight='800' font-size='12px' letter-spacing='1'%3EM%C3%89TODO MISS%C3%83O %E2%80%A2 METODOMISSAO.COM%3C/text%3E%3C/svg%3E\")";
 
         const SVG_CLARO =
-            "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='340' height='165'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' transform='rotate(-25 170 82)' fill='rgba(2,17,46,0.065)' font-family='Segoe UI, Arial, sans-serif' font-weight='800' font-size='12px' letter-spacing='1'%3EM%C3%89TODO MISS%C3%83O %E2%80%A2 METODOMISSAO.COM%3C/text%3E%3C/svg%3E\")";
+            "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='440' height='215'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' transform='rotate(-25 220 107)' fill='rgba(2,17,46,0.05)' font-family='Segoe UI, Arial, sans-serif' font-weight='800' font-size='12px' letter-spacing='1'%3EM%C3%89TODO MISS%C3%83O %E2%80%A2 METODOMISSAO.COM%3C/text%3E%3C/svg%3E\")";
 
         if (!document.getElementById("mm-protecao-simulado-css")) {
             const style = document.createElement("style");
