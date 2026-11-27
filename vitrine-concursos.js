@@ -495,11 +495,15 @@
                     ".mm-mapa-dot.ativo{width:20px;background:#ffca28;}" +
                     ".mm-mapa-rodape{margin-top:11px;padding-top:9px;border-top:1px solid rgba(148,163,184,0.18);" +
                     "font-size:11px;color:#94a3b8;text-align:center;line-height:1.4;}" +
+                    ".mm-cat-submenus .secao-topicos{width:100%;max-width:600px;margin-left:auto;margin-right:auto;box-sizing:border-box;}" +
+                    ".mm-cat-submenus .aula-item{gap:12px;align-items:center;}" +
+                    ".mm-cat-submenus .aula-item>span:first-child{flex:1;min-width:0;text-align:left;line-height:1.4;}" +
+                    ".mm-cat-submenus .seta-iniciar{white-space:nowrap;flex-shrink:0;}" +
                     "@media(min-width:681px){.mm-cat-conteudo .vitrine-grid.mm-grid-unico{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}}" +
                     "@media(max-width:600px){.mm-cat-btn{padding:12px 14px;}.mm-cat-titulo{font-size:13.2px;letter-spacing:0.6px;}" +
                     ".mm-cat-badge{font-size:10px;padding:3px 7px;}" +
                     ".mm-mapa-toggle{padding:11px 12px;}.mm-mapa-pill-ver{display:none;}.mm-mapa-dica{display:none;}" +
-                    ".mm-mapa-card{padding:13px;}.mm-mapa-disc{font-size:14.5px;}.mm-mapa-seta-btn span{display:none;}}";
+                    ".mm-mapa-card{padding:13px;}.mm-mapa-disc{font-size:14.5px;}.mm-mapa-seta-btn span{display:none;}.mm-cat-submenus .secao-topicos{max-width:100%;}.mm-cat-submenus .seta-iniciar{font-size:11px;}}";
                 document.head.appendChild(styleCat);
             }
 
@@ -603,7 +607,7 @@
                         ? '<i class="fa-solid fa-circle-check"></i>'
                         : '<i class="fa-solid fa-crown"></i>';
                     const botaoAbrir = (m.liberado && m.arquivo)
-                        ? '<a href="' + m.arquivo + '" class="mm-mapa-btn-abrir">Abrir bloco <i class="fa-solid fa-play"></i></a>'
+                        ? '<a href="' + m.arquivo + '" class="mm-mapa-btn-abrir">Iniciar agora <i class="fa-solid fa-play"></i></a>'
                         : "";
 
                     card.innerHTML =
@@ -901,7 +905,7 @@
                                     a.style.borderLeft = "4px solid " + corItem;
                                     a.innerHTML =
                                         '<span><i class="fa-solid fa-file-lines fa-fw" style="margin-right: 8px; color: ' + corItem + ';"></i>' + b.titulo + '</span>' +
-                                        '<span class="seta-iniciar" style="color: ' + corItem + ';">INICIAR <i class="fa-solid fa-play" style="margin-left: 4px;"></i></span>';
+                                        '<span class="seta-iniciar" style="color: ' + corItem + ';">INICIAR AGORA <i class="fa-solid fa-play" style="margin-left: 4px;"></i></span>';
                                 }
 
                                 lista.appendChild(a);
