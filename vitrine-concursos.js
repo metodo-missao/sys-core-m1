@@ -223,12 +223,12 @@
                     classeBrasao: "ajuste-pmpr",
                     blocos: [
                         {
-                            titulo: "Bloco 1: Legislação PCMG (LC 129/13) e Servidor Estadual (Lei 869/52) — Q01 a Q20",
+                            titulo: "Bloco 1: Lei Orgânica da PCMG • LC 129/13 e Lei 5.406/69 (Q01 a Q20)",
                             arquivo: "simulado-pcmg-bloco1.html",
                             cor: "var(--cor-sucesso)"
                         },
                         {
-                            titulo: "Bloco 2: Direito Penal e Direito Processual Penal — Q21 a Q40",
+                            titulo: "Bloco 2: Direito Penal e Direito Processual Penal (Q21 a Q40)",
                             arquivo: "simulado-pcmg-bloco2.html",
                             cor: "var(--cor-sucesso)"
                         },
