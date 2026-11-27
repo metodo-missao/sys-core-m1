@@ -1,7 +1,8 @@
 /* ==========================================================================
-   VITRINE MODULAR POR CARREIRAS + SUPORTE E CONTATO (MÉTODO MISSÃO)
+   VITRINE MODULAR POR CARREIRAS + MAPEAMENTO ANALÍTICO + SUPORTE (MÉTODO MISSÃO)
    Arquivo independente: gerencia categorias expansíveis (GM, PM, PC, PP),
-   cards de concursos, blocos de simulados e rodapé sem abrir o index.html
+   cards de concursos, carrossel de mapeamento do edital, blocos de simulados
+   e rodapé sem precisar alterar o index.html
    ========================================================================== */
 (function () {
     const EMAIL_SUPORTE = "contato@metodomissao.com";
@@ -221,6 +222,124 @@
                     brasao: "img/brasoes/pcmg.png",
                     altBrasao: "Brasão Oficial da Polícia Civil de Minas Gerais",
                     classeBrasao: "ajuste-pmpr",
+                    mapeamentoAnalitico: {
+                        titulo: "Raio-X Analítico do Edital PCMG (Padrão FGV)",
+                        subtitulo: "Veja o mapeamento das 12 disciplinas e em qual simulado cada conteúdo é treinado",
+                        rodape: "Base analítica: Edital nº 4/2024 (banca FGV, Investigador de Polícia I, 70 questões objetivas).",
+                        materias: [
+                            {
+                                bloco: "basicas",
+                                modulo: "Módulo I • Básicas",
+                                disciplina: "Língua Portuguesa",
+                                peso: "10 questões • 14,3% da prova",
+                                topicos: "Interpretação e compreensão de textos, coesão e coerência, Redação Oficial (pronomes de tratamento, ofício, memorando, relatório e parecer), semântica, pontuação e sintaxe.",
+                                simulado: "4º Mini Simulado PCMG (Série Pré-Edital Premium)",
+                                liberado: false
+                            },
+                            {
+                                bloco: "basicas",
+                                modulo: "Módulo I • Básicas",
+                                disciplina: "Raciocínio Lógico-Matemático",
+                                peso: "06 questões • 8,6% da prova",
+                                topicos: "Proposições, conectivos e equivalências lógicas, conjuntos, porcentagem e juros, proporcionalidade, contagem e probabilidade, geometria básica, estatística (média, moda, mediana e desvio padrão) e plano cartesiano.",
+                                simulado: "4º Mini Simulado PCMG (Série Pré-Edital Premium)",
+                                liberado: false
+                            },
+                            {
+                                bloco: "basicas",
+                                modulo: "Módulo I • Básicas",
+                                disciplina: "Informática Básica",
+                                peso: "08 questões • 11,4% da prova",
+                                topicos: "Windows 10 e Linux, redes TCP/IP (IPv4/IPv6, DNS, DHCP, switches e SNMP), Chrome, Outlook, Microsoft Office 2016 e LibreOffice 7.1.6, segurança digital e LGPD, criptografia PGP, ICP-Brasil e software livre (BSD e GPL).",
+                                simulado: "4º Mini Simulado PCMG (Série Pré-Edital Premium)",
+                                liberado: false
+                            },
+                            {
+                                bloco: "basicas",
+                                modulo: "Módulo I • Básicas",
+                                disciplina: "Lei Orgânica da PCMG",
+                                peso: "06 questões • 8,6% da prova",
+                                topicos: "Lei Estadual nº 5.406/1969 (Livro V, Título XVII: Regime Disciplinar completo) e LC Estadual nº 129/2013 (estrutura orgânica, prerrogativas, direitos, remoção, licenças, aposentadoria, carreiras, estágio probatório e Anexos I a III).",
+                                simulado: "Liberado agora • 1º Mini Simulado • Bloco 1 (Q01 a Q20)",
+                                arquivo: "simulado-pcmg-bloco1.html",
+                                liberado: true
+                            },
+                            {
+                                bloco: "especificas",
+                                modulo: "Módulo II • Específicas",
+                                disciplina: "Direito Administrativo",
+                                peso: "06 questões • 8,6% da prova",
+                                topicos: "Princípios da Administração Pública, Administração direta e indireta, agentes públicos, Lei nº 8.429/1992 (Improbidade Administrativa), poderes administrativos, atos (requisitos, atributos, revogação e anulação), serviços públicos e responsabilidade civil do Estado.",
+                                simulado: "2º Mini Simulado PCMG (Série Pré-Edital Premium)",
+                                liberado: false
+                            },
+                            {
+                                bloco: "especificas",
+                                modulo: "Módulo II • Específicas",
+                                disciplina: "Direito Constitucional",
+                                peso: "06 questões • 8,6% da prova",
+                                topicos: "Princípios fundamentais, direitos e garantias fundamentais (individuais, coletivos e sociais), organização do Estado, funções essenciais à Justiça e Defesa do Estado e das Instituições Democráticas.",
+                                simulado: "2º Mini Simulado PCMG (Série Pré-Edital Premium)",
+                                liberado: false
+                            },
+                            {
+                                bloco: "especificas",
+                                modulo: "Módulo II • Específicas",
+                                disciplina: "Direito Penal",
+                                peso: "05 questões • 7,1% da prova",
+                                topicos: "Princípios penais constitucionais, tempo e lugar do crime, contagem de prazo, fato típico, erro, ilicitude, culpabilidade, concurso de pessoas e de crimes, penas, extinção da punibilidade e crimes em espécie (pessoa, patrimônio, dignidade sexual e Administração Pública).",
+                                simulado: "Liberado agora • 1º Mini Simulado • Bloco 2 (Q21 a Q30)",
+                                arquivo: "simulado-pcmg-bloco2.html",
+                                liberado: true
+                            },
+                            {
+                                bloco: "especificas",
+                                modulo: "Módulo II • Específicas",
+                                disciplina: "Direito Processual Penal",
+                                peso: "05 questões • 7,1% da prova",
+                                topicos: "Direitos e garantias processuais penais, Inquérito Policial (arts. 4º a 23 do CPP), Ação Penal (arts. 24 a 62 do CPP), teoria geral da prova, cadeia de custódia, reconhecimento, busca e apreensão, prisão em flagrante, prisão preventiva e medidas cautelares.",
+                                simulado: "Liberado agora • 1º Mini Simulado • Bloco 2 (Q31 a Q40)",
+                                arquivo: "simulado-pcmg-bloco2.html",
+                                liberado: true
+                            },
+                            {
+                                bloco: "especificas",
+                                modulo: "Módulo II • Específicas",
+                                disciplina: "Legislação Penal e Processual Extravagante",
+                                peso: "04 questões • 5,7% da prova",
+                                topicos: "11 leis fechadas do edital: LEP (7.210/84), Hediondos (8.072/90), Ordem Econômica e Tributária (8.137/90), Interceptação Telefônica (9.296/96), CTB (9.503/97), Estatuto do Desarmamento (10.826/03), Maria da Penha (11.340/06), Drogas (11.343/06), Crime Organizado (12.850/13), Abuso de Autoridade (13.869/19) e Pacote Anticrime (13.964/19).",
+                                simulado: "3º Mini Simulado PCMG (Série Pré-Edital Premium)",
+                                liberado: false
+                            },
+                            {
+                                bloco: "especificas",
+                                modulo: "Módulo II • Específicas",
+                                disciplina: "Noções de Direitos Humanos",
+                                peso: "04 questões • 5,7% da prova",
+                                topicos: "Teoria geral e evolução histórica, sistemas global (ONU) e interamericano (OEA), tratados internacionais na CF/88 (EC nº 45/2004), grupos vulneráveis, Política Nacional de Direitos Humanos, Agenda 2030 (ODS) e segurança pública.",
+                                simulado: "3º Mini Simulado PCMG (Série Pré-Edital Premium)",
+                                liberado: false
+                            },
+                            {
+                                bloco: "especificas",
+                                modulo: "Módulo II • Específicas",
+                                disciplina: "Noções de Medicina Legal",
+                                peso: "05 questões • 7,1% da prova",
+                                topicos: "Perícias, documentos médico-legais, antropologia forense e identificação, traumatologia (energias mecânicas, químicas, físicas e asfixias em espécie), tanatologia e cronotanatognose, sexologia e psicopatologia médico-legal.",
+                                simulado: "5º Mini Simulado PCMG (Série Pré-Edital Premium)",
+                                liberado: false
+                            },
+                            {
+                                bloco: "especificas",
+                                modulo: "Módulo II • Específicas",
+                                disciplina: "Noções de Criminologia",
+                                peso: "05 questões • 7,1% da prova",
+                                topicos: "Conceito, objeto, método e funções da Criminologia, escolas clássica e positivista, teorias sociológicas (anomia, subculturas, Labeling Approach e criminologia crítica), modelos de prevenção, justiça consensual e criminologia do reconhecimento.",
+                                simulado: "3º Mini Simulado PCMG (Série Pré-Edital Premium)",
+                                liberado: false
+                            }
+                        ]
+                    },
                     blocos: [
                         {
                             titulo: "Bloco 1: Lei Orgânica da PCMG • LC 129/13 e Lei 5.406/69 (Q01 a Q20)",
@@ -247,6 +366,10 @@
                         {
                             titulo: "4º Mini Simulado PCMG: Língua Portuguesa + Raciocínio Lógico/Informática (40 Questões)",
                             premium: true
+                        },
+                        {
+                            titulo: "5º Mini Simulado PCMG: Medicina Legal + Revisão Estratégica FGV (40 Questões)",
+                            premium: true
                         }
                     ]
                 }
@@ -264,7 +387,7 @@
     ];
 
     /* ======================================================================
-       1. MOTOR AUTOMÁTICO DA VITRINE EXPANSÍVEL POR CARREIRA
+       1. MOTOR AUTOMÁTICO DA VITRINE EXPANSÍVEL + CARROSSEL ANALÍTICO
        ====================================================================== */
     try {
         const gridOriginal = document.querySelector(".vitrine-grid");
@@ -308,10 +431,281 @@
                     ".medalhao-brasao img.ajuste-pmpr{width:100% !important;height:100% !important;" +
                     "object-fit:contain !important;transform:none !important;" +
                     "filter:drop-shadow(0 4px 10px rgba(0,0,0,0.65));}" +
+                    ".mm-mapa-wrap{margin:12px 0 16px;width:100%;}" +
+                    ".mm-mapa-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;" +
+                    "padding:13px 16px;border-radius:11px;cursor:pointer;text-align:left;" +
+                    "background:linear-gradient(145deg,rgba(8,36,92,0.92) 0%,rgba(2,16,46,0.96) 100%);" +
+                    "border:1px solid rgba(56,189,248,0.42);box-shadow:0 6px 18px rgba(0,0,0,0.32);" +
+                    "transition:border-color .2s ease,transform .15s ease;}" +
+                    ".mm-mapa-toggle:hover,.mm-mapa-toggle.aberto{border-color:#ffca28;transform:translateY(-1px);}" +
+                    ".mm-mapa-toggle-esq{display:flex;align-items:center;gap:12px;min-width:0;}" +
+                    ".mm-mapa-icone{width:38px;height:38px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;" +
+                    "background:rgba(56,189,248,0.14);border:1px solid rgba(56,189,248,0.4);color:#38bdf8;font-size:16px;}" +
+                    ".mm-mapa-toggle.aberto .mm-mapa-icone{background:rgba(255,202,40,0.16);border-color:rgba(255,202,40,0.5);color:#ffca28;}" +
+                    ".mm-mapa-t-titulo{font-size:13px;font-weight:900;color:#ffffff;letter-spacing:0.4px;text-transform:uppercase;line-height:1.3;}" +
+                    ".mm-mapa-t-sub{font-size:12px;color:#cbd5e1;margin-top:2px;line-height:1.35;}" +
+                    ".mm-mapa-t-dir{display:flex;align-items:center;gap:8px;flex-shrink:0;}" +
+                    ".mm-mapa-pill-ver{font-size:10.5px;font-weight:800;letter-spacing:0.5px;text-transform:uppercase;" +
+                    "padding:4px 9px;border-radius:999px;background:rgba(56,189,248,0.15);border:1px solid rgba(56,189,248,0.4);color:#7dd3fc;}" +
+                    ".mm-mapa-toggle.aberto .mm-mapa-pill-ver{background:rgba(255,202,40,0.16);border-color:rgba(255,202,40,0.45);color:#ffca28;}" +
+                    ".mm-mapa-seta{color:#ffca28;font-size:12px;transition:transform .22s ease;}" +
+                    ".mm-mapa-toggle.aberto .mm-mapa-seta{transform:rotate(180deg);}" +
+                    ".mm-mapa-painel{display:none;margin-top:10px;padding:15px;border-radius:12px;" +
+                    "background:rgba(2,14,40,0.92);border:1px solid rgba(255,202,40,0.34);box-shadow:inset 0 1px 0 rgba(255,255,255,0.05);}" +
+                    ".mm-mapa-painel.aberto{display:block;animation:mmMapaFade .2s ease;}" +
+                    "@keyframes mmMapaFade{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:translateY(0);}}" +
+                    ".mm-mapa-filtros{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px;}" +
+                    ".mm-mapa-tabs{display:flex;flex-wrap:wrap;gap:6px;}" +
+                    ".mm-mapa-tab{padding:6px 11px;border-radius:8px;cursor:pointer;font-size:11.5px;font-weight:800;letter-spacing:0.3px;" +
+                    "background:rgba(255,255,255,0.04);border:1px solid rgba(148,163,184,0.28);color:#cbd5e1;transition:all .15s ease;}" +
+                    ".mm-mapa-tab:hover{border-color:#ffca28;color:#ffffff;}" +
+                    ".mm-mapa-tab.ativo{background:rgba(255,202,40,0.18);border-color:#ffca28;color:#ffca28;}" +
+                    ".mm-mapa-dica{font-size:11px;color:#94a3b8;font-weight:600;}" +
+                    ".mm-mapa-card{padding:16px;border-radius:10px;text-align:left;" +
+                    "background:linear-gradient(160deg,rgba(6,27,70,0.95) 0%,rgba(3,17,48,0.98) 100%);" +
+                    "border:1px solid rgba(56,189,248,0.28);touch-action:pan-y;}" +
+                    ".mm-mapa-card-topo{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px;}" +
+                    ".mm-mapa-mod{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:0.6px;" +
+                    "padding:4px 9px;border-radius:999px;background:rgba(56,189,248,0.14);border:1px solid rgba(56,189,248,0.35);color:#7dd3fc;}" +
+                    ".mm-mapa-mod.especificas{background:rgba(255,202,40,0.14);border-color:rgba(255,202,40,0.4);color:#ffca28;}" +
+                    ".mm-mapa-peso{font-size:11px;font-weight:800;color:#e2e8f0;padding:4px 9px;border-radius:999px;" +
+                    "background:rgba(2,12,34,0.75);border:1px solid rgba(148,163,184,0.28);}" +
+                    ".mm-mapa-disc{font-size:16px;font-weight:900;color:#ffffff;margin-bottom:8px;letter-spacing:0.2px;}" +
+                    ".mm-mapa-label{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;color:#94a3b8;margin-bottom:4px;}" +
+                    ".mm-mapa-topicos{font-size:13px;line-height:1.54;color:#cbd5e1;margin-bottom:14px;}" +
+                    ".mm-mapa-status{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;" +
+                    "padding:10px 12px;border-radius:8px;font-size:12px;font-weight:800;}" +
+                    ".mm-mapa-status.liberado{background:rgba(34,197,94,0.14);border:1px solid rgba(34,197,94,0.45);color:#86efac;}" +
+                    ".mm-mapa-status.breve{background:rgba(255,202,40,0.1);border:1px solid rgba(255,202,40,0.38);color:#fde68a;}" +
+                    ".mm-mapa-status-txt{display:flex;align-items:center;gap:7px;line-height:1.35;}" +
+                    ".mm-mapa-btn-abrir{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:7px;" +
+                    "background:#22c55e;color:#02112e;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:0.4px;" +
+                    "text-decoration:none;flex-shrink:0;transition:filter .15s ease;}" +
+                    ".mm-mapa-btn-abrir:hover{filter:brightness(1.08);}" +
+                    ".mm-mapa-nav{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;}" +
+                    ".mm-mapa-seta-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:8px;cursor:pointer;" +
+                    "background:rgba(255,255,255,0.05);border:1px solid rgba(148,163,184,0.3);color:#f1f5f9;font-size:12px;font-weight:800;" +
+                    "transition:border-color .15s ease,color .15s ease;}" +
+                    ".mm-mapa-seta-btn:hover{border-color:#ffca28;color:#ffca28;}" +
+                    ".mm-mapa-centro{display:flex;flex-direction:column;align-items:center;gap:6px;}" +
+                    ".mm-mapa-contador{font-size:11.5px;font-weight:800;color:#ffca28;letter-spacing:0.5px;}" +
+                    ".mm-mapa-dots{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:5px;}" +
+                    ".mm-mapa-dot{width:8px;height:8px;border-radius:999px;border:none;padding:0;cursor:pointer;" +
+                    "background:rgba(148,163,184,0.38);transition:width .18s ease,background .18s ease;}" +
+                    ".mm-mapa-dot.ativo{width:20px;background:#ffca28;}" +
+                    ".mm-mapa-rodape{margin-top:11px;padding-top:9px;border-top:1px solid rgba(148,163,184,0.18);" +
+                    "font-size:11px;color:#94a3b8;text-align:center;line-height:1.4;}" +
                     "@media(min-width:681px){.mm-cat-conteudo .vitrine-grid.mm-grid-unico{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}}" +
                     "@media(max-width:600px){.mm-cat-btn{padding:12px 14px;}.mm-cat-titulo{font-size:13.2px;letter-spacing:0.6px;}" +
-                    ".mm-cat-badge{font-size:10px;padding:3px 7px;}}";
+                    ".mm-cat-badge{font-size:10px;padding:3px 7px;}" +
+                    ".mm-mapa-toggle{padding:11px 12px;}.mm-mapa-pill-ver{display:none;}.mm-mapa-dica{display:none;}" +
+                    ".mm-mapa-card{padding:13px;}.mm-mapa-disc{font-size:14.5px;}.mm-mapa-seta-btn span{display:none;}}";
                 document.head.appendChild(styleCat);
+            }
+
+            function criarBlocoMapeamento(mapa, idConcurso) {
+                const materiasTodas = Array.isArray(mapa.materias) ? mapa.materias : [];
+                if (materiasTodas.length === 0) return null;
+
+                const qtdBasicas = materiasTodas.filter(function (m) { return m.bloco === "basicas"; }).length;
+                const qtdEspecificas = materiasTodas.filter(function (m) { return m.bloco === "especificas"; }).length;
+
+                let filtroAtual = "todas";
+                let listaFiltrada = materiasTodas.slice();
+                let indiceAtual = 0;
+
+                const wrap = document.createElement("div");
+                wrap.className = "mm-mapa-wrap";
+                wrap.id = "mm-mapa-" + idConcurso;
+
+                const btnToggle = document.createElement("button");
+                btnToggle.type = "button";
+                btnToggle.className = "mm-mapa-toggle";
+                btnToggle.setAttribute("aria-expanded", "false");
+                btnToggle.innerHTML =
+                    '<span class="mm-mapa-toggle-esq">' +
+                        '<span class="mm-mapa-icone"><i class="fa-solid fa-chart-pie"></i></span>' +
+                        '<span>' +
+                            '<div class="mm-mapa-t-titulo">' + mapa.titulo + '</div>' +
+                            '<div class="mm-mapa-t-sub">' + mapa.subtitulo + '</div>' +
+                        '</span>' +
+                    '</span>' +
+                    '<span class="mm-mapa-t-dir">' +
+                        '<span class="mm-mapa-pill-ver">Abrir mapa</span>' +
+                        '<i class="fa-solid fa-chevron-down mm-mapa-seta"></i>' +
+                    '</span>';
+
+                const painel = document.createElement("div");
+                painel.className = "mm-mapa-painel";
+
+                const barraFiltros = document.createElement("div");
+                barraFiltros.className = "mm-mapa-filtros";
+                barraFiltros.innerHTML =
+                    '<div class="mm-mapa-tabs">' +
+                        '<button type="button" class="mm-mapa-tab ativo" data-filtro="todas">Todas (' + materiasTodas.length + ')</button>' +
+                        '<button type="button" class="mm-mapa-tab" data-filtro="basicas">Básicas (' + qtdBasicas + ')</button>' +
+                        '<button type="button" class="mm-mapa-tab" data-filtro="especificas">Específicas (' + qtdEspecificas + ')</button>' +
+                    '</div>' +
+                    '<span class="mm-mapa-dica"><i class="fa-solid fa-arrows-left-right" style="margin-right:4px;"></i>Navegue pelas disciplinas</span>';
+
+                const card = document.createElement("div");
+                card.className = "mm-mapa-card";
+
+                const nav = document.createElement("div");
+                nav.className = "mm-mapa-nav";
+
+                const btnPrev = document.createElement("button");
+                btnPrev.type = "button";
+                btnPrev.className = "mm-mapa-seta-btn";
+                btnPrev.setAttribute("aria-label", "Disciplina anterior");
+                btnPrev.innerHTML = '<i class="fa-solid fa-chevron-left"></i><span>Anterior</span>';
+
+                const centro = document.createElement("div");
+                centro.className = "mm-mapa-centro";
+
+                const elContador = document.createElement("div");
+                elContador.className = "mm-mapa-contador";
+
+                const elDots = document.createElement("div");
+                elDots.className = "mm-mapa-dots";
+
+                centro.appendChild(elContador);
+                centro.appendChild(elDots);
+
+                const btnNext = document.createElement("button");
+                btnNext.type = "button";
+                btnNext.className = "mm-mapa-seta-btn";
+                btnNext.setAttribute("aria-label", "Próxima disciplina");
+                btnNext.innerHTML = '<span>Próxima</span><i class="fa-solid fa-chevron-right"></i>';
+
+                nav.appendChild(btnPrev);
+                nav.appendChild(centro);
+                nav.appendChild(btnNext);
+
+                const rodape = document.createElement("div");
+                rodape.className = "mm-mapa-rodape";
+                rodape.textContent = mapa.rodape || "";
+
+                painel.appendChild(barraFiltros);
+                painel.appendChild(card);
+                painel.appendChild(nav);
+                if (mapa.rodape) painel.appendChild(rodape);
+
+                function renderSlide() {
+                    if (!listaFiltrada.length) return;
+                    if (indiceAtual < 0) indiceAtual = listaFiltrada.length - 1;
+                    if (indiceAtual >= listaFiltrada.length) indiceAtual = 0;
+
+                    const m = listaFiltrada[indiceAtual];
+                    const classeMod = m.bloco === "especificas" ? "mm-mapa-mod especificas" : "mm-mapa-mod";
+                    const classeStatus = m.liberado ? "mm-mapa-status liberado" : "mm-mapa-status breve";
+                    const iconeStatus = m.liberado
+                        ? '<i class="fa-solid fa-circle-check"></i>'
+                        : '<i class="fa-solid fa-crown"></i>';
+                    const botaoAbrir = (m.liberado && m.arquivo)
+                        ? '<a href="' + m.arquivo + '" class="mm-mapa-btn-abrir">Abrir bloco <i class="fa-solid fa-play"></i></a>'
+                        : "";
+
+                    card.innerHTML =
+                        '<div class="mm-mapa-card-topo">' +
+                            '<span class="' + classeMod + '">' + m.modulo + '</span>' +
+                            '<span class="mm-mapa-peso">' + m.peso + '</span>' +
+                        '</div>' +
+                        '<div class="mm-mapa-disc">' + m.disciplina + '</div>' +
+                        '<div class="mm-mapa-label">Pontos-chave mapeados no edital:</div>' +
+                        '<div class="mm-mapa-topicos">' + m.topicos + '</div>' +
+                        '<div class="' + classeStatus + '">' +
+                            '<span class="mm-mapa-status-txt">' + iconeStatus + '<span>' + m.simulado + '</span></span>' +
+                            botaoAbrir +
+                        '</div>';
+
+                    elContador.textContent = (indiceAtual + 1) + " / " + listaFiltrada.length;
+
+                    elDots.innerHTML = "";
+                    listaFiltrada.forEach(function (_, idx) {
+                        const dot = document.createElement("button");
+                        dot.type = "button";
+                        dot.className = idx === indiceAtual ? "mm-mapa-dot ativo" : "mm-mapa-dot";
+                        dot.setAttribute("aria-label", "Ir para disciplina " + (idx + 1));
+                        dot.addEventListener("click", function () {
+                            indiceAtual = idx;
+                            renderSlide();
+                        });
+                        elDots.appendChild(dot);
+                    });
+                }
+
+                barraFiltros.querySelectorAll(".mm-mapa-tab").forEach(function (tab) {
+                    tab.addEventListener("click", function () {
+                        filtroAtual = tab.getAttribute("data-filtro") || "todas";
+                        barraFiltros.querySelectorAll(".mm-mapa-tab").forEach(function (t) {
+                            t.classList.remove("ativo");
+                        });
+                        tab.classList.add("ativo");
+
+                        if (filtroAtual === "todas") {
+                            listaFiltrada = materiasTodas.slice();
+                        } else {
+                            listaFiltrada = materiasTodas.filter(function (m) {
+                                return m.bloco === filtroAtual;
+                            });
+                        }
+                        indiceAtual = 0;
+                        renderSlide();
+                    });
+                });
+
+                btnPrev.addEventListener("click", function () {
+                    indiceAtual--;
+                    renderSlide();
+                });
+
+                btnNext.addEventListener("click", function () {
+                    indiceAtual++;
+                    renderSlide();
+                });
+
+                let toqueInicioX = 0;
+                card.addEventListener("touchstart", function (e) {
+                    if (e.touches && e.touches.length === 1) {
+                        toqueInicioX = e.touches[0].clientX;
+                    }
+                }, { passive: true });
+
+                card.addEventListener("touchend", function (e) {
+                    if (!e.changedTouches || e.changedTouches.length !== 1) return;
+                    const deltaX = e.changedTouches[0].clientX - toqueInicioX;
+                    if (Math.abs(deltaX) >= 40) {
+                        if (deltaX < 0) {
+                            indiceAtual++;
+                        } else {
+                            indiceAtual--;
+                        }
+                        renderSlide();
+                    }
+                }, { passive: true });
+
+                btnToggle.addEventListener("click", function () {
+                    const jaAberto = painel.classList.contains("aberto");
+                    const pill = btnToggle.querySelector(".mm-mapa-pill-ver");
+                    if (jaAberto) {
+                        painel.classList.remove("aberto");
+                        btnToggle.classList.remove("aberto");
+                        btnToggle.setAttribute("aria-expanded", "false");
+                        if (pill) pill.textContent = "Abrir mapa";
+                    } else {
+                        painel.classList.add("aberto");
+                        btnToggle.classList.add("aberto");
+                        btnToggle.setAttribute("aria-expanded", "true");
+                        if (pill) pill.textContent = "Ocultar mapa";
+                        renderSlide();
+                    }
+                });
+
+                renderSlide();
+                wrap.appendChild(btnToggle);
+                wrap.appendChild(painel);
+                return wrap;
             }
 
             ["menu-simulado-gmj", "menu-simulado-gmc"].forEach(function (idAntigo) {
@@ -460,6 +854,11 @@
                             h3.style.fontSize = "13px";
                             h3.innerHTML = '<i class="fa-solid fa-bullseye fa-fw" style="margin-right: 6px;"></i>' + (c.tituloMenu || c.titulo);
                             sec.appendChild(h3);
+
+                            if (c.mapeamentoAnalitico) {
+                                const blocoMapa = criarBlocoMapeamento(c.mapeamentoAnalitico, c.id);
+                                if (blocoMapa) sec.appendChild(blocoMapa);
+                            }
 
                             const lista = document.createElement("div");
                             lista.className = "lista-aulas";
